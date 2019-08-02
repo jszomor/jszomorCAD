@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.168
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "jszomorCAD", "jszomorCAD\jszomorCAD.csproj", "{34AA1FB3-50CD-4F3D-B7EA-210764123D4C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "jCAD.Core", "jszomorCAD\jCAD.Core.csproj", "{34AA1FB3-50CD-4F3D-B7EA-210764123D4C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrganiCAD.AutoCAD", "E:\Munka\OrganiCad\OrganiCAD.AutoCAD\OrganiCAD.AutoCAD.csproj", "{F6263436-2892-4372-A84F-7BD6A8A4AF1E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "jCAD.EquipmentPosition", "EquipmentPosition\EquipmentPosition\jCAD.EquipmentPosition.csproj", "{FE7104A8-3F0B-4441-8B60-D9E21AEA1BB5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{F6263436-2892-4372-A84F-7BD6A8A4AF1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F6263436-2892-4372-A84F-7BD6A8A4AF1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F6263436-2892-4372-A84F-7BD6A8A4AF1E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FE7104A8-3F0B-4441-8B60-D9E21AEA1BB5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FE7104A8-3F0B-4441-8B60-D9E21AEA1BB5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FE7104A8-3F0B-4441-8B60-D9E21AEA1BB5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FE7104A8-3F0B-4441-8B60-D9E21AEA1BB5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

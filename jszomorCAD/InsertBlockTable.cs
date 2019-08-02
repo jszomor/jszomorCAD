@@ -2,6 +2,7 @@
 using Autodesk.AutoCAD.DatabaseServices;
 using Autodesk.AutoCAD.EditorInput;
 using Autodesk.AutoCAD.Geometry;
+using EquipmentPosition;
 using OrganiCAD.AutoCAD;
 using System;
 using System.Collections.Generic;
@@ -13,10 +14,13 @@ namespace jszomorCAD
 {
   public class InsertBlockTable
   {
-    public void InsertBlockTableMethod(string question, string itemType, string layerName, string propertyName)
+    public void InsertBlockTableMethod(Database db, string numberQuestion, string distanceQuestion, string itemType, string layerName, string propertyName)
     {
-      var db = Application.DocumentManager.MdiActiveDocument.Database;
+      Editor ed = Application.DocumentManager.MdiActiveDocument.Editor;     
       var aw = new AutoCadWrapper();
+
+      var positionProperty = new PositionProperty();
+
 
       // Start transaction to insert equipment
       aw.ExecuteActionOnBlockTable(db, (tr, bt) =>
@@ -31,11 +35,16 @@ namespace jszomorCAD
               blockDefinitions.Add(btrId);
           }
         }
+
         //"\nEnter number of equipment:"
-        var pio = new PromptIntegerOptions(question) { DefaultValue = 1 };
+        var pio = new PromptIntegerOptions(numberQuestion) { DefaultValue = 1 };
         var pi = Application.DocumentManager.MdiActiveDocument.Editor.GetInteger(pio);
 
-        int x = 0;
+        //"\nEnter distance of equipment:"
+        var dio = new PromptIntegerOptions(distanceQuestion) { DefaultValue = 0 };
+        var di = Application.DocumentManager.MdiActiveDocument.Editor.GetInteger(dio);
+
+        int x = 0;  
 
         var currentSpaceId = tr.GetObject(db.CurrentSpaceId, OpenMode.ForWrite) as BlockTableRecord;
 
@@ -66,7 +75,7 @@ namespace jszomorCAD
 
                   acBlkRef.AttributeCollection.AppendAttribute(ar);
                   tr.AddNewlyCreatedDBObject(ar, true);
-                }
+                }                
 
                 // set dynamic properties
                 if (acBlkRef.IsDynamicBlock)
@@ -76,15 +85,17 @@ namespace jszomorCAD
                     if (dbrProp.PropertyName == propertyName)
                       dbrProp.Value = (short)45; // SHORT !!!!!!!!!!!!
 
-                    //if (dbrProp.PropertyName == "Angle")
-                    //  dbrProp.Value = 90; // SHORT !!!!!!!!!!!!aut
+                    if (dbrProp.PropertyName == "Angle1")                      
+                      dbrProp.Value = (double)PositionProperty.rotate90;
 
+                    if (dbrProp.PropertyName == "Angle2")
+                      dbrProp.Value = (double)PositionProperty.rotate270;
                   }
                 }
               }
             }
           }
-          x += 20;
+          x += di.Value;
         }
         currentSpaceId.UpdateAnonymousBlocks();
       });

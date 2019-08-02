@@ -11,9 +11,8 @@ namespace jszomorCAD
 {
   public class CopyBlockTable
   {
-    public void CopyBlockTableMethod(string itemType, string filePath)
-    {
-      var db = Application.DocumentManager.MdiActiveDocument.Database;
+    public void CopyBlockTableMethod(Database db, string itemType, string filePath)
+    {     
       var aw = new AutoCadWrapper();      
 
       using (Database sourceDb = new Database(false, true))

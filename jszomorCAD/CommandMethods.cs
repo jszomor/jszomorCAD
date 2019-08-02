@@ -19,9 +19,12 @@ namespace jszomorCAD
       var ed = Application.DocumentManager.MdiActiveDocument.Editor;
       var aw = new AutoCadWrapper();
 
-      // Copy specific item from file
+      // Copy pump from sourcefile
       var copyBlockTable = new CopyBlockTable();
-      copyBlockTable.CopyBlockTableMethod("pump", @"E:\Test\pump.dwg");
+      copyBlockTable.CopyBlockTableMethod(db, "pump", @"E:\Test\Autocad PID blocks work in progress.dwg");
+
+      // Copy pump from sourcefile      
+      copyBlockTable.CopyBlockTableMethod(db, "chamber", @"E:\Test\Autocad PID blocks work in progress.dwg");
 
       // Call a transaction to create layer
       var layerCreator = new LayerCreator();
@@ -29,7 +32,13 @@ namespace jszomorCAD
 
       // Start transaction to write equipment
       var insertBlockTable = new InsertBlockTable();
-      insertBlockTable.InsertBlockTableMethod("\nEnter number of equipment:", "pump", "equipment", "Centrifugal Pump");
+                                                                         
+      insertBlockTable.InsertBlockTableMethod("\nEnter number of equipment:", // numberQuestion
+                                              "\nEnter distance of equipment:", // disctanceQuestion
+                                              "pump",                         //block name
+                                              "equipment",                    //layer name
+                                              "Centrifugal Pump");            //equipment type
+
     } 
   }
 }
