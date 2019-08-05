@@ -12,18 +12,36 @@ namespace jszomorCAD
 {
   public class CommandMethods
   {
+
     [CommandMethod("jcad_EquipmentBuilder")]
     public void ListBlocks()
     {
+
+      //"\nEnter number of equipment:"
+      var pio = new PromptIntegerOptions("\nEnter number of equipment:") { DefaultValue = 1 };
+      var number = Application.DocumentManager.MdiActiveDocument.Editor.GetInteger(pio);
+
+      //"\nEnter distance of equipment:"
+      var dio = new PromptIntegerOptions("\nEnter distance of equipment:") { DefaultValue = 0 };
+      var distance = Application.DocumentManager.MdiActiveDocument.Editor.GetInteger(dio);
+
+      //"\nEnter index of equipment:"
+      var eio = new PromptIntegerOptions("\nEnter index of equipment:") { DefaultValue = 0 };
+      var eqIndex = Application.DocumentManager.MdiActiveDocument.Editor.GetInteger(eio);
+
+      var intNumber = number.Value;
+      var intDistance = distance.Value;
+      var shortEqIndex = Convert.ToInt16(eqIndex.Value);
+
       var db = Application.DocumentManager.MdiActiveDocument.Database;
-      var ed = Application.DocumentManager.MdiActiveDocument.Editor;
-      var aw = new AutoCadWrapper();
+      //var ed = Application.DocumentManager.MdiActiveDocument.Editor;
+      //var aw = new AutoCadWrapper();
 
       // Copy pump from sourcefile
       var copyBlockTable = new CopyBlockTable();
       copyBlockTable.CopyBlockTableMethod(db, "pump", @"E:\Test\Autocad PID blocks work in progress.dwg");
 
-      // Copy pump from sourcefile      
+      // Copy chamber from sourcefile      
       copyBlockTable.CopyBlockTableMethod(db, "chamber", @"E:\Test\Autocad PID blocks work in progress.dwg");
 
       // Call a transaction to create layer
@@ -31,13 +49,15 @@ namespace jszomorCAD
       layerCreator.LayerCreatorMethod("equipment", Color.FromRgb(0, 0, 255), 0.5);
 
       // Start transaction to write equipment
-      var insertBlockTable = new InsertBlockTable();
-                                                                         
-      insertBlockTable.InsertBlockTableMethod("\nEnter number of equipment:", // numberQuestion
-                                              "\nEnter distance of equipment:", // disctanceQuestion
+      var insertBlockTable = new InsertBlockTable();      
+
+      insertBlockTable.InsertBlockTableMethod(db,
+                                              intNumber,                         // number
+                                              intDistance,                       // disctance
                                               "pump",                         //block name
                                               "equipment",                    //layer name
-                                              "Centrifugal Pump");            //equipment type
+                                              "Centrifugal Pump",             //equipment type
+                                              shortEqIndex);                       //index of equipment
 
     } 
   }

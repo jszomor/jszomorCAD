@@ -14,13 +14,17 @@ namespace jszomorCAD
 {
   public class InsertBlockTable
   {
-    public void InsertBlockTableMethod(Database db, string numberQuestion, string distanceQuestion, string itemType, string layerName, string propertyName)
+    //public void InsertVfdPump(Database db, PromptIntegerResult number, PromptIntegerResult distance, string itemType, string layerName, int eqIndex) => 
+    //  InsertBlockTableMethod(db, number, distance, itemType, layerName, "Centrifugal Pump", eqIndex); // todo: magic number
+
+    public void InsertBlockTableMethod(Database db, int number, int distance, string itemType, string layerName, string propertyName, short eqIndex)
     {
       Editor ed = Application.DocumentManager.MdiActiveDocument.Editor;     
       var aw = new AutoCadWrapper();
 
       var positionProperty = new PositionProperty();
 
+      var shortEqIndex = Convert.ToInt16(eqIndex);
 
       // Start transaction to insert equipment
       aw.ExecuteActionOnBlockTable(db, (tr, bt) =>
@@ -36,25 +40,17 @@ namespace jszomorCAD
           }
         }
 
-        //"\nEnter number of equipment:"
-        var pio = new PromptIntegerOptions(numberQuestion) { DefaultValue = 1 };
-        var pi = Application.DocumentManager.MdiActiveDocument.Editor.GetInteger(pio);
-
-        //"\nEnter distance of equipment:"
-        var dio = new PromptIntegerOptions(distanceQuestion) { DefaultValue = 0 };
-        var di = Application.DocumentManager.MdiActiveDocument.Editor.GetInteger(dio);
-
-        int x = 0;  
+        positionProperty.X = 0;
 
         var currentSpaceId = tr.GetObject(db.CurrentSpaceId, OpenMode.ForWrite) as BlockTableRecord;
 
-        for (int i = 0; i < pi.Value; i++)
+        for (int i = 0; i < number; i++)
         {
           foreach (var objectId in blockDefinitions)
           {
             using (var blockDefinition = (BlockTableRecord)tr.GetObject(objectId, OpenMode.ForRead, false))
             {
-              using (var acBlkRef = new BlockReference(new Point3d(x, 0, 0), objectId))
+              using (var acBlkRef = new BlockReference(new Point3d(positionProperty.X, positionProperty.Y, positionProperty.Z), objectId))
               {
                 currentSpaceId.AppendEntity(acBlkRef);
                 tr.AddNewlyCreatedDBObject(acBlkRef, true);
@@ -83,25 +79,24 @@ namespace jszomorCAD
                   foreach (DynamicBlockReferenceProperty dbrProp in acBlkRef.DynamicBlockReferencePropertyCollection)
                   {
                     if (dbrProp.PropertyName == propertyName)
-                      dbrProp.Value = (short)45; // SHORT !!!!!!!!!!!!
+                      dbrProp.Value = eqIndex; // SHORT !!!!!!!!!!!!
 
-                    if (dbrProp.PropertyName == "Angle1")                      
-                      dbrProp.Value = (double)PositionProperty.rotate90;
+                    if (dbrProp.PropertyName == "Angle1")
+                      dbrProp.Value = DegreeHelper.DegreeToRadian(90);
 
                     if (dbrProp.PropertyName == "Angle2")
-                      dbrProp.Value = (double)PositionProperty.rotate270;
+                      dbrProp.Value = DegreeHelper.DegreeToRadian(270);
+                    
                   }
                 }
               }
             }
           }
-          x += di.Value;
+          positionProperty.X += distance;
         }
         currentSpaceId.UpdateAnonymousBlocks();
       });
-
     }
-    //Assign Color to a Layer
-  }
+  }  
 }
 

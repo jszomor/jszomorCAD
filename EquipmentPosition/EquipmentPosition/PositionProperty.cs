@@ -8,17 +8,13 @@ namespace EquipmentPosition
 {
   public class PositionProperty
   {
-    public const double RAD = 0.01745329252;
-    public static double rotate0 = 0;
-    public static double rotate90 = RAD * 90;
-    public static double rotate180 = RAD * 180;
-    public static double rotate270 = RAD * 270;
+    public int X { get; set; }
+    public int Y { get; set; }
+    public int Z { get; set; }
 
-    private int Distance { get; set; }
-
-    public void EquipmentDist(int eqDistance)
+    public void DistanceMethod(int distance)
     {
-      Distance = eqDistance;
+      X = distance;
     }
   }
 }
