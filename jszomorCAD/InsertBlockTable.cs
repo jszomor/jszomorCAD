@@ -85,8 +85,7 @@ namespace jszomorCAD
                       dbrProp.Value = DegreeHelper.DegreeToRadian(90);
 
                     if (dbrProp.PropertyName == "Angle2")
-                      dbrProp.Value = DegreeHelper.DegreeToRadian(270);
-                    
+                      dbrProp.Value = DegreeHelper.DegreeToRadian(270);                    
                   }
                 }
               }

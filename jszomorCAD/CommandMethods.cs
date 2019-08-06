@@ -12,6 +12,7 @@ namespace jszomorCAD
 {
   public class CommandMethods
   {
+    public string path = @"E:\Test\Autocad PID blocks work in progress.dwg";
 
     [CommandMethod("jcad_EquipmentBuilder")]
     public void ListBlocks()
@@ -39,10 +40,10 @@ namespace jszomorCAD
 
       // Copy pump from sourcefile
       var copyBlockTable = new CopyBlockTable();
-      copyBlockTable.CopyBlockTableMethod(db, "pump", @"E:\Test\Autocad PID blocks work in progress.dwg");
+      copyBlockTable.CopyBlockTableMethod(db, "pump", path);
 
       // Copy chamber from sourcefile      
-      copyBlockTable.CopyBlockTableMethod(db, "chamber", @"E:\Test\Autocad PID blocks work in progress.dwg");
+      copyBlockTable.CopyBlockTableMethod(db, "chamber", path);
 
       // Call a transaction to create layer
       var layerCreator = new LayerCreator();
