@@ -38,12 +38,9 @@ namespace jszomorCAD
       //var ed = Application.DocumentManager.MdiActiveDocument.Editor;
       //var aw = new AutoCadWrapper();
 
-      // Copy pump from sourcefile
+      // Copy blocks from sourcefile into opened file
       var copyBlockTable = new CopyBlockTable();
-      copyBlockTable.CopyBlockTableMethod(db, "pump", path);
-
-      // Copy chamber from sourcefile      
-      copyBlockTable.CopyBlockTableMethod(db, "chamber", path);
+      copyBlockTable.CopyBlockTableMethod(db, path);
 
       // Call a transaction to create layer
       var layerCreator = new LayerCreator();
@@ -55,10 +52,18 @@ namespace jszomorCAD
       insertBlockTable.InsertBlockTableMethod(db,
                                               intNumber,                         // number
                                               intDistance,                       // disctance
-                                              "pump",                         //block name
-                                              "equipment",                    //layer name
-                                              "Centrifugal Pump",             //equipment type
-                                              shortEqIndex);                       //index of equipment
+                                              "pump",                            //block name
+                                              "equipment",                       //layer name
+                                              "Centrifugal Pump",                //equipment type
+                                              shortEqIndex);                     //index of equipment
+
+      //insertBlockTable.InsertBlockTableMethod(db,
+      //                                        intNumber,                         // number
+      //                                        intDistance,                       // disctance
+      //                                        "chamber",                         //block name
+      //                                        "building",                        //layer name
+      //                                        "Centrifugal Pump",                //equipment type
+      //                                        shortEqIndex);                     //index of equipment
 
     } 
   }

@@ -21,22 +21,25 @@ namespace jszomorCAD
     {
       Editor ed = Application.DocumentManager.MdiActiveDocument.Editor;     
       var aw = new AutoCadWrapper();
-
+      BlockTableRecord btr;
+      var blockDefinitions = new List<ObjectId>();
       var positionProperty = new PositionProperty();
-
-      var shortEqIndex = Convert.ToInt16(eqIndex);
+      
+      //var shortEqIndex = Convert.ToInt16(eqIndex);
 
       // Start transaction to insert equipment
       aw.ExecuteActionOnBlockTable(db, (tr, bt) =>
       {
-        var blockDefinitions = new List<ObjectId>();
+        
         foreach (ObjectId btrId in bt)
         {
-          using (BlockTableRecord btr = (BlockTableRecord)tr.GetObject(btrId, OpenMode.ForRead, false))
+          using (btr = (BlockTableRecord)tr.GetObject(btrId, OpenMode.ForRead, false))
           {
             // Only add named & non-layout blocks to the copy list
             if (!btr.IsAnonymous && !btr.IsLayout && btr.Name == itemType)
-              blockDefinitions.Add(btrId);
+            {
+              blockDefinitions.Add(btrId);             
+            }
           }
         }
 

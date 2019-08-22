@@ -11,7 +11,7 @@ namespace jszomorCAD
 {
   public class CopyBlockTable
   {
-    public void CopyBlockTableMethod(Database db, string itemType, string filePath)
+    public void CopyBlockTableMethod(Database db, string filePath)
     {     
       var aw = new AutoCadWrapper();      
 
@@ -31,7 +31,7 @@ namespace jszomorCAD
             using (var btr = objectId.GetObject<BlockTableRecord>())
             {
               // Only add named & non-layout blocks to the copy list and filter for specific item
-              if (!btr.IsAnonymous && !btr.IsLayout && btr.Name == itemType)
+              if (!btr.IsAnonymous && !btr.IsLayout)
                 blockIds.Add(objectId);
             }
           }
