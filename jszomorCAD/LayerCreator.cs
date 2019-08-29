@@ -50,6 +50,7 @@ namespace jszomorCAD
         // Set the color of the layer
         layerTableRecord.Color = acColors;
         db.Ltscale = lineTypeScale;
+        layerTableRecord.LineWeight = LineWeight.LineWeight025;
       });
     }
   }

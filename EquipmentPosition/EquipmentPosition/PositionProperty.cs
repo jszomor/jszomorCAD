@@ -8,9 +8,13 @@ namespace EquipmentPosition
 {
   public class PositionProperty
   {
-    public int X { get; set; }
-    public int Y { get; set; }
-    public int Z { get; set; }
+    public double X { get; set; }
+    public double Y { get; set; }
+    public double Z { get; set; }
+    public double ChamberWidth { get; set; }
+    public static double NumberOfPump { get; set; }
+    public static double DistanceOfPump { get; set; }
+
 
     public void DistanceMethod(int distance)
     {
