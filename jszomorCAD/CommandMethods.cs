@@ -32,6 +32,7 @@ namespace jszomorCAD
       var eqIndex = Application.DocumentManager.MdiActiveDocument.Editor.GetInteger(eio);         
       
       var shortEqIndex = Convert.ToInt16(eqIndex.Value);
+      //short shortCheckValveIndex = 2;
       PositionProperty.NumberOfPump = number.Value;
       PositionProperty.DistanceOfPump = distance.Value;     
 
@@ -43,6 +44,8 @@ namespace jszomorCAD
       var copyBlockTable = new CopyBlockTable();
       copyBlockTable.CopyBlockTableMethod(db, path);
 
+      sizeProperty.X = 50;
+
       // Call a transaction to create layer
       //var layerCreator = new LayerCreator();
       //layerCreator.LayerCreatorMethod("equipment", Color.FromRgb(0, 0, 255), 0.5);
@@ -52,17 +55,17 @@ namespace jszomorCAD
       // Start transaction to write equipment
       var insertBlockTable = new InsertBlockTable();
 
-      insertBlockTable.InsertBlockTableMethod(db,
+      insertBlockTable.InsertBlockTableMethodAsTable(db,
                                               PositionProperty.NumberOfPump,        // number of item
                                               PositionProperty.DistanceOfPump,      // disctance of item
                                               "pump",                               //block name
                                               "equipment",                         //layer name
                                               "Centrifugal Pump",                  //dynamic property type
                                               shortEqIndex,                         //visibility of equipment
-                                              20,                                  //X
+                                              sizeProperty.X,                      //X
                                               10);                                 //Y
 
-      insertBlockTable.InsertBlockTableMethod(db,
+      insertBlockTable.InsertBlockTableMethodAsVisibility(db,
                                               1,                                 // number of item
                                               0,                                  // disctance of item
                                               "chamber",                         //block name
@@ -72,15 +75,48 @@ namespace jszomorCAD
                                               0,                                  //X
                                               0);                                 //Y
 
-      insertBlockTable.InsertBlockTableMethod(db,
-                                              PositionProperty.NumberOfPump,      // number of item
-                                              PositionProperty.DistanceOfPump,   // disctance of item
-                                              "valve",                          //block name
-                                              "valve",                            //layer name
-                                              "Visibility",                      //dynamic property type
-                                              "Check Valve",                       //visibility of equipment
-                                              20,                                  //X
-                                              25);
+      insertBlockTable.InsertBlockTableMethodAsTable(db,
+                                              PositionProperty.NumberOfPump,       // number of item
+                                              PositionProperty.DistanceOfPump,     // disctance of item
+                                              "valve",                             //block name
+                                              "valve",                             //layer name
+                                              "Block Table1",                      //dynamic property type
+                                              5,                                   //visibility of equipment
+                                              sizeProperty.X,                      //X
+                                              25);                                 //Y
+
+      insertBlockTable.InsertBlockTableMethodAsTable(db,
+                                              PositionProperty.NumberOfPump,       // number of item
+                                              PositionProperty.DistanceOfPump,     // disctance of item
+                                              "valve",                             //block name
+                                              "valve",                             //layer name
+                                              "Block Table1",                      //dynamic property type
+                                              0,                                   //visibility of equipment
+                                              sizeProperty.X,                      //X
+                                              40);                                  //Y
+
+      insertBlockTable.InsertBlockTableMethodAsTable(db,
+                                              1,                                   // number of item
+                                              0,                                   // disctance of item
+                                              "instrumentation tag",                //block name
+                                              "instrumentation",                   //layer name
+                                              "Block Table1",                      //dynamic property type
+                                              7,                                   //visibility of equipment
+                                              PositionProperty.NumberOfPump * PositionProperty.DistanceOfPump + 50,                      //X
+                                              10);                                 //Y
+
+      insertBlockTable.InsertBlockTableMethodAsTable(db,
+                                              1,                                    // number of item
+                                              0,                                    // disctance of item
+                                              "pump",                               //block name
+                                              "equipment",                         //layer name
+                                              "Centrifugal Pump",                  //dynamic property type
+                                              17,                                  //visibility of jet pump
+                                              25,                                  //X
+                                              10);                                 //Y
+
+
+
     } 
   }
 }

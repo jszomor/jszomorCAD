@@ -15,11 +15,20 @@ namespace jszomorCAD
 {
   public class InsertBlockTable
   {
-    //public void InsertVfdPump(Database db, PromptIntegerResult number, PromptIntegerResult distance, string itemType, string layerName, int eqIndex) => 
-    //  InsertBlockTableMethod(db, number, distance, itemType, layerName, "Centrifugal Pump", eqIndex); // todo: magic number
+    //public void InsertVfdPump(Database db, PromptIntegerResult number, PromptIntegerResult distance, string blockName, string layerName, int eqIndex) => 
+    //  InsertBlockTableMethod(db, number, distance, blockName, layerName, "Centrifugal Pump", eqIndex); // todo: magic number
 
-    public void InsertBlockTableMethod(Database db, double number, double distance, string itemType, string layerName, string propertyName, object eqIndex, double X, double Y)
-    {      
+    public void InsertBlockTableMethodAsTable(Database db, double number, double distance, string blockName, string layerName, string propertyName, short eqIndex, double X, double Y) => 
+      InsertBlockTableMethod(db, number, distance, blockName, layerName, propertyName, eqIndex, X, Y);
+
+    public void InsertBlockTableMethodAsVisibility(Database db, double number, double distance, string blockName, string layerName, string propertyName, string visibilityStateName, double X, double Y) =>
+      InsertBlockTableMethod(db, number, distance, blockName, layerName, propertyName, visibilityStateName, X, Y);
+
+    private void InsertBlockTableMethod(Database db, double number, double distance, string blockName, string layerName, string propertyName, object eqIndex, double X, double Y)
+    {
+      var sizeProperty = new PositionProperty();
+      sizeProperty.FreeSpace = 70;
+
       Editor ed = Application.DocumentManager.MdiActiveDocument.Editor;     
       var aw = new AutoCadWrapper();
       BlockTableRecord btr;
@@ -52,17 +61,12 @@ namespace jszomorCAD
           using (btr = (BlockTableRecord)tr.GetObject(btrId, OpenMode.ForRead, false))
           {
             // Only add named & non-layout blocks to the copy list
-            if (!btr.IsAnonymous && !btr.IsLayout && btr.Name == itemType)
+            if (!btr.IsAnonymous && !btr.IsLayout && btr.Name == blockName)
             {  
               blockDefinitions.Add(btrId);             
             }
           }
-        }
-
-        //X = 0;
-
-        //X = positionProperty.X;
-        //Y = positionProperty.Y;
+        }        
 
         var currentSpaceId = tr.GetObject(db.CurrentSpaceId, OpenMode.ForWrite) as BlockTableRecord;
 
@@ -93,19 +97,27 @@ namespace jszomorCAD
 
                   acBlkRef.AttributeCollection.AppendAttribute(ar);
                   tr.AddNewlyCreatedDBObject(ar, true);
+                
+                  System.Diagnostics.Debug.Print($"Tag={ar.Tag} TextString={ar.TextString}");
 
                   //text for EQ tank - Attributes
-                  if (ar.Tag == "NAME1" && itemType == "chamber")
+                  if (ar.Tag == "NAME1" && blockName == "chamber")
                     ar.TextString = "EQUALIZATION";
-                  if (ar.Tag == "NAME2" && itemType == "chamber")
+                  if (ar.Tag == "NAME2" && blockName == "chamber")
                     ar.TextString = "TANK";
 
                   //valve setup
-                  if(itemType == "valve" && acBlkRef.Name == "Rotation")
+                  if (blockName == "valve")
                   {
+                    //ar.Rotation = DegreeHelper.DegreeToRadian(90);
+                    acBlkRef.Rotation = DegreeHelper.DegreeToRadian(90);
                   }
-                }                
 
+                  //// for jet pump rotate
+                  //if (/*ar.Tag == "NOTE" && ar.TextString == "Air Jet Pump" && */blockName == "pump")
+                  //  acBlkRef.Rotation = DegreeHelper.DegreeToRadian(270);
+                }
+                
                 // set dynamic properties
                 if (acBlkRef.IsDynamicBlock)
                 {
@@ -122,14 +134,30 @@ namespace jszomorCAD
                     if (dbrProp.PropertyName == "Angle2")
                       dbrProp.Value = DegreeHelper.DegreeToRadian(270);
 
+
                     //setup chamber width
-                    if (dbrProp.PropertyName == "Distance")
-                      dbrProp.Value = PositionProperty.NumberOfPump * PositionProperty.DistanceOfPump + (double)30;
+                    if (dbrProp.PropertyName == "Distance" && blockName == "chamber")
+                      dbrProp.Value = PositionProperty.NumberOfPump * PositionProperty.DistanceOfPump + sizeProperty.FreeSpace; //last value is the free space for other items
                     //text position for chamber
-                    if (dbrProp.PropertyName == "Position X" && itemType == "chamber")
-                      dbrProp.Value = (PositionProperty.NumberOfPump * PositionProperty.DistanceOfPump + (double)30) / 2;
+                    if (dbrProp.PropertyName == "Position X" && blockName == "chamber")
+                      dbrProp.Value = (PositionProperty.NumberOfPump * PositionProperty.DistanceOfPump + sizeProperty.FreeSpace / (double)2); //place text middle of chamber horizontaly                   
+                      
                   }
                 }
+
+                ////// udpate attribute reference values after setting the visibility state or block table index
+                //foreach (ObjectId arObjectId in acBlkRef.AttributeCollection)
+                //{
+                //  var ar = arObjectId.GetObject<AttributeReference>();
+                //  if (ar == null) continue;
+
+                //  // for jet pump rotate
+                //  if (ar.Tag == "NOTE" && ar.TextString == "Air Jet Pump" && blockName == "pump")
+                //  {
+                //    acBlkRef.Rotation = DegreeHelper.DegreeToRadian(270);
+                //    //ar.AdjustAlignment(HostApplicationServices.WorkingDatabase);
+                //  }
+                //}
               }
             }
           }

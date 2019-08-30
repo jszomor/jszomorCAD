@@ -14,6 +14,7 @@ namespace EquipmentPosition
     public double ChamberWidth { get; set; }
     public static double NumberOfPump { get; set; }
     public static double DistanceOfPump { get; set; }
+    public double FreeSpace { get; set; }
 
 
     public void DistanceMethod(int distance)
