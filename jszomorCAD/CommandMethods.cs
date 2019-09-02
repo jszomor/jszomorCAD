@@ -20,15 +20,15 @@ namespace jszomorCAD
     {
       var sizeProperty = new PositionProperty();
       //"\nEnter number of equipment:"
-      var pio = new PromptIntegerOptions("\nEnter number of equipment:") { DefaultValue = 1 };
+      var pio = new PromptIntegerOptions("\nEnter number of equipment:") { DefaultValue = 5 };
       var number = Application.DocumentManager.MdiActiveDocument.Editor.GetInteger(pio);
 
       //"\nEnter distance of equipment:"
-      var dio = new PromptIntegerOptions("\nEnter distance of equipment:") { DefaultValue = 0 };
+      var dio = new PromptIntegerOptions("\nEnter distance of equipment:") { DefaultValue = 20 };
       var distance = Application.DocumentManager.MdiActiveDocument.Editor.GetInteger(dio);
 
       //"\nEnter index of equipment:"
-      var eio = new PromptIntegerOptions("\nEnter index of equipment:") { DefaultValue = 0 };
+      var eio = new PromptIntegerOptions("\nEnter index of equipment:") { DefaultValue = 22 };
       var eqIndex = Application.DocumentManager.MdiActiveDocument.Editor.GetInteger(eio);         
       
       var shortEqIndex = Convert.ToInt16(eqIndex.Value);

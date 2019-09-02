@@ -134,18 +134,16 @@ namespace jszomorCAD
                     if (dbrProp.PropertyName == "Angle2")
                       dbrProp.Value = DegreeHelper.DegreeToRadian(270);
 
-
                     //setup chamber width
                     if (dbrProp.PropertyName == "Distance" && blockName == "chamber")
                       dbrProp.Value = PositionProperty.NumberOfPump * PositionProperty.DistanceOfPump + sizeProperty.FreeSpace; //last value is the free space for other items
                     //text position for chamber
                     if (dbrProp.PropertyName == "Position X" && blockName == "chamber")
-                      dbrProp.Value = (PositionProperty.NumberOfPump * PositionProperty.DistanceOfPump + sizeProperty.FreeSpace / (double)2); //place text middle of chamber horizontaly                   
-                      
+                      dbrProp.Value = ((PositionProperty.NumberOfPump * PositionProperty.DistanceOfPump + sizeProperty.FreeSpace) / (double)2); //place text middle of chamber horizontaly                                         
                   }
                 }
 
-                ////// udpate attribute reference values after setting the visibility state or block table index
+                //// udpate attribute reference values after setting the visibility state or block table index
                 //foreach (ObjectId arObjectId in acBlkRef.AttributeCollection)
                 //{
                 //  var ar = arObjectId.GetObject<AttributeReference>();
