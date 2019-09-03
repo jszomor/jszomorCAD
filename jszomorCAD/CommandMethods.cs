@@ -6,6 +6,7 @@ using Autodesk.AutoCAD.Geometry;
 using Autodesk.AutoCAD.Runtime;
 using OrganiCAD.AutoCAD;
 using System;
+using System.Linq;
 using System.Collections.Generic;
 using EquipmentPosition;
 
@@ -42,8 +43,13 @@ namespace jszomorCAD
 
       // Copy blocks from sourcefile into opened file
       var copyBlockTable = new CopyBlockTable();
-      copyBlockTable.CopyBlockTableMethod(db, path);
-
+      var btrNamesToCopy = new[] { "pump", "valve", "chamber", "instrumentation tag" };
+      copyBlockTable.CopyBlockTableMethod(db, path, btr =>
+      {
+        System.Diagnostics.Debug.Print(btr.Name);
+        return btrNamesToCopy.Contains(btr.Name);
+      });
+      //copyBlockTable.CopyBlockTableMethod(db, path, btr => true);
       sizeProperty.X = 50;
 
       // Call a transaction to create layer
@@ -115,7 +121,7 @@ namespace jszomorCAD
                                               25,                                  //X
                                               10);                                 //Y
 
-
+      MoveToBottom.SendToBackWipeout();
 
     } 
   }

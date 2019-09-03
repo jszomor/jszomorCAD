@@ -112,20 +112,42 @@ namespace jszomorCAD
                     //ar.Rotation = DegreeHelper.DegreeToRadian(90);
                     acBlkRef.Rotation = DegreeHelper.DegreeToRadian(90);
                   }
+                }                
 
-                  //// for jet pump rotate
-                  //if (/*ar.Tag == "NOTE" && ar.TextString == "Air Jet Pump" && */blockName == "pump")
-                  //  acBlkRef.Rotation = DegreeHelper.DegreeToRadian(270);
-                }
-                
-                // set dynamic properties
+                // setup item by index
                 if (acBlkRef.IsDynamicBlock)
                 {
                   foreach (DynamicBlockReferenceProperty dbrProp in acBlkRef.DynamicBlockReferencePropertyCollection)
-                  {
-                    if (dbrProp.PropertyName == propertyName)
-                      dbrProp.Value = eqIndex; // SHORT !!!!!!!!!!!!
+                  {       
+                    if (dbrProp.PropertyName == propertyName)                                    
+                      dbrProp.Value = eqIndex; // SHORT !!!!!!!!!!!!                                                           
+                  }
+                }
 
+                // udpate attribute reference values after setting the visibility state or block table index
+                foreach (ObjectId arObjectId in acBlkRef.AttributeCollection)
+                {
+                  foreach (DynamicBlockReferenceProperty dbrProp in acBlkRef.DynamicBlockReferencePropertyCollection)
+                  {
+                    var ar = arObjectId.GetObject<AttributeReference>();
+                    if (ar == null) continue;
+
+                    // for jet pump setup
+                    if (ar.Tag == "NOTE" && ar.TextString == "Air Jet Pump" && blockName == "pump")
+                    {
+                      acBlkRef.Rotation = DegreeHelper.DegreeToRadian(270);
+
+                      if (acBlkRef.IsDynamicBlock)
+                      {                      
+                          // tag horizontal positioning
+                          if (dbrProp.PropertyName == "Angle")
+                            dbrProp.Value = DegreeHelper.DegreeToRadian(90);
+                          if (dbrProp.PropertyName == "Position X")
+                            dbrProp.Value = (double)6;
+                          if (dbrProp.PropertyName == "Position Y")
+                            dbrProp.Value = (double)0;
+                      }
+                    }
                     //for pumps VFD rotate
                     if (dbrProp.PropertyName == "Angle1")
                       dbrProp.Value = DegreeHelper.DegreeToRadian(90);
@@ -139,23 +161,9 @@ namespace jszomorCAD
                       dbrProp.Value = PositionProperty.NumberOfPump * PositionProperty.DistanceOfPump + sizeProperty.FreeSpace; //last value is the free space for other items
                     //text position for chamber
                     if (dbrProp.PropertyName == "Position X" && blockName == "chamber")
-                      dbrProp.Value = ((PositionProperty.NumberOfPump * PositionProperty.DistanceOfPump + sizeProperty.FreeSpace) / (double)2); //place text middle of chamber horizontaly                                         
+                      dbrProp.Value = ((PositionProperty.NumberOfPump * PositionProperty.DistanceOfPump + sizeProperty.FreeSpace) / (double)2); //place text middle of chamber horizontaly 
                   }
                 }
-
-                //// udpate attribute reference values after setting the visibility state or block table index
-                //foreach (ObjectId arObjectId in acBlkRef.AttributeCollection)
-                //{
-                //  var ar = arObjectId.GetObject<AttributeReference>();
-                //  if (ar == null) continue;
-
-                //  // for jet pump rotate
-                //  if (ar.Tag == "NOTE" && ar.TextString == "Air Jet Pump" && blockName == "pump")
-                //  {
-                //    acBlkRef.Rotation = DegreeHelper.DegreeToRadian(270);
-                //    //ar.AdjustAlignment(HostApplicationServices.WorkingDatabase);
-                //  }
-                //}
               }
             }
           }
