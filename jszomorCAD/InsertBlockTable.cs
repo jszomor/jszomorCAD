@@ -27,7 +27,7 @@ namespace jszomorCAD
     private void InsertBlockTableMethod(Database db, double number, double distance, string blockName, string layerName, string propertyName, object eqIndex, double X, double Y)
     {
       var sizeProperty = new PositionProperty();
-      sizeProperty.FreeSpace = 70;
+      sizeProperty.FreeSpace = 60;
 
       Editor ed = Application.DocumentManager.MdiActiveDocument.Editor;     
       var aw = new AutoCadWrapper();
@@ -100,6 +100,20 @@ namespace jszomorCAD
                 
                   System.Diagnostics.Debug.Print($"Tag={ar.Tag} TextString={ar.TextString}");
 
+                  if (acBlkRef.IsDynamicBlock)
+                  {
+                    foreach (DynamicBlockReferenceProperty dbrProp in acBlkRef.DynamicBlockReferencePropertyCollection) // this loop must be here
+                                                                                                                        //else tag rotation for pump will be wrong!
+                    {
+                      if (dbrProp.PropertyName == propertyName)
+                        dbrProp.Value = eqIndex; // SHORT !!!!!!!!!!!!    
+
+                      // for jet pump rotate
+                      if (ar.TextString == "Air Jet Pump")                      
+                        acBlkRef.Rotation = DegreeHelper.DegreeToRadian(270); // this command must be here else tag rotation will be wrong!
+                    }
+                  }
+
                   //text for EQ tank - Attributes
                   if (ar.Tag == "NAME1" && blockName == "chamber")
                     ar.TextString = "EQUALIZATION";
@@ -112,17 +126,19 @@ namespace jszomorCAD
                     //ar.Rotation = DegreeHelper.DegreeToRadian(90);
                     acBlkRef.Rotation = DegreeHelper.DegreeToRadian(90);
                   }
-                }                
+                }
 
                 // setup item by index
-                if (acBlkRef.IsDynamicBlock)
-                {
-                  foreach (DynamicBlockReferenceProperty dbrProp in acBlkRef.DynamicBlockReferencePropertyCollection)
-                  {       
-                    if (dbrProp.PropertyName == propertyName)                                    
-                      dbrProp.Value = eqIndex; // SHORT !!!!!!!!!!!!                                                           
-                  }
-                }
+                #region
+                //if (acBlkRef.IsDynamicBlock)
+                //{
+                //  foreach (DynamicBl ockReferenceProperty dbrProp in acBlkRef.DynamicBlockReferencePropertyCollection)
+                //  {       
+                //    if (dbrProp.PropertyName == propertyName)                                    
+                //      dbrProp.Value = eqIndex; // SHORT !!!!!!!!!!!!                                                           
+                //  }
+                //}
+                #endregion
 
                 // udpate attribute reference values after setting the visibility state or block table index
                 foreach (ObjectId arObjectId in acBlkRef.AttributeCollection)
@@ -132,28 +148,28 @@ namespace jszomorCAD
                     var ar = arObjectId.GetObject<AttributeReference>();
                     if (ar == null) continue;
 
-                    // for jet pump setup
+                    // for jet pump tag position
                     if (ar.Tag == "NOTE" && ar.TextString == "Air Jet Pump" && blockName == "pump")
                     {
-                      acBlkRef.Rotation = DegreeHelper.DegreeToRadian(270);
+                      //acBlkRef.Rotation = DegreeHelper.DegreeToRadian(270); // this command has a wrong result that is why should be in the upper loop.
 
                       if (acBlkRef.IsDynamicBlock)
-                      {                      
-                          // tag horizontal positioning
-                          if (dbrProp.PropertyName == "Angle")
-                            dbrProp.Value = DegreeHelper.DegreeToRadian(90);
-                          if (dbrProp.PropertyName == "Position X")
-                            dbrProp.Value = (double)6;
-                          if (dbrProp.PropertyName == "Position Y")
-                            dbrProp.Value = (double)0;
+                      {
+                        // tag horizontal positioning
+                        if (dbrProp.PropertyName == "Angle")
+                          dbrProp.Value = DegreeHelper.DegreeToRadian(90);
+                        if (dbrProp.PropertyName == "Position X")
+                          dbrProp.Value = (double)6;
+                        if (dbrProp.PropertyName == "Position Y")
+                          dbrProp.Value = (double)0;
                       }
                     }
                     //for pumps VFD rotate
-                    if (dbrProp.PropertyName == "Angle1")
+                    if (dbrProp.PropertyName == "Angle1" && ar.TextString == "Equalization Tank Pump")
                       dbrProp.Value = DegreeHelper.DegreeToRadian(90);
 
                     // pumps VFD rotate
-                    if (dbrProp.PropertyName == "Angle2")
+                    if (dbrProp.PropertyName == "Angle2" && ar.TextString == "Equalization Tank Pump")
                       dbrProp.Value = DegreeHelper.DegreeToRadian(270);
 
                     //setup chamber width
@@ -172,6 +188,5 @@ namespace jszomorCAD
         currentSpaceId.UpdateAnonymousBlocks();
       });
     }
-  }  
+  } 
 }
-

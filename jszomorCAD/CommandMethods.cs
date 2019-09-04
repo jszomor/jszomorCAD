@@ -16,7 +16,7 @@ namespace jszomorCAD
   {
     public string path = @"E:\Test\Autocad PID blocks work in progress.dwg";    
 
-    [CommandMethod("jcad_EquipmentBuilder")]
+    [CommandMethod("jcad_EqTankBuilder")]
     public void ListBlocks()
     {
       var sizeProperty = new PositionProperty();
@@ -43,7 +43,7 @@ namespace jszomorCAD
 
       // Copy blocks from sourcefile into opened file
       var copyBlockTable = new CopyBlockTable();
-      var btrNamesToCopy = new[] { "pump", "valve", "chamber", "instrumentation tag" };
+      var btrNamesToCopy = new[] { "pump", "valve", "chamber", "instrumentation tag" , "channel gate" };
       copyBlockTable.CopyBlockTableMethod(db, path, btr =>
       {
         System.Diagnostics.Debug.Print(btr.Name);
@@ -67,7 +67,7 @@ namespace jszomorCAD
                                               "pump",                               //block name
                                               "equipment",                         //layer name
                                               "Centrifugal Pump",                  //dynamic property type
-                                              shortEqIndex,                         //visibility of equipment
+                                              shortEqIndex,                         //visibility of equipment ()
                                               sizeProperty.X,                      //X
                                               10);                                 //Y
 
@@ -87,7 +87,7 @@ namespace jszomorCAD
                                               "valve",                             //block name
                                               "valve",                             //layer name
                                               "Block Table1",                      //dynamic property type
-                                              5,                                   //visibility of equipment
+                                              5,                                   //visibility of equipment (check valve)
                                               sizeProperty.X,                      //X
                                               25);                                 //Y
 
@@ -97,7 +97,7 @@ namespace jszomorCAD
                                               "valve",                             //block name
                                               "valve",                             //layer name
                                               "Block Table1",                      //dynamic property type
-                                              0,                                   //visibility of equipment
+                                              0,                                   //visibility of equipment (gate valve)
                                               sizeProperty.X,                      //X
                                               40);                                  //Y
 
@@ -107,9 +107,19 @@ namespace jszomorCAD
                                               "instrumentation tag",                //block name
                                               "instrumentation",                   //layer name
                                               "Block Table1",                      //dynamic property type
-                                              7,                                   //visibility of equipment
+                                              7,                                   //visibility of equipment (LIT)
                                               PositionProperty.NumberOfPump * PositionProperty.DistanceOfPump + 50,                      //X
                                               10);                                 //Y
+
+      insertBlockTable.InsertBlockTableMethodAsTable(db,
+                                             1,                                   // number of item
+                                             0,                                   // disctance of item
+                                             "instrumentation tag",                //block name
+                                             "instrumentation",                   //layer name
+                                             "Block Table1",                      //dynamic property type
+                                             11,                                   //visibility of equipment (FIT)
+                                             PositionProperty.NumberOfPump * PositionProperty.DistanceOfPump + 50,                      //X
+                                             50);                                 //Y
 
       insertBlockTable.InsertBlockTableMethodAsTable(db,
                                               1,                                    // number of item
@@ -118,11 +128,32 @@ namespace jszomorCAD
                                               "equipment",                         //layer name
                                               "Centrifugal Pump",                  //dynamic property type
                                               17,                                  //visibility of jet pump
-                                              25,                                  //X
+                                              20,                                  //X
                                               10);                                 //Y
 
-      MoveToBottom.SendToBackWipeout();
+      insertBlockTable.InsertBlockTableMethodAsTable(db,
+                                              1,                                    // number of item
+                                              0,                                    // disctance of item
+                                              "channel gate",                       //block name
+                                              "equipment",                         //layer name
+                                              "Block Table1",                      //dynamic property type
+                                              23,                                  //visibility of item (Channel gate (Equalization Tank))
+                                              -10.5,                               //X
+                                              6);                                  //Y
 
+      insertBlockTable.InsertBlockTableMethodAsTable(db,
+                                              1,                                    // number of item
+                                              0,                                    // disctance of item
+                                              "channel gate",                       //block name
+                                              "equipment",                         //layer name
+                                              "Block Table1",                      //dynamic property type
+                                              23,                                  //visibility of item (Channel gate (Equalization Tank))
+                                              -10.5,                               //X
+                                              -24);                                //Y
+      MoveToBottom.SendToBackWipeout();
+      MoveToBottom.SendToBackLine();
+      SendClass.SendRegen();
+      SendClass.SendZoomExtents();
     } 
   }
 }

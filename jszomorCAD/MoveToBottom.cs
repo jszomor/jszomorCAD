@@ -15,7 +15,7 @@ namespace jszomorCAD
   {
     //Filter selection and movetobottom for all line and polyline
     [CommandMethod("SendToBackLine")]
-    public static void Execute()
+    public static void SendToBackLine()
     {
       // Get the current document editor
       //Editor acDocEd = Application.DocumentManager.MdiActiveDocument.Editor;
@@ -79,7 +79,7 @@ namespace jszomorCAD
         {
           using (var btr = objectId.GetObject(OpenMode.ForRead) as BlockTableRecord)
           {
-            System.Diagnostics.Debug.Print(btr.Name);
+            //System.Diagnostics.Debug.Print(btr.Name);
             ParseBlockTableRecord(btr);
           }
         }

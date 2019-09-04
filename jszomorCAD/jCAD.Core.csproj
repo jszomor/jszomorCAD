@@ -96,7 +96,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Attsync.cs" />
+    <Compile Include="SendCommand.cs" />
     <Compile Include="CommandMethods.cs" />
     <Compile Include="CopyBlockTable.cs" />
     <Compile Include="InsertBlockTable.cs" />
