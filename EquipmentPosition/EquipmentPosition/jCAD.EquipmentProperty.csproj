@@ -43,6 +43,7 @@
   <ItemGroup>
     <Compile Include="DegreeHelper.cs" />
     <Compile Include="EquipmentPositioner.cs" />
+    <Compile Include="InsertBlockProperty.cs" />
     <Compile Include="PositionProperty.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

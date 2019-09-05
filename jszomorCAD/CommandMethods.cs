@@ -19,6 +19,8 @@ namespace jszomorCAD
     [CommandMethod("jcad_EqTankBuilder")]
     public void ListBlocks()
     {
+      InsertBlockTable insertBlockTable = new InsertBlockTable(insertBlockProperty);
+
       var sizeProperty = new PositionProperty();
       //"\nEnter number of equipment:"
       var pio = new PromptIntegerOptions("\nEnter number of equipment:") { DefaultValue = 5 };
@@ -61,6 +63,7 @@ namespace jszomorCAD
       // Start transaction to write equipment
       var insertBlockTable = new InsertBlockTable();
 
+
       insertBlockTable.InsertBlockTableMethodAsTable(db,
                                               PositionProperty.NumberOfPump,        // number of item
                                               PositionProperty.DistanceOfPump,      // disctance of item
@@ -70,6 +73,15 @@ namespace jszomorCAD
                                               shortEqIndex,                         //visibility of equipment ()
                                               sizeProperty.X,                      //X
                                               10);                                 //Y
+
+      var insertBlockProperty = new InsertBlockProperty
+      {
+        X = sizeProperty.X,
+        Y = 10
+      };
+
+
+      insertBlockTable.InsertBlockTableMethod(db, insertBlockProperty);                                 //Y
 
       insertBlockTable.InsertBlockTableMethodAsVisibility(db,
                                               1,                                 // number of item
@@ -150,6 +162,16 @@ namespace jszomorCAD
                                               23,                                  //visibility of item (Channel gate (Equalization Tank))
                                               -10.5,                               //X
                                               -24);                                //Y
+
+      insertBlockTable.InsertBlockTableMethodAsPipe(db,
+                                              PositionProperty.NumberOfPump,      // number of item
+                                              PositionProperty.DistanceOfPump,     // disctance of item
+                                              "pipe",                              //block name
+                                              "sewer",                              //layer name
+                                              "Visibility1",                      //dynamic property type
+                                              "sewer",                                  //visibility of item (sewer pipe)
+                                              50,                                 //X
+                                              14);                                //Y
       MoveToBottom.SendToBackWipeout();
       MoveToBottom.SendToBackLine();
       SendClass.SendRegen();
