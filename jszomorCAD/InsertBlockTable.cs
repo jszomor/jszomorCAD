@@ -15,32 +15,28 @@ namespace jszomorCAD
 {
   public class InsertBlockTable
   {
+    #region
     //public void InsertVfdPump(Database db, PromptIntegerResult numberOfItem, PromptIntegerResult distance, string blockName, string layerName, int eqIndex) => 
     //  InsertBlockTableMethod(db, numberOfItem, distance, blockName, layerName, "Centrifugal Pump", eqIndex); // todo: magic numberOfItem
 
-    public void InsertBlockTableMethodAsTable(Database db, double numberOfItem, double distance, string blockName, string layerName, string propertyName,
-      short eqIndex, double X, double Y, double NA)
-      => InsertBlockTableMethod(db, numberOfItem, distance, blockName, layerName, propertyName, eqIndex, X, Y, NA);
+    public void InsertBlockTableMethodAsTable(Database db, InsertBlockBase insertData)
+      => InsertBlockTableMethod(db, insertData);
 
-    public void InsertBlockTableMethodAsVisibility(Database db, double numberOfItem, double distance, string blockName, string layerName, string propertyName,
-      string visibilityStateName, double X, double Y, double NA, string NAm)
-      => InsertBlockTableMethod(db, numberOfItem, distance, blockName, layerName, propertyName, visibilityStateName, X, Y, NA, NAm);
+    public void InsertBlockTableMethodAsVisibility(Database db, InsertBlockBase insertData)
+      => InsertBlockTableMethod(db, insertData);
 
-    public void InsertBlockTableMethodAsPipe(Database db, double numberOfItem, double distance, string blockName, string layerName, string propertyName,
-      string visibilityStateName, double X, double Y, double pipeLength, string master)
-      => InsertBlockTableMethod(db, numberOfItem, distance, blockName, layerName, propertyName, visibilityStateName, X, Y, pipeLength, master);    
+    public void InsertBlockTableMethodAsPipe(Database db, InsertBlockBase insertData)
+      => InsertBlockTableMethod(db, insertData);
 
 
-    public void InsertBlockTableBaseMethod(Database db, InsertBlockBase insertData)
-    {
-      // 1. which block to inster? insertData.BlockName
-      // get the block to insert
+    //public void InsertBlockTableBaseMethod(Database db, InsertBlockBase insertData)
+    //{
+    //  // 1. which block to inster? insertData.BlockName
+    //  // get the block to insert
+    //}
+    #endregion
 
-
-    }
-
-
-    public void InsertBlockTableMethod(Database db, InsertBlockProperty insertBlockProperty)
+    public void InsertBlockTableMethod(Database db, InsertBlockBase insertData)
     {
       var sizeProperty = new PositionProperty();
       sizeProperty.FreeSpace = 60;
@@ -52,21 +48,9 @@ namespace jszomorCAD
       var positionProperty = new PositionProperty();
 
       //setup default layers
-      var layerCreator = new LayerCreator();
-      layerCreator.LayerCreatorMethod("equipment", Color.FromRgb(0, 0, 255), 0.25);      
-      layerCreator.LayerCreatorMethod("unit", Color.FromRgb(255, 0, 0), 0.25);
-      layerCreator.LayerCreatorMethod("valve", Color.FromRgb(255, 255, 255), 0.25);
-      layerCreator.LayerCreatorMethod("valve2", Color.FromRgb(255, 255, 255), 0.25);
-      layerCreator.LayerCreatorMethod("instrumentation", Color.FromRgb(0, 255, 255), 0.25);
-      layerCreator.LayerCreatorMethod("text", Color.FromRgb(255, 255, 255), 0.25);
-      layerCreator.LayerCreatorMethod("sewer", Color.FromRgb(28, 38, 0), 0.25);
-      layerCreator.LayerCreatorMethod("sludge", Color.FromRgb(38, 19, 19), 0.25);
-      layerCreator.LayerCreatorMethod("chemical", Color.FromRgb(0, 255, 255), 0.25);
-      layerCreator.LayerCreatorMethod("water", Color.FromRgb(0, 0, 255), 0.25);
-      layerCreator.LayerCreatorMethod("treated_water", Color.FromRgb(0, 127, 255), 0.25);
-      layerCreator.LayerCreatorMethod("air", Color.FromRgb(63, 255, 0), 0.25);
-      layerCreator.LayerCreatorMethod("recycle_flow", Color.FromRgb(145, 165, 82), 0.25);
-
+      var defultLayers = new LayerCreator();
+      defultLayers.Layers();
+    
       //var shortEqIndex = Convert.ToInt16(eqIndex);
 
       // Start transaction to insert equipment
@@ -77,7 +61,7 @@ namespace jszomorCAD
           using (btr = (BlockTableRecord)tr.GetObject(btrId, OpenMode.ForRead, false))
           {
             // Only add named & non-layout blocks to the copy list
-            if (!btr.IsAnonymous && !btr.IsLayout && btr.Name == insertBlockProperty.BlockName)
+            if (!btr.IsAnonymous && !btr.IsLayout && btr.Name == insertData.BlockName)
             {  
               blockDefinitions.Add(btrId);             
             }
@@ -86,18 +70,18 @@ namespace jszomorCAD
 
         var currentSpaceId = tr.GetObject(db.CurrentSpaceId, OpenMode.ForWrite) as BlockTableRecord;
 
-        for (int i = 0; i < insertBlockProperty.NumberOfItem; i++)
+        for (int i = 0; i < insertData.NumberOfItem; i++)
         {
           foreach (var objectId in blockDefinitions)
           {
             using (var blockDefinition = (BlockTableRecord)tr.GetObject(objectId, OpenMode.ForRead, false))
             {
-              using (var acBlkRef = new BlockReference(new Point3d(insertBlockProperty.X, insertBlockProperty.Y, positionProperty.Z), objectId))
+              using (var acBlkRef = new BlockReference(new Point3d(insertData.X, insertData.Y, positionProperty.Z), objectId))
               {
                 currentSpaceId.AppendEntity(acBlkRef);
                 tr.AddNewlyCreatedDBObject(acBlkRef, true);
 
-                acBlkRef.Layer = insertBlockProperty.LayerName;                
+                acBlkRef.Layer = insertData.LayerName;                
 
                 // copy/create attribute references
                 foreach (var bdEntityObjectId in blockDefinition)
@@ -121,8 +105,8 @@ namespace jszomorCAD
                     foreach (DynamicBlockReferenceProperty dbrProp in acBlkRef.DynamicBlockReferencePropertyCollection) // this loop must be here
                                                                                                                         //else tag rotation for pump will be wrong!
                     {
-                      if (dbrProp.PropertyName == insertBlockProperty.PropertyName)
-                        dbrProp.Value = insertBlockProperty.EqIndex; // SHORT !!!!!!!!!!!!
+                      if (dbrProp.PropertyName == insertData.PropertyName)
+                        dbrProp.Value = insertData.EqIndex; // SHORT !!!!!!!!!!!!
 
                       // for jet pump rotate
                       if (ar.TextString == "Air Jet Pump")                      
@@ -131,13 +115,13 @@ namespace jszomorCAD
                   }
 
                   //text for EQ tank - Attributes
-                  if (ar.Tag == "NAME1" && insertBlockProperty.BlockName == "chamber")
+                  if (ar.Tag == "NAME1" && insertData.BlockName == "chamber")
                     ar.TextString = "EQUALIZATION";
-                  if (ar.Tag == "NAME2" && insertBlockProperty.BlockName == "chamber")
+                  if (ar.Tag == "NAME2" && insertData.BlockName == "chamber")
                     ar.TextString = "TANK";
 
                   //valve setup
-                  if (insertBlockProperty.BlockName == "valve")
+                  if (insertData.BlockName == "valve")
                   {
                     //ar.Rotation = DegreeHelper.DegreeToRadian(90);
                     acBlkRef.Rotation = DegreeHelper.DegreeToRadian(90);
@@ -150,7 +134,7 @@ namespace jszomorCAD
                 //{
                 //  foreach (DynamicBl ockReferenceProperty dbrProp in acBlkRef.DynamicBlockReferencePropertyCollection)
                 //  {       
-                //    if (dbrProp.PropertyName == propertyName)                                    
+                //    if (dbrProp.PropertyName == PropertyName)                                    
                 //      dbrProp.Value = eqIndex; // SHORT !!!!!!!!!!!!                                                           
                 //  }
                 //}
@@ -165,10 +149,10 @@ namespace jszomorCAD
                     if (ar == null) continue;
 
                     if (dbrProp.PropertyName == "PipeLength")
-                      dbrProp.Value = insertBlockProperty.PipeLength;
+                      dbrProp.Value = insertData.PipeLength;
 
                     // for jet pump tag position
-                    if (ar.Tag == "NOTE" && ar.TextString == "Air Jet Pump" && insertBlockProperty.BlockName == "pump")
+                    if (ar.Tag == "NOTE" && ar.TextString == "Air Jet Pump" && insertData.BlockName == "pump")
                     {
                       //acBlkRef.Rotation = DegreeHelper.DegreeToRadian(270); // this command has a wrong result that is why should be in the upper loop.
 
@@ -192,17 +176,17 @@ namespace jszomorCAD
                       dbrProp.Value = DegreeHelper.DegreeToRadian(270);
 
                     //setup chamber width
-                    if (dbrProp.PropertyName == "Distance" && insertBlockProperty.BlockName == "chamber")
+                    if (dbrProp.PropertyName == "Distance" && insertData.BlockName == "chamber")
                       dbrProp.Value = PositionProperty.NumberOfPump * PositionProperty.DistanceOfPump + sizeProperty.FreeSpace; //last value is the free space for other items
                     //text position for chamber
-                    if (dbrProp.PropertyName == "Position X" && insertBlockProperty.BlockName == "chamber")
+                    if (dbrProp.PropertyName == "Position X" && insertData.BlockName == "chamber")
                       dbrProp.Value = ((PositionProperty.NumberOfPump * PositionProperty.DistanceOfPump + sizeProperty.FreeSpace) / (double)2); //place text middle of chamber horizontaly 
                   }
                 }
               }
             }
           }
-          insertBlockProperty.X += insertBlockProperty.Distance;
+          insertData.X += insertData.Distance;
         }
         currentSpaceId.UpdateAnonymousBlocks();
       });

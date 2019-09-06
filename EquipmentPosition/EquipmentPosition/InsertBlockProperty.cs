@@ -18,37 +18,40 @@ namespace EquipmentPosition
     public double NumberOfItem { get; set; }
     public string BlockName { get; set; }
     public string LayerName { get; set; }
-    public string TableName { get; set; }
+    public string PropertyName { get; set; }
     public string HostName { get; set; }
+    public double Distance { get; set; }
+    public double PipeLength { get; set; }
+    public object EqIndex { get; set; }
 
-    public InsertBlockBase(double x, double y, double numberOfItem, string blockName, string layerName, string tableName, string hostName)
+    public InsertBlockBase(double numberOfItem, double distance, string blockName, string layerName, string propertyName, object eqIndex, double x, double y,
+       string hostName, double pipeLength)
     {
       X = x;
       Y = y;
       NumberOfItem = numberOfItem;
       BlockName = blockName;
       LayerName = layerName;
-      TableName = tableName;
+      PropertyName = propertyName;
       HostName = hostName;
+      Distance = distance;
+      PipeLength = pipeLength;
+      EqIndex = eqIndex;
     }
   }
-
-
-
-
-
-  public class InsertBlockProperty
-  {
-    public double Distance { get; set; }
-    public double PipeLength { get; set; }
-    public object EqIndex { get; set; }    
-    
-  }
-
-  //public InsertBlockProperty (double x, double y, double numberOfItem)
+  #region
+  //public class InsertBlockProperty
   //{
-  //  X = y;
+  //  public double Distance { get; set; }
+  //  public double PipeLength { get; set; }
+  //  public object EqIndex { get; set; }
 
-  //}
-
+  //  public InsertBlockProperty(double distance, double pipeLength, object eqIndex)
+  //  {
+  //    Distance = distance;
+  //    PipeLength = pipeLength;
+  //    EqIndex = eqIndex;
+  //  }
+  //}  
+  #endregion
 }

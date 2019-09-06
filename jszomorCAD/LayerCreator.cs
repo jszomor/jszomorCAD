@@ -53,5 +53,23 @@ namespace jszomorCAD
         layerTableRecord.LineWeight = LineWeight.LineWeight025;
       });
     }
+
+    public void Layers()
+    {
+      //setup default layers      
+      LayerCreatorMethod("equipment", Color.FromRgb(0, 0, 255), 0.25);
+      LayerCreatorMethod("unit", Color.FromRgb(255, 0, 0), 0.25);
+      LayerCreatorMethod("valve", Color.FromRgb(255, 255, 255), 0.25);
+      LayerCreatorMethod("valve2", Color.FromRgb(255, 255, 255), 0.25);
+      LayerCreatorMethod("instrumentation", Color.FromRgb(0, 255, 255), 0.25);
+      LayerCreatorMethod("text", Color.FromRgb(255, 255, 255), 0.25);
+      LayerCreatorMethod("sewer", Color.FromRgb(28, 38, 0), 0.25);
+      LayerCreatorMethod("sludge", Color.FromRgb(38, 19, 19), 0.25);
+      LayerCreatorMethod("chemical", Color.FromRgb(0, 255, 255), 0.25);
+      LayerCreatorMethod("water", Color.FromRgb(0, 0, 255), 0.25);
+      LayerCreatorMethod("treated_water", Color.FromRgb(0, 127, 255), 0.25);
+      LayerCreatorMethod("air", Color.FromRgb(63, 255, 0), 0.25);
+      LayerCreatorMethod("recycle_flow", Color.FromRgb(145, 165, 82), 0.25);
+    }
   }
 }

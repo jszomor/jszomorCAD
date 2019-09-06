@@ -18,9 +18,7 @@ namespace jszomorCAD
 
     [CommandMethod("jcad_EqTankBuilder")]
     public void ListBlocks()
-    {
-      InsertBlockTable insertBlockTable = new InsertBlockTable(insertBlockProperty);
-
+    {   
       var sizeProperty = new PositionProperty();
       //"\nEnter number of equipment:"
       var pio = new PromptIntegerOptions("\nEnter number of equipment:") { DefaultValue = 5 };
@@ -61,39 +59,49 @@ namespace jszomorCAD
       //layerCreator.LayerCreatorMethod("unit", Color.FromRgb(0, 0, 255), 0.5);
 
       // Start transaction to write equipment
-      var insertBlockTable = new InsertBlockTable();
+      InsertBlockTable insertBlockTable = new InsertBlockTable();  
+
+      var insertEqTAnkPump = new InsertBlockBase(
+        sizeProperty.X,                          //X
+        10,                                      //Y
+        PositionProperty.NumberOfPump,           // number of item
+        "pump",                                  //block name
+        "equipment",                             //layer name
+        "Centrifugal Pump",                      //dynamic property type
+        "Equalization Tank",                     //Host name
+        PositionProperty.DistanceOfPump,         // disctance of item
+        0,                                       //pipelength
+        shortEqIndex);                           //visibility of equipment ()
+      insertBlockTable.InsertBlockTableMethod(db, insertEqTAnkPump);
 
 
-      insertBlockTable.InsertBlockTableMethodAsTable(db,
-                                              PositionProperty.NumberOfPump,        // number of item
-                                              PositionProperty.DistanceOfPump,      // disctance of item
-                                              "pump",                               //block name
-                                              "equipment",                         //layer name
-                                              "Centrifugal Pump",                  //dynamic property type
-                                              shortEqIndex,                         //visibility of equipment ()
-                                              sizeProperty.X,                      //X
-                                              10);                                 //Y
+      var insertEqTAnk = new InsertBlockBase(
+        0,                                       //X
+        0,                                       //Y
+        1,                                       // number of item
+        "chamber",                               //block name
+        "unit",                                  //layer name
+        "Visibility",                            //dynamic property type
+        "Equalization Tank",                     //Host name
+        0,                                       // disctance of item
+        0,                                       //pipelength
+        "no channel");                           //visibility of equipment ()
+      insertBlockTable.InsertBlockTableMethod(db, insertEqTAnk);
 
-      var insertBlockProperty = new InsertBlockProperty
-      {
-        X = sizeProperty.X,
-        Y = 10
-      };
+      var insertEqTAnkValve = new InsertBlockBase(
+        sizeProperty.X,                           //X
+        25,                                       //Y
+        PositionProperty.NumberOfPump,           // number of item
+        "valve",                                  //block name
+        "valve",                                  //layer name
+        "Block Table1",                            //dynamic property type
+        "Equalization Tank",                     //Host name
+        PositionProperty.DistanceOfPump,          // disctance of item
+        0,                                       //pipelength
+        5);                                      //visibility of equipment ()
+      insertBlockTable.InsertBlockTableMethod(db, insertEqTAnkValve);
 
-
-      insertBlockTable.InsertBlockTableMethod(db, insertBlockProperty);                                 //Y
-
-      insertBlockTable.InsertBlockTableMethodAsVisibility(db,
-                                              1,                                 // number of item
-                                              0,                                  // disctance of item
-                                              "chamber",                         //block name
-                                              "unit",                            //layer name
-                                              "Visibility",                      //dynamic property type
-                                              "no channel",                       //visibility of equipment
-                                              0,                                  //X
-                                              0);                                 //Y
-
-      insertBlockTable.InsertBlockTableMethodAsTable(db,
+      insertBlockTable.InsertBlockTableMethod(db,
                                               PositionProperty.NumberOfPump,       // number of item
                                               PositionProperty.DistanceOfPump,     // disctance of item
                                               "valve",                             //block name
