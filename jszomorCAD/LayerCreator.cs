@@ -10,8 +10,36 @@ using System.Threading.Tasks;
 
 namespace jszomorCAD
 {
+
+  public class LayerData
+  {
+    public string LayerName { get; set; }
+    public Color Color { get; set; }
+
+    public double LineTypeScale { get; set; }
+
+    public LayerData(string layerName, Color color, double lineTypeScale)
+    {
+      LayerName = layerName;
+      Color = color;
+      LineTypeScale = lineTypeScale;
+    }
+  }
+
   public class LayerCreator
   {
+
+    public void LayerCreatorMethod(IEnumerable<LayerData> layers)
+    {
+      foreach (var layer in layers)
+      {
+        LayerCreatorMethod(layer);
+      }
+    }
+
+    public void LayerCreatorMethod(LayerData layerData) => LayerCreatorMethod(layerData.LayerName, layerData.Color, layerData.LineTypeScale);
+
+
     public void LayerCreatorMethod(string sLayerName, Color acColors, double lineTypeScale)
     {
       var db = Application.DocumentManager.MdiActiveDocument.Database;
