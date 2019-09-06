@@ -147,8 +147,11 @@ namespace jszomorCAD
                   {
                     var ar = arObjectId.GetObject<AttributeReference>();
                     if (ar == null) continue;
-
+                    
+                    //pipe setup
                     if (dbrProp.PropertyName == "PipeLength")
+                      dbrProp.Value = insertData.PipeLength;
+                    if (dbrProp.PropertyName == "ArrowPosition Y")
                       dbrProp.Value = insertData.PipeLength;
 
                     // for jet pump tag position

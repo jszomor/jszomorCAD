@@ -53,7 +53,6 @@ namespace jszomorCAD
         layerTableRecord.LineWeight = LineWeight.LineWeight025;
       });
     }
-
     public void Layers()
     {
       //setup default layers      
