@@ -39,10 +39,7 @@ namespace jszomorCAD
    
     #endregion
     public ObjectId GetBlockTable(string blockName)
-    {
-      var aw = new AutoCadWrapper();
-
-
+    {     
       var blockIds = new List<ObjectId>();
 
       using (var tr = _db.TransactionManager.StartTransaction())
@@ -67,8 +64,7 @@ namespace jszomorCAD
       else return blockIds.First();
     }
 
-
-    private void PlaceBlock(ObjectId blockId, Position position, string layerName)
+    private void PlaceBlock(ObjectId blockId, InsertBlockBase insertBlock, double offsetX = 0.0d, double offsetY = 0.0d)
     {
       using (var tr = _db.TransactionManager.StartTransaction())
       {
@@ -76,15 +72,19 @@ namespace jszomorCAD
 
         using (var blockDefinition = (BlockTableRecord)tr.GetObject(blockId, OpenMode.ForRead, false))
         {
-          using (var acBlkRef = new BlockReference(new Point3d(position.X, position.Y, 0), blockId))
+          using (var acBlkRef = new BlockReference(
+            new Point3d(insertBlock.Position.X + offsetX, insertBlock.Position.Y + offsetY, 0), blockId))
           {
+            //InsertBlockBase insertData;
             currentSpaceId.AppendEntity(acBlkRef);
             tr.AddNewlyCreatedDBObject(acBlkRef, true);
 
-
-            SetBlockReferenceLayer(acBlkRef, layerName);
-            SetBlockRefenceAttributes(acBlkRef, blockDefinition, tr);
-
+            SetBlockReferenceLayer(acBlkRef, insertBlock.LayerName);
+            CreateBlockRefenceAttributes(acBlkRef, blockDefinition, tr);
+            SetDynamicBlockReferenceValues(acBlkRef, insertBlock.ActionToExecuteOnDynProp);
+            SetBlockRefenceAttributesValues(acBlkRef, insertBlock.ActionToExecuteOnAttRef);
+            SetDynamicBlockReferenceValues(acBlkRef, insertBlock.ActionToExecuteOnDynPropAfter);
+            RotateEquipment(acBlkRef, insertBlock.ActionToExecuteOnBlockRef);
           }
         }
         tr.Commit();
@@ -105,7 +105,7 @@ namespace jszomorCAD
       }
     }
 
-    private void SetBlockRefenceAttributes(BlockReference acBlkRef, BlockTableRecord blockDefinition, Transaction tr)
+    private void CreateBlockRefenceAttributes(BlockReference acBlkRef, BlockTableRecord blockDefinition, Transaction tr)
     {
       // copy/create attribute references
       foreach (var bdEntityObjectId in blockDefinition)
@@ -113,43 +113,88 @@ namespace jszomorCAD
         var ad = tr.GetObject(bdEntityObjectId, OpenMode.ForRead) as AttributeDefinition;
         if (ad == null) continue;
 
-        var ar = new AttributeReference();
-        ar.SetDatabaseDefaults(_db);
-        ar.SetAttributeFromBlock(ad, acBlkRef.BlockTransform);
-        ar.TextString = ad.TextString;
-        ar.AdjustAlignment(HostApplicationServices.WorkingDatabase);
+        using (var ar = new AttributeReference())
+        {
+          ar.SetDatabaseDefaults(_db);
+          ar.SetAttributeFromBlock(ad, acBlkRef.BlockTransform);
+          ar.TextString = ad.TextString; // set default value, copied from AttributeDefinition
+          ar.AdjustAlignment(HostApplicationServices.WorkingDatabase);
 
-        acBlkRef.AttributeCollection.AppendAttribute(ar);
-        tr.AddNewlyCreatedDBObject(ar, true);
+          acBlkRef.AttributeCollection.AppendAttribute(ar);
+          tr.AddNewlyCreatedDBObject(ar, true);
+        }
       }
     }
 
+    private void SetBlockRefenceAttributesValues(BlockReference acBlkRef,
+      IEnumerable<Action<AttributeReference>> actionToExecuteOnAttRef)
+    {
+      if (actionToExecuteOnAttRef == null) return;
 
-    //using (var btr = tr.GetObject(btrId, OpenMode.ForRead, false) as BlockTableRecord)
-    //{
-    //  // Only add named & non-layout blocks to the copy list
-    //  if (!btr.IsAnonymous && !btr.IsLayout && btr.Name == insertData.BlockName)
-    //    return btrId;
-    //}
+      foreach (ObjectId objectId in acBlkRef.AttributeCollection)
+      {
+        var ar = objectId.GetObject<AttributeReference>();
+        if (ar == null) continue;
 
-    //var 
+        foreach (var action in actionToExecuteOnAttRef)
+        {
+          action.Invoke(ar);
+        }
+      }
+    }
+
+    private void RotateEquipment(BlockReference acBlkRef,
+      IEnumerable<Action<BlockReference>> actionToExecuteOnBlockRef)
+    {
+      if (actionToExecuteOnBlockRef == null) return;
+
+      foreach (ObjectId objectId in acBlkRef.DynamicBlockReferencePropertyCollection)
+      {
+        var ar = objectId.GetObject<BlockReference>();
+        if (ar == null) continue;
+
+        foreach (var action in actionToExecuteOnBlockRef)
+        {
+          action.Invoke(ar);
+        }
+      }
+    }
+
+    private void SetDynamicBlockReferenceValues(BlockReference acBlkRef,
+      IEnumerable<Action<DynamicBlockReferenceProperty>> actionToExecuteOnDynProp)
+    {      
+      if (acBlkRef.IsDynamicBlock)
+      {
+        foreach (DynamicBlockReferenceProperty dbrProp in acBlkRef.DynamicBlockReferencePropertyCollection)
+        {
+          foreach (var a in actionToExecuteOnDynProp)
+          {
+            a.Invoke(dbrProp);            
+          }       
+        }
+      }
+    }
 
     public bool InsertBlock(InsertBlockBase insertData)
     {
-      // 1. which block to inster? insertData.BlockName
+      // 1. which block to insert? insertData.BlockName
       // get the block to insert
       var blockId = GetBlockTable(insertData.BlockName);
 
+      var offsetX = 0.0d;
+      var offsetY = 0.0d;
       // 2. insert block
-      PlaceBlock(blockId, insertData.Position, insertData.LayerName);
-
-
-
+      for (var i = 0; i < insertData.NumberOfItem; i++)
+      {
+        PlaceBlock(blockId, insertData, offsetX, offsetY);
+        offsetX += insertData.OffsetX;
+        offsetY += insertData.OffsetY;
+      }
 
       return true;
     }
-
-public void InsertBlockTableMethod(InsertBlockBase insertData)
+    #region OLD CODE
+    public void InsertBlockTableMethod(InsertBlockBase insertData)
     {
       var sizeProperty = new PositionProperty();
       sizeProperty.FreeSpace = 60;
@@ -219,9 +264,6 @@ public void InsertBlockTableMethod(InsertBlockBase insertData)
                     foreach (DynamicBlockReferenceProperty dbrProp in acBlkRef.DynamicBlockReferencePropertyCollection) // this loop must be here
                                                                                                                         //else tag rotation for pump will be wrong!
                     {
-                      if (dbrProp.PropertyName == insertData.PropertyName)
-                        dbrProp.Value = insertData.VisibilityStateIndex; // SHORT !!!!!!!!!!!!
-
                       // for jet pump rotate
                       if (ar.TextString == "Air Jet Pump")                      
                         acBlkRef.Rotation = DegreeHelper.DegreeToRadian(270); // this command must be here else tag rotation will be wrong!
@@ -308,6 +350,7 @@ public void InsertBlockTableMethod(InsertBlockBase insertData)
         }
         currentSpaceId.UpdateAnonymousBlocks();
       });
+      #endregion
     }
   } 
 }

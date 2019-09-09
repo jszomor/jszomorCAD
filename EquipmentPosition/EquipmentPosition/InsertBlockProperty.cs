@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Autodesk.AutoCAD.DatabaseServices;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -32,36 +33,22 @@ namespace EquipmentPosition
     public double NumberOfItem { get; set; }
     public string BlockName { get; set; }
     public string LayerName { get; set; }
-    public string PropertyName { get; set; }
     public string HostName { get; set; }
     public double PipeLength { get; set; }
-    public object VisibilityStateIndex { get; set; }
-
-    public InsertBlockBase(double numberOfItem, string blockName, string layerName, string propertyName, object visibilityStateIndex, double x, double y,
+    public double OffsetX { get; set; }
+    public double OffsetY { get; set; }
+    public IEnumerable<Action<DynamicBlockReferenceProperty>> ActionToExecuteOnDynProp { get; set; }
+    public IEnumerable<Action<AttributeReference>> ActionToExecuteOnAttRef { get; set; }
+    public IEnumerable<Action<DynamicBlockReferenceProperty>> ActionToExecuteOnDynPropAfter { get; set; }
+    public IEnumerable<Action<BlockReference>> ActionToExecuteOnBlockRef { get; set; }
+    public InsertBlockBase(double numberOfItem, string blockName, string layerName, double x, double y,
        string hostName)
     {
       Position = new Position(x, y);
       NumberOfItem = numberOfItem;
       BlockName = blockName;
       LayerName = layerName;
-      PropertyName = propertyName;
       HostName = hostName;
-      VisibilityStateIndex = visibilityStateIndex;
     }
   }
-  #region
-  //public class InsertBlockProperty
-  //{
-  //  public double Distance { get; set; }
-  //  public double PipeLength { get; set; }
-  //  public object EqIndex { get; set; }
-
-  //  public InsertBlockProperty(double distance, double pipeLength, object eqIndex)
-  //  {
-  //    Distance = distance;
-  //    PipeLength = pipeLength;
-  //    EqIndex = eqIndex;
-  //  }
-  //}  
-  #endregion
 }

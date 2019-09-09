@@ -29,18 +29,52 @@ namespace jszomorCAD
         System.Diagnostics.Debug.Print(btr.Name);
         return btrNamesToCopy.Contains(btr.Name);
       });
-     
-      var blocks = new[]
-      {
-         new InsertBlockBase(numberOfItem: 1,
-         blockName: "chamber",
-         layerName: "unit",
-         propertyName: "Visibility",
-         visibilityStateIndex: "no channel",
-         x: 0,
-         y: 0,
-         hostName: "Equalization Tank"),
-      };
+
+      var eqt = new EqualizationTank(
+        numberOfPumps: 5);
+
+      //var blocks = new[]
+      //{
+      //  new InsertBlockBase(numberOfItem: 1,
+      //    blockName: "chamber",
+      //    layerName: "unit",
+      //    x: 0,
+      //    y: 0,
+      //    hostName: "Equalization Tank")
+      //  {
+      //    ActionToExecuteOnDynProp = new Action<DynamicBlockReferenceProperty>[] 
+      //    {
+      //      dbrProp => 
+      //      {
+      //        if (dbrProp.PropertyName == "Visibility")
+      //          dbrProp.Value = "no channel";
+      //      }
+      //    },
+      //    ActionToExecuteOnAttRef = new Action<AttributeReference>[]
+      //    {
+      //      ar =>
+      //      {
+      //        //text for EQ tank - Attributes
+      //        if (ar.Tag == "NAME1")
+      //          ar.TextString = "EQUALIZATION";
+      //        if (ar.Tag == "NAME2")
+      //          ar.TextString = "TANK";
+      //      }
+      //    },
+      //    ActionToExecuteOnDynPropAfter = new Action<DynamicBlockReferenceProperty>[]
+      //    {
+      //      dbrProp =>
+      //      {
+      //        //setup chamber width
+      //        if (dbrProp.PropertyName == "Distance")
+      //          dbrProp.Value = 5.0d * 20 + 50; //last value is the free space for other items
+      //        //text position for chamber
+      //        if (dbrProp.PropertyName == "Position X")
+      //          dbrProp.Value = (5 * 20 + 50) / 2.0d; //place text middle of chamber horizontaly 
+      //      }
+      //    },
+      //  },
+      //};
 
       var layers = new[]
       {
@@ -50,7 +84,7 @@ namespace jszomorCAD
       var layerCreator = new LayerCreator();
       layerCreator.LayerCreatorMethod(layers);
 
-      DrawBlocks(db, blocks);
+      DrawBlocks(db, eqt.Blocks);
       
 
       //var sizeProperty = new PositionProperty();
@@ -220,19 +254,22 @@ namespace jszomorCAD
 
 
       MoveToBottom.SendToBackWipeout();
-      MoveToBottom.SendToBackLine();
+      //MoveToBottom.SendToBackLine();
       SendClass.SendRegen();
       SendClass.SendZoomExtents();
     } 
 
     public void DrawBlocks(Database db, IEnumerable<InsertBlockBase> blocks)
     {
+      //setup default layers
+      var defultLayers = new LayerCreator();
+      defultLayers.Layers();
+
       var insertBlockTable = new InsertBlockTable(db);
 
       foreach (var block in blocks)
       {
         insertBlockTable.InsertBlock(block);
-
       }
     }
   }
