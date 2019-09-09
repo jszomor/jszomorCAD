@@ -146,8 +146,6 @@ namespace jszomorCAD
 
 
 
-
-
       return true;
     }
 
@@ -273,7 +271,7 @@ public void InsertBlockTableMethod(InsertBlockBase insertData)
                     // for jet pump tag position
                     if (ar.Tag == "NOTE" && ar.TextString == "Air Jet Pump" && insertData.BlockName == "pump")
                     {
-                      //acBlkRef.Rotation = DegreeHelper.DegreeToRadian(270); // this command has a wrong result that is why should be in the upper loop.
+                      //acBlkRef.Rotation = DegreeHelper.DegreeToRadian(270); // this command has wrong result that is why should be in the upper loop.
 
                       if (acBlkRef.IsDynamicBlock)
                       {
