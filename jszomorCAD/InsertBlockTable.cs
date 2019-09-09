@@ -143,7 +143,7 @@ namespace jszomorCAD
       }
     }
 
-    private void RotateEquipment(BlockReference acBlkRef,
+    private void SetBlockReferenceValues(BlockReference acBlkRef,
       IEnumerable<Action<BlockReference>> actionToExecuteOnBlockRef)
     {
       if (actionToExecuteOnBlockRef == null) return;
