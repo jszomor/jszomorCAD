@@ -191,6 +191,7 @@ namespace jszomorCAD
       {
         foreach (DynamicBlockReferenceProperty dbrProp in acBlkRef.DynamicBlockReferencePropertyCollection)
         {
+          if(dbrProp.PropertyName == "")
           dbrProp.Value = eqIndex;
         }
       }
