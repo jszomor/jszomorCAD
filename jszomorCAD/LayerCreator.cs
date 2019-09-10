@@ -16,16 +16,16 @@ namespace jszomorCAD
     public string LayerName { get; set; }
     public Color Color { get; set; }
 
-    public bool IsHidden;
+    public bool IsOff;
 
     public double LineTypeScale { get; set; }
 
-    public LayerData(string layerName, Color color, double lineTypeScale, bool isHidden)
+    public LayerData(string layerName, Color color, double lineTypeScale, bool isOff)
     {
       LayerName = layerName;
       Color = color;
       LineTypeScale = lineTypeScale;
-      IsHidden = isHidden;
+      IsOff = isOff;
     }
   }
 
@@ -40,10 +40,10 @@ namespace jszomorCAD
       }
     }
 
-    public void LayerCreatorMethod(LayerData layerData) => LayerCreatorMethod(layerData.LayerName, layerData.Color, layerData.LineTypeScale, layerData.IsHidden);
+    public void LayerCreatorMethod(LayerData layerData) => LayerCreatorMethod(layerData.LayerName, layerData.Color, layerData.LineTypeScale, layerData.IsOff);
 
 
-    public void LayerCreatorMethod(string sLayerName, Color acColors, double lineTypeScale, bool isHidden)
+    public void LayerCreatorMethod(string sLayerName, Color acColors, double lineTypeScale, bool isOff)
     {
       var db = Application.DocumentManager.MdiActiveDocument.Database;
       var aw = new AutoCadWrapper();
@@ -82,7 +82,7 @@ namespace jszomorCAD
         layerTableRecord.Color = acColors;
         db.Ltscale = lineTypeScale;
         layerTableRecord.LineWeight = LineWeight.LineWeight025;
-        layerTableRecord.IsHidden = isHidden;
+        layerTableRecord.IsOff = isOff;
       });
     }
     public void Layers()
@@ -91,7 +91,7 @@ namespace jszomorCAD
       LayerCreatorMethod("equipment", Color.FromRgb(0, 0, 255), 0.25, false);
       LayerCreatorMethod("unit", Color.FromRgb(255, 0, 0), 0.25, false);
       LayerCreatorMethod("valve", Color.FromRgb(255, 255, 255), 0.25, false);
-      LayerCreatorMethod("valve2", Color.FromRgb(255, 255, 255), 0.25, false);
+      LayerCreatorMethod("valve2", Color.FromRgb(255, 255, 255), 0.25, true);
       LayerCreatorMethod("instrumentation", Color.FromRgb(0, 255, 255), 0.25, false);
       LayerCreatorMethod("text", Color.FromRgb(255, 255, 255), 0.25, false);
       LayerCreatorMethod("sewer", Color.FromRgb(28, 38, 0), 0.25, false);
@@ -102,6 +102,22 @@ namespace jszomorCAD
       LayerCreatorMethod("air", Color.FromRgb(63, 255, 0), 0.25, false);
       LayerCreatorMethod("recycle_flow", Color.FromRgb(145, 165, 82), 0.25, false);
       LayerCreatorMethod("pipeTag", Color.FromRgb(255, 255, 255), 0.25, false);
+    }
+
+    public void LayerStatus()
+    {
+      var db = Application.DocumentManager.MdiActiveDocument.Database;
+      var aw = new AutoCadWrapper();
+      
+      aw.ExecuteActionOnLayerTable(db, (tr, lt) =>
+      {
+        var layerTable = tr.GetObject(db.LayerTableId, OpenMode.ForWrite) as LayerTable;
+
+        // Append the new layer to the Layer table and the transaction
+        var layerTableRecord = new LayerTableRecord();
+
+           layerTableRecord.IsOff = true;
+      });
     }
   }
 }

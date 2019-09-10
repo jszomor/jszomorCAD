@@ -272,9 +272,8 @@ namespace jszomorCAD
         insertBlockTable.InsertBlock(block);
       }
 
-
-      MoveToBottom.SendToBackWipeout();
-      MoveToBottom.SendToBackLine();
+      MoveToBottom.SendToBackBlock();
+      //MoveToBottom.SendToBackLine();
       SendClass.SendRegen();
       SendClass.SendZoomExtents();
     }
