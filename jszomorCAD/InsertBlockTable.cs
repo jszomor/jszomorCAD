@@ -23,8 +23,8 @@ namespace jszomorCAD
     }
 
     #region
-    //public void InsertVfdPump(Database db, PromptIntegerResult numberOfItem, PromptIntegerResult distance, string blockName, string layerName, int eqIndex) => 
-    //  InsertBlockTableMethod(db, numberOfItem, distance, blockName, layerName, "Centrifugal Pump", eqIndex); // todo: magic numberOfItem
+    //public void InsertVfdPump(Database db, PromptIntegerResult numberOfItem, PromptIntegerResult distance, string blockName, string layerName, int visibilitystateIndex) => 
+    //  InsertBlockTableMethod(db, numberOfItem, distance, blockName, layerName, "Centrifugal Pump", visibilitystateIndex); // todo: magic numberOfItem
 
     //public void InsertBlockTableMethodAsTable(Database db, InsertBlockBase insertData)
     //  => InsertBlockTableMethod(db, insertData);
@@ -78,12 +78,11 @@ namespace jszomorCAD
             //InsertBlockBase insertData;
             currentSpaceId.AppendEntity(acBlkRef);
             tr.AddNewlyCreatedDBObject(acBlkRef, true);
-
-            SetVisibilityIndex(acBlkRef, insertBlock.EqIndex);
+            
             SetBlockReferenceLayer(acBlkRef, insertBlock.LayerName);
             SetRotate(acBlkRef, insertBlock.Rotation);
             CreateBlockRefenceAttributes(acBlkRef, blockDefinition, tr);
-            SetDynamicBlockReferenceValues(acBlkRef, insertBlock.ActionToExecuteOnDynProp);
+            SetVisibilityIndex(acBlkRef, insertBlock.StateProperty);
             SetBlockRefenceAttributesValues(acBlkRef, insertBlock.ActionToExecuteOnAttRef);
             SetDynamicBlockReferenceValues(acBlkRef, insertBlock.ActionToExecuteOnDynPropAfter);
             SetHostName(acBlkRef, insertBlock.HostName);
@@ -185,14 +184,14 @@ namespace jszomorCAD
       }
     }
 
-    private void SetVisibilityIndex(BlockReference acBlkRef, object eqIndex)
+    private void SetVisibilityIndex(BlockReference acBlkRef, EquipmentStateProperty stateProperty)
     {
       if (acBlkRef.IsDynamicBlock)
       {
         foreach (DynamicBlockReferenceProperty dbrProp in acBlkRef.DynamicBlockReferencePropertyCollection)
         {
-          if(dbrProp.PropertyName == "")
-          dbrProp.Value = eqIndex;
+          if (dbrProp.PropertyName == stateProperty.PropertyName)
+            dbrProp.Value = stateProperty.Value;
         }
       }
     }
@@ -235,7 +234,7 @@ namespace jszomorCAD
       var defultLayers = new LayerCreator();
       defultLayers.Layers();
     
-      //var shortEqIndex = Convert.ToInt16(eqIndex);
+      //var shortvisibilitystateIndex = Convert.ToInt16(visibilitystateIndex);
 
       // Start transaction to insert equipment
       aw.ExecuteActionOnBlockTable(_db, (tr, bt) =>
@@ -316,7 +315,7 @@ namespace jszomorCAD
                 //  foreach (DynamicBl ockReferenceProperty dbrProp in acBlkRef.DynamicBlockReferencePropertyCollection)
                 //  {       
                 //    if (dbrProp.PropertyName == PropertyName)                                    
-                //      dbrProp.Value = eqIndex; // SHORT !!!!!!!!!!!!                                                           
+                //      dbrProp.Value = visibilitystateIndex; // SHORT !!!!!!!!!!!!                                                           
                 //  }
                 //}
                 #endregion
@@ -360,11 +359,11 @@ namespace jszomorCAD
                       dbrProp.Value = DegreeHelper.DegreeToRadian(270);
 
                     //setup chamber width
-                    if (dbrProp.PropertyName == "Distance" && insertData.BlockName == "chamber")
-                      dbrProp.Value = PositionProperty.NumberOfPump * PositionProperty.DistanceOfPump + sizeProperty.FreeSpace; //last value is the free space for other items
-                    //text position for chamber
-                    if (dbrProp.PropertyName == "Position X" && insertData.BlockName == "chamber")
-                      dbrProp.Value = ((PositionProperty.NumberOfPump * PositionProperty.DistanceOfPump + sizeProperty.FreeSpace) / (double)2); //place text middle of chamber horizontaly 
+                    //if (dbrProp.PropertyName == "Distance" && insertData.BlockName == "chamber")
+                    //  dbrProp.Value = PositionProperty.NumberOfPump * PositionProperty.DistanceOfPump + sizeProperty.FreeSpace; //last value is the free space for other items
+                    ////text position for chamber
+                    //if (dbrProp.PropertyName == "Position X" && insertData.BlockName == "chamber")
+                    //  dbrProp.Value = ((PositionProperty.NumberOfPump * PositionProperty.DistanceOfPump + sizeProperty.FreeSpace) / (double)2); //place text middle of chamber horizontaly 
                   }
                 }
               }

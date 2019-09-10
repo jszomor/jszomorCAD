@@ -16,13 +16,16 @@ namespace jszomorCAD
     public string LayerName { get; set; }
     public Color Color { get; set; }
 
+    public bool IsHidden;
+
     public double LineTypeScale { get; set; }
 
-    public LayerData(string layerName, Color color, double lineTypeScale)
+    public LayerData(string layerName, Color color, double lineTypeScale, bool isHidden)
     {
       LayerName = layerName;
       Color = color;
       LineTypeScale = lineTypeScale;
+      IsHidden = isHidden;
     }
   }
 
@@ -37,10 +40,10 @@ namespace jszomorCAD
       }
     }
 
-    public void LayerCreatorMethod(LayerData layerData) => LayerCreatorMethod(layerData.LayerName, layerData.Color, layerData.LineTypeScale);
+    public void LayerCreatorMethod(LayerData layerData) => LayerCreatorMethod(layerData.LayerName, layerData.Color, layerData.LineTypeScale, layerData.IsHidden);
 
 
-    public void LayerCreatorMethod(string sLayerName, Color acColors, double lineTypeScale)
+    public void LayerCreatorMethod(string sLayerName, Color acColors, double lineTypeScale, bool isHidden)
     {
       var db = Application.DocumentManager.MdiActiveDocument.Database;
       var aw = new AutoCadWrapper();
@@ -75,28 +78,30 @@ namespace jszomorCAD
           // Open the layer if it already exists for write
           layerTableRecord = tr.GetObject(layerTable[sLayerName], OpenMode.ForWrite) as LayerTableRecord;
         }
-        // Set the color of the layer
+        // Set layer
         layerTableRecord.Color = acColors;
         db.Ltscale = lineTypeScale;
         layerTableRecord.LineWeight = LineWeight.LineWeight025;
+        layerTableRecord.IsHidden = isHidden;
       });
     }
     public void Layers()
     {
       //setup default layers      
-      LayerCreatorMethod("equipment", Color.FromRgb(0, 0, 255), 0.25);
-      LayerCreatorMethod("unit", Color.FromRgb(255, 0, 0), 0.25);
-      LayerCreatorMethod("valve", Color.FromRgb(255, 255, 255), 0.25);
-      LayerCreatorMethod("valve2", Color.FromRgb(255, 255, 255), 0.25);
-      LayerCreatorMethod("instrumentation", Color.FromRgb(0, 255, 255), 0.25);
-      LayerCreatorMethod("text", Color.FromRgb(255, 255, 255), 0.25);
-      LayerCreatorMethod("sewer", Color.FromRgb(28, 38, 0), 0.25);
-      LayerCreatorMethod("sludge", Color.FromRgb(38, 19, 19), 0.25);
-      LayerCreatorMethod("chemical", Color.FromRgb(0, 255, 255), 0.25);
-      LayerCreatorMethod("water", Color.FromRgb(0, 0, 255), 0.25);
-      LayerCreatorMethod("treated_water", Color.FromRgb(0, 127, 255), 0.25);
-      LayerCreatorMethod("air", Color.FromRgb(63, 255, 0), 0.25);
-      LayerCreatorMethod("recycle_flow", Color.FromRgb(145, 165, 82), 0.25);
+      LayerCreatorMethod("equipment", Color.FromRgb(0, 0, 255), 0.25, false);
+      LayerCreatorMethod("unit", Color.FromRgb(255, 0, 0), 0.25, false);
+      LayerCreatorMethod("valve", Color.FromRgb(255, 255, 255), 0.25, false);
+      LayerCreatorMethod("valve2", Color.FromRgb(255, 255, 255), 0.25, false);
+      LayerCreatorMethod("instrumentation", Color.FromRgb(0, 255, 255), 0.25, false);
+      LayerCreatorMethod("text", Color.FromRgb(255, 255, 255), 0.25, false);
+      LayerCreatorMethod("sewer", Color.FromRgb(28, 38, 0), 0.25, false);
+      LayerCreatorMethod("sludge", Color.FromRgb(38, 19, 19), 0.25, false);
+      LayerCreatorMethod("chemical", Color.FromRgb(0, 255, 255), 0.25, false);
+      LayerCreatorMethod("water", Color.FromRgb(0, 0, 255), 0.25, false);
+      LayerCreatorMethod("treated_water", Color.FromRgb(0, 127, 255), 0.25, false);
+      LayerCreatorMethod("air", Color.FromRgb(63, 255, 0), 0.25, false);
+      LayerCreatorMethod("recycle_flow", Color.FromRgb(145, 165, 82), 0.25, false);
+      LayerCreatorMethod("pipeTag", Color.FromRgb(255, 255, 255), 0.25, false);
     }
   }
 }

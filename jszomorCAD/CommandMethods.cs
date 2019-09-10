@@ -45,9 +45,9 @@ namespace jszomorCAD
       //"\nEnter index of equipment:"
       var eio = new PromptIntegerOptions("\nEnter index of equipment:") { DefaultValue = 22 };
       var eqIndex = Application.DocumentManager.MdiActiveDocument.Editor.GetInteger(eio);
-      var shortEqIndex = Convert.ToInt16(eqIndex.Value);
+      var promptEqIndex = Convert.ToInt16(eqIndex.Value);
 
-      var eqt = new EqualizationTank(numberOfPumps: intNumber, distanceOfPump: intDistance, eqIndex: shortEqIndex);
+      var eqt = new EqualizationTank(numberOfPumps: intNumber, distanceOfPump: intDistance, eqIndex: promptEqIndex);
 
       #region old code
       //var blocks = new[]
@@ -94,16 +94,17 @@ namespace jszomorCAD
       //};
       #endregion
 
-      var layers = new[]
-      {
-        new LayerData("unit", Color.FromRgb(255, 0, 0), 0.25)
-      };
+      //var layers = new[]
+      //{
+      //  new LayerData("unit", Color.FromRgb(255, 0, 0), 0.25, false)
+      //};
 
-      var layerCreator = new LayerCreator();
-      layerCreator.LayerCreatorMethod(layers);
+      //var layerCreator = new LayerCreator();
+      //layerCreator.LayerCreatorMethod(layers);
 
       DrawBlocks(db, eqt.Blocks);
 
+      #region oldcode
       ////short shortCheckValveIndex = 2;
       //PositionProperty.NumberOfPump = number.Value;
       //PositionProperty.DistanceOfPump = distance.Value;
@@ -253,13 +254,9 @@ namespace jszomorCAD
       //  insertPipe1, insertChannelGateDTY, insertChannelGateSTB
       //};
 
+      #endregion
 
-
-
-      MoveToBottom.SendToBackWipeout();
-      //MoveToBottom.SendToBackLine();
-      SendClass.SendRegen();
-      SendClass.SendZoomExtents();
+      
     } 
 
     public void DrawBlocks(Database db, IEnumerable<InsertBlockBase> blocks)
@@ -274,6 +271,12 @@ namespace jszomorCAD
       {
         insertBlockTable.InsertBlock(block);
       }
+
+
+      MoveToBottom.SendToBackWipeout();
+      MoveToBottom.SendToBackLine();
+      SendClass.SendRegen();
+      SendClass.SendZoomExtents();
     }
   }
 }

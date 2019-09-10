@@ -38,19 +38,32 @@ namespace EquipmentPosition
     public double OffsetX { get; set; }
     public double OffsetY { get; set; }
     public double Rotation { get; set; }
-    public object EqIndex { get; set; }
-    public IEnumerable<Action<DynamicBlockReferenceProperty>> ActionToExecuteOnDynProp { get; set; }
+    public EquipmentStateProperty StateProperty { get; }    
     public IEnumerable<Action<AttributeReference>> ActionToExecuteOnAttRef { get; set; }
-    public IEnumerable<Action<DynamicBlockReferenceProperty>> ActionToExecuteOnDynPropAfter { get; set; }   
-    public InsertBlockBase(object eqindex, double numberOfItem, string blockName, string layerName, double x, double y, double rotation, string hostName)
+    public IEnumerable<Action<DynamicBlockReferenceProperty>> ActionToExecuteOnDynPropAfter { get; set; }
+    public InsertBlockBase(double numberOfItem,
+      string blockName, string layerName, double x, double y, string hostName,
+      EquipmentStateProperty equipmentStateProperty, double rotation = 0.0d)
     {
-      EqIndex = eqindex;
       Position = new Position(x, y);
       NumberOfItem = numberOfItem;
       BlockName = blockName;
       LayerName = layerName;
       HostName = hostName;
       Rotation = rotation;
+      StateProperty = equipmentStateProperty;
+    }
+  }
+
+  public class EquipmentStateProperty
+  {
+    public string PropertyName { get; }
+    public object Value { get; }
+
+    public EquipmentStateProperty(string propertyName, object value)
+    {
+      PropertyName = propertyName;
+      Value = value;
     }
   }
 }
