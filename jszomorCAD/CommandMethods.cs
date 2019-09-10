@@ -14,7 +14,7 @@ namespace jszomorCAD
 {
   public class CommandMethods
   {
-    public string path = @"E:\Test\Autocad PID blocks work in progress.dwg";    
+    public string path = @"E:\Munka\Test\Autocad PID blocks work in progress.dwg";    
 
     [CommandMethod("jcad_EqTankBuilder")]
     public void ListBlocks()
@@ -30,9 +30,26 @@ namespace jszomorCAD
         return btrNamesToCopy.Contains(btr.Name);
       });
 
-      var eqt = new EqualizationTank(
-        numberOfPumps: 5);
 
+      var sizeProperty = new PositionProperty();
+      //"\nEnter number of equipment:"
+      var pio = new PromptIntegerOptions("\nEnter number of equipment:") { DefaultValue = 5 };
+      var number = Application.DocumentManager.MdiActiveDocument.Editor.GetInteger(pio);
+      var intNumber = Convert.ToInt32(number.Value);
+
+      //"\nEnter distance of equipment:"
+      var dio = new PromptIntegerOptions("\nEnter distance of equipment:") { DefaultValue = 20 };
+      var distance = Application.DocumentManager.MdiActiveDocument.Editor.GetInteger(dio);
+      var intDistance = Convert.ToInt32(distance.Value);
+
+      //"\nEnter index of equipment:"
+      var eio = new PromptIntegerOptions("\nEnter index of equipment:") { DefaultValue = 22 };
+      var eqIndex = Application.DocumentManager.MdiActiveDocument.Editor.GetInteger(eio);
+      var shortEqIndex = Convert.ToInt16(eqIndex.Value);
+
+      var eqt = new EqualizationTank(numberOfPumps: intNumber, distanceOfPump: intDistance, eqIndex: shortEqIndex);
+
+      #region old code
       //var blocks = new[]
       //{
       //  new InsertBlockBase(numberOfItem: 1,
@@ -75,6 +92,7 @@ namespace jszomorCAD
       //    },
       //  },
       //};
+      #endregion
 
       var layers = new[]
       {
@@ -85,22 +103,7 @@ namespace jszomorCAD
       layerCreator.LayerCreatorMethod(layers);
 
       DrawBlocks(db, eqt.Blocks);
-      
 
-      //var sizeProperty = new PositionProperty();
-      ////"\nEnter number of equipment:"
-      //var pio = new PromptIntegerOptions("\nEnter number of equipment:") { DefaultValue = 5 };
-      //var number = Application.DocumentManager.MdiActiveDocument.Editor.GetInteger(pio);
-
-      ////"\nEnter distance of equipment:"
-      //var dio = new PromptIntegerOptions("\nEnter distance of equipment:") { DefaultValue = 20 };
-      //var distance = Application.DocumentManager.MdiActiveDocument.Editor.GetInteger(dio);
-
-      ////"\nEnter index of equipment:"
-      //var eio = new PromptIntegerOptions("\nEnter index of equipment:") { DefaultValue = 22 };
-      //var eqIndex = Application.DocumentManager.MdiActiveDocument.Editor.GetInteger(eio);
-
-      //var shortEqIndex = Convert.ToInt16(eqIndex.Value);
       ////short shortCheckValveIndex = 2;
       //PositionProperty.NumberOfPump = number.Value;
       //PositionProperty.DistanceOfPump = distance.Value;

@@ -11,10 +11,14 @@ namespace EquipmentPosition
     const double _startPadding = 50.0d;
 
     public int NumberOfPumps { get; private set; }
+    public int DistanceOfPump { get; set; }
+    public short EqIndex { get; set; }
 
-    public EqualizationTank(int numberOfPumps)
+    public EqualizationTank(int numberOfPumps, int distanceOfPump, short eqIndex)
     {
       NumberOfPumps = numberOfPumps;
+      DistanceOfPump = distanceOfPump;
+      EqIndex = eqIndex;
     }
 
     public override string EquipmentName => "Equalization Tank";
@@ -30,7 +34,8 @@ namespace EquipmentPosition
           blockName: "chamber",
           layerName: "unit",
           x: 0,
-          y: 0,
+          y: 0,          
+          rotation: DegreeHelper.DegreeToRadian(0),
           hostName: EquipmentName)
           {
           ActionToExecuteOnDynProp = new Action<DynamicBlockReferenceProperty>[]
@@ -75,6 +80,7 @@ namespace EquipmentPosition
         layerName: "equipment",
         x: _startPadding,
         y: 10.0d,
+        rotation: DegreeHelper.DegreeToRadian(0),
         hostName: EquipmentName)
         {
           OffsetX = _pumpDistance, // distamce between pumps
@@ -112,6 +118,7 @@ namespace EquipmentPosition
         layerName: "equipment",
         x: 20.0d,
         y: 10.0d,
+        rotation: DegreeHelper.DegreeToRadian(270),
         hostName: EquipmentName)
         {
           //OffsetX = 0, // distance between pumps
@@ -123,15 +130,7 @@ namespace EquipmentPosition
               if (dbrProp.PropertyName == "Centrifugal Pump")
                 dbrProp.Value = (short)17;
             }
-          },
-          ActionToExecuteOnBlockRef = new Action<BlockReference>[]
-          {
-            br =>
-            {
-              //rotate              
-              br.Rotation = DegreeHelper.DegreeToRadian(270);
-            }
-          },
+          },         
           ActionToExecuteOnDynPropAfter = new Action<DynamicBlockReferenceProperty>[]
           {
             dbrProp =>

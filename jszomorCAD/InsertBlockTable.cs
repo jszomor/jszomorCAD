@@ -74,17 +74,19 @@ namespace jszomorCAD
         {
           using (var acBlkRef = new BlockReference(
             new Point3d(insertBlock.Position.X + offsetX, insertBlock.Position.Y + offsetY, 0), blockId))
-          {
+          {            
             //InsertBlockBase insertData;
             currentSpaceId.AppendEntity(acBlkRef);
             tr.AddNewlyCreatedDBObject(acBlkRef, true);
 
+            SetVisibilityIndex(acBlkRef, insertBlock.EqIndex);
             SetBlockReferenceLayer(acBlkRef, insertBlock.LayerName);
+            SetRotate(acBlkRef, insertBlock.Rotation);
             CreateBlockRefenceAttributes(acBlkRef, blockDefinition, tr);
             SetDynamicBlockReferenceValues(acBlkRef, insertBlock.ActionToExecuteOnDynProp);
             SetBlockRefenceAttributesValues(acBlkRef, insertBlock.ActionToExecuteOnAttRef);
             SetDynamicBlockReferenceValues(acBlkRef, insertBlock.ActionToExecuteOnDynPropAfter);
-            RotateEquipment(acBlkRef, insertBlock.ActionToExecuteOnBlockRef);
+            SetHostName(acBlkRef, insertBlock.HostName);
           }
         }
         tr.Commit();
@@ -95,7 +97,7 @@ namespace jszomorCAD
     {
       try
       {
-        acBlkRef.Layer = layerName;
+        acBlkRef.Layer = layerName;        
       }
       catch (Autodesk.AutoCAD.Runtime.Exception ex)
       {
@@ -105,6 +107,32 @@ namespace jszomorCAD
       }
     }
 
+    private void SetRotate(BlockReference acBlkRef, double rotation)
+    {
+      try
+      {        
+        acBlkRef.Rotation = rotation;
+      }
+      catch (Autodesk.AutoCAD.Runtime.Exception ex)
+      {
+        if (ex.ErrorStatus == Autodesk.AutoCAD.Runtime.ErrorStatus.KeyNotFound) throw new Exception($"Invalid number");
+
+        else throw;
+      }
+    }
+
+    private void SetHostName(BlockReference acBlkRef, string hostName)
+    {
+      foreach (ObjectId objectId in acBlkRef.AttributeCollection)
+      {
+        var ar = objectId.GetObject<AttributeReference>();
+        if (ar == null) continue;
+
+        if (ar.Tag == "HOSTNAME")
+        ar.TextString = hostName;                  
+      }      
+    }
+   
     private void CreateBlockRefenceAttributes(BlockReference acBlkRef, BlockTableRecord blockDefinition, Transaction tr)
     {
       // copy/create attribute references
@@ -125,7 +153,6 @@ namespace jszomorCAD
         }
       }
     }
-
     private void SetBlockRefenceAttributesValues(BlockReference acBlkRef,
       IEnumerable<Action<AttributeReference>> actionToExecuteOnAttRef)
     {
@@ -138,24 +165,7 @@ namespace jszomorCAD
 
         foreach (var action in actionToExecuteOnAttRef)
         {
-          action.Invoke(ar);
-        }
-      }
-    }
-
-    private void SetBlockReferenceValues(BlockReference acBlkRef,
-      IEnumerable<Action<BlockReference>> actionToExecuteOnBlockRef)
-    {
-      if (actionToExecuteOnBlockRef == null) return;
-
-      foreach (ObjectId objectId in acBlkRef.DynamicBlockReferencePropertyCollection)
-      {
-        var ar = objectId.GetObject<BlockReference>();
-        if (ar == null) continue;
-
-        foreach (var action in actionToExecuteOnBlockRef)
-        {
-          action.Invoke(ar);
+          action.Invoke(ar);          
         }
       }
     }
@@ -175,6 +185,17 @@ namespace jszomorCAD
       }
     }
 
+    private void SetVisibilityIndex(BlockReference acBlkRef, object eqIndex)
+    {
+      if (acBlkRef.IsDynamicBlock)
+      {
+        foreach (DynamicBlockReferenceProperty dbrProp in acBlkRef.DynamicBlockReferencePropertyCollection)
+        {
+          dbrProp.Value = eqIndex;
+        }
+      }
+    }
+
     public bool InsertBlock(InsertBlockBase insertData)
     {
       // 1. which block to insert? insertData.BlockName
@@ -182,17 +203,20 @@ namespace jszomorCAD
       var blockId = GetBlockTable(insertData.BlockName);
 
       var offsetX = 0.0d;
-      var offsetY = 0.0d;
+      var offsetY = 0.0d;      
       // 2. insert block
       for (var i = 0; i < insertData.NumberOfItem; i++)
       {
         PlaceBlock(blockId, insertData, offsetX, offsetY);
         offsetX += insertData.OffsetX;
-        offsetY += insertData.OffsetY;
+        offsetY += insertData.OffsetY;        
       }
 
       return true;
     }
+
+
+
     #region OLD CODE
     public void InsertBlockTableMethod(InsertBlockBase insertData)
     {

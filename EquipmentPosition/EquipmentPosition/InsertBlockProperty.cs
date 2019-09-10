@@ -37,18 +37,20 @@ namespace EquipmentPosition
     public double PipeLength { get; set; }
     public double OffsetX { get; set; }
     public double OffsetY { get; set; }
+    public double Rotation { get; set; }
+    public object EqIndex { get; set; }
     public IEnumerable<Action<DynamicBlockReferenceProperty>> ActionToExecuteOnDynProp { get; set; }
     public IEnumerable<Action<AttributeReference>> ActionToExecuteOnAttRef { get; set; }
-    public IEnumerable<Action<DynamicBlockReferenceProperty>> ActionToExecuteOnDynPropAfter { get; set; }
-    public IEnumerable<Action<BlockReference>> ActionToExecuteOnBlockRef { get; set; }
-    public InsertBlockBase(double numberOfItem, string blockName, string layerName, double x, double y,
-       string hostName)
+    public IEnumerable<Action<DynamicBlockReferenceProperty>> ActionToExecuteOnDynPropAfter { get; set; }   
+    public InsertBlockBase(object eqindex, double numberOfItem, string blockName, string layerName, double x, double y, double rotation, string hostName)
     {
+      EqIndex = eqindex;
       Position = new Position(x, y);
       NumberOfItem = numberOfItem;
       BlockName = blockName;
       LayerName = layerName;
       HostName = hostName;
+      Rotation = rotation;
     }
   }
 }
