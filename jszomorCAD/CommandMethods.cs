@@ -23,7 +23,7 @@ namespace jszomorCAD
 
       // Copy blocks from sourcefile into opened file
       var copyBlockTable = new CopyBlockTable();
-      var btrNamesToCopy = new[] { "pump", "valve", "chamber", "instrumentation tag", "channel gate", "pipe" };
+      var btrNamesToCopy = new[] { "pump", "valve", "chamber", "instrumentation tag", "channel gate", "pipe", "pipe2", "channel", "channel2" };
       copyBlockTable.CopyBlockTableMethod(db, path, btr =>
       {
         System.Diagnostics.Debug.Print(btr.Name);

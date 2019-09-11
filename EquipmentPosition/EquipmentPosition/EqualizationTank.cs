@@ -27,18 +27,94 @@ namespace EquipmentPosition
     {
       get
       {
-        #region Chamber
+        #region Distribution chamber influent
         yield return 
         new InsertBlockBase(
           numberOfItem: 1,
           blockName: "chamber",
           layerName: "unit",
-          x: 0,
-          y: 0,          
+          x: -60.0d,
+          y: -30.0d,          
           //rotation: DegreeHelper.DegreeToRadian(0),
           hostName: EquipmentName,
           equipmentStateProperty: new EquipmentStateProperty("Visibility", "no channel"))
           {
+          ActionToExecuteOnAttRef = new Action<AttributeReference>[]
+          {
+            ar =>
+            {
+              //text for EQ tank - Attributes
+              if (ar.Tag == "NAME1")
+                ar.TextString = "DISTRIBUTION";
+              if (ar.Tag == "NAME2")
+                ar.TextString = "CHAMBER";
+            }
+          },
+          ActionToExecuteOnDynPropAfter = new Action<DynamicBlockReferenceProperty>[]
+          {
+            dbrProp =>
+            {
+              //setup chamber width
+              if (dbrProp.PropertyName == "Distance")
+                dbrProp.Value = 30.0d;
+              //text position for chamber
+              if (dbrProp.PropertyName == "Position X")
+                dbrProp.Value = 15.0d; //place text middle of chamber horizontaly 
+            }
+          },
+        };
+        #endregion
+
+        #region Distribution chamber effluent
+        yield return
+        new InsertBlockBase(
+          numberOfItem: 1,
+          blockName: "chamber",
+          layerName: "unit",
+          x: (NumberOfPumps - 1) * DistanceOfPump + _endPadding + 50.0d,
+          y: -30.0d,
+          //rotation: DegreeHelper.DegreeToRadian(0),
+          hostName: EquipmentName,
+          equipmentStateProperty: new EquipmentStateProperty("Visibility", "no channel"))
+        {
+          ActionToExecuteOnAttRef = new Action<AttributeReference>[]
+          {
+            ar =>
+            {
+              //text for EQ tank - Attributes
+              if (ar.Tag == "NAME1")
+                ar.TextString = "DISTRIBUTION";
+              if (ar.Tag == "NAME2")
+                ar.TextString = "CHAMBER";
+            }
+          },
+          ActionToExecuteOnDynPropAfter = new Action<DynamicBlockReferenceProperty>[]
+          {
+            dbrProp =>
+            {
+              //setup chamber width
+              if (dbrProp.PropertyName == "Distance")
+                dbrProp.Value = 30.0d;
+              //text position for chamber
+              if (dbrProp.PropertyName == "Position X")
+                dbrProp.Value = 15.0d; //place text middle of chamber horizontaly 
+            }
+          },
+        };
+        #endregion
+
+        #region EQ tank
+        yield return
+        new InsertBlockBase(
+          numberOfItem: 1,
+          blockName: "chamber",
+          layerName: "unit",
+          x: 0,
+          y: 0,
+          //rotation: DegreeHelper.DegreeToRadian(0),
+          hostName: EquipmentName,
+          equipmentStateProperty: new EquipmentStateProperty("Visibility", "no channel"))
+        {
           ActionToExecuteOnAttRef = new Action<AttributeReference>[]
           {
             ar =>
@@ -289,15 +365,97 @@ namespace EquipmentPosition
               if (dbrProp.PropertyName == "PipeLength")
                 dbrProp.Value = (double)36;
               if (dbrProp.PropertyName == "ArrowPosition X")
-                dbrProp.Value = (double)0;
+                dbrProp.Value = (double)-3;
               if (dbrProp.PropertyName == "ArrowPosition Y")
                 dbrProp.Value = (double)36;
               if (dbrProp.PropertyName == "TagPosition X")
-                dbrProp.Value = (double)-5;
+                dbrProp.Value = (double)-3;
               if (dbrProp.PropertyName == "TagPosition Y")
                 dbrProp.Value = (double)20;
               if (dbrProp.PropertyName == "TagAngle")
                 dbrProp.Value = DegreeHelper.DegreeToRadian(180);
+            }
+          },
+        };
+        #endregion
+
+        #region pipe1
+        yield return
+        new InsertBlockBase(
+          numberOfItem: 1,
+          blockName: "pipe2",
+          layerName: "sewer",
+          x: NumberOfPumps * DistanceOfPump + _endPadding + 40.0d,
+          y: 50.0d,
+          rotation: DegreeHelper.DegreeToRadian(180),
+          hostName: EquipmentName,
+          equipmentStateProperty: new EquipmentStateProperty("Visibility1", "sewer"))
+        {
+          OffsetX = DistanceOfPump, // distamce between pipes
+          ActionToExecuteOnDynPropAfter = new Action<DynamicBlockReferenceProperty>[]
+          {
+            dbrProp =>
+            {
+              if (dbrProp.PropertyName == "PipeLength")
+                dbrProp.Value = 70.0d;
+              if (dbrProp.PropertyName == "PipeLength2")
+                dbrProp.Value = (NumberOfPumps - 1) * DistanceOfPump + _endPadding + 10.0d;
+              if (dbrProp.PropertyName == "TagPosition X")
+                dbrProp.Value = 4.0d;
+              if (dbrProp.PropertyName == "TagPosition Y")
+                dbrProp.Value = 20.0d;
+              if (dbrProp.PropertyName == "TagAngle")
+                dbrProp.Value = DegreeHelper.DegreeToRadian(0);
+            }
+          },
+        };
+        #endregion
+
+        #region channel duty
+        yield return
+        new InsertBlockBase(
+          numberOfItem: 1,
+          blockName: "channel",
+          layerName: "sewer",
+          x: -30.0d,
+          y: -20.0d,
+          rotation: DegreeHelper.DegreeToRadian(270),
+          hostName: EquipmentName,
+          equipmentStateProperty: new EquipmentStateProperty("Visibility1", "sewer"))
+        {
+          OffsetX = DistanceOfPump, // distamce between pipes
+          ActionToExecuteOnDynPropAfter = new Action<DynamicBlockReferenceProperty>[]
+          {
+            dbrProp =>
+            {
+              if (dbrProp.PropertyName == "ChannelLength")
+                dbrProp.Value = (NumberOfPumps - 1) * DistanceOfPump + _endPadding + 80.0d;
+            }
+          },
+        };
+        #endregion
+
+        #region channel standby
+        yield return
+        new InsertBlockBase(
+          numberOfItem: 1,
+          blockName: "channel2",
+          layerName: "sewer",
+          x: -20.0d,
+          y: 10.0d,
+          rotation: DegreeHelper.DegreeToRadian(270),
+          hostName: EquipmentName,
+          equipmentStateProperty: new EquipmentStateProperty("Visibility1", "sewer"))
+        {
+          OffsetX = DistanceOfPump, // distamce between pipes
+          ActionToExecuteOnDynPropAfter = new Action<DynamicBlockReferenceProperty>[]
+          {
+            dbrProp =>
+            {
+              if (dbrProp.PropertyName == "ChannelLength")
+                dbrProp.Value = 20.0d;
+              if (dbrProp.PropertyName == "ChannelLength2")
+                dbrProp.Value = 30.0d;              
             }
           },
         };
