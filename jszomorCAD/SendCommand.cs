@@ -12,6 +12,7 @@ using AcRx = Autodesk.AutoCAD.Runtime;
 
 namespace jszomorCAD
 {
+  #region code from net
   //  class Attsync
   //  {
   //    [CommandMethod("MySynch", CommandFlags.Modal)]
@@ -397,6 +398,7 @@ namespace jszomorCAD
   //      }
   //    }
   //  }
+  #endregion
 
   public static class SendClass
   {
@@ -424,7 +426,7 @@ namespace jszomorCAD
       acDoc.SendStringToExecute("_zoom _extents" + " ", true, false, false);
     }
   }
-  
+#region code from net
   //public class Connect
   //{
   //  [CommandMethod("ConnectToAcad")]
@@ -468,4 +470,5 @@ namespace jszomorCAD
   //    acDocComObj.SendCommand("MyCommand ");
   //  }
   //}
+#endregion
 }

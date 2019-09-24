@@ -94,13 +94,13 @@ namespace jszomorCAD
       //};
       #endregion
 
-      //var layers = new[]
-      //{
-      //  new LayerData("unit", Color.FromRgb(255, 0, 0), 0.25, false)
-      //};
+      var layers = new[]
+      {
+        new LayerData("unit", Color.FromRgb(255, 0, 0), 0.25, false)
+      };
 
-      //var layerCreator = new LayerCreator();
-      //layerCreator.LayerCreatorMethod(layers);
+      var layerCreator = new LayerCreator();
+      layerCreator.LayerCreatorMethod(layers);
 
       DrawBlocks(db, eqt.Blocks);
 
@@ -256,8 +256,8 @@ namespace jszomorCAD
 
       #endregion
 
-      
-    } 
+
+    }
 
     public void DrawBlocks(Database db, IEnumerable<InsertBlockBase> blocks)
     {
