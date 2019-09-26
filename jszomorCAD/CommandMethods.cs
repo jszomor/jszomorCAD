@@ -281,7 +281,7 @@ namespace jszomorCAD
     
    
 
-    [CommandMethod("APIFillet", CommandFlags.Modal)]
+    [CommandMethod("JCADFillet", CommandFlags.Modal)]
     public void ComCommand()
     {
       Document doc = Application.DocumentManager.MdiActiveDocument;
@@ -294,6 +294,58 @@ namespace jszomorCAD
       SendClass.ToModelSpace(l1);
       SendClass.ToModelSpace(l2);
       SendClass.FilletCommand(ed, db, l1, l2);
+    }
+
+    [CommandMethod("SendSync", CommandFlags.Modal)]
+    public void AttsyncEquipment()
+    {
+      Document doc = Application.DocumentManager.MdiActiveDocument;
+      Editor ed = doc.Editor;
+      Database db = doc.Database;
+
+      InsertBlockTable insertBlockTable = new InsertBlockTable(db);
+      GetBlockTable("pump", db);
+
+      SendClass.SendSync(ed, ent, );
+
+    }
+    public ObjectId GetBlockTable(string blockName, Database _db)
+    {
+      var blockIds = new List<ObjectId>();
+
+      SendSync(blockIds);
+
+      using (var tr = _db.TransactionManager.StartTransaction())
+      {
+        var bt = _db.BlockTableId.GetObject<BlockTable>(OpenMode.ForRead);
+
+        foreach (var btrId in bt)
+        {
+          using (var btr = tr.GetObject(btrId, OpenMode.ForRead, false) as BlockTableRecord)
+          {
+            // Only add named & non-layout blocks to the copy list
+            if (!btr.IsAnonymous && !btr.IsLayout && btr.Name == blockName)
+              blockIds.Add(btrId);
+          }
+        }
+      }
+
+      if (blockIds.Count > 1) throw new Exception($"More than one block record found with the name {blockName}");
+
+      else if (blockIds.Count == 0) throw new Exception($"No block record found with the name {blockName}");
+
+      else return blockIds.First();
+    }
+
+
+    public static void SendSync(Editor ed, Entity ent, ObjectId objectId, Transaction tr, Database db)
+    {
+      Transaction acTrans = db.TransactionManager.StartTransaction();
+      //acDoc = Application.DocumentManager.MdiActiveDocument;
+      //ed = acDoc.Editor;
+      //ent = acTrans.GetObject(objectId, OpenMode.ForWrite) as Entity;
+      ed.Command("attsync", "", objectId, "", "");
+      //acDoc.SendStringToExecute("attsync " + " " + " " + " " + " ",true,false,false);      
     }
   }
 }

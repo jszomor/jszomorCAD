@@ -411,12 +411,15 @@ namespace jszomorCAD
       acDoc.SendStringToExecute("_regen" + " ", true, false, false);
     }
 
-    [CommandMethod("SendSync", CommandFlags.Modal)]
-    public static void SendSync()
+    
+    public static void SendSync(Editor ed, Entity ent, ObjectId objectId, Transaction tr, Database db)
     {
-      Document acDoc = Application.DocumentManager.MdiActiveDocument;
-
-      acDoc.SendStringToExecute("attsync " + " " + " " + " " + " ",true,false,false);      
+      Transaction acTrans = db.TransactionManager.StartTransaction();
+      //acDoc = Application.DocumentManager.MdiActiveDocument;
+      //ed = acDoc.Editor;
+      //ent = acTrans.GetObject(objectId, OpenMode.ForWrite) as Entity;
+      ed.Command("attsync", "", objectId, "", "");
+      //acDoc.SendStringToExecute("attsync " + " " + " " + " " + " ",true,false,false);      
     }
 
     [CommandMethod("SendZoomExtents", CommandFlags.Modal)]
