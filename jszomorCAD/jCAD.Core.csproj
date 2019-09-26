@@ -117,5 +117,9 @@
       <Name>OrganiCAD.AutoCAD</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="acad.exe" />
+    <Content Include="accore.dll" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,6 +1,7 @@
 ﻿using Autodesk.AutoCAD.ApplicationServices;
 using Autodesk.AutoCAD.DatabaseServices;
 using Autodesk.AutoCAD.EditorInput;
+using Autodesk.AutoCAD.Geometry;
 using Autodesk.AutoCAD.Runtime;
 using System;
 using System.Collections.Generic;
@@ -425,50 +426,40 @@ namespace jszomorCAD
 
       acDoc.SendStringToExecute("_zoom _extents" + " ", true, false, false);
     }
+
+    public static ObjectId ToModelSpace(Entity ent)
+    {
+      Database db = HostApplicationServices.WorkingDatabase;
+      ObjectId endId;
+      using (Transaction trans = db.TransactionManager.StartTransaction())
+      {
+        BlockTable bt = (BlockTable)trans.GetObject(db.BlockTableId, OpenMode.ForRead);
+        BlockTableRecord btr = (BlockTableRecord)trans.GetObject(bt[BlockTableRecord.ModelSpace], OpenMode.ForWrite);
+        endId = btr.AppendEntity(ent);
+        trans.AddNewlyCreatedDBObject(ent, true);
+        trans.Commit();
+      }
+      return endId;
+    }
+
+    public static void FilletCommand(Editor ed, Database db, Line l1, Line l2)
+    {
+      // Start a transaction
+      using (Transaction acTrans = db.TransactionManager.StartTransaction())
+      {
+        // Open the selected object for write
+        Entity acEnt1 = acTrans.GetObject(l1.ObjectId, OpenMode.ForWrite) as Entity;
+
+        // Open the selected object for write
+        Entity acEnt2 = acTrans.GetObject(l2.ObjectId, OpenMode.ForWrite) as Entity;
+
+        ed.Command("_fillet", "_R", 0);
+        ed.Command("_fillet", acEnt1.ObjectId, acEnt2.ObjectId);
+
+        // Save the new object to the database
+        acTrans.Commit();
+      }
+      // Dispose of the transaction  
+    }
   }
-#region code from net
-  //public class Connect
-  //{
-  //  [CommandMethod("ConnectToAcad")]
-  //  public static void ConnectToAcad()
-  //  {
-  //    AcadApplication acAppComObj = null;
-  //    const string strProgId = "AutoCAD.Application.18";
-  //    // Get a running instance of AutoCAD
-  //    try
-  //    {
-  //      acAppComObj = (AcadApplication)Marshal.GetActiveObject(strProgId);
-  //    }
-  //    catch // An error occurs if no instance is running
-  //    {
-  //      try
-  //      {
-  //        // Create a new instance of AutoCAD
-  //        acAppComObj =
-  //        (AcadApplication)Activator.CreateInstance(Type.GetTypeFromProgID(strProgId),
-  //        true);
-  //      }
-  //      catch
-  //      {
-  //        // If an instance of AutoCAD is not created then message and exit
-  //        System.Windows.Forms.MessageBox.Show("Instance of 'AutoCAD.Application'"
-  //        +
-  //        " could not be created.");
-  //        return;
-  //      }
-  //    }
-  //    // Display the application and return the name and version
-  //    acAppComObj.Visible = true;
-  //    System.Windows.Forms.MessageBox.Show("Now running " + acAppComObj.Name +
-  //    " version " + acAppComObj.Version);
-  //    // Get the active document
-  //    AcadDocument acDocComObj;
-  //    acDocComObj = acAppComObj.ActiveDocument;
-  //    // Optionally, load your assembly and start your command or if your assembly
-  //    // is demandloaded, simply start the command of your in-process assembly.
-  //    acDocComObj.SendCommand("(command " + (char)34 + "NETLOAD" + (char)34 + " " + (char)34 + "c:/myapps/mycommands.dll" + (char)34 + ")");
-  //    acDocComObj.SendCommand("MyCommand ");
-  //  }
-  //}
-#endregion
 }

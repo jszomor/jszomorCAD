@@ -9,6 +9,7 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using EquipmentPosition;
+using System.Runtime.InteropServices;
 
 namespace jszomorCAD
 {
@@ -276,6 +277,23 @@ namespace jszomorCAD
       //MoveToBottom.SendToBackLine();
       SendClass.SendRegen();
       SendClass.SendZoomExtents();
+    }
+    
+   
+
+    [CommandMethod("APIFillet", CommandFlags.Modal)]
+    public void ComCommand()
+    {
+      Document doc = Application.DocumentManager.MdiActiveDocument;
+      Editor ed = doc.Editor;
+      Database db = doc.Database;
+
+      Line l1 = new Line(new Point3d(250,250,0), new Point3d(400, 400, 0));
+      Line l2 = new Line(new Point3d(0, 400, 0), new Point3d(150, 300, 0));
+
+      SendClass.ToModelSpace(l1);
+      SendClass.ToModelSpace(l2);
+      SendClass.FilletCommand(ed, db, l1, l2);
     }
   }
 }

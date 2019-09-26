@@ -212,11 +212,8 @@ namespace jszomorCAD
         offsetX += insertData.OffsetX;
         offsetY += insertData.OffsetY;        
       }
-
       return true;
     }
-
-
 
     #region OLD CODE
     public void InsertBlockTableMethod(InsertBlockBase insertData)
