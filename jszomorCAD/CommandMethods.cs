@@ -281,7 +281,7 @@ namespace jszomorCAD
     
    
 
-    [CommandMethod("JCADFillet", CommandFlags.Modal)]
+    [CommandMethod("JCAD_Fillet", CommandFlags.Modal)]
     public void ComCommand()
     {
       Document doc = Application.DocumentManager.MdiActiveDocument;
@@ -296,56 +296,55 @@ namespace jszomorCAD
       SendClass.FilletCommand(ed, db, l1, l2);
     }
 
-    [CommandMethod("SendSync", CommandFlags.Modal)]
+    [CommandMethod("JCAD_Attsync", CommandFlags.Modal)]
     public void AttsyncEquipment()
     {
-      Document doc = Application.DocumentManager.MdiActiveDocument;
-      Editor ed = doc.Editor;
-      Database db = doc.Database;
-
-      InsertBlockTable insertBlockTable = new InsertBlockTable(db);
-      GetBlockTable("pump", db);
-
-      SendClass.SendSync(ed, ent, );
-
+      Document doc = Application.DocumentManager.MdiActiveDocument; 
+      doc.SendStringToExecute(("_attsync" + "\n" + "n" + "\n" + "pump" + "\n"), true, false, false);     
     }
-    public ObjectId GetBlockTable(string blockName, Database _db)
+
+    public void SendSync(Editor ed, string blockName, Database db)
     {
-      var blockIds = new List<ObjectId>();
-
-      SendSync(blockIds);
-
-      using (var tr = _db.TransactionManager.StartTransaction())
+      using (Transaction acTrans = db.TransactionManager.StartTransaction())
       {
-        var bt = _db.BlockTableId.GetObject<BlockTable>(OpenMode.ForRead);
-
-        foreach (var btrId in bt)
+        var blockIds = new List<ObjectId>();
+        
+        using (var bt = db.BlockTableId.GetObject<BlockTable>(OpenMode.ForRead))
         {
-          using (var btr = tr.GetObject(btrId, OpenMode.ForRead, false) as BlockTableRecord)
+          // Open the Block table record Model space for write
+          using (var btrModelSpace = acTrans.GetObject(bt[BlockTableRecord.ModelSpace], OpenMode.ForWrite) as BlockTableRecord)
           {
-            // Only add named & non-layout blocks to the copy list
-            if (!btr.IsAnonymous && !btr.IsLayout && btr.Name == blockName)
-              blockIds.Add(btrId);
+            foreach (var btrId in btrModelSpace)
+            {         
+              var item = btrId.GetObject(OpenMode.ForRead);
+              if (item == null) continue;
+              if (item is BlockReference)
+              {
+                var attrDef = item as BlockReference;
+
+                if (attrDef.IsErased || attrDef.IsDisposed)
+                {
+                  continue;
+                }
+                var dynBtr = acTrans.GetObject(attrDef.DynamicBlockTableRecord, OpenMode.ForRead, false) as BlockTableRecord;
+
+                System.Diagnostics.Debug.Print("DynBlockName: " + dynBtr.Name);                
+
+                if (!dynBtr.IsAnonymous && !dynBtr.IsLayout && dynBtr.Name == blockName)
+                blockIds.Add(btrId);
+              }              
+            }
+
+            var first = blockIds.First();
+            var acEnt = acTrans.GetObject(first, OpenMode.ForWrite) as DBObject;
+            
+            ed.Command("_attsync"); // does not work, I have no idea why.
+
+            if (blockIds.Count == 0) ed.WriteMessage($"No block record found with the name {blockName}");
+
           }
         }
       }
-
-      if (blockIds.Count > 1) throw new Exception($"More than one block record found with the name {blockName}");
-
-      else if (blockIds.Count == 0) throw new Exception($"No block record found with the name {blockName}");
-
-      else return blockIds.First();
-    }
-
-
-    public static void SendSync(Editor ed, Entity ent, ObjectId objectId, Transaction tr, Database db)
-    {
-      Transaction acTrans = db.TransactionManager.StartTransaction();
-      //acDoc = Application.DocumentManager.MdiActiveDocument;
-      //ed = acDoc.Editor;
-      //ent = acTrans.GetObject(objectId, OpenMode.ForWrite) as Entity;
-      ed.Command("attsync", "", objectId, "", "");
-      //acDoc.SendStringToExecute("attsync " + " " + " " + " " + " ",true,false,false);      
     }
   }
 }

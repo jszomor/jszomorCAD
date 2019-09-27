@@ -10,6 +10,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using AcRx = Autodesk.AutoCAD.Runtime;
+using OrganiCAD.AutoCAD;
 
 namespace jszomorCAD
 {
@@ -411,16 +412,51 @@ namespace jszomorCAD
       acDoc.SendStringToExecute("_regen" + " ", true, false, false);
     }
 
-    
-    public static void SendSync(Editor ed, Entity ent, ObjectId objectId, Transaction tr, Database db)
+    #region attsync (not work)
+    public static void SendSync(Editor ed, string blockName, Database db)
     {
-      Transaction acTrans = db.TransactionManager.StartTransaction();
-      //acDoc = Application.DocumentManager.MdiActiveDocument;
-      //ed = acDoc.Editor;
-      //ent = acTrans.GetObject(objectId, OpenMode.ForWrite) as Entity;
-      ed.Command("attsync", "", objectId, "", "");
-      //acDoc.SendStringToExecute("attsync " + " " + " " + " " + " ",true,false,false);      
+      using (Transaction acTrans = db.TransactionManager.StartTransaction())
+      {
+        var blockIds = new List<ObjectId>();
+
+        using (var bt = db.BlockTableId.GetObject<BlockTable>(OpenMode.ForRead))
+        {
+          // Open the Block table record Model space for write
+          using (var btrModelSpace = acTrans.GetObject(bt[BlockTableRecord.ModelSpace], OpenMode.ForWrite) as BlockTableRecord)
+          {
+            foreach (var btrId in btrModelSpace)
+            {
+              var item = btrId.GetObject(OpenMode.ForRead);
+              if (item == null) continue;
+              if (item is BlockReference)
+              {
+                var attrDef = item as BlockReference;
+
+                if (attrDef.IsErased || attrDef.IsDisposed)
+                {
+                  continue;
+                }
+                var dynBtr = acTrans.GetObject(attrDef.DynamicBlockTableRecord, OpenMode.ForRead, false) as BlockTableRecord;
+
+                System.Diagnostics.Debug.Print("DynBlockName: " + dynBtr.Name);
+
+                if (!dynBtr.IsAnonymous && !dynBtr.IsLayout && dynBtr.Name == blockName)
+                  blockIds.Add(btrId);
+              }
+            }
+
+            var first = blockIds.First();
+            var acEnt = acTrans.GetObject(first, OpenMode.ForWrite) as DBObject;
+
+            ed.Command("_attsync", "\n", first, "\n"); // does not work, I have no idea why.
+
+            if (blockIds.Count == 0) ed.WriteMessage($"No block record found with the name {blockName}");
+
+          }
+        }
+      }
     }
+    #endregion
 
     [CommandMethod("SendZoomExtents", CommandFlags.Modal)]
     public static void SendZoomExtents()
