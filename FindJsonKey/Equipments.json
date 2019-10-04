@@ -1,0 +1,95 @@
+{
+  "Equipments": {
+    "Pumps": {
+      "Centrifugal": {
+        "Anoxic mixing pump": 0,
+        "Anoxic recycle pump": 1,
+        "FCR feed pump": 2,
+        "Raw Wastewater Pump": 3,
+        "Recirculation Pump": 4,
+        "WAS Pump": 5,
+        "Biofilter recycle pump": 6,
+        "Booster Pump": 7,
+        "Disc Filter Backwash Sludge Pump": 8,
+        "Emergency Tank Pump": 9,
+        "Irrigation Pump": 10,
+        "Leachate Pump": 11,
+        "Screenings Pump": 12,
+        "Scum pump": 13,
+        "Septage forwarding pump": 14,
+        "Treated Water Pump": 15,
+        "Utility Booster Pump": 16,
+        "Air Jet Pump": 17,
+        "MBR Permeate Pump": 18,
+        "MBR Pump (CIP)": 19
+      },
+      "Centrifugal - VFD drive": {
+        "Anoxic mixing pump": 20,
+        "Anoxic recycle pump": 21,
+        "Equalization Tank Pump": 22,
+        "FCR feed pump": 23,
+        "HRC WAS pump": 24,
+        "HRC recirculation pump": 25,
+        "Primary clarifier sludge pump": 26,
+        "RAS Pump": 27,
+        "Raw Wastewater Pump": 28,
+        "Recirculation Pump": 29,
+        "WAS Pump": 30,
+        "Sludge Heat Pump": 31,
+        "Hot Water Pump": 32,
+        "MBR Permeate Pump": 33
+      },
+      "Membrane": {
+        "C2H3NaO2 dosing pump": 34,
+        "Dosing Pump": 35,
+        "Dosing pump (Anti foaming)": 36,
+        "Dosing pump (CH4O)": 37,
+        "Dosing pump (FeCl3)": 38,
+        "Dosing Pump (H3PO4)": 39,
+        "Dosing Pump (NaOCl)": 40,
+        "Dosing Pump (NaOH)": 41,
+        "PAC Dosing pump": 42,
+        "Dosing Pump (CIP)": 43
+      },
+      "Membrane - VFD drive": {
+        "C2H3NaO2 dosing pump": 44,
+        "Dosing Pump": 45,
+        "Dosing pump (Anti foaming)": 46,
+        "Dosing pump (CH4O)": 47,
+        "Dosing pump (FeCl3)": 48,
+        "Dosing Pump (H3PO4)": 49,
+        "Dosing Pump (NaOCl)": 50,
+        "Dosing Pump (NaOH)": 51,
+        "PAC Dosing pump": 52
+      },
+      "Propeller": {
+        "Anoxic recycle pump": 53,
+        "RAS Pump": 54
+      },
+      "Propeller  -VFD drive": {
+        "Anoxic recycle pump": 55,
+        "RAS Pump": 56
+      },
+      "Screw": {
+        "Grease pump": 57,
+        "Polyelectrolyte dosing pump": 58
+      },
+      "Screw - VFD drive": {
+        "Dewatering Feed Pump": 59,
+        "Grease pump": 60,
+        "PAM dosing pump (dewatering)": 61,
+        "PAM dosing pump (flocculation)": 62,
+        "Polyelectrolyte dosing pump": 63,
+        "Polyelectrolyte dosing pump (Dewatering)": 64,
+        "Polyelectrolyte Dosing Pump (Mechanical Thickener)": 65,
+        "Polyelectrolyte dosing pump (Stage 2)": 66,
+        "Thickener feed pump": 67,
+        "Combined Unit Feed Pump": 68,
+        "Digester Feed Pump": 69
+      },
+      "Muncher": {
+        "Muncher": 70
+      }
+    }
+  }
+}
