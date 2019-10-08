@@ -259,3 +259,11 @@ paket-files/
 # Python Tools for Visual Studio (PTVS)
 __pycache__/
 *.pyc
+/FindJsonKey/process.json
+/FindJsonKey/JsonSelector.cs
+/FindJsonKey/FindJsonKey.NETCore.csproj
+/JsonFindKey/DictSearcher.cs
+/JsonFindKey/Equipments.json
+/JsonFindKey/JsonFindKey.csproj
+/JsonFindKey/JsonSelector.cs
+/JsonFindKey/process.json
