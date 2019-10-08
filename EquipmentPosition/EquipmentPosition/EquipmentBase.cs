@@ -21,6 +21,6 @@ namespace EquipmentPosition
   public abstract class EquipmentBase
   {
     public abstract IEnumerable<InsertBlockBase> Blocks { get; }
-    public abstract string EquipmentName { get; }
+    public abstract string AreaName { get; }
   }
 }

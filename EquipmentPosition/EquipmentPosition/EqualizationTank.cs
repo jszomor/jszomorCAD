@@ -21,7 +21,7 @@ namespace EquipmentPosition
       PromptEqIndex = eqIndex;
     }
 
-    public override string EquipmentName => "Equalization Tank";
+    public override string AreaName => "Equalization Tank";
 
     public override IEnumerable<InsertBlockBase> Blocks
     {
@@ -36,7 +36,7 @@ namespace EquipmentPosition
           x: -60.0d,
           y: -30.0d,          
           //rotation: DegreeHelper.DegreeToRadian(0),
-          hostName: EquipmentName,
+          hostName: AreaName,
           equipmentStateProperty: new EquipmentStateProperty("Visibility", "no channel"))
           {
           ActionToExecuteOnAttRef = new Action<AttributeReference>[]
@@ -74,7 +74,7 @@ namespace EquipmentPosition
           x: (NumberOfPumps - 1) * DistanceOfPump + _endPadding + 50.0d,
           y: -30.0d,
           //rotation: DegreeHelper.DegreeToRadian(0),
-          hostName: EquipmentName,
+          hostName: AreaName,
           equipmentStateProperty: new EquipmentStateProperty("Visibility", "no channel"))
         {
           ActionToExecuteOnAttRef = new Action<AttributeReference>[]
@@ -112,7 +112,7 @@ namespace EquipmentPosition
           x: 0,
           y: 0,
           //rotation: DegreeHelper.DegreeToRadian(0),
-          hostName: EquipmentName,
+          hostName: AreaName,
           equipmentStateProperty: new EquipmentStateProperty("Visibility", "no channel"))
         {
           ActionToExecuteOnAttRef = new Action<AttributeReference>[]
@@ -150,7 +150,7 @@ namespace EquipmentPosition
           x: _startPadding,
           y: 10.0d,
           //rotation: DegreeHelper.DegreeToRadian(0),
-          hostName: EquipmentName,
+          hostName: AreaName,
           equipmentStateProperty: new EquipmentStateProperty("Centrifugal Pump", PromptEqIndex))
           {
           OffsetX = DistanceOfPump, // distamce between pumps
@@ -180,7 +180,7 @@ namespace EquipmentPosition
           x: 20.0d,
           y: 10.0d,
           rotation: DegreeHelper.DegreeToRadian(270),
-          hostName: EquipmentName,
+          hostName: AreaName,
           equipmentStateProperty: new EquipmentStateProperty("Centrifugal Pump", (short)17))
           {
           ActionToExecuteOnDynPropAfter = new Action<DynamicBlockReferenceProperty>[]
@@ -208,7 +208,7 @@ namespace EquipmentPosition
           x: _startPadding,
           y: 25.0d,
           rotation: DegreeHelper.DegreeToRadian(90),
-          hostName: EquipmentName,
+          hostName: AreaName,
           equipmentStateProperty: new EquipmentStateProperty("Block Table1", (short)5))
           {
           OffsetX = DistanceOfPump,
@@ -235,7 +235,7 @@ namespace EquipmentPosition
           x: _startPadding,
           y: 40.0d,
           rotation: DegreeHelper.DegreeToRadian(90),
-          hostName: EquipmentName,
+          hostName: AreaName,
           equipmentStateProperty: new EquipmentStateProperty("Block Table1", (short)0))
           {
           OffsetX = DistanceOfPump,
@@ -262,7 +262,7 @@ namespace EquipmentPosition
           x: NumberOfPumps * DistanceOfPump + 50,
           y: 10.0d,
           //rotation: DegreeHelper.DegreeToRadian(0),
-          hostName: EquipmentName,
+          hostName: AreaName,
           equipmentStateProperty: new EquipmentStateProperty("Block Table1", (short)7))
           {          
           ActionToExecuteOnDynPropAfter = new Action<DynamicBlockReferenceProperty>[]
@@ -289,7 +289,7 @@ namespace EquipmentPosition
           x: NumberOfPumps * DistanceOfPump + 50,
           y: 50.0d,
           //rotation: DegreeHelper.DegreeToRadian(0),
-          hostName: EquipmentName,
+          hostName: AreaName,
           equipmentStateProperty: new EquipmentStateProperty("Block Table1", (short)11))
           {
           ActionToExecuteOnDynPropAfter = new Action<DynamicBlockReferenceProperty>[]
@@ -316,7 +316,7 @@ namespace EquipmentPosition
           x: -10.5,
           y: -24,
           //rotation: DegreeHelper.DegreeToRadian(0),
-          hostName: EquipmentName,
+          hostName: AreaName,
           equipmentStateProperty: new EquipmentStateProperty("Block Table1", (short)23))
           {
           ActionToExecuteOnDynPropAfter = new Action<DynamicBlockReferenceProperty>[]
@@ -335,7 +335,7 @@ namespace EquipmentPosition
           x: -10.5,
           y: 6,
           //rotation: DegreeHelper.DegreeToRadian(0),
-          hostName: EquipmentName,
+          hostName: AreaName,
           equipmentStateProperty: new EquipmentStateProperty("Block Table1", (short)23))
           {
           ActionToExecuteOnDynPropAfter = new Action<DynamicBlockReferenceProperty>[]
@@ -354,7 +354,7 @@ namespace EquipmentPosition
           x: _startPadding,
           y: 14.0d,
           rotation: DegreeHelper.DegreeToRadian(0),
-          hostName: EquipmentName,
+          hostName: AreaName,
           equipmentStateProperty: new EquipmentStateProperty("Visibility1", "sewer"))
         {
           OffsetX = DistanceOfPump, // distamce between pipes
@@ -388,7 +388,7 @@ namespace EquipmentPosition
           x: NumberOfPumps * DistanceOfPump + _endPadding + 40.0d,
           y: 50.0d,
           rotation: DegreeHelper.DegreeToRadian(180),
-          hostName: EquipmentName,
+          hostName: AreaName,
           equipmentStateProperty: new EquipmentStateProperty("Visibility1", "sewer"))
         {
           OffsetX = DistanceOfPump, // distamce between pipes
@@ -420,7 +420,7 @@ namespace EquipmentPosition
           x: -30.0d,
           y: -20.0d,
           rotation: DegreeHelper.DegreeToRadian(270),
-          hostName: EquipmentName,
+          hostName: AreaName,
           equipmentStateProperty: new EquipmentStateProperty("Visibility1", "sewer"))
         {
           OffsetX = DistanceOfPump, // distamce between pipes
@@ -444,7 +444,7 @@ namespace EquipmentPosition
           x: -20.0d,
           y: 10.0d,
           rotation: DegreeHelper.DegreeToRadian(270),
-          hostName: EquipmentName,
+          hostName: AreaName,
           equipmentStateProperty: new EquipmentStateProperty("Visibility1", "sewer"))
         {
           OffsetX = DistanceOfPump, // distamce between pipes
