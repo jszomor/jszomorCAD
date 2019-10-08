@@ -10,11 +10,11 @@ namespace EquipmentPosition
     const double _endPadding = 40.0d;
     const double _startPadding = 50.0d;
 
-    public int NumberOfPumps { get; private set; }
+    public long NumberOfPumps { get; private set; }
     public int DistanceOfPump { get; set; }
     public short PromptEqIndex { get; set; }
 
-    public EqualizationTank(int numberOfPumps, int distanceOfPump, short eqIndex)
+    public EqualizationTank(long numberOfPumps, int distanceOfPump, short eqIndex)
     {
       NumberOfPumps = numberOfPumps;
       DistanceOfPump = distanceOfPump;

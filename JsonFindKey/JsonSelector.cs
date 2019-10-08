@@ -8,26 +8,23 @@ namespace JsonFindKey
 {
   public static class JsonClass
   {
-    public static void JsonSelector(string processName, string equipmentName)
+    public static long JsonEquipmentValue(string equipmentName)
     {
       var jsonString = System.IO.File.ReadAllText(@"C:\Users\jszomor\source\repos\jszomorCAD\FindJsonKey\Equipments.json");
-      var jsonStringProcess = System.IO.File.ReadAllText(@"C:\Users\jszomor\source\repos\jszomorCAD\FindJsonKey\process.json");
 
       var jsonDict = JsonConvert.DeserializeObject<Dictionary<string, object>>(jsonString);
-      var jsonDictProcess = JsonConvert.DeserializeObject<Dictionary<string, object>>(jsonStringProcess);
-
+      long searchedValue = 0;
       try
       {
-        var searchedValue = DictSearcher.GetValueByKey(jsonDict, equipmentName);
-        var searchedValueProcess = DictSearcher.GetValueByKey(jsonDictProcess, processName);
-
-        Console.WriteLine($"{ searchedValue} { equipmentName}");
+        searchedValue = DictSearcher.GetValueByKey(jsonDict, equipmentName);
+        return searchedValue;
       }
       catch (ArgumentException ex)
       {
         Console.WriteLine(ex.Message);
       }
-      Console.WriteLine("Hello World!");
+      
+      throw new ArgumentException($"seached key {searchedValue}'s value is not found");
     }
   }
 }

@@ -4,12 +4,13 @@ using Autodesk.AutoCAD.DatabaseServices;
 using Autodesk.AutoCAD.EditorInput;
 using Autodesk.AutoCAD.Geometry;
 using Autodesk.AutoCAD.Runtime;
-using OrganiCAD.AutoCAD;
 using System;
 using System.Linq;
 using System.Collections.Generic;
 using EquipmentPosition;
 using System.Runtime.InteropServices;
+using OrganiCAD.AutoCAD;
+using JsonFindKey;
 
 namespace jszomorCAD
 {
@@ -34,21 +35,25 @@ namespace jszomorCAD
 
       var sizeProperty = new PositionProperty();
       //"\nEnter number of equipment:"
-      var pio = new PromptIntegerOptions("\nEnter number of equipment:") { DefaultValue = 5 };
-      var number = Application.DocumentManager.MdiActiveDocument.Editor.GetInteger(pio);
-      var intNumber = Convert.ToInt32(number.Value);
+      //var pio = new PromptIntegerOptions("\nEnter number of equipment:") { DefaultValue = 5 };
+      //var number = Application.DocumentManager.MdiActiveDocument.Editor.GetInteger(pio);
+      //var intNumber = Convert.ToInt32(number.Value);
 
       //"\nEnter distance of equipment:"
-      var dio = new PromptIntegerOptions("\nEnter distance of equipment:") { DefaultValue = 20 };
-      var distance = Application.DocumentManager.MdiActiveDocument.Editor.GetInteger(dio);
-      var intDistance = Convert.ToInt32(distance.Value);
+      //var dio = new PromptIntegerOptions("\nEnter distance of equipment:") { DefaultValue = 20 };
+      //var distance = Application.DocumentManager.MdiActiveDocument.Editor.GetInteger(dio);
+      //var intDistance = Convert.ToInt32(distance.Value);
 
       //"\nEnter index of equipment:"
-      var eio = new PromptIntegerOptions("\nEnter index of equipment:") { DefaultValue = 22 };
-      var eqIndex = Application.DocumentManager.MdiActiveDocument.Editor.GetInteger(eio);
-      var promptEqIndex = Convert.ToInt16(eqIndex.Value);
+      //var eio = new PromptIntegerOptions("\nEnter index of equipment:") { DefaultValue = 22 };
+      //var eqIndex = Application.DocumentManager.MdiActiveDocument.Editor.GetInteger(eio);
+      //var promptEqIndex = Convert.ToInt16(eqIndex.Value);
 
-      var eqt = new EqualizationTank(numberOfPumps: intNumber, distanceOfPump: intDistance, eqIndex: promptEqIndex);
+      long index = JsonProcessClass.JsonProcessValue("number_of_eqPump");
+      long indexOfEqPump = JsonClass.JsonEquipmentValue("Equalization Tank Pump");
+      var promptEqIndex = Convert.ToInt16(indexOfEqPump);
+
+      var eqt = new EqualizationTank(numberOfPumps: index, distanceOfPump: 20, eqIndex: promptEqIndex);
 
       #region old code
       //var blocks = new[]

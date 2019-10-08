@@ -106,13 +106,13 @@
     <Compile Include="SelectorProperty.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="E:\Munka\OrganiCad\OrganiCAD.AutoCAD\OrganiCAD.AutoCAD.csproj">
-      <Project>{f6263436-2892-4372-a84f-7bd6a8a4af1e}</Project>
-      <Name>OrganiCAD.AutoCAD</Name>
-    </ProjectReference>
+    <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="packages.config" />
+    <ProjectReference Include="..\..\JsonFindKey\JsonFindKey.csproj">
+      <Project>{6af4b808-9848-4afa-bc0b-7dc1f7674cc8}</Project>
+      <Name>JsonFindKey</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
