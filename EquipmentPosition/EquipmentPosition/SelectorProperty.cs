@@ -6,17 +6,27 @@ using System.Threading.Tasks;
 
 namespace EquipmentPosition
 {
-  class SelectorProperty
+  public class SelectorProperty
   {
-    public double avgDailyFlow { get; set; }
-    public double capacity { get; set; }
-    public double head { get; set; }
-    public double numberOfEqipment { get; set; }
-    public bool eqPump { get; set; }
-    public bool eqLIT { get; set; }
-    public bool eqFIT { get; set; }
-    public bool eqJet { get; set; }
-    public bool eqMixer { get; set; }
+    public long AvgDailyFlow { get; set; }
+    public long AvgHourlyFlow { get; set; }
+    public long Capacity { get; set; }
+    public double Head { get; set; }
+    public long NumberOfEqipment { get; set; }
+    public bool EqPump { get; set; }
+    public bool EqLIT { get; set; }
+    public bool EqFIT { get; set; }
+    public bool EqJet { get; set; }
+    public bool EqMixer { get; set; }
+
+    //public SelectorProperty(long numberOfEqipment, long avgDailyFlow, long avgHourlyFlow, long capacity)
+    //{
+    //  NumberOfEqipment = numberOfEqipment;
+    //  AvgDailyFlow = avgDailyFlow;
+    //  AvgHourlyFlow = avgHourlyFlow;
+    //  Capacity = capacity;
+    //}
+
     
   }
 }

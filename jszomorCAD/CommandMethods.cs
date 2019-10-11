@@ -49,11 +49,12 @@ namespace jszomorCAD
       //var eqIndex = Application.DocumentManager.MdiActiveDocument.Editor.GetInteger(eio);
       //var promptEqIndex = Convert.ToInt16(eqIndex.Value);
 
-      long index = JsonProcessClass.JsonProcessValue("number_of_eqPump");
+      var selectorProperty = new SelectorProperty();
+      long numbers = JsonProcessClass.JsonProcessValue("number_of_eqPump");
       long indexOfEqPump = JsonClass.JsonEquipmentValue("Equalization Tank Pump");
       var promptEqIndex = Convert.ToInt16(indexOfEqPump);
 
-      var eqt = new EqualizationTank(numberOfPumps: index, distanceOfPump: 20, eqIndex: promptEqIndex);
+      var eqt = new EqualizationTank(numberOfPumps: selectorProperty.NumberOfEqipment, distanceOfPump: 20, eqIndex: promptEqIndex);
 
       #region old code
       //var blocks = new[]
