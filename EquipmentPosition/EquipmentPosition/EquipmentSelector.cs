@@ -16,7 +16,7 @@ namespace EquipmentPosition
       selectorProperty.AvgDailyFlow = JsonProcessClass.JsonProcessValue("Q_inf_AA");
 
       selectorProperty.AvgHourlyFlow = selectorProperty.AvgDailyFlow / 24;
-
+      
       try
       {
         if (selectorProperty.AvgHourlyFlow >= 0 && selectorProperty.AvgHourlyFlow <= 400)
