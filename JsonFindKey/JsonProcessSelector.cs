@@ -9,7 +9,7 @@ namespace JsonFindKey
   {
     public static long JsonProcessValue(string processName)
     {
-      var jsonStringProcess = System.IO.File.ReadAllText(@"C:\Users\jszomor\source\repos\jszomorCAD\FindJsonKey\process.json");
+      var jsonStringProcess = System.IO.File.ReadAllText(@"C:\Users\jszomor\source\repos\jszomorCAD\JsonFindKey\process.json");
 
       var jsonDictProcess = JsonConvert.DeserializeObject<Dictionary<string, object>>(jsonStringProcess);
       long searchedValueProcess = 0;

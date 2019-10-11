@@ -11,11 +11,13 @@ namespace jCAD.Test
     [TestMethod]
     public void EqPumpSelectTest()
     {
-      
-      Console.WriteLine (JsonClass.JsonEquipmentValue("Equalization Tank Pump"));
-      Console.WriteLine (JsonProcessClass.JsonProcessValue("Q_inf_AA"));
-      Console.WriteLine(EquipmentSelector.EqPumpSelect());
-      
+      var pumpIndex = JsonClass.JsonEquipmentValue("Equalization Tank Pump");
+      var q_inf_aa = JsonProcessClass.JsonProcessValue("Q_inf_AA");
+      var numberOfPump = EquipmentSelector.EqPumpSelect();
+
+      Assert.AreEqual(22l, pumpIndex);
+      Assert.AreEqual(200000, q_inf_aa);
+      Assert.AreEqual(13, numberOfPump);
     }
   }
 }
