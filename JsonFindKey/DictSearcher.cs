@@ -44,6 +44,7 @@ namespace JsonFindKey
               }
               catch(ArgumentException e)
               {
+                Console.WriteLine(e.Message);
                 continue;
               }
             }

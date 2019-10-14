@@ -1,4 +1,4 @@
 {  
-  "Q_inf_AA": 200000,
-  "number_of_eqPump": 4 
+  "Q_inf_AA": 100000,
+  "number_of_eqPump": 4
 }
