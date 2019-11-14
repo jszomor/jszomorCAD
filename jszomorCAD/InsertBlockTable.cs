@@ -66,7 +66,7 @@ namespace jszomorCAD
 
     private void PlaceBlock(ObjectId blockId, InsertBlockBase insertBlock, double offsetX = 0.0d, double offsetY = 0.0d)
     {
-      var defultLayers = new LayerCreator();
+      //var defultLayers = new LayerCreator();
       using (var tr = _db.TransactionManager.StartTransaction())
       {
         var currentSpaceId = tr.GetObject(_db.CurrentSpaceId, OpenMode.ForWrite) as BlockTableRecord;

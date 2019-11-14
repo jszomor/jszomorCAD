@@ -119,5 +119,43 @@ namespace jszomorCAD
            layerTableRecord.IsOff = true;
       });
     }
+
+
+    public void SelectEntity(Database db)
+    {
+      using (var tr = db.TransactionManager.StartTransaction())
+      {
+        BlockTable blockTable = tr.GetObject(db.BlockTableId, OpenMode.ForRead) as BlockTable;
+
+        var btrModelSpace = tr.GetObject(blockTable[BlockTableRecord.ModelSpace], OpenMode.ForRead) as BlockTableRecord;
+
+        foreach (var objectId in btrModelSpace)
+        {
+          var entity = tr.GetObject(objectId, OpenMode.ForRead) as Autodesk.AutoCAD.DatabaseServices.Entity;
+
+          if (entity == null) continue;
+
+          if (entity.Layer.EndsWith("valve"))
+            SetBlockReferenceLayer(entity, entity.Layer);
+
+        }
+        tr.Commit();
+      }
+    }
+    private void SetBlockReferenceLayer(Autodesk.AutoCAD.DatabaseServices.Entity entity, string layerName)
+    {
+      try
+      {
+        entity.UpgradeOpen();
+        entity.Layer = "valve";
+        entity.DowngradeOpen();
+      }
+      catch (Autodesk.AutoCAD.Runtime.Exception ex)
+      {
+        if (ex.ErrorStatus == Autodesk.AutoCAD.Runtime.ErrorStatus.KeyNotFound) throw new System.Exception($"Layer name not found: {layerName}");
+
+        else throw;
+      }
+    }
   }
 }

@@ -352,6 +352,15 @@ namespace jszomorCAD
         }
       }
     }
+
+    [CommandMethod("JCAD_Layermerge", CommandFlags.Modal)]
+    public void LayerMerge()
+    {
+      var db = Application.DocumentManager.MdiActiveDocument.Database;
+
+      var layerCreator = new LayerCreator();
+      layerCreator.SelectEntity(db);
+    }
   }
 }
 
