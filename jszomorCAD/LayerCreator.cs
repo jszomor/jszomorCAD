@@ -96,7 +96,7 @@ namespace jszomorCAD
       LayerCreatorMethod("text", Color.FromRgb(255, 255, 255), 0.25, false);
       LayerCreatorMethod("sewer", Color.FromRgb(28, 38, 0), 0.25, false);
       LayerCreatorMethod("sludge", Color.FromRgb(38, 19, 19), 0.25, false);
-      LayerCreatorMethod("chemical", Color.FromRgb(0, 255, 255), 0.25, false);
+      LayerCreatorMethod("chemicals", Color.FromRgb(0, 255, 255), 0.25, false);
       LayerCreatorMethod("water", Color.FromRgb(0, 0, 255), 0.25, false);
       LayerCreatorMethod("treated_water", Color.FromRgb(0, 127, 255), 0.25, false);
       LayerCreatorMethod("air", Color.FromRgb(63, 255, 0), 0.25, false);
