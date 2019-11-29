@@ -16,7 +16,7 @@ namespace jszomorCAD
 {
   public class CommandMethods
   {
-    public string path = @"E:\Munka\Test\Autocad PID blocks work in progress.dwg";    
+    public string path = @"E:\Munka\Test\Autocad PID blocks work in progress.dwg";
 
     [CommandMethod("jcad_EqTankBuilder")]
     public void ListBlocks()
@@ -284,8 +284,8 @@ namespace jszomorCAD
       SendClass.SendRegen();
       SendClass.SendZoomExtents();
     }
-    
-   
+
+
 
     [CommandMethod("JCAD_Fillet", CommandFlags.Modal)]
     public void ComCommand()
@@ -294,7 +294,7 @@ namespace jszomorCAD
       Editor ed = doc.Editor;
       Database db = doc.Database;
 
-      Line l1 = new Line(new Point3d(250,250,0), new Point3d(400, 400, 0));
+      Line l1 = new Line(new Point3d(250, 250, 0), new Point3d(400, 400, 0));
       Line l2 = new Line(new Point3d(0, 400, 0), new Point3d(150, 300, 0));
 
       SendClass.ToModelSpace(l1);
@@ -305,8 +305,8 @@ namespace jszomorCAD
     [CommandMethod("JCAD_Attsync", CommandFlags.Modal)]
     public void AttsyncEquipment()
     {
-      Document doc = Application.DocumentManager.MdiActiveDocument; 
-      doc.SendStringToExecute(("_attsync" + "\n" + "n" + "\n" + "pump" + "\n"), true, false, false);     
+      Document doc = Application.DocumentManager.MdiActiveDocument;
+      doc.SendStringToExecute(("_attsync" + "\n" + "n" + "\n" + "pump" + "\n"), true, false, false);
     }
 
     public void SendSync(Editor ed, string blockName, Database db)
@@ -314,14 +314,14 @@ namespace jszomorCAD
       using (Transaction acTrans = db.TransactionManager.StartTransaction())
       {
         var blockIds = new List<ObjectId>();
-        
+
         using (var bt = db.BlockTableId.GetObject<BlockTable>(OpenMode.ForRead))
         {
           // Open the Block table record Model space for write
           using (var btrModelSpace = acTrans.GetObject(bt[BlockTableRecord.ModelSpace], OpenMode.ForWrite) as BlockTableRecord)
           {
             foreach (var btrId in btrModelSpace)
-            {         
+            {
               var item = btrId.GetObject(OpenMode.ForRead);
               if (item == null) continue;
               if (item is BlockReference)
@@ -334,16 +334,16 @@ namespace jszomorCAD
                 }
                 var dynBtr = acTrans.GetObject(attrDef.DynamicBlockTableRecord, OpenMode.ForRead, false) as BlockTableRecord;
 
-                System.Diagnostics.Debug.Print("DynBlockName: " + dynBtr.Name);                
+                System.Diagnostics.Debug.Print("DynBlockName: " + dynBtr.Name);
 
                 if (!dynBtr.IsAnonymous && !dynBtr.IsLayout && dynBtr.Name == blockName)
-                blockIds.Add(btrId);
-              }              
+                  blockIds.Add(btrId);
+              }
             }
 
             var first = blockIds.First();
             var acEnt = acTrans.GetObject(first, OpenMode.ForWrite) as DBObject;
-            
+
             ed.Command("_attsync"); // does not work, I have no idea why.
 
             if (blockIds.Count == 0) ed.WriteMessage($"No block record found with the name {blockName}");
@@ -360,6 +360,14 @@ namespace jszomorCAD
 
       var layerCreator = new LayerCreator();
       layerCreator.SelectEntity(db);
+    }
+
+    [CommandMethod("JCAD_SelectEntity", CommandFlags.Modal)]
+    public void Select()
+    {
+      var db = Application.DocumentManager.MdiActiveDocument.Database;
+      var select = new Select();
+      select.SelectEntity(db);
     }
   }
 }
