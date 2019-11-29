@@ -5,10 +5,25 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using Autodesk.AutoCAD.DatabaseServices;
-using OrganiCAD.AutoCAD;
+//using OrganiCAD.AutoCAD;
 
 namespace jszomorCAD
 {
+  public static class Extension
+  {
+    public static string GetRealName(this BlockReference br)
+    {
+      if (br == null) throw new ArgumentNullException(nameof(br));
+
+      var returnValue = string.Empty;
+      using (var dynBtr = br.DynamicBlockTableRecord.GetObject<BlockTableRecord>())
+      {
+        if (dynBtr != null) returnValue = dynBtr.Name; // we could get NULL here. dynBtr?.Name would propagate this NULL down the call chain, and it could cause issues
+      }
+      return returnValue; // should we return something else here?
+    }
+  }
+
   public class Select
   {
     public void ExecuteActionOnModelSpace(Database database, Action<Transaction, BlockTableRecord> action)
@@ -59,18 +74,6 @@ namespace jszomorCAD
           }
         }
       });
-    }
-
-    public string GetRealName(this BlockReference br)
-    {
-      if (br == null) throw new ArgumentNullException(nameof(br));
-
-      var returnValue = string.Empty;
-      using (var dynBtr = br.DynamicBlockTableRecord.GetObject<BlockTableRecord>())
-      {
-        if (dynBtr != null) returnValue = dynBtr.Name; // we could get NULL here. dynBtr?.Name would propagate this NULL down the call chain, and it could cause issues
-      }
-      return returnValue; // should we return something else here?
     }
 
     public void SelectBlockReference(Database db)
