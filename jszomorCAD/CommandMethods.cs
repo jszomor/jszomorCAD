@@ -367,7 +367,7 @@ namespace jszomorCAD
     {
       var db = Application.DocumentManager.MdiActiveDocument.Database;
       var select = new Select();
-      select.SelectEntity(db);
+      select.SelectBlockReference(db);
     }
   }
 }
