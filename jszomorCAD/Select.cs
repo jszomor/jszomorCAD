@@ -61,17 +61,17 @@ namespace jszomorCAD
       });
     }
 
-    public string GetRealName(this BlockReference br)
-    {
-      if (br == null) throw new ArgumentNullException(nameof(br));
+    //public string GetRealName(this BlockReference br)
+    //{
+    //  if (br == null) throw new ArgumentNullException(nameof(br));
 
-      var returnValue = string.Empty;
-      using (var dynBtr = br.DynamicBlockTableRecord.GetObject<BlockTableRecord>())
-      {
-        if (dynBtr != null) returnValue = dynBtr.Name; // we could get NULL here. dynBtr?.Name would propagate this NULL down the call chain, and it could cause issues
-      }
-      return returnValue; // should we return something else here?
-    }
+    //  var returnValue = string.Empty;
+    //  using (var dynBtr = br.DynamicBlockTableRecord.GetObject<BlockTableRecord>())
+    //  {
+    //    if (dynBtr != null) returnValue = dynBtr.Name; // we could get NULL here. dynBtr?.Name would propagate this NULL down the call chain, and it could cause issues
+    //  }
+    //  return returnValue; // should we return something else here?
+    //}
 
     public void SelectBlockReference(Database db)
     {

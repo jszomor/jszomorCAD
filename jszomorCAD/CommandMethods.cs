@@ -369,6 +369,14 @@ namespace jszomorCAD
       var select = new Select();
       select.SelectBlockReference(db);
     }
+
+    [CommandMethod("JCAD_SerializeBlock", CommandFlags.Modal)]
+    public void SerializeBlock()
+    {
+      var db = Application.DocumentManager.MdiActiveDocument.Database;
+      var insertBlockTable = new InsertBlockTable(db);
+      insertBlockTable.ReadBlockTableRecord();
+    }
   }
 }
 

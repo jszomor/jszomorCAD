@@ -10,6 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using OrganiCAD.AutoCAD;
+using JsonFindKey;
 
 namespace jszomorCAD
 {
@@ -36,10 +37,10 @@ namespace jszomorCAD
     //  => InsertBlockTableMethod(db, insertData);
 
 
-   
+
     #endregion
     public ObjectId GetBlockTable(string blockName)
-    {     
+    {
       var blockIds = new List<ObjectId>();
 
       using (var tr = _db.TransactionManager.StartTransaction())
@@ -75,11 +76,12 @@ namespace jszomorCAD
         {
           using (var acBlkRef = new BlockReference(
             new Point3d(insertBlock.Position.X + offsetX, insertBlock.Position.Y + offsetY, 0), blockId))
-          {            
+          {
+
             //InsertBlockBase insertData;
             currentSpaceId.AppendEntity(acBlkRef);
             tr.AddNewlyCreatedDBObject(acBlkRef, true);
-            
+
             SetBlockReferenceLayer(acBlkRef, insertBlock.LayerName);
             SetRotate(acBlkRef, insertBlock.Rotation);
             CreateBlockRefenceAttributes(acBlkRef, blockDefinition, tr);
@@ -97,7 +99,7 @@ namespace jszomorCAD
     {
       try
       {
-        acBlkRef.Layer = layerName;        
+        acBlkRef.Layer = layerName;
       }
       catch (Autodesk.AutoCAD.Runtime.Exception ex)
       {
@@ -110,7 +112,7 @@ namespace jszomorCAD
     private void SetRotate(BlockReference acBlkRef, double rotation)
     {
       try
-      {        
+      {
         acBlkRef.Rotation = rotation;
       }
       catch (Autodesk.AutoCAD.Runtime.Exception ex)
@@ -129,10 +131,10 @@ namespace jszomorCAD
         if (ar == null) continue;
 
         if (ar.Tag == "HOSTNAME")
-        ar.TextString = hostName;                  
-      }      
+          ar.TextString = hostName;
+      }
     }
-   
+
     private void CreateBlockRefenceAttributes(BlockReference acBlkRef, BlockTableRecord blockDefinition, Transaction tr)
     {
       // copy/create attribute references
@@ -165,22 +167,22 @@ namespace jszomorCAD
 
         foreach (var action in actionToExecuteOnAttRef)
         {
-          action.Invoke(ar);          
+          action.Invoke(ar);
         }
       }
     }
 
     private void SetDynamicBlockReferenceValues(BlockReference acBlkRef,
       IEnumerable<Action<DynamicBlockReferenceProperty>> actionToExecuteOnDynProp)
-    {      
+    {
       if (acBlkRef.IsDynamicBlock)
       {
         foreach (DynamicBlockReferenceProperty dbrProp in acBlkRef.DynamicBlockReferencePropertyCollection)
         {
           foreach (var a in actionToExecuteOnDynProp)
           {
-            a.Invoke(dbrProp);            
-          }       
+            a.Invoke(dbrProp);
+          }
         }
       }
     }
@@ -204,15 +206,58 @@ namespace jszomorCAD
       var blockId = GetBlockTable(insertData.BlockName);
 
       var offsetX = 0.0d;
-      var offsetY = 0.0d;      
+      var offsetY = 0.0d;
       // 2. insert block
       for (var i = 0; i < insertData.NumberOfItem; i++)
       {
         PlaceBlock(blockId, insertData, offsetX, offsetY);
         offsetX += insertData.OffsetX;
-        offsetY += insertData.OffsetY;        
+        offsetY += insertData.OffsetY;
       }
       return true;
+    }
+
+    public void ReadBlockTableRecord()
+    {
+      List<string> list = new List<string>();
+
+      using (var tr = _db.TransactionManager.StartTransaction())
+      {
+        var bt = _db.BlockTableId.GetObject<BlockTable>(OpenMode.ForRead);
+
+        foreach (var btrId in bt)
+        {
+          using (var btr = tr.GetObject(btrId, OpenMode.ForRead, false) as BlockTableRecord)
+          {
+            foreach (var objectId in btr)
+            {
+              using (var acBlkRef = tr.GetObject(objectId, OpenMode.ForRead) as Entity)
+              {
+                //var X = insertBlock.Position.X;
+                //var Y = insertBlock.Position.Y;
+
+                //var jsonseri = new JsonSerializer();
+                if (!btr.IsAnonymous && !btr.IsLayout)
+                  list.Add(acBlkRef.Layer);
+
+                //SetBlockReferenceLayer(acBlkRef, insertBlock.LayerName);
+                //SetRotate(acBlkRef, insertBlock.Rotation);
+                //CreateBlockRefenceAttributes(acBlkRef, btr, tr);
+                //SetVisibilityIndex(acBlkRef, insertBlock.StateProperty);
+                //SetBlockRefenceAttributesValues(acBlkRef, insertBlock.ActionToExecuteOnAttRef);
+                //SetDynamicBlockReferenceValues(acBlkRef, insertBlock.ActionToExecuteOnDynPropAfter);
+                //SetHostName(acBlkRef, insertBlock.HostName);
+              }
+            }
+            // Only add named & non-layout blocks to the copy list
+            //if (!btr.IsAnonymous && !btr.IsLayout)
+            //  list.Add(btr.Name);
+          }
+        }
+
+        var jsonseri = new JsonSerializer();
+        jsonseri.JsonSeri(list);
+      }
     }
 
     #region OLD CODE
