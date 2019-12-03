@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "jCAD.Test", "Test\jCAD.Test
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JsonFindKey", "JsonFindKey\JsonFindKey.csproj", "{6AF4B808-9848-4AFA-BC0B-7DC1F7674CC8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrganiCAD.AutoCAD", "..\organicad\OrganiCAD.AutoCAD\OrganiCAD.AutoCAD.csproj", "{F6263436-2892-4372-A84F-7BD6A8A4AF1E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OrganiCAD.AutoCAD", "E:\Munka\OrganiCad\OrganiCAD.AutoCAD\OrganiCAD.AutoCAD.csproj", "{F6263436-2892-4372-A84F-7BD6A8A4AF1E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
