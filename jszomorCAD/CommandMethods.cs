@@ -375,7 +375,7 @@ namespace jszomorCAD
     {
       var db = Application.DocumentManager.MdiActiveDocument.Database;
       var insertBlockTable = new InsertBlockTable(db);
-      insertBlockTable.ReadBlockTableRecord();
+      insertBlockTable.ReadBlockTableRecord(db);
     }
   }
 }

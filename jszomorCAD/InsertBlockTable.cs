@@ -11,11 +11,57 @@ using System.Text;
 using System.Threading.Tasks;
 using OrganiCAD.AutoCAD;
 using JsonFindKey;
+using JsonParse;
+using System.Linq.Expressions;
 
 namespace jszomorCAD
 {
   public class InsertBlockTable
   {
+
+    public void ExecuteActionOnModelSpace(Database database, Action<Transaction, BlockTableRecord> action)
+    {
+      ExecuteActionInTransaction(database, (db, tr) =>
+        ExecuteActionOnBlockTable(db, bt =>
+        {
+          using (var ms = bt[BlockTableRecord.ModelSpace].GetObject<BlockTableRecord>())
+          {
+            action.Invoke(tr, ms);
+          }
+        }
+        ));
+    }
+
+    public void ExecuteActionInTransaction(Database db, Action<Database, Transaction> action)
+    {
+      using (var tr = db.TransactionManager.StartTransaction())
+      {
+        action.Invoke(db, tr);
+        tr.Commit();
+      }
+    }
+
+    private void ExecuteActionOnTable<T>(Database db,
+      Expression<Func<Database, ObjectId>> tableIdProperty, Action<T> action) where T : class, IDisposable
+    {
+      var c = tableIdProperty.Compile();
+      using (var t = c.Invoke(db).GetObject<T>())
+      {
+        action.Invoke(t);
+      }
+    }
+
+    public void ExecuteActionOnBlockTable(Database db, Action<BlockTable> action) =>
+      ExecuteActionOnTable(db, x => x.BlockTableId, action);
+
+    public void ExecuteActionOnLayerTable(Database db, Action<LayerTable> action) =>
+      ExecuteActionOnTable(db, x => x.LayerTableId, action);
+
+    /// <summary>
+    /// wrapper from OrganiCad
+    /// </summary>
+    /// 
+
     private Database _db;
 
     public InsertBlockTable(Database db)
@@ -51,6 +97,9 @@ namespace jszomorCAD
         {
           using (var btr = tr.GetObject(btrId, OpenMode.ForRead, false) as BlockTableRecord)
           {
+            var jsonBlockProperty = new JsonBlockProperty();
+            jsonBlockProperty.Misc = new Misc(blockName: btr.Name, rotation: 0);
+
             // Only add named & non-layout blocks to the copy list
             if (!btr.IsAnonymous && !btr.IsLayout && btr.Name == blockName)
               blockIds.Add(btrId);
@@ -155,8 +204,7 @@ namespace jszomorCAD
         }
       }
     }
-    private void SetBlockRefenceAttributesValues(BlockReference acBlkRef,
-      IEnumerable<Action<AttributeReference>> actionToExecuteOnAttRef)
+    private void SetBlockRefenceAttributesValues(BlockReference acBlkRef, IEnumerable<Action<AttributeReference>> actionToExecuteOnAttRef)
     {
       if (actionToExecuteOnAttRef == null) return;
 
@@ -217,207 +265,55 @@ namespace jszomorCAD
       return true;
     }
 
-    public void ReadBlockTableRecord()
+    public void ReadBlockTableRecord(Database db)
     {
-      List<string> list = new List<string>();
-
-      using (var tr = _db.TransactionManager.StartTransaction())
+      ExecuteActionOnModelSpace(db, (tr, btrModelSpace) =>
       {
-        var bt = _db.BlockTableId.GetObject<BlockTable>(OpenMode.ForRead);
-
-        foreach (var btrId in bt)
+        foreach (ObjectId objectId in btrModelSpace)
         {
-          using (var btr = tr.GetObject(btrId, OpenMode.ForRead, false) as BlockTableRecord)
+          using (var blockReference = tr.GetObject(objectId, OpenMode.ForRead) as BlockReference)
           {
-            foreach (var objectId in btr)
+            if (blockReference == null) continue;
+
+            var btrObjectId = blockReference.DynamicBlockTableRecord; //must be Dynamic to find every blocks
+            using (var blockDefinition = btrObjectId.GetObject(OpenMode.ForRead) as BlockTableRecord)
             {
-              using (var acBlkRef = tr.GetObject(objectId, OpenMode.ForRead) as Entity)
+              //System.Diagnostics.Debug.Print(blockDefinition.Name);
+
+              //if (blockDefinition.Name == "RefPIDDenit$0$reactor")
+              //{
+              //  System.Diagnostics.Debug.Print("STOP! Hammertime!");
+              //}
+
+              var jsonBlockProperty = new JsonBlockProperty();
+              if (!blockDefinition.IsAnonymous && !blockDefinition.IsLayout)
               {
-                //var X = insertBlock.Position.X;
-                //var Y = insertBlock.Position.Y;
-
-                //var jsonseri = new JsonSerializer();
-                if (!btr.IsAnonymous && !btr.IsLayout)
-                  list.Add(acBlkRef.Layer);
-
-                //SetBlockReferenceLayer(acBlkRef, insertBlock.LayerName);
-                //SetRotate(acBlkRef, insertBlock.Rotation);
-                //CreateBlockRefenceAttributes(acBlkRef, btr, tr);
-                //SetVisibilityIndex(acBlkRef, insertBlock.StateProperty);
-                //SetBlockRefenceAttributesValues(acBlkRef, insertBlock.ActionToExecuteOnAttRef);
-                //SetDynamicBlockReferenceValues(acBlkRef, insertBlock.ActionToExecuteOnDynPropAfter);
-                //SetHostName(acBlkRef, insertBlock.HostName);
+                jsonBlockProperty.Misc = new Misc(blockName: blockDefinition.Name, rotation: 0);
               }
-            }
-            // Only add named & non-layout blocks to the copy list
-            //if (!btr.IsAnonymous && !btr.IsLayout)
-            //  list.Add(btr.Name);
-          }
-        }
 
-        var jsonseri = new JsonSerializer();
-        jsonseri.JsonSeri(list);
-      }
-    }
-
-    #region OLD CODE
-    public void InsertBlockTableMethod(InsertBlockBase insertData)
-    {
-      var sizeProperty = new PositionProperty();
-      sizeProperty.FreeSpace = 60;
-
-      Editor ed = Application.DocumentManager.MdiActiveDocument.Editor;     
-      var aw = new AutoCadWrapper();
-      BlockTableRecord btr;
-
-      var blockDefinitions = new List<ObjectId>();
-      var positionProperty = new PositionProperty();
-
-      //setup default layers
-      var defultLayers = new LayerCreator();
-      defultLayers.Layers();
-    
-      //var shortvisibilitystateIndex = Convert.ToInt16(visibilitystateIndex);
-
-      // Start transaction to insert equipment
-      aw.ExecuteActionOnBlockTable(_db, (tr, bt) =>
-      {        
-        foreach (ObjectId btrId in bt)
-        {
-          using (btr = (BlockTableRecord)tr.GetObject(btrId, OpenMode.ForRead, false))
-          {
-            // Only add named & non-layout blocks to the copy list
-            if (!btr.IsAnonymous && !btr.IsLayout && btr.Name == insertData.BlockName)
-            {  
-              blockDefinitions.Add(btrId);             
-            }
-          }
-        }        
-
-        var currentSpaceId = tr.GetObject(_db.CurrentSpaceId, OpenMode.ForWrite) as BlockTableRecord;
-
-        for (int i = 0; i < insertData.NumberOfItem; i++)
-        {
-          foreach (var objectId in blockDefinitions)
-          {
-            using (var blockDefinition = (BlockTableRecord)tr.GetObject(objectId, OpenMode.ForRead, false))
-            {
-              using (var acBlkRef = new BlockReference(new Point3d(insertData.X, insertData.Y, positionProperty.Z), objectId))
+              if (blockReference.IsDynamicBlock)
               {
-                currentSpaceId.AppendEntity(acBlkRef);
-                tr.AddNewlyCreatedDBObject(acBlkRef, true);
-
-                acBlkRef.Layer = insertData.LayerName;                
-
-                // copy/create attribute references
-                foreach (var bdEntityObjectId in blockDefinition)
+                foreach (DynamicBlockReferenceProperty dbrProp in blockReference.DynamicBlockReferencePropertyCollection)
                 {
-                  var ad = tr.GetObject(bdEntityObjectId, OpenMode.ForRead) as AttributeDefinition;
-                  if (ad == null) continue;
+                  jsonBlockProperty.Custom = new Custom(tagX: 0, tagY: 0, tagAngle: 0, visibility1: dbrProp.PropertyName,
+                    visibility: null, flipState: "Not flipped", blockTableValue: dbrProp.Value, distance: 0, distance1: 0, pumpTableValue: dbrProp.Value);
+                }
+              }
 
-                  var ar = new AttributeReference();
-                  ar.SetDatabaseDefaults(_db);
-                  ar.SetAttributeFromBlock(ad, acBlkRef.BlockTransform);
-                  ar.TextString = ad.TextString;
-                  ar.AdjustAlignment(HostApplicationServices.WorkingDatabase);
+              var jsonWrite = new JsonWrite();
+              jsonWrite.JsonSeri(jsonBlockProperty);
 
-                  acBlkRef.AttributeCollection.AppendAttribute(ar);
-                  tr.AddNewlyCreatedDBObject(ar, true);
+              foreach (ObjectId BlockObjectId in blockDefinition)
+              {
+                var entity = tr.GetObject(BlockObjectId, OpenMode.ForWrite) as Autodesk.AutoCAD.DatabaseServices.Entity;
+
+                if (entity == null) continue;
                 
-                  System.Diagnostics.Debug.Print($"Tag={ar.Tag} TextString={ar.TextString}");
-
-                  if (acBlkRef.IsDynamicBlock)
-                  {
-                    foreach (DynamicBlockReferenceProperty dbrProp in acBlkRef.DynamicBlockReferencePropertyCollection) // this loop must be here
-                                                                                                                        //else tag rotation for pump will be wrong!
-                    {
-                      // for jet pump rotate
-                      if (ar.TextString == "Air Jet Pump")                      
-                        acBlkRef.Rotation = DegreeHelper.DegreeToRadian(270); // this command must be here else tag rotation will be wrong!
-                    }
-                  }
-
-                  //text for EQ tank - Attributes
-                  if (ar.Tag == "NAME1" && insertData.BlockName == "chamber")
-                    ar.TextString = "EQUALIZATION";
-                  if (ar.Tag == "NAME2" && insertData.BlockName == "chamber")
-                    ar.TextString = "TANK";
-
-                  //valve setup
-                  if (insertData.BlockName == "valve")
-                  {
-                    //ar.Rotation = DegreeHelper.DegreeToRadian(90);
-                    acBlkRef.Rotation = DegreeHelper.DegreeToRadian(90);
-                  }
-                }
-
-                // setup item by index
-                #region
-                //if (acBlkRef.IsDynamicBlock)
-                //{
-                //  foreach (DynamicBl ockReferenceProperty dbrProp in acBlkRef.DynamicBlockReferencePropertyCollection)
-                //  {       
-                //    if (dbrProp.PropertyName == PropertyName)                                    
-                //      dbrProp.Value = visibilitystateIndex; // SHORT !!!!!!!!!!!!                                                           
-                //  }
-                //}
-                #endregion
-
-                // udpate attribute reference values after setting the visibility state or block table index
-                foreach (ObjectId arObjectId in acBlkRef.AttributeCollection)
-                {
-                  foreach (DynamicBlockReferenceProperty dbrProp in acBlkRef.DynamicBlockReferencePropertyCollection)
-                  {
-                    var ar = arObjectId.GetObject<AttributeReference>();
-                    if (ar == null) continue;
-                    
-                    //pipe setup
-                    if (dbrProp.PropertyName == "PipeLength")
-                      dbrProp.Value = insertData.PipeLength;
-                    if (dbrProp.PropertyName == "ArrowPosition Y")
-                      dbrProp.Value = insertData.PipeLength;
-
-                    // for jet pump tag position
-                    if (ar.Tag == "NOTE" && ar.TextString == "Air Jet Pump" && insertData.BlockName == "pump")
-                    {
-                      //acBlkRef.Rotation = DegreeHelper.DegreeToRadian(270); // this command has wrong result that is why should be in the upper loop.
-
-                      if (acBlkRef.IsDynamicBlock)
-                      {
-                        // tag horizontal positioning
-                        if (dbrProp.PropertyName == "Angle")
-                          dbrProp.Value = DegreeHelper.DegreeToRadian(90);
-                        if (dbrProp.PropertyName == "Position X")
-                          dbrProp.Value = (double)6;
-                        if (dbrProp.PropertyName == "Position Y")
-                          dbrProp.Value = (double)0;
-                      }
-                    }
-                    //for pumps VFD rotate
-                    if (dbrProp.PropertyName == "Angle1" && ar.TextString == "Equalization Tank Pump")
-                      dbrProp.Value = DegreeHelper.DegreeToRadian(90);
-
-                    // pumps VFD rotate
-                    if (dbrProp.PropertyName == "Angle2" && ar.TextString == "Equalization Tank Pump")
-                      dbrProp.Value = DegreeHelper.DegreeToRadian(270);
-
-                    //setup chamber width
-                    //if (dbrProp.PropertyName == "Distance" && insertData.BlockName == "chamber")
-                    //  dbrProp.Value = PositionProperty.NumberOfPump * PositionProperty.DistanceOfPump + sizeProperty.FreeSpace; //last value is the free space for other items
-                    ////text position for chamber
-                    //if (dbrProp.PropertyName == "Position X" && insertData.BlockName == "chamber")
-                    //  dbrProp.Value = ((PositionProperty.NumberOfPump * PositionProperty.DistanceOfPump + sizeProperty.FreeSpace) / (double)2); //place text middle of chamber horizontaly 
-                  }
-                }
               }
             }
           }
-          //insertData.X += insertData.X;
-          //insertData.X += insertData.Distance;
         }
-        currentSpaceId.UpdateAnonymousBlocks();
       });
-      #endregion
     }
-  } 
+  }
 }
