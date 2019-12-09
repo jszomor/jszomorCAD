@@ -300,9 +300,6 @@ namespace jszomorCAD
                 }
               }
 
-              var jsonWrite = new JsonWrite();
-              jsonWrite.JsonSeri(jsonBlockProperty);
-
               foreach (ObjectId BlockObjectId in blockDefinition)
               {
                 var entity = tr.GetObject(BlockObjectId, OpenMode.ForWrite) as Autodesk.AutoCAD.DatabaseServices.Entity;
@@ -315,5 +312,101 @@ namespace jszomorCAD
         }
       });
     }
+
+
+    public void ReadBlockTableRecord2(Database db)
+    {
+      ExecuteActionOnModelSpace(db, (tr, btrModelSpace) =>
+      {
+        foreach (ObjectId objectId in btrModelSpace)
+        {
+          using (var blockReference = tr.GetObject(objectId, OpenMode.ForRead) as BlockReference)
+          {
+            if (blockReference == null) continue;
+
+            var btrObjectId = blockReference.DynamicBlockTableRecord; //must be Dynamic to find every blocks
+            using (var blockDefinition = btrObjectId.GetObject(OpenMode.ForRead) as BlockTableRecord)
+            {
+              //System.Diagnostics.Debug.Print(blockDefinition.Name);
+
+              //if (blockDefinition.Name == "RefPIDDenit$0$reactor")
+              //{
+              //  System.Diagnostics.Debug.Print("STOP! Hammertime!");
+              //}
+
+              if (blockReference.IsDynamicBlock)
+              {
+                foreach (DynamicBlockReferenceProperty dbrProp in blockReference.DynamicBlockReferencePropertyCollection)
+                {
+                  JsonStringBuilderSetup(dbrProp, blockDefinition);
+                }
+              }
+
+              foreach (ObjectId BlockObjectId in blockDefinition)
+              {
+                var entity = tr.GetObject(BlockObjectId, OpenMode.ForWrite) as Autodesk.AutoCAD.DatabaseServices.Entity;
+
+                if (entity == null) continue;
+
+              }
+            }
+          }
+        }
+      });
+    }
+    public void JsonStringBuilderSetup(DynamicBlockReferenceProperty dbrProp, BlockTableRecord blockDefinition)
+    {
+      var properties = new JsonStringBuilderProperty();
+      var stringBuilderSerialize = new JsonStringBuilderSerialize();
+
+      if (!blockDefinition.IsAnonymous && !blockDefinition.IsLayout)
+      {
+        properties.BlockName = blockDefinition.Name;
+      }
+
+      properties.VisibilityValue = dbrProp.Value;
+      properties.VisibilityName = dbrProp.PropertyName;
+
+      if (dbrProp.PropertyName == "Position X")
+      {
+        properties.TagX = Convert.ToDouble(dbrProp.Value);
+      }
+      if (dbrProp.PropertyName == "Position Y")
+      {
+        properties.TagY = Convert.ToDouble(dbrProp.Value);
+      }
+
+      string[] visArray = new string[] { "Centrifugal Pump", "Block Table1", "Visibility", "Visibility1" };
+
+      foreach(var i in visArray)
+      {
+
+        if (properties.VisibilityName == visArray[0])
+        {
+          properties.VisibilityName = dbrProp.PropertyName;
+          properties.VisibilityValue = dbrProp.Value;
+        }
+        else if (properties.VisibilityName == visArray[1])
+        {
+          properties.VisibilityName = dbrProp.PropertyName;
+          properties.VisibilityValue = dbrProp.Value;
+        }
+        else if (properties.VisibilityName == visArray[2])
+        {
+          properties.VisibilityName = dbrProp.PropertyName;
+          properties.VisibilityValue = dbrProp.Value;
+        }
+        else if (properties.VisibilityName == visArray[3])
+        {
+          properties.VisibilityName = dbrProp.PropertyName;
+          properties.VisibilityValue = dbrProp.Value;
+        }
+        else
+          continue;
+
+      }
+
+      stringBuilderSerialize.StringBuilderSerialize(properties);
+    }    
   }
 }

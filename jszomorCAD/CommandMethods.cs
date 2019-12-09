@@ -33,7 +33,7 @@ namespace jszomorCAD
       });
 
 
-      var sizeProperty = new PositionProperty();
+      //var sizeProperty = new PositionProperty();
       //"\nEnter number of equipment:"
       //var pio = new PromptIntegerOptions("\nEnter number of equipment:") { DefaultValue = 5 };
       //var number = Application.DocumentManager.MdiActiveDocument.Editor.GetInteger(pio);
@@ -376,6 +376,14 @@ namespace jszomorCAD
       var db = Application.DocumentManager.MdiActiveDocument.Database;
       var insertBlockTable = new InsertBlockTable(db);
       insertBlockTable.ReadBlockTableRecord(db);
+    }
+
+    [CommandMethod("JCAD_SerializeBlockWithStringBuilder", CommandFlags.Modal)]
+    public void StringBuilderSerialize()
+    {
+      var db = Application.DocumentManager.MdiActiveDocument.Database;
+      var insertBlockTable = new InsertBlockTable(db);
+      insertBlockTable.ReadBlockTableRecord2(db);
     }
   }
 }
