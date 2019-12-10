@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using EquipmentPosition;
 using JsonParse;
 using Newtonsoft.Json;
 
-namespace JsonFindKey
+namespace EquipmentPosition
 {
-  public class JsonWrite
+  public class JsonWrite2
   {
-    public void JsonSeri(JsonStringBuilderProperty jsonBlockProperty)
+    public void JsonSeri2(SerializationProperty serialization)
     {
       string fileJson = @"\fileJson.json";
       string dirPath = @"C:\Users\jszomor\Google Drive\Programozas\Practice"; //work
@@ -22,7 +23,7 @@ namespace JsonFindKey
       {
         using (JsonWriter writer = new JsonTextWriter(sw))
         {
-          serializer.Serialize(writer, jsonBlockProperty);
+          serializer.Serialize(writer, serialization);
         }
       }
     }

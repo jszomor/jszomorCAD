@@ -149,7 +149,7 @@ namespace EquipmentPosition
           layerName: "equipment",
           x: _startPadding,
           y: 10.0d,
-          //rotation: DegreeHelper.DegreeToRadian(0),
+          rotation: DegreeHelper.DegreeToRadian(0),
           hostName: AreaName,
           equipmentStateProperty: new EquipmentStateProperty("Centrifugal Pump", PromptEqIndex))
           {

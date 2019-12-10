@@ -313,7 +313,6 @@ namespace jszomorCAD
       });
     }
 
-
     public void ReadBlockTableRecord2(Database db)
     {
       ExecuteActionOnModelSpace(db, (tr, btrModelSpace) =>
@@ -333,13 +332,21 @@ namespace jszomorCAD
               //{
               //  System.Diagnostics.Debug.Print("STOP! Hammertime!");
               //}
+              var jsonSeriSetup = new JsonSeriSetup();
 
               if (blockReference.IsDynamicBlock)
               {
-                foreach (DynamicBlockReferenceProperty dbrProp in blockReference.DynamicBlockReferencePropertyCollection)
-                {
-                  JsonStringBuilderSetup(dbrProp, blockDefinition);
-                }
+                //foreach (DynamicBlockReferenceProperty dbrProp in blockReference.DynamicBlockReferencePropertyCollection)
+                //{
+                    jsonSeriSetup.JsonStringBuilderSetup(blockDefinition, blockReference);
+                  //var properties = new JsonStringBuilderProperty();
+                  //var stringBuilderSerialize = new JsonStringBuilderSerialize();
+
+                  //properties.VisibilityName = dbrProp.PropertyName;
+                  //properties.VisibilityValue = dbrProp.Value;
+                  //stringBuilderSerialize.StringBuilderSerialize(properties);
+
+                //}
               }
 
               foreach (ObjectId BlockObjectId in blockDefinition)
@@ -354,59 +361,70 @@ namespace jszomorCAD
         }
       });
     }
-    public void JsonStringBuilderSetup(DynamicBlockReferenceProperty dbrProp, BlockTableRecord blockDefinition)
-    {
-      var properties = new JsonStringBuilderProperty();
-      var stringBuilderSerialize = new JsonStringBuilderSerialize();
+    //public void JsonStringBuilderSetup(BlockTableRecord blockDefinition, BlockReference blockReference)
+    //{
 
-      if (!blockDefinition.IsAnonymous && !blockDefinition.IsLayout)
-      {
-        properties.BlockName = blockDefinition.Name;
-      }
+    //  var properties = new JsonStringBuilderProperty(BlockName: );
+    //  var stringBuilderSerialize = new JsonStringBuilderSerialize();
+    //  foreach (DynamicBlockReferenceProperty dbrProp in blockReference.DynamicBlockReferencePropertyCollection)
+    //  {
+    //    if (!blockDefinition.IsAnonymous && !blockDefinition.IsLayout)
+    //    {
+    //      properties.BlockName = blockDefinition.Name;
+    //    }
 
-      properties.VisibilityValue = dbrProp.Value;
-      properties.VisibilityName = dbrProp.PropertyName;
+    //    if (dbrProp.PropertyName == "Position X")
+    //    {
+    //      properties.TagX = Convert.ToDouble(dbrProp.Value);
+    //    }
 
-      if (dbrProp.PropertyName == "Position X")
-      {
-        properties.TagX = Convert.ToDouble(dbrProp.Value);
-      }
-      if (dbrProp.PropertyName == "Position Y")
-      {
-        properties.TagY = Convert.ToDouble(dbrProp.Value);
-      }
+    //    if (dbrProp.PropertyName == "Position Y")
+    //    {
+    //      properties.TagY = Convert.ToDouble(dbrProp.Value);
+    //    }
 
-      string[] visArray = new string[] { "Centrifugal Pump", "Block Table1", "Visibility", "Visibility1" };
+    //    string[] blockNameArray = new string[] { "pump", "chamber", "mixer", "valve", "blower" };
+    //    string[] visArray = new string[] { "Centrifugal Pump", "Visibility", "Block Table1" };
 
-      foreach(var i in visArray)
-      {
+    //    foreach (var i in visArray)
+    //    {
+    //      if (properties.BlockName == blockNameArray[0] && dbrProp.PropertyName == visArray[0])
+    //      {
+    //        properties.VisibilityName = dbrProp.PropertyName;
+    //        properties.VisibilityValue = dbrProp.Value;
+    //        break;
+    //      }
+    //      else if (properties.BlockName == blockNameArray[1] && dbrProp.PropertyName == visArray[1])
+    //      {
+    //        properties.VisibilityName = dbrProp.PropertyName;
+    //        properties.VisibilityValue = dbrProp.Value;
+    //        break;
+    //      }
+    //      else if (properties.BlockName == blockNameArray[2] && dbrProp.PropertyName == visArray[2])
+    //      {
+    //        properties.VisibilityName = dbrProp.PropertyName;
+    //        properties.VisibilityValue = dbrProp.Value;
+    //        break;
+    //      }
+    //      else if (properties.BlockName == blockNameArray[3] && dbrProp.PropertyName == visArray[2])
+    //      {
+    //        properties.VisibilityName = dbrProp.PropertyName;
+    //        properties.VisibilityValue = dbrProp.Value;
+    //        break;
+    //      }
+    //      else if (properties.BlockName == blockNameArray[4] && dbrProp.PropertyName == visArray[2])
+    //      {
+    //        properties.VisibilityName = dbrProp.PropertyName;
+    //        properties.VisibilityValue = dbrProp.Value;
+    //        break;
+    //      }
+    //      else
+    //        continue;
+    //    }
+    //  }
 
-        if (properties.VisibilityName == visArray[0])
-        {
-          properties.VisibilityName = dbrProp.PropertyName;
-          properties.VisibilityValue = dbrProp.Value;
-        }
-        else if (properties.VisibilityName == visArray[1])
-        {
-          properties.VisibilityName = dbrProp.PropertyName;
-          properties.VisibilityValue = dbrProp.Value;
-        }
-        else if (properties.VisibilityName == visArray[2])
-        {
-          properties.VisibilityName = dbrProp.PropertyName;
-          properties.VisibilityValue = dbrProp.Value;
-        }
-        else if (properties.VisibilityName == visArray[3])
-        {
-          properties.VisibilityName = dbrProp.PropertyName;
-          properties.VisibilityValue = dbrProp.Value;
-        }
-        else
-          continue;
-
-      }
-
-      stringBuilderSerialize.StringBuilderSerialize(properties);
-    }    
+    //  if(properties != null)
+    //  stringBuilderSerialize.StringBuilderSerialize(properties);
+    //}    
   }
 }

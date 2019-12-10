@@ -370,20 +370,35 @@ namespace jszomorCAD
       select.SelectBlockReference(db);
     }
 
-    [CommandMethod("JCAD_SerializeBlock", CommandFlags.Modal)]
-    public void SerializeBlock()
-    {
-      var db = Application.DocumentManager.MdiActiveDocument.Database;
-      var insertBlockTable = new InsertBlockTable(db);
-      insertBlockTable.ReadBlockTableRecord(db);
-    }
-
     [CommandMethod("JCAD_SerializeBlockWithStringBuilder", CommandFlags.Modal)]
     public void StringBuilderSerialize()
     {
       var db = Application.DocumentManager.MdiActiveDocument.Database;
+      //var insertBlockTable = new InsertBlockTable(db);
+      //insertBlockTable.ReadBlockTableRecord2(db);
       var insertBlockTable = new InsertBlockTable(db);
       insertBlockTable.ReadBlockTableRecord2(db);
+    }
+
+    [CommandMethod("JCAD_SerializeBlock", CommandFlags.Modal)]
+    public void SerializeBlock()
+    {
+      var db = Application.DocumentManager.MdiActiveDocument.Database;
+      Serialization serialization = new Serialization();
+      //var insertBlockTable = new InsertBlockTable(db);
+      //insertBlockTable.ReadBlockTableRecord(db);
+
+      SendJson(serialization.SeriProp);
+    }
+
+    public void SendJson(IEnumerable<SerializationProperty> SeriProp)
+    {
+      JsonStringSerialize jsonWrite = new JsonStringSerialize();
+
+      foreach (var i in SeriProp)
+      {
+        jsonWrite.StringBuilderSerialize(i);
+      }
     }
   }
 }

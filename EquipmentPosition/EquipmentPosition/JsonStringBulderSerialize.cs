@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Text;
 
-namespace JsonFindKey
+namespace EquipmentPosition
 {
-  public class JsonStringBuilderSerialize
+  public class JsonStringSerialize
   {
-    public void StringBuilderSerialize(JsonStringBuilderProperty properties)
+    public void StringBuilderSerialize(SerializationProperty properties)
     {
       StringWriter sw = new StringWriter();
       JsonTextWriter writer = new JsonTextWriter(sw);

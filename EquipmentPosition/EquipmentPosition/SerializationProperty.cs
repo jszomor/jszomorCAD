@@ -1,11 +1,12 @@
-﻿using Newtonsoft.Json;
+﻿using Autodesk.AutoCAD.DatabaseServices;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace JsonFindKey
+namespace EquipmentPosition
 {
-  public class JsonStringBuilderProperty
+  public class SerializationProperty
   {
     //public JsonStringBuilderProperty(string blockName, string visibilityName, object visibilityValue)
     //{
@@ -14,7 +15,7 @@ namespace JsonFindKey
     //  BlockName = blockName;
     //}
 
-    public string PropName { get; set; }
+    public string Note { get; set; }
 
     public string LayerName { get; set; }
 
@@ -29,10 +30,10 @@ namespace JsonFindKey
 
     public double Rotation { get; set; }
 
-    [JsonProperty("Position X")]
+    [JsonProperty("Position TagX")]
     public double TagX { get; set; }
 
-    [JsonProperty("Position Y")]
+    [JsonProperty("Position TagY")]
     public double TagY { get; set; }
 
     [JsonProperty("Angle")]
@@ -49,7 +50,10 @@ namespace JsonFindKey
 
     [JsonProperty("Block Table1")]
     public string GetVisibilityName { get; set; }
-
     public object GetVisibilityValue { get; set; }
+
+    public IEnumerable<Action<AttributeReference>> ActionToExecuteOnAttRef { get; set; }
+    public IEnumerable<Action<DynamicBlockReferenceProperty>> ActionToExecuteOnDynPropAfter { get; set; }
+    public IEnumerable<Action<BlockReference>> ActionToExecuteOnBr { get; set; }
   }
 }
