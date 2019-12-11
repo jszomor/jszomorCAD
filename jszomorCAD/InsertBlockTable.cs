@@ -97,9 +97,6 @@ namespace jszomorCAD
         {
           using (var btr = tr.GetObject(btrId, OpenMode.ForRead, false) as BlockTableRecord)
           {
-            var jsonBlockProperty = new JsonBlockProperty();
-            jsonBlockProperty.Misc = new Misc(blockName: btr.Name, rotation: 0);
-
             // Only add named & non-layout blocks to the copy list
             if (!btr.IsAnonymous && !btr.IsLayout && btr.Name == blockName)
               blockIds.Add(btrId);
@@ -110,6 +107,32 @@ namespace jszomorCAD
       if (blockIds.Count > 1) throw new Exception($"More than one block record found with the name {blockName}");
 
       else if (blockIds.Count == 0) throw new Exception($"No block record found with the name {blockName}");
+
+      else return blockIds.First();
+    }
+
+    public ObjectId GetBlockTable2(SerializationProperty serializationProperty)
+    {
+      var blockIds = new List<ObjectId>();
+
+      using (var tr = _db.TransactionManager.StartTransaction())
+      {
+        var bt = _db.BlockTableId.GetObject<BlockTable>(OpenMode.ForRead);
+
+        foreach (var btrId in bt)
+        {
+          using (var btr = tr.GetObject(btrId, OpenMode.ForRead, false) as BlockTableRecord)
+          {
+            // Only add named & non-layout blocks to the copy list
+            if (!btr.IsAnonymous && !btr.IsLayout && btr.Name == serializationProperty.BlockName)
+              blockIds.Add(btrId);
+          }
+        }
+      }
+
+      if (blockIds.Count > 1) throw new Exception($"More than one block record found with the name {serializationProperty.BlockName}");
+
+      else if (blockIds.Count == 0) throw new Exception($"No block record found with the name {serializationProperty.BlockName}");
 
       else return blockIds.First();
     }
@@ -138,6 +161,29 @@ namespace jszomorCAD
             SetBlockRefenceAttributesValues(acBlkRef, insertBlock.ActionToExecuteOnAttRef);
             SetDynamicBlockReferenceValues(acBlkRef, insertBlock.ActionToExecuteOnDynPropAfter);
             SetHostName(acBlkRef, insertBlock.HostName);
+          }
+        }
+        tr.Commit();
+      }
+    }
+
+    private void ReadBlockInfo(ObjectId blockId, SerializationProperty serializationProperty)
+    {
+      JsonWrite2 jsonWrite2 = new JsonWrite2();
+
+      //var defultLayers = new LayerCreator();
+      using (var tr = _db.TransactionManager.StartTransaction())
+      {
+        var currentSpaceId = tr.GetObject(_db.CurrentSpaceId, OpenMode.ForWrite) as BlockTableRecord;
+
+        using (var blockDefinition = (BlockTableRecord)tr.GetObject(blockId, OpenMode.ForRead, false))
+        {
+          using (var acBlkRef = tr.GetObject(blockId, OpenMode.ForRead) as BlockReference)
+          {
+            SetVisibilityIndexForSeri(acBlkRef, serializationProperty);
+            SetBlockRefenceAttributesValues(acBlkRef, serializationProperty.ActionToExecuteOnAttRef);
+            SetDynamicBlockReferenceValues(acBlkRef, serializationProperty.ActionToExecuteOnDynPropAfter);
+            jsonWrite2.JsonSeri2(serializationProperty);
           }
         }
         tr.Commit();
@@ -247,6 +293,18 @@ namespace jszomorCAD
       }
     }
 
+    private void SetVisibilityIndexForSeri(BlockReference acBlkRef, SerializationProperty properties)
+    {
+      if (acBlkRef.IsDynamicBlock)
+      {
+        foreach (DynamicBlockReferenceProperty dbrProp in acBlkRef.DynamicBlockReferencePropertyCollection)
+        {
+          if (dbrProp.PropertyName == properties.VisibilityName)
+            properties.VisibilityValue = dbrProp.Value;          
+        }
+      }
+
+    }
     public bool InsertBlock(InsertBlockBase insertData)
     {
       // 1. which block to insert? insertData.BlockName
@@ -261,6 +319,20 @@ namespace jszomorCAD
         PlaceBlock(blockId, insertData, offsetX, offsetY);
         offsetX += insertData.OffsetX;
         offsetY += insertData.OffsetY;
+      }
+      return true;
+    }
+
+    public bool GetBlockInfo(SerializationProperty serializationProperty)
+    {
+      // 1. which block to insert? insertData.BlockName
+      // get the block to insert
+      var blockId = GetBlockTable2(serializationProperty);
+
+      // 2. insert block
+      for (var i = 0; i < 2; i++)
+      {
+        ReadBlockInfo(blockId, serializationProperty);
       }
       return true;
     }
@@ -295,8 +367,6 @@ namespace jszomorCAD
               {
                 foreach (DynamicBlockReferenceProperty dbrProp in blockReference.DynamicBlockReferencePropertyCollection)
                 {
-                  jsonBlockProperty.Custom = new Custom(tagX: 0, tagY: 0, tagAngle: 0, visibility1: dbrProp.PropertyName,
-                    visibility: null, flipState: "Not flipped", blockTableValue: dbrProp.Value, distance: 0, distance1: 0, pumpTableValue: dbrProp.Value);
                 }
               }
 
@@ -313,7 +383,7 @@ namespace jszomorCAD
       });
     }
 
-    public void ReadBlockTableRecord2(Database db)
+    public void ReadBtrForSeri(Database db)
     {
       ExecuteActionOnModelSpace(db, (tr, btrModelSpace) =>
       {
@@ -334,24 +404,15 @@ namespace jszomorCAD
               //}
               var jsonSeriSetup = new JsonSeriSetup();
 
-              if (blockReference.IsDynamicBlock)
-              {
-                //foreach (DynamicBlockReferenceProperty dbrProp in blockReference.DynamicBlockReferencePropertyCollection)
-                //{
+              //if (blockReference.IsDynamicBlock)
+              //{
                     jsonSeriSetup.JsonStringBuilderSetup(blockDefinition, blockReference);
-                  //var properties = new JsonStringBuilderProperty();
-                  //var stringBuilderSerialize = new JsonStringBuilderSerialize();
-
-                  //properties.VisibilityName = dbrProp.PropertyName;
-                  //properties.VisibilityValue = dbrProp.Value;
-                  //stringBuilderSerialize.StringBuilderSerialize(properties);
-
-                //}
-              }
+              //}
 
               foreach (ObjectId BlockObjectId in blockDefinition)
               {
                 var entity = tr.GetObject(BlockObjectId, OpenMode.ForWrite) as Autodesk.AutoCAD.DatabaseServices.Entity;
+
 
                 if (entity == null) continue;
 
@@ -361,70 +422,5 @@ namespace jszomorCAD
         }
       });
     }
-    //public void JsonStringBuilderSetup(BlockTableRecord blockDefinition, BlockReference blockReference)
-    //{
-
-    //  var properties = new JsonStringBuilderProperty(BlockName: );
-    //  var stringBuilderSerialize = new JsonStringBuilderSerialize();
-    //  foreach (DynamicBlockReferenceProperty dbrProp in blockReference.DynamicBlockReferencePropertyCollection)
-    //  {
-    //    if (!blockDefinition.IsAnonymous && !blockDefinition.IsLayout)
-    //    {
-    //      properties.BlockName = blockDefinition.Name;
-    //    }
-
-    //    if (dbrProp.PropertyName == "Position X")
-    //    {
-    //      properties.TagX = Convert.ToDouble(dbrProp.Value);
-    //    }
-
-    //    if (dbrProp.PropertyName == "Position Y")
-    //    {
-    //      properties.TagY = Convert.ToDouble(dbrProp.Value);
-    //    }
-
-    //    string[] blockNameArray = new string[] { "pump", "chamber", "mixer", "valve", "blower" };
-    //    string[] visArray = new string[] { "Centrifugal Pump", "Visibility", "Block Table1" };
-
-    //    foreach (var i in visArray)
-    //    {
-    //      if (properties.BlockName == blockNameArray[0] && dbrProp.PropertyName == visArray[0])
-    //      {
-    //        properties.VisibilityName = dbrProp.PropertyName;
-    //        properties.VisibilityValue = dbrProp.Value;
-    //        break;
-    //      }
-    //      else if (properties.BlockName == blockNameArray[1] && dbrProp.PropertyName == visArray[1])
-    //      {
-    //        properties.VisibilityName = dbrProp.PropertyName;
-    //        properties.VisibilityValue = dbrProp.Value;
-    //        break;
-    //      }
-    //      else if (properties.BlockName == blockNameArray[2] && dbrProp.PropertyName == visArray[2])
-    //      {
-    //        properties.VisibilityName = dbrProp.PropertyName;
-    //        properties.VisibilityValue = dbrProp.Value;
-    //        break;
-    //      }
-    //      else if (properties.BlockName == blockNameArray[3] && dbrProp.PropertyName == visArray[2])
-    //      {
-    //        properties.VisibilityName = dbrProp.PropertyName;
-    //        properties.VisibilityValue = dbrProp.Value;
-    //        break;
-    //      }
-    //      else if (properties.BlockName == blockNameArray[4] && dbrProp.PropertyName == visArray[2])
-    //      {
-    //        properties.VisibilityName = dbrProp.PropertyName;
-    //        properties.VisibilityValue = dbrProp.Value;
-    //        break;
-    //      }
-    //      else
-    //        continue;
-    //    }
-    //  }
-
-    //  if(properties != null)
-    //  stringBuilderSerialize.StringBuilderSerialize(properties);
-    //}    
   }
 }

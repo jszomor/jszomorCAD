@@ -14,42 +14,24 @@ namespace JsonFindKey
     //  BlockName = blockName;
     //}
 
-    public string PropName { get; set; }
-
     public string LayerName { get; set; }
-
-    [JsonProperty("Name")]
     public string BlockName { get; set; }
-
-    [JsonProperty("Position X")]
     public object BlockX { get; set; }
-
-    [JsonProperty("Position Y")]
-    public double BlockY { get; set; }
-
-    public double Rotation { get; set; }
-
-    [JsonProperty("Position X")]
-    public double TagX { get; set; }
-
-    [JsonProperty("Position Y")]
-    public double TagY { get; set; }
-
-    [JsonProperty("Angle")]
-    public double TagAngle { get; set; }
-
-    [JsonProperty("Visibility1")]
+    public object BlockY { get; set; }
+    public object Rotation { get; set; }
+    public object TagX { get; set; }
+    public object TagY { get; set; }
+    public object Angle { get; set; }
+    public object Angle1 { get; set; }
+    public object Angle2 { get; set; }
+    public object Distance { get; set; }
+    public object Distance1 { get; set; }
+    public object Distance2 { get; set; }
+    public object Distance3 { get; set; }
+    public object Distance4 { get; set; }
+    public object Distance5 { get; set; }
     public object VisibilityValue { get; set; }
-
-    [JsonProperty("Visibility")]
     public string VisibilityName { get; set; }
-
-    [JsonProperty("Flip state1")]
-    public string FlipState { get; set; }
-
-    [JsonProperty("Block Table1")]
-    public string GetVisibilityName { get; set; }
-
-    public object GetVisibilityValue { get; set; }
+    public object FlipState { get; set; }
   }
 }

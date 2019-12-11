@@ -9,7 +9,7 @@ namespace JsonFindKey
 {
   public class JsonWrite
   {
-    public void JsonSeri(JsonStringBuilderProperty jsonBlockProperty)
+    public void JsonSeri(JsonBlockProperty jsonBlockProperty)
     {
       string fileJson = @"\fileJson.json";
       string dirPath = @"C:\Users\jszomor\Google Drive\Programozas\Practice"; //work

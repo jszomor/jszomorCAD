@@ -97,7 +97,6 @@
   <ItemGroup>
     <Compile Include="DegreeHelper.cs" />
     <Compile Include="JsonSerializer.cs" />
-    <Compile Include="JsonStringBulderSerialize.cs" />
     <Compile Include="SerializationBase.cs" />
     <Compile Include="SerializationProperty.cs" />
     <Compile Include="Serialization.cs" />

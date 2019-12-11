@@ -263,7 +263,6 @@ namespace jszomorCAD
 
       #endregion
 
-
     }
 
     public void DrawBlocks(Database db, IEnumerable<InsertBlockBase> blocks)
@@ -375,29 +374,31 @@ namespace jszomorCAD
     {
       var db = Application.DocumentManager.MdiActiveDocument.Database;
       //var insertBlockTable = new InsertBlockTable(db);
-      //insertBlockTable.ReadBlockTableRecord2(db);
+      //insertBlockTable.ReadBtrForSeri(db);
       var insertBlockTable = new InsertBlockTable(db);
-      insertBlockTable.ReadBlockTableRecord2(db);
+      insertBlockTable.ReadBtrForSeri(db);
     }
 
     [CommandMethod("JCAD_SerializeBlock", CommandFlags.Modal)]
     public void SerializeBlock()
     {
       var db = Application.DocumentManager.MdiActiveDocument.Database;
-      Serialization serialization = new Serialization();
+      //Serialization serialization = new Serialization();
       //var insertBlockTable = new InsertBlockTable(db);
       //insertBlockTable.ReadBlockTableRecord(db);
 
-      SendJson(serialization.SeriProp);
+      //SendJson(db, serialization.SeriProp);
+      var insertBlockTable = new InsertBlockTable(db);
+      insertBlockTable.ReadBtrForSeri(db);
     }
 
-    public void SendJson(IEnumerable<SerializationProperty> SeriProp)
+    public void SendJson(Database db, IEnumerable<SerializationProperty> SeriProp)
     {
-      JsonStringSerialize jsonWrite = new JsonStringSerialize();
+      var insertBlockTable = new InsertBlockTable(db);
 
       foreach (var i in SeriProp)
       {
-        jsonWrite.StringBuilderSerialize(i);
+        insertBlockTable.GetBlockInfo(i);
       }
     }
   }

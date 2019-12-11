@@ -8,12 +8,12 @@ namespace EquipmentPosition
 {
   public class SerializationProperty
   {
-    //public JsonStringBuilderProperty(string blockName, string visibilityName, object visibilityValue)
-    //{
-    //  VisibilityName = visibilityName;
-    //  VisibilityValue = visibilityValue;
-    //  BlockName = blockName;
-    //}
+    public SerializationProperty(string blockName, string visibilityName)
+    {
+      BlockName = blockName;
+      VisibilityName = visibilityName;
+    }
+
 
     public string Note { get; set; }
 
