@@ -14,6 +14,7 @@ namespace JsonFindKey
     //  BlockName = blockName;
     //}
 
+      [JsonProperty(NullValueHandling = NullValueHandling.Ignore, DefaultValueHandling = DefaultValueHandling.Ignore)]
     public string LayerName { get; set; }
     public string BlockName { get; set; }
     public object BlockX { get; set; }

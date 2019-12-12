@@ -360,7 +360,7 @@ namespace jszomorCAD
               var jsonBlockProperty = new JsonBlockProperty();
               if (!blockDefinition.IsAnonymous && !blockDefinition.IsLayout)
               {
-                jsonBlockProperty.Misc = new Misc(blockName: blockDefinition.Name, rotation: 0);
+                //jsonBlockProperty.Misc = new Misc(blockName: blockDefinition.Name, rotation: 0);
               }
 
               if (blockReference.IsDynamicBlock)
@@ -387,6 +387,8 @@ namespace jszomorCAD
     {
       ExecuteActionOnModelSpace(db, (tr, btrModelSpace) =>
       {
+        var entitiesToSerialize = new List<JsonBlockProperty>();
+
         foreach (ObjectId objectId in btrModelSpace)
         {
           using (var blockReference = tr.GetObject(objectId, OpenMode.ForRead) as BlockReference)
@@ -396,23 +398,16 @@ namespace jszomorCAD
             var btrObjectId = blockReference.DynamicBlockTableRecord; //must be Dynamic to find every blocks
             using (var blockDefinition = btrObjectId.GetObject(OpenMode.ForRead) as BlockTableRecord)
             {
-              //System.Diagnostics.Debug.Print(blockDefinition.Name);
+              var JsonBlockSetup = new JsonBlockSetup();
+              var serializationAttributeSetup = new SerializationAttributeSetup();
 
-              //if (blockDefinition.Name == "RefPIDDenit$0$reactor")
-              //{
-              //  System.Diagnostics.Debug.Print("STOP! Hammertime!");
-              //}
-              var jsonSeriSetup = new JsonSeriSetup();
+              entitiesToSerialize.Add(JsonBlockSetup.JsonStringBuilderSetup(blockDefinition, blockReference));
+              entitiesToSerialize.Add(serializationAttributeSetup.SetupAttributes(tr, blockReference));
 
-              //if (blockReference.IsDynamicBlock)
-              //{
-                    jsonSeriSetup.JsonStringBuilderSetup(blockDefinition, blockReference);
-              //}
 
               foreach (ObjectId BlockObjectId in blockDefinition)
               {
                 var entity = tr.GetObject(BlockObjectId, OpenMode.ForWrite) as Autodesk.AutoCAD.DatabaseServices.Entity;
-
 
                 if (entity == null) continue;
 
@@ -420,6 +415,8 @@ namespace jszomorCAD
             }
           }
         }
+        var seralizer = new JsonStringBuilderSerialize();
+        seralizer.StringBuilderSerialize(entitiesToSerialize);
       });
     }
   }

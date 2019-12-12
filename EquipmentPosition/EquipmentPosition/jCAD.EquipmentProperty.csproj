@@ -97,6 +97,7 @@
   <ItemGroup>
     <Compile Include="DegreeHelper.cs" />
     <Compile Include="JsonSerializer.cs" />
+    <Compile Include="SerializationAttributeSetup.cs" />
     <Compile Include="SerializationBase.cs" />
     <Compile Include="SerializationProperty.cs" />
     <Compile Include="Serialization.cs" />
@@ -105,7 +106,7 @@
     <Compile Include="EquipmentPositioner.cs" />
     <Compile Include="EquipmentSelector.cs" />
     <Compile Include="InsertBlockProperty.cs" />
-    <Compile Include="StringBuilderSetup.cs" />
+    <Compile Include="SerializationBlockSetup.cs" />
     <Compile Include="PositionProperty.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SelectorProperty.cs" />
