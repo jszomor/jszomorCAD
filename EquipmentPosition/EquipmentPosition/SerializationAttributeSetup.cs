@@ -120,20 +120,20 @@ namespace EquipmentPosition
 
         #endregion
 
-        if (attRef.Tag == "TAG") { jsonProperty.Attributes.Note = attRef.TextString; continue; }
-        if (attRef.Tag == "AREA_CODE") { jsonProperty.Attributes.Note = attRef.TextString; continue; }
-        if (attRef.Tag == "MANUFACTURER") { jsonProperty.Attributes.Note = attRef.TextString; continue; }
-        if (attRef.Tag == "MODEL") { jsonProperty.Attributes.Note = attRef.TextString; continue; }
-        if (attRef.Tag == "INSTALLED_POWER") { jsonProperty.Attributes.Note = attRef.TextString; continue; }
-        if (attRef.Tag == "MATERIAL_COVER") { jsonProperty.Attributes.Note = attRef.TextString; continue; }
-        if (attRef.Tag == "CHANNELWIDTH") { jsonProperty.Attributes.Note = attRef.TextString; continue; }
-        if (attRef.Tag == "SP_FLOW") { jsonProperty.Attributes.Note = attRef.TextString; continue; }
-        if (attRef.Tag == "SP_SPACING") { jsonProperty.Attributes.Note = attRef.TextString; continue; }
-        if (attRef.Tag == "RUNNINGHOURS") { jsonProperty.Attributes.Note = attRef.TextString; continue; }
-        if (attRef.Tag == "EQUIP_TYPE") { jsonProperty.Attributes.Note = attRef.TextString; continue; }
+        if (attRef.Tag == "TAG") { jsonProperty.Attributes.Tag = attRef.TextString; continue; }
+        if (attRef.Tag == "AREA_CODE") { jsonProperty.Attributes.AREA_CODE = attRef.TextString; continue; }
+        if (attRef.Tag == "MANUFACTURER") { jsonProperty.Attributes.MANUFACTURER = attRef.TextString; continue; }
+        if (attRef.Tag == "MODEL") { jsonProperty.Attributes.MODEL = attRef.TextString; continue; }
+        if (attRef.Tag == "INSTALLED_POWER") { jsonProperty.Attributes.INSTALLED_POWER = attRef.TextString; continue; }
+        if (attRef.Tag == "MATERIAL_COVER") { jsonProperty.Attributes.MATERIAL_COVER = attRef.TextString; continue; }
+        if (attRef.Tag == "CHANNELWIDTH") { jsonProperty.Attributes.CHANNELWIDTH = attRef.TextString; continue; }
+        if (attRef.Tag == "SP_FLOW") { jsonProperty.Attributes.NoSP_FLOWte = attRef.TextString; continue; }
+        if (attRef.Tag == "SP_SPACING") { jsonProperty.Attributes.SP_SPACING = attRef.TextString; continue; }
+        if (attRef.Tag == "RUNNINGHOURS") { jsonProperty.Attributes.RUNNINGHOURS = attRef.TextString; continue; }
+        if (attRef.Tag == "EQUIP_TYPE") { jsonProperty.Attributes.EQUIP_TYPE = attRef.TextString; continue; }
         if (attRef.Tag == "NOTE") { jsonProperty.Attributes.Note = attRef.TextString; continue; }
-        if (attRef.Tag == "NOTE_CHINESE") { jsonProperty.Attributes.Note = attRef.TextString; continue; }
-        if (attRef.Tag == "MATERIAL_BARS") { jsonProperty.Attributes.Note = attRef.TextString; continue; }
+        if (attRef.Tag == "NOTE_CHINESE") { jsonProperty.Attributes.NOTE_CHINESE = attRef.TextString; continue; }
+        if (attRef.Tag == "MATERIAL_BARS") { jsonProperty.Attributes.MATERIAL_BARS = attRef.TextString; continue; }
         if (attRef.Tag == "MATERIAL_FIXED") { jsonProperty.Attributes.Note = attRef.TextString; continue; }
         if (attRef.Tag == "MATERIAL_FRAME") { jsonProperty.Attributes.Note = attRef.TextString; continue; }
         if (attRef.Tag == "CONSUMED_POWER") { jsonProperty.Attributes.Note = attRef.TextString; continue; }
