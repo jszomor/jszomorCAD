@@ -7,6 +7,9 @@ namespace JsonParse
 {
   public class JsonBlockProperty
   {
+    [JsonProperty("ObjectId")]
+    public object NextEquipment;
+
     public Geometry Geometry { get; } = new Geometry();
 
     public Misc Misc { get; } = new Misc();
@@ -76,8 +79,20 @@ namespace JsonParse
     [JsonProperty("HOSTNAME")]
     public string HostName { get; set; }
 
+    [JsonProperty("NAME1")]
+    public string Name1 { get; set; }
+
+    [JsonProperty("NAME2")]
+    public string Name2 { get; set; }
+
     [JsonProperty("NOTE")]
     public string Note { get; set; }
+
+    [JsonProperty("EQUIP_TYPE")]
+    public string EquipType { get; set; }
+
+    [JsonProperty("BLOWER_TYPE")]
+    public string BlowerType { get; set; }
 
     [JsonProperty("MANUFACTURER")]
     public string Manufacturer { get; set; }
@@ -86,16 +101,91 @@ namespace JsonParse
     public string Model { get; set; }
 
     [JsonProperty("CONSUMED_POWER")]
-    public double? ConsumedPower { get; set; }
+    public string ConsumedPower { get; set; }
+
+    [JsonProperty("POWER_CONSUMED")]
+    public string PowerConsumed { get; set; }
+
+    [JsonProperty("INSTALLED_POWER")]
+    public string InstalledPower { get; set; }
+
+    [JsonProperty("POWER_INSTALLED")]
+    public string PowerInstalled { get; set; }
 
     [JsonProperty("MATERIAL_HOUSING")]
     public string MaterialHousing { get; set; }
 
+    [JsonProperty("MATERIAL_BARS")]
+    public string MaterialBars { get; set; }
+
+    [JsonProperty("MATERIAL_FIXED")]
+    public string MaterialFixed { get; set; }
+
+    [JsonProperty("MATERIAL_FRAME")]
+    public string MaterialFrame { get; set; }
+
+    [JsonProperty("MATERIAL")]
+    public string Material { get; set; }
+
+    [JsonProperty("MATERIAL_IMPELLER")]
+    public string MaterialImpeller { get; set; }
+
+    [JsonProperty("MATERIAL_CARPENTRY")]
+    public string MaterialCarpentry { get; set; }
+
+    [JsonProperty("MATERIAL_SCREW_LINER")]
+    public string MaterialScrewLiner { get; set; }
+
+    [JsonProperty("MATERIAL_BODY")]
+    public string MaterialBody { get; set; }
+
+    [JsonProperty("MATERIAL_GEAR")]
+    public string MaterialGear { get; set; }
+
+    [JsonProperty("MATERIAL_SHAFT")]
+    public string MaterialShaft { get; set; }
+
+    [JsonProperty("MATERIAL_ROTOR")]
+    public string MaterialRotor { get; set; }
+
+    [JsonProperty("MATERIAL_SUBSURFACE")]
+    public string MaterialSubsurface { get; set; }
+
+    [JsonProperty("MATERIAL_ABOVE_WATER")]
+    public string MaterialAboveWater { get; set; }
+
+    [JsonProperty("SIZE")]
+    public string Size { get; set; }
+
     [JsonProperty("SP_HEAD")]
-    public double? SpHead { get; set; }
+    public string SpHead { get; set; }
+
+    [JsonProperty("SP_ACTUATED")]
+    public string SpActuated { get; set; }
 
     [JsonProperty("SP_CAPACITY")]
-    public double? SpCapacity { get; set; }
+    public string SpCapacity { get; set; }
+
+    [JsonProperty("SP_TSS_INLET")]
+    public string SpTssInlet { get; set; }
+
+    [JsonProperty("SP_TSS_OUTLET")]
+    public string SpTssOutlet { get; set; }
+
+    [JsonProperty("SP_VOLUME")]
+    public string SpVolume { get; set; }
+
+    [JsonProperty("SP_FLOW")]
+    public string SpFlow { get; set; }
+
+    [JsonProperty("SP_SPACING")]
+    public string SpSpacing { get; set; }
+
+    [JsonProperty("SP_DIAMETER")]
+    public string SpDiameter { get; set; }
+
+    [JsonProperty("SP_PRESSURE")]
+    public string SpPressure { get; set; }
 
     [JsonProperty("INSTALLATION")]
     public string Installation { get; set; }
@@ -104,47 +194,100 @@ namespace JsonParse
     public string Tag { get; set; }
 
     [JsonProperty("RUNNINGHOURS")]
-    public double? RunninigHours { get; set; }
-
-    [JsonProperty("INSTALLED_POWER")]
-    public double? InstalledPower { get; set; }
+    public string RunningHours { get; set; }
 
     [JsonProperty("PUMP_TYPE")]
     public string PumpType { get; set; }
 
-    [JsonProperty("MATERIAL_IMPELLER")]
-    public string MaterialImpeller { get; set; }
+    [JsonProperty("FILTER")]
+    public string Filter { get; set; }
 
     [JsonProperty("NOTE_CHINESE")]
     public string NoteChinese { get; set; }
 
     [JsonProperty("STB_DTY")]
-    public double StandByDuty { get; set; }
+    public string StandByDuty { get; set; }
 
     [JsonProperty("AREA_CODE")]
-    public double AreaCode { get; set; }
+    public string AreaCode { get; set; }
 
-    public double DI_ { get; set; }
+    [JsonProperty("DI")]
+    public string DI { get; set; }
 
-    public double PO_ { get; set; }
+    [JsonProperty("DO")]
+    public string DO { get; set; }
+
+    [JsonProperty("AI")]
+    public string AI { get; set; }
+
+    [JsonProperty("AO")]
+    public string AO { get; set; }
+
+    [JsonProperty("PB")]
+    public string PB { get; set; }
+
+    [JsonProperty("PO")]
+    public string PO { get; set; }
+
+    [JsonProperty("FC_MOD")]
+    public string FcMod { get; set; }
+
+    [JsonProperty("FC_MAN")]
+    public string FcMan { get; set; }
 
     [JsonProperty("TAG_ID")]
     public string TagId { get; set; }
 
     [JsonProperty("UNIT_HEAD")]
-    public double UnitHead { get; set; }
+    public string UnitHead { get; set; }
 
     [JsonProperty("UNIT_CAPACITY")]
-    public double UnitCapacity { get; set; }
+    public string UnitCapacity { get; set; }
+
+    [JsonProperty("UNIT_SPACING")]
+    public string UnitSpacing { get; set; }
+
+    [JsonProperty("UNIT_FLOW")]
+    public string UnitFlow { get; set; }
+
+    [JsonProperty("UNIT_TSS_INLET")]
+    public string UnitTssInlet { get; set; }
+
+    [JsonProperty("UNIT_TSS_OUTLET")]
+    public string UnitTssOutlet { get; set; }
+
+    [JsonProperty("UNIT_DIAMETER")]
+    public string UnitDiameter { get; set; }
+
+    [JsonProperty("UNIT_PRESSURE")]
+    public string UnitPressure { get; set; }
 
     [JsonProperty("PROCESSUNITAREA")]
-    public double ProcessUnitArea { get; set; }
+    public string ProcessUnitArea { get; set; }
 
-    [JsonProperty("EQUIP_TYPE")]
-    public string EquipmentType { get; set; }
+    [JsonProperty("VOLUME")]
+    public string Volume { get; set; }
 
-    [JsonProperty("SP_VOLUME")]
-    public double? SpVolume { get; set; }
+    [JsonProperty("PRESSURE")]
+    public string Pressure { get; set; }
+
+    [JsonProperty("MATERIAL_COVER")]
+    public string MaterialCover { get; set; }
+
+    [JsonProperty("CHANNELWIDTH")]
+    public string ChannelWidth { get; set; }
+
+    [JsonProperty("WIDTH")]
+    public string Width { get; set; }
+
+    [JsonProperty("LIQUIDLEVEL")]
+    public string LiquidLevel { get; set; }
+
+    [JsonProperty("LENGTH")]
+    public string Length { get; set; }
+
+    [JsonProperty("HEIGHT")]
+    public string Height { get; set; }
   }
 
 }

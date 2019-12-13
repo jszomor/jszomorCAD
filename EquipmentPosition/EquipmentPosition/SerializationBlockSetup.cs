@@ -12,8 +12,13 @@ namespace EquipmentPosition
 {
   public class JsonBlockSetup
   {
-    public JsonBlockProperty SetupBlockProperty (BlockTableRecord btr, BlockReference blockReference, JsonBlockProperty jsonProperty)
+    public JsonBlockProperty SetupBlockProperty (BlockTableRecord btr, Transaction tr,  BlockReference blockReference, JsonBlockProperty jsonProperty)
     {
+      jsonProperty.NextEquipment = blockReference.ObjectId;
+
+      var setupAttributeProperty = new SerializationAttributeSetup();
+      setupAttributeProperty.SetupAttributeProperty(tr, blockReference, jsonProperty);
+
       if (!btr.IsAnonymous && !btr.IsLayout)
       jsonProperty.Misc.BlockName = btr.Name;
 
@@ -26,16 +31,16 @@ namespace EquipmentPosition
       foreach (DynamicBlockReferenceProperty dbrProp in blockReference.DynamicBlockReferencePropertyCollection)
       {
         if (dbrProp.PropertyName == "Position X") { jsonProperty.Custom.TagX = DoubleConverter(dbrProp.Value); continue; }
-        if (dbrProp.PropertyName == "Position Y") { jsonProperty.Custom.TagY = DoubleConverter(dbrProp.Value); }
-        if (dbrProp.PropertyName == "Angle") { jsonProperty.Custom.Angle = DoubleConverter(dbrProp.Value); }
-        if (dbrProp.PropertyName == "Angle1") { jsonProperty.Custom.Angle1 = DoubleConverter(dbrProp.Value); }
-        if (dbrProp.PropertyName == "Angle2") { jsonProperty.Custom.Angle2 = DoubleConverter(dbrProp.Value); }
-        if (dbrProp.PropertyName == "Distance") { jsonProperty.Custom.Distance = DoubleConverter(dbrProp.Value); }
-        if (dbrProp.PropertyName == "Distance1") { jsonProperty.Custom.Distance1 = DoubleConverter(dbrProp.Value); }
-        if (dbrProp.PropertyName == "Distance2") { jsonProperty.Custom.Distance2 = DoubleConverter(dbrProp.Value); }
-        if (dbrProp.PropertyName == "Distance3") { jsonProperty.Custom.Distance3 = DoubleConverter(dbrProp.Value); }
-        if (dbrProp.PropertyName == "Distance4") { jsonProperty.Custom.Distance4 = DoubleConverter(dbrProp.Value); }
-        if (dbrProp.PropertyName == "Distance5") { jsonProperty.Custom.Distance5 = DoubleConverter(dbrProp.Value); }
+        if (dbrProp.PropertyName == "Position Y") { jsonProperty.Custom.TagY = DoubleConverter(dbrProp.Value); continue; }
+        if (dbrProp.PropertyName == "Angle") { jsonProperty.Custom.Angle = DoubleConverter(dbrProp.Value); continue; }
+        if (dbrProp.PropertyName == "Angle1") { jsonProperty.Custom.Angle1 = DoubleConverter(dbrProp.Value); continue; }
+        if (dbrProp.PropertyName == "Angle2") { jsonProperty.Custom.Angle2 = DoubleConverter(dbrProp.Value); continue; }
+        if (dbrProp.PropertyName == "Distance") { jsonProperty.Custom.Distance = DoubleConverter(dbrProp.Value); continue; }
+        if (dbrProp.PropertyName == "Distance1") { jsonProperty.Custom.Distance1 = DoubleConverter(dbrProp.Value); continue; }
+        if (dbrProp.PropertyName == "Distance2") { jsonProperty.Custom.Distance2 = DoubleConverter(dbrProp.Value); continue; }
+        if (dbrProp.PropertyName == "Distance3") { jsonProperty.Custom.Distance3 = DoubleConverter(dbrProp.Value); continue; }
+        if (dbrProp.PropertyName == "Distance4") { jsonProperty.Custom.Distance4 = DoubleConverter(dbrProp.Value); continue; }
+        if (dbrProp.PropertyName == "Distance5") { jsonProperty.Custom.Distance5 = DoubleConverter(dbrProp.Value); continue; }
         if (dbrProp.PropertyName == "Flip state") { jsonProperty.Custom.FlipState = DoubleConverter(dbrProp.Value); }
 
         if (dbrProp.PropertyName == "Centrifugal Pump")

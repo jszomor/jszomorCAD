@@ -26,7 +26,7 @@ namespace JsonFindKey
           serializer.Serialize(writer, properties);
         }
       }
-      return;;
+      return;
     }
   }
 }

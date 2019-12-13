@@ -405,8 +405,8 @@ namespace jszomorCAD
 
               var jsonProperty = new JsonBlockProperty();
 
-              entitiesToSerialize.Add(JsonBlockSetup.SetupBlockProperty(blockDefinition, blockReference, jsonProperty));
-              entitiesToSerialize.Add(serializationAttributeSetup.SetupAttributeProperty(tr, blockReference, jsonProperty));
+              entitiesToSerialize.Add(JsonBlockSetup.SetupBlockProperty(blockDefinition, tr, blockReference, jsonProperty));
+              //entitiesToSerialize.Add(serializationAttributeSetup.SetupAttributeProperty(tr, blockReference, jsonProperty));
             }
           }
         }
