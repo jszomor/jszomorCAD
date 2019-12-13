@@ -41,16 +41,22 @@ namespace EquipmentPosition
         if (dbrProp.PropertyName == "Distance3") { jsonProperty.Custom.Distance3 = DoubleConverter(dbrProp.Value); continue; }
         if (dbrProp.PropertyName == "Distance4") { jsonProperty.Custom.Distance4 = DoubleConverter(dbrProp.Value); continue; }
         if (dbrProp.PropertyName == "Distance5") { jsonProperty.Custom.Distance5 = DoubleConverter(dbrProp.Value); continue; }
-        if (dbrProp.PropertyName == "Flip state") { jsonProperty.Custom.FlipState = DoubleConverter(dbrProp.Value); }
+        if (dbrProp.PropertyName == "Flip state") { jsonProperty.Custom.FlipState = DoubleConverter(dbrProp.Value); continue; }
+
+        //if (dbrProp.PropertyName == "Visibility1") { jsonProperty.Custom.Visibility1 = DoubleConverter(dbrProp.Value); continue; }
+        //if (dbrProp.PropertyName == "Centrifugal Pump") { jsonProperty.Custom.PumpTableValue = DoubleConverter(dbrProp.Value); continue; }
+        //if (jsonProperty.Misc.BlockName == "chamber" && dbrProp.PropertyName == "Visibility") 
+        //{ jsonProperty.Custom.VisibilityValue = DoubleConverter(dbrProp.Value); continue; }
+        //if (dbrProp.PropertyName == "Block Table1") { jsonProperty.Custom.BlockTableValue = DoubleConverter(dbrProp.Value); continue; }
 
         if (dbrProp.PropertyName == "Centrifugal Pump")
-          jsonProperty.Custom.PumpTableValue = dbrProp.Value;        
+          jsonProperty.Custom.PumpTableValue = dbrProp.Value;
 
-        else if (jsonProperty.Misc.BlockName == "chamber" && dbrProp.PropertyName == "Visibility")        
-          jsonProperty.Custom.VisibilityValue = dbrProp.Value;        
+        else if (jsonProperty.Misc.BlockName == "chamber" && dbrProp.PropertyName == "Visibility")
+          jsonProperty.Custom.VisibilityValue = dbrProp.Value;
 
-        else if (dbrProp.PropertyName == "Block Table1")        
-          jsonProperty.Custom.BlockTableValue = dbrProp.Value;        
+        else if (dbrProp.PropertyName == "Block Table1")
+          jsonProperty.Custom.BlockTableValue = dbrProp.Value;
       }
       return jsonProperty;
     }

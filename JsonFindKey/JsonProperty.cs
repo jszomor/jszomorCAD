@@ -67,6 +67,9 @@ namespace JsonParse
     [JsonProperty("Centrifugal Pump")]
     public object PumpTableValue { get; set; }
 
+    [JsonProperty("Visibility1")]
+    public object Visibility1 { get; set; }
+
     public double? Distance { get; set; }
     public double? Distance1 { get; set; }
     public double? Distance2 { get; set; }
@@ -87,6 +90,9 @@ namespace JsonParse
 
     [JsonProperty("NOTE")]
     public string Note { get; set; }
+
+    [JsonProperty("TYP")]
+    public string Typ { get; set; }
 
     [JsonProperty("EQUIP_TYPE")]
     public string EquipType { get; set; }
@@ -111,6 +117,12 @@ namespace JsonParse
 
     [JsonProperty("POWER_INSTALLED")]
     public string PowerInstalled { get; set; }
+
+    [JsonProperty("POWER")]
+    public string Power { get; set; }
+
+    [JsonProperty("INSTALLATION")]
+    public string Installation { get; set; }
 
     [JsonProperty("MATERIAL_HOUSING")]
     public string MaterialHousing { get; set; }
@@ -154,6 +166,18 @@ namespace JsonParse
     [JsonProperty("MATERIAL_ABOVE_WATER")]
     public string MaterialAboveWater { get; set; }
 
+    [JsonProperty("MATERIAL_ABOVE")]
+    public string MaterialAbove { get; set; }
+
+    [JsonProperty("MATERIAL_SEALING")]
+    public string MaterialSealing { get; set; }
+
+    [JsonProperty("MATERIAL_STEM")]
+    public string MaterialStem { get; set; }
+
+    [JsonProperty("MATERIAL_BLADE")]
+    public string MaterialBlade { get; set; }
+
     [JsonProperty("SIZE")]
     public string Size { get; set; }
 
@@ -178,6 +202,9 @@ namespace JsonParse
     [JsonProperty("SP_FLOW")]
     public string SpFlow { get; set; }
 
+    [JsonProperty("FLOW")]
+    public string Flow { get; set; }
+
     [JsonProperty("SP_SPACING")]
     public string SpSpacing { get; set; }
 
@@ -187,14 +214,149 @@ namespace JsonParse
     [JsonProperty("SP_PRESSURE")]
     public string SpPressure { get; set; }
 
-    [JsonProperty("INSTALLATION")]
-    public string Installation { get; set; }
+    [JsonProperty("SP_WIDTH")]
+    public string SpWidth { get; set; }
+
+    [JsonProperty("SP_LEVEL")]
+    public string SpLevel { get; set; }
+
+    [JsonProperty("SP_BOARD")]
+    public string SpBoard { get; set; }
+
+    [JsonProperty("SP_LENGTH")]
+    public string SpLength { get; set; }
+
+    [JsonProperty("SP_INLET")]
+    public string SpInlet { get; set; }
+
+    [JsonProperty("SP_OUTLET")]
+    public string SpOutlet { get; set; }
+
+    [JsonProperty("SP_CHANNELH")]
+    public string SpChannelH { get; set; }
+
+    [JsonProperty("SP_CHANNELW")]
+    public string SpChannelW { get; set; }
+
+    [JsonProperty("SP_CLARIFIER_DIA")]
+    public string SpClarifierDia { get; set; }
+
+    [JsonProperty("SP_OPERATION_LEVEL")]
+    public string SpOperationLevel { get; set; }
+
+    [JsonProperty("SP_FREE_BOARD")]
+    public string SpFreeboard { get; set; }
+
+    [JsonProperty("SP_TANKW")]
+    public string SpTankW { get; set; }
+
+    [JsonProperty("SP_TANKL")]
+    public string SpTankL { get; set; }
+
+    [JsonProperty("SP_TANKD")]
+    public string SpTankD { get; set; }
+
+    [JsonProperty("SP_TANKV")]
+    public string SpTankV { get; set; }
+
+    [JsonProperty("SP_WATER_LEVEL")]
+    public string SpWaterLevel { get; set; }
+
+    [JsonProperty("SP_FLOWMAX")]
+    public string SpFlowMax { get; set; }
+
+    [JsonProperty("SP_FLOWMIN")]
+    public string SpFlowMin { get; set; }
+
+    [JsonProperty("SP_FLUID")]
+    public string SpFluid { get; set; }
+
+    [JsonProperty("UNIT_HEAD")]
+    public string UnitHead { get; set; }
+
+    [JsonProperty("UNIT_CAPACITY")]
+    public string UnitCapacity { get; set; }
+
+    [JsonProperty("UNIT_SPACING")]
+    public string UnitSpacing { get; set; }
+
+    [JsonProperty("UNIT_FLOW")]
+    public string UnitFlow { get; set; }
+
+    [JsonProperty("UNIT_TSS_INLET")]
+    public string UnitTssInlet { get; set; }
+
+    [JsonProperty("UNIT_TSS_OUTLET")]
+    public string UnitTssOutlet { get; set; }
+
+    [JsonProperty("UNIT_DIAMETER")]
+    public string UnitDiameter { get; set; }
+
+    [JsonProperty("UNIT_PRESSURE")]
+    public string UnitPressure { get; set; }
+
+    [JsonProperty("UNIT_WIDTH")]
+    public string UnitWidth { get; set; }
+
+    [JsonProperty("UNIT_LEVEL")]
+    public string UnitLevel { get; set; }
+
+    [JsonProperty("UNIT_BOARD")]
+    public string UnitBoard { get; set; }
+
+    [JsonProperty("UNIT_LENGTH")]
+    public string UnitLength { get; set; }
+
+    [JsonProperty("UNIT_INLET")]
+    public string UnitInlet { get; set; }
+
+    [JsonProperty("UNIT_OUTLET")]
+    public string UnitOutlet { get; set; }
+
+    [JsonProperty("UNIT_CHANNELW")]
+    public string UnitChannelW { get; set; }
+
+    [JsonProperty("UNIT_CHANNELH")]
+    public string UnitChannelH { get; set; }
+
+    [JsonProperty("UNIT_WATER_LEVEL")]
+    public string UnitWaterLevel { get; set; }
+
+    [JsonProperty("UNIT_FLOWMAX")]
+    public string UnitFlowMax { get; set; }
+
+    [JsonProperty("UNIT_FLOWMIN")]
+    public string UnitFlowMin { get; set; }
+
+    [JsonProperty("UNIT_CLARIFIER")]
+    public string UnitClarifier { get; set; }
+
+    [JsonProperty("UNIT_OPERATION_LEVEL")]
+    public string UnitOperationLevel { get; set; }
+
+    [JsonProperty("UNIT_FREE_BOARD")]
+    public string UnitFreeboard { get; set; }
+
+    [JsonProperty("UNIT_TANKV")]
+    public string UnitTankV { get; set; }
+
+    [JsonProperty("UNIT_TANKD")]
+    public string UnitTankD { get; set; }
+
+    [JsonProperty("UNIT_TANKL")]
+    public string UnitTankL { get; set; }
+
+    [JsonProperty("UNIT_TANW")]
+    public string UnitTankW { get; set; }
 
     [JsonProperty("TAG")]
     public string Tag { get; set; }
 
     [JsonProperty("RUNNINGHOURS")]
     public string RunningHours { get; set; }
+
+    [JsonProperty("NUMBER_OF_UNIT")]
+    public string NumberOfUnits { get; set; }
 
     [JsonProperty("PUMP_TYPE")]
     public string PumpType { get; set; }
@@ -238,30 +400,6 @@ namespace JsonParse
     [JsonProperty("TAG_ID")]
     public string TagId { get; set; }
 
-    [JsonProperty("UNIT_HEAD")]
-    public string UnitHead { get; set; }
-
-    [JsonProperty("UNIT_CAPACITY")]
-    public string UnitCapacity { get; set; }
-
-    [JsonProperty("UNIT_SPACING")]
-    public string UnitSpacing { get; set; }
-
-    [JsonProperty("UNIT_FLOW")]
-    public string UnitFlow { get; set; }
-
-    [JsonProperty("UNIT_TSS_INLET")]
-    public string UnitTssInlet { get; set; }
-
-    [JsonProperty("UNIT_TSS_OUTLET")]
-    public string UnitTssOutlet { get; set; }
-
-    [JsonProperty("UNIT_DIAMETER")]
-    public string UnitDiameter { get; set; }
-
-    [JsonProperty("UNIT_PRESSURE")]
-    public string UnitPressure { get; set; }
-
     [JsonProperty("PROCESSUNITAREA")]
     public string ProcessUnitArea { get; set; }
 
@@ -288,6 +426,9 @@ namespace JsonParse
 
     [JsonProperty("HEIGHT")]
     public string Height { get; set; }
+
+    [JsonProperty("DIAMETER")]
+    public string Diameter { get; set; }
   }
 
 }
