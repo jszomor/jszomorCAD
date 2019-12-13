@@ -401,17 +401,12 @@ namespace jszomorCAD
               var JsonBlockSetup = new JsonBlockSetup();
               var serializationAttributeSetup = new SerializationAttributeSetup();
 
-              entitiesToSerialize.Add(JsonBlockSetup.JsonStringBuilderSetup(blockDefinition, blockReference));
-              entitiesToSerialize.Add(serializationAttributeSetup.SetupAttributes(tr, blockReference));
+              //IEnumerable<JsonBlockProperty>jsonProperty;
 
+              var jsonProperty = new JsonBlockProperty();
 
-              foreach (ObjectId BlockObjectId in blockDefinition)
-              {
-                var entity = tr.GetObject(BlockObjectId, OpenMode.ForWrite) as Autodesk.AutoCAD.DatabaseServices.Entity;
-
-                if (entity == null) continue;
-
-              }
+              entitiesToSerialize.Add(JsonBlockSetup.SetupBlockProperty(blockDefinition, blockReference, jsonProperty));
+              entitiesToSerialize.Add(serializationAttributeSetup.SetupAttributeProperty(tr, blockReference, jsonProperty));
             }
           }
         }

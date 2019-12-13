@@ -33,10 +33,6 @@ namespace JsonParse
   {
     [JsonProperty("Name")]
     public string BlockName { get; set; }
-
-    [JsonProperty("Flip state")]
-    public double? FlipState { get; set; }
-
     public double Rotation { get; set; }
   }
   public class Custom
@@ -49,6 +45,9 @@ namespace JsonParse
 
     [JsonProperty("Angle")]
     public double? Angle { get; set; }
+
+    [JsonProperty("Flip state")]
+    public double? FlipState { get; set; }
 
     [JsonProperty("Angle1")]
     public double? Angle1 { get; set; }
@@ -147,4 +146,5 @@ namespace JsonParse
     [JsonProperty("SP_VOLUME")]
     public double? SpVolume { get; set; }
   }
+
 }

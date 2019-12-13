@@ -128,5 +128,8 @@
     <Content Include="acad.exe" />
     <Content Include="accore.dll" />
   </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
