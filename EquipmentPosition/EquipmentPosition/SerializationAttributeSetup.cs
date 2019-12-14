@@ -42,8 +42,10 @@ namespace EquipmentPosition
         if (attRef.Tag == "MATERIAL_ABOVE_WATER") { jsonProperty.Attributes.MaterialAboveWater = attRef.TextString; continue; }
         if (attRef.Tag == "MATERIAL_SEALING") { jsonProperty.Attributes.MaterialSealing = attRef.TextString; continue; }
         if (attRef.Tag == "MATERIAL_STEM") { jsonProperty.Attributes.MaterialStem = attRef.TextString; continue; }
+        if (attRef.Tag == "MATERIAL_BLADE") { jsonProperty.Attributes.MaterialBlade = attRef.TextString; continue; }
         if (attRef.Tag == "MATERIAL_ABOVE") { jsonProperty.Attributes.MaterialAbove = attRef.TextString; continue; }
         if (attRef.Tag == "SP_FLOW") { jsonProperty.Attributes.SpFlow = attRef.TextString; continue; }
+        if (attRef.Tag == "SP_FLUID") { jsonProperty.Attributes.SpFluid = attRef.TextString; continue; }
         if (attRef.Tag == "SP_SPACING") { jsonProperty.Attributes.SpSpacing = attRef.TextString; continue; }
         if (attRef.Tag == "SP_ACTUATED") { jsonProperty.Attributes.SpActuated = attRef.TextString; continue; }
         if (attRef.Tag == "SP_CAPACITY") { jsonProperty.Attributes.SpCapacity = attRef.TextString; continue; }
@@ -51,6 +53,7 @@ namespace EquipmentPosition
         if (attRef.Tag == "SP_TSS_INLET") { jsonProperty.Attributes.SpTssInlet = attRef.TextString; continue; }
         if (attRef.Tag == "SP_TSS_OUTLET") { jsonProperty.Attributes.SpTssOutlet = attRef.TextString; continue; }
         if (attRef.Tag == "SP_DIAMETER") { jsonProperty.Attributes.SpDiameter = attRef.TextString; continue; }
+        if (attRef.Tag == "SP_VOLUME") { jsonProperty.Attributes.SpVolume = attRef.TextString; continue; }
         if (attRef.Tag == "SP_PRESSURE") { jsonProperty.Attributes.SpPressure = attRef.TextString; continue; }
         if (attRef.Tag == "SP_WIDTH") { jsonProperty.Attributes.SpWidth = attRef.TextString; continue; }
         if (attRef.Tag == "SP_LEVEL") { jsonProperty.Attributes.SpLevel = attRef.TextString; continue; }
@@ -66,6 +69,7 @@ namespace EquipmentPosition
         if (attRef.Tag == "SP_TANKW") { jsonProperty.Attributes.SpTankW = attRef.TextString; continue; }
         if (attRef.Tag == "SP_TANKL") { jsonProperty.Attributes.SpTankL = attRef.TextString; continue; }
         if (attRef.Tag == "SP_TANKD") { jsonProperty.Attributes.SpTankD = attRef.TextString; continue; }
+        if (attRef.Tag == "SP_TANKV") { jsonProperty.Attributes.SpTankV = attRef.TextString; continue; }
         if (attRef.Tag == "SP_CLARIFIER_DIA") { jsonProperty.Attributes.SpClarifierDia = attRef.TextString; continue; }
         if (attRef.Tag == "SP_OPERATION_LEVEL") { jsonProperty.Attributes.SpOperationLevel = attRef.TextString; continue; }
         if (attRef.Tag == "SP_FREE_BOARD") { jsonProperty.Attributes.SpFreeboard = attRef.TextString; continue; }
@@ -86,11 +90,17 @@ namespace EquipmentPosition
         if (attRef.Tag == "UNIT_CHANNELW") { jsonProperty.Attributes.UnitChannelW = attRef.TextString; continue; }
         if (attRef.Tag == "UNIT_CHANNELH") { jsonProperty.Attributes.UnitChannelH = attRef.TextString; continue; }
         if (attRef.Tag == "UNIT_CLARIFIER") { jsonProperty.Attributes.UnitClarifier = attRef.TextString; continue; }
-        if (attRef.Tag == "UNIT_OPERATION_LEVEL") { jsonProperty.Attributes.UnitOperationLevel = attRef.TextString; continue; }
+        if (attRef.Tag == "UNIT_OPERATIONAL_LEVEL") { jsonProperty.Attributes.UnitOperationalLevel = attRef.TextString; continue; }
         if (attRef.Tag == "UNIT_FREE_BOARD") { jsonProperty.Attributes.UnitFreeboard = attRef.TextString; continue; }
         if (attRef.Tag == "UNIT_WATER_LEVEL") { jsonProperty.Attributes.UnitWaterLevel = attRef.TextString; continue; }
         if (attRef.Tag == "UNIT_FLOWMAX") { jsonProperty.Attributes.UnitFlowMax = attRef.TextString; continue; }
         if (attRef.Tag == "UNIT_FLOWMIN") { jsonProperty.Attributes.UnitFlowMin = attRef.TextString; continue; }
+        if (attRef.Tag == "UNIT_CLARIFIER_DIA") { jsonProperty.Attributes.UnitClarifierDia = attRef.TextString; continue; }
+        if (attRef.Tag == "UNIT_VOLUME") { jsonProperty.Attributes.UnitVolume = attRef.TextString; continue; }
+        if (attRef.Tag == "UNIT_TANKD") { jsonProperty.Attributes.UnitTankD = attRef.TextString; continue; }
+        if (attRef.Tag == "UNIT_TANKL") { jsonProperty.Attributes.UnitTankL = attRef.TextString; continue; }
+        if (attRef.Tag == "UNIT_TANW") { jsonProperty.Attributes.UnitTankW = attRef.TextString; continue; }
+        if (attRef.Tag == "UNIT_TANKV") { jsonProperty.Attributes.UnitTankV = attRef.TextString; continue; }
         if (attRef.Tag == "RUNNINGHOURS") { jsonProperty.Attributes.RunningHours = attRef.TextString; continue; }
         if (attRef.Tag == "EQUIP_TYPE") { jsonProperty.Attributes.EquipType = attRef.TextString; continue; }
         if (attRef.Tag == "BLOWER_TYPE") { jsonProperty.Attributes.BlowerType = attRef.TextString; continue; }
@@ -122,14 +132,7 @@ namespace EquipmentPosition
         if (attRef.Tag == "POWER_INSTALLED") { jsonProperty.Attributes.PowerInstalled = attRef.TextString; continue; }
         if (attRef.Tag == "CONSUMED_POWER") { jsonProperty.Attributes.ConsumedPower = attRef.TextString; continue; }
         if (attRef.Tag == "POWER_CONSUMED") { jsonProperty.Attributes.PowerConsumed = attRef.TextString; continue; }
-        if (attRef.Tag == "MATERIAL_BLADE") { jsonProperty.Attributes.MaterialBlade = attRef.TextString; continue; }
-        if (attRef.Tag == "SP_TANKV") { jsonProperty.Attributes.SpTankV = attRef.TextString; continue; }
-        if (attRef.Tag == "UNIT_TANKV") { jsonProperty.Attributes.UnitTankV = attRef.TextString; continue; }
-        if (attRef.Tag == "UNIT_TANKD") { jsonProperty.Attributes.UnitTankD = attRef.TextString; continue; }
-        if (attRef.Tag == "UNIT_TANKL") { jsonProperty.Attributes.UnitTankL = attRef.TextString; continue; }
-        if (attRef.Tag == "UNIT_TANW") { jsonProperty.Attributes.UnitTankW = attRef.TextString; continue; }
         if (attRef.Tag == "NUMBER_OF_UNIT") { jsonProperty.Attributes.NumberOfUnits = attRef.TextString; continue; }
-        if (attRef.Tag == "SP_FLUID") { jsonProperty.Attributes.SpFluid = attRef.TextString; continue; }
         if (attRef.Tag == "TYP") { jsonProperty.Attributes.Typ = attRef.TextString; continue; }
         if (attRef.Tag == "HOST_NAME") { jsonProperty.Attributes.HostName = attRef.TextString; continue; }
       }

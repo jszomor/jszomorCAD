@@ -46,11 +46,20 @@ namespace JsonParse
     [JsonProperty("Position Y")]
     public double? TagY { get; set; }
 
+    [JsonProperty("Position1 X")]
+    public double? TagX1 { get; set; }
+
+    [JsonProperty("Position1 Y")]
+    public double? TagY1 { get; set; }
+
     [JsonProperty("Angle")]
     public double? Angle { get; set; }
 
     [JsonProperty("Flip state")]
     public double? FlipState { get; set; }
+
+    [JsonProperty("Flip state1")]
+    public object FlipState1 { get; set; }
 
     [JsonProperty("Angle1")]
     public double? Angle1 { get; set; }
@@ -69,6 +78,18 @@ namespace JsonParse
 
     [JsonProperty("Visibility1")]
     public object Visibility1 { get; set; }
+
+    [JsonProperty("Try1")]
+    public object Try1 { get; set; }
+
+    [JsonProperty("Try")]
+    public object Try { get; set; }
+
+    [JsonProperty("Housing")]
+    public object Housing { get; set; }
+
+    [JsonProperty("TTRY")]
+    public object TTRY { get; set; }
 
     public double? Distance { get; set; }
     public double? Distance1 { get; set; }
@@ -292,6 +313,9 @@ namespace JsonParse
     [JsonProperty("UNIT_DIAMETER")]
     public string UnitDiameter { get; set; }
 
+    [JsonProperty("UNIT_CLARIFIER_DIA")]
+    public string UnitClarifierDia { get; set; }
+
     [JsonProperty("UNIT_PRESSURE")]
     public string UnitPressure { get; set; }
 
@@ -331,8 +355,8 @@ namespace JsonParse
     [JsonProperty("UNIT_CLARIFIER")]
     public string UnitClarifier { get; set; }
 
-    [JsonProperty("UNIT_OPERATION_LEVEL")]
-    public string UnitOperationLevel { get; set; }
+    [JsonProperty("UNIT_OPERATIONAL_LEVEL")]
+    public string UnitOperationalLevel { get; set; }
 
     [JsonProperty("UNIT_FREE_BOARD")]
     public string UnitFreeboard { get; set; }
@@ -348,6 +372,9 @@ namespace JsonParse
 
     [JsonProperty("UNIT_TANW")]
     public string UnitTankW { get; set; }
+
+    [JsonProperty("UNIT_VOLUME")]
+    public string UnitVolume { get; set; }
 
     [JsonProperty("TAG")]
     public string Tag { get; set; }
