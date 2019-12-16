@@ -9,7 +9,7 @@ namespace JsonFindKey
 {
   public class JsonStringBuilderSerialize
   {
-    public void StringBuilderSerialize(IEnumerable<JsonBlockProperty> properties)
+    public void StringBuilderSerialize(IEnumerable<JsonLineProperty> properties)
     {
       string fileJson = "JsonStringBuilder.json";
       string dirPath = @"C:\Users\jszomor\Google Drive\Programozas\Practice"; //work

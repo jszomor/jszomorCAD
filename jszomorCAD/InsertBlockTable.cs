@@ -311,7 +311,27 @@ namespace jszomorCAD
     {
       ExecuteActionOnModelSpace(db, (tr, btrModelSpace) =>
       {
+        var SerializeLines = new SerializeLines();
+        var JsonBlockSetup = new JsonBlockSetup();
+        var serializationAttributeSetup = new SerializationAttributeSetup();
+        var jsonProperty = new JsonBlockProperty();
+
         var entitiesToSerialize = new List<JsonBlockProperty>();
+        var linesToSerialize = new List<JsonLineProperty>();
+
+        foreach (ObjectId objectId in btrModelSpace)
+        {
+          var entity = tr.GetObject(objectId, OpenMode.ForWrite) as Autodesk.AutoCAD.DatabaseServices.Entity;
+
+          var item = objectId.GetObject(OpenMode.ForRead);
+
+          if (entity == null) continue;
+
+          if (entity is Line || entity is Polyline)
+          {
+            linesToSerialize.Add(SerializeLines.LineSerializator(item));
+          }
+        }        
 
         foreach (ObjectId objectId in btrModelSpace)
         {
@@ -322,20 +342,13 @@ namespace jszomorCAD
             var btrObjectId = blockReference.DynamicBlockTableRecord; //must be Dynamic to find every blocks
             using (var blockDefinition = btrObjectId.GetObject(OpenMode.ForRead) as BlockTableRecord)
             {
-              var JsonBlockSetup = new JsonBlockSetup();
-              var serializationAttributeSetup = new SerializationAttributeSetup();
-
-              //IEnumerable<JsonBlockProperty>jsonProperty;
-
-              var jsonProperty = new JsonBlockProperty();
-
               entitiesToSerialize.Add(JsonBlockSetup.SetupBlockProperty(blockDefinition, tr, blockReference, jsonProperty));
               //entitiesToSerialize.Add(serializationAttributeSetup.SetupAttributeProperty(tr, blockReference, jsonProperty));
             }
           }
         }
         var seralizer = new JsonStringBuilderSerialize();
-        seralizer.StringBuilderSerialize(entitiesToSerialize);
+        seralizer.StringBuilderSerialize(linesToSerialize);
       });
     }
   }
