@@ -111,32 +111,6 @@ namespace jszomorCAD
       else return blockIds.First();
     }
 
-    public ObjectId GetBlockTable2(SerializationProperty serializationProperty)
-    {
-      var blockIds = new List<ObjectId>();
-
-      using (var tr = _db.TransactionManager.StartTransaction())
-      {
-        var bt = _db.BlockTableId.GetObject<BlockTable>(OpenMode.ForRead);
-
-        foreach (var btrId in bt)
-        {
-          using (var btr = tr.GetObject(btrId, OpenMode.ForRead, false) as BlockTableRecord)
-          {
-            // Only add named & non-layout blocks to the copy list
-            if (!btr.IsAnonymous && !btr.IsLayout && btr.Name == serializationProperty.BlockName)
-              blockIds.Add(btrId);
-          }
-        }
-      }
-
-      if (blockIds.Count > 1) throw new Exception($"More than one block record found with the name {serializationProperty.BlockName}");
-
-      else if (blockIds.Count == 0) throw new Exception($"No block record found with the name {serializationProperty.BlockName}");
-
-      else return blockIds.First();
-    }
-
     private void PlaceBlock(ObjectId blockId, InsertBlockBase insertBlock, double offsetX = 0.0d, double offsetY = 0.0d)
     {
       //var defultLayers = new LayerCreator();
@@ -161,29 +135,6 @@ namespace jszomorCAD
             SetBlockRefenceAttributesValues(acBlkRef, insertBlock.ActionToExecuteOnAttRef);
             SetDynamicBlockReferenceValues(acBlkRef, insertBlock.ActionToExecuteOnDynPropAfter);
             SetHostName(acBlkRef, insertBlock.HostName);
-          }
-        }
-        tr.Commit();
-      }
-    }
-
-    private void ReadBlockInfo(ObjectId blockId, SerializationProperty serializationProperty)
-    {
-      JsonWrite2 jsonWrite2 = new JsonWrite2();
-
-      //var defultLayers = new LayerCreator();
-      using (var tr = _db.TransactionManager.StartTransaction())
-      {
-        var currentSpaceId = tr.GetObject(_db.CurrentSpaceId, OpenMode.ForWrite) as BlockTableRecord;
-
-        using (var blockDefinition = (BlockTableRecord)tr.GetObject(blockId, OpenMode.ForRead, false))
-        {
-          using (var acBlkRef = tr.GetObject(blockId, OpenMode.ForRead) as BlockReference)
-          {
-            SetVisibilityIndexForSeri(acBlkRef, serializationProperty);
-            SetBlockRefenceAttributesValues(acBlkRef, serializationProperty.ActionToExecuteOnAttRef);
-            SetDynamicBlockReferenceValues(acBlkRef, serializationProperty.ActionToExecuteOnDynPropAfter);
-            jsonWrite2.JsonSeri2(serializationProperty);
           }
         }
         tr.Commit();
@@ -292,19 +243,6 @@ namespace jszomorCAD
         }
       }
     }
-
-    private void SetVisibilityIndexForSeri(BlockReference acBlkRef, SerializationProperty properties)
-    {
-      if (acBlkRef.IsDynamicBlock)
-      {
-        foreach (DynamicBlockReferenceProperty dbrProp in acBlkRef.DynamicBlockReferencePropertyCollection)
-        {
-          if (dbrProp.PropertyName == properties.VisibilityName)
-            properties.VisibilityValue = dbrProp.Value;          
-        }
-      }
-
-    }
     public bool InsertBlock(InsertBlockBase insertData)
     {
       // 1. which block to insert? insertData.BlockName
@@ -319,20 +257,6 @@ namespace jszomorCAD
         PlaceBlock(blockId, insertData, offsetX, offsetY);
         offsetX += insertData.OffsetX;
         offsetY += insertData.OffsetY;
-      }
-      return true;
-    }
-
-    public bool GetBlockInfo(SerializationProperty serializationProperty)
-    {
-      // 1. which block to insert? insertData.BlockName
-      // get the block to insert
-      var blockId = GetBlockTable2(serializationProperty);
-
-      // 2. insert block
-      for (var i = 0; i < 2; i++)
-      {
-        ReadBlockInfo(blockId, serializationProperty);
       }
       return true;
     }

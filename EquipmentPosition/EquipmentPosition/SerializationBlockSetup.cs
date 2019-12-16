@@ -50,12 +50,6 @@ namespace EquipmentPosition
         if (dbrProp.PropertyName == "Housing") { jsonProperty.Custom.Housing = DoubleConverter(dbrProp.Value); continue; }
         if (dbrProp.PropertyName == "TTRY") { jsonProperty.Custom.TTRY = DoubleConverter(dbrProp.Value); continue; }
 
-        //if (dbrProp.PropertyName == "Visibility1") { jsonProperty.Custom.Visibility1 = DoubleConverter(dbrProp.Value); continue; }
-        //if (dbrProp.PropertyName == "Centrifugal Pump") { jsonProperty.Custom.PumpTableValue = DoubleConverter(dbrProp.Value); continue; }
-        //if (jsonProperty.Misc.BlockName == "chamber" && dbrProp.PropertyName == "Visibility") 
-        //{ jsonProperty.Custom.VisibilityValue = DoubleConverter(dbrProp.Value); continue; }
-        //if (dbrProp.PropertyName == "Block Table1") { jsonProperty.Custom.BlockTableValue = DoubleConverter(dbrProp.Value); continue; }
-
         if (dbrProp.PropertyName == "Centrifugal Pump")
           jsonProperty.Custom.PumpTableValue = dbrProp.Value;
 
