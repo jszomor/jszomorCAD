@@ -11,7 +11,7 @@ namespace JsonFindKey
     public string ObjectId { get; set; }
     public Coordinate Start { get; set; } = new Coordinate();
     public Coordinate End { get; set; } = new Coordinate();
-    public List<Point2D> pls { get; set; }
+    public List<Point2D> pls { get; set; } = new List<Point2D>();
     public Point2D Point2D { get; set; } = new Point2D();
     public bool IsClosed { get; set; }
   }
