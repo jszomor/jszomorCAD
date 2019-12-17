@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoCad" Version="1.0.0" />
+    <PackageReference Include="AutoCAD.NET" Version="23.1.0" />
+    <PackageReference Include="AutoCAD.NET.Core" Version="23.1.0" />
+    <PackageReference Include="AutoCAD.NET.Model" Version="23.1.0" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
   </ItemGroup>
 
