@@ -314,42 +314,38 @@ namespace jszomorCAD
         var SerializeLines = new SerializeLines();
         var JsonBlockSetup = new JsonBlockSetup();
         var serializationAttributeSetup = new SerializationAttributeSetup();
-        var jsonProperty = new JsonBlockProperty();
+        var jsonClassProperty = new JsonClassProperty();
 
-        var entitiesToSerialize = new List<JsonBlockProperty>();
-        var linesToSerialize = new List<JsonLineProperty>();
+        var entitiesToSerialize = new List<JsonClassProperty>();
+        //var linesToSerialize = new List<JsonClassProperty>();
 
         foreach (ObjectId objectId in btrModelSpace)
         {
           //var entity = tr.GetObject(objectId, OpenMode.ForWrite) as Autodesk.AutoCAD.DatabaseServices.Entity;
 
-          using (var item = objectId.GetObject(OpenMode.ForRead))
+          using (var item = objectId.GetObject(OpenMode.ForWrite))
           {
             if (item == null) continue;
 
-            if (item is Line || item is Polyline)
+            if (item is Line || item is Polyline || item is Polyline2d || item is Polyline3d)
             {
-              linesToSerialize.Add(SerializeLines.LineSerializator(item));
+              entitiesToSerialize.Add(SerializeLines.LineSerializator(item));
             }
             else if (item is BlockReference)
             {
-              //using (var blockReference = tr.GetObject(objectId, OpenMode.ForRead) as BlockReference)
-              //{
               BlockReference blockReference = item as BlockReference;
               var btrObjectId = blockReference.DynamicBlockTableRecord; //must be Dynamic to find every blocks
               using (var blockDefinition = btrObjectId.GetObject(OpenMode.ForRead) as BlockTableRecord)
               {
-                entitiesToSerialize.Add(JsonBlockSetup.SetupBlockProperty(blockDefinition, tr, blockReference, jsonProperty));
+                entitiesToSerialize.Add(JsonBlockSetup.SetupBlockProperty(blockDefinition, tr, blockReference, jsonClassProperty));
                 //entitiesToSerialize.Add(serializationAttributeSetup.SetupAttributeProperty(tr, blockReference, jsonProperty));
               }
-              //}
-
             }
-
           };
         }
+
         var seralizer = new JsonStringBuilderSerialize();
-        seralizer.StringBuilderSerialize(linesToSerialize);
+        seralizer.StringBuilderSerialize(entitiesToSerialize);
       });
     }
   }

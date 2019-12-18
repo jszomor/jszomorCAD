@@ -28,19 +28,18 @@ namespace EquipmentPosition
       return new Point2D(Acadpoint.X, Acadpoint.Y, number);
     }
 
-    public JsonLineProperty LineSerializator(DBObject item)
+    public JsonClassProperty LineSerializator(DBObject item)
     {
-      var jsonLineProperty = new JsonLineProperty();
+      var jsonClassProperty = new JsonClassProperty();
 
-      jsonLineProperty.Type = Convert.ToString(item);
+      jsonClassProperty.jsonLineProperty.Type = Convert.ToString(item);
 
       if (item is Line)
       {
         var line = item as Line;
 
-        jsonLineProperty.LinePoints.Add(ConvertAcadPoint3dToPoint2D(line.StartPoint, 1));
-        jsonLineProperty.LinePoints.Add(ConvertAcadPoint3dToPoint2D(line.EndPoint, 2));
-
+        jsonClassProperty.jsonLineProperty.LinePoints.Add(ConvertAcadPoint3dToPoint2D(line.StartPoint, 1));
+        jsonClassProperty.jsonLineProperty.LinePoints.Add(ConvertAcadPoint3dToPoint2D(line.EndPoint, 2));
       }
       else if (item is Polyline)
       {
@@ -48,7 +47,7 @@ namespace EquipmentPosition
         for (var i = 0; i < p.NumberOfVertices; i++)
         {
           var point = p.GetPoint2dAt(i);
-          jsonLineProperty.LinePoints.Add(ConvertAcadPoint2dToPoint2D(point, i + 1));
+          jsonClassProperty.jsonLineProperty.LinePoints.Add(ConvertAcadPoint2dToPoint2D(point, i + 1));
           //System.Diagnostics.Debug.WriteLine($"\t\tPOLYLINE POINTS: {point}");
         }
         p.Closed = false;
@@ -59,7 +58,7 @@ namespace EquipmentPosition
         int i = 1;
         foreach (Vertex2d polyline in p2d)
         {
-          jsonLineProperty.LinePoints.Add(ConvertAcadVertex2DToPoint2D(polyline, i));
+          jsonClassProperty.jsonLineProperty.LinePoints.Add(ConvertAcadVertex2DToPoint2D(polyline, i));
           i++;
         }
         p2d.Closed = false;
@@ -70,12 +69,12 @@ namespace EquipmentPosition
         int i = 1;
         foreach (Vertex2d polyline in p3d)
         {
-          jsonLineProperty.LinePoints.Add(ConvertAcadVertex2DToPoint2D(polyline, i));
+          jsonClassProperty.jsonLineProperty.LinePoints.Add(ConvertAcadVertex2DToPoint2D(polyline, i));
           i++;
         }
         p3d.Closed = false;
       }
-      return jsonLineProperty;
+      return jsonClassProperty;
     }
   }
 }

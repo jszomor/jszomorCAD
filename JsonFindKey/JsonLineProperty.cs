@@ -10,7 +10,6 @@ namespace JsonFindKey
   {
     public JsonLineProperty jsonLineProperty { get; set; } = new JsonLineProperty();
     public JsonBlockProperty jsonBlockProperty { get; set; } = new JsonBlockProperty();
-
   }
 
   public class JsonLineProperty
