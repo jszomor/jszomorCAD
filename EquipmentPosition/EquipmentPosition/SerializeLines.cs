@@ -13,66 +13,19 @@ namespace EquipmentPosition
 {
   public class SerializeLines
   {
-    public void ExecuteActionOnModelSpace(Database database, Action<Transaction, BlockTableRecord> action)
+    public Point2D ConvertAcadVertex2DToPoint2D(Vertex2d Acadvertex, int number)
     {
-      ExecuteActionInTransaction(database, (db, tr) =>
-        ExecuteActionOnBlockTable(db, bt =>
-        {
-          using (var ms = bt[BlockTableRecord.ModelSpace].GetObject<BlockTableRecord>())
-          {
-            action.Invoke(tr, ms);
-          }
-        }
-        ));
+      return new Point2D(Acadvertex.Position.X, Acadvertex.Position.Y, number);
     }
 
-    public void ExecuteActionInTransaction(Database db, Action<Database, Transaction> action)
+    public Point2D ConvertAcadPoint2dToPoint2D(Autodesk.AutoCAD.Geometry.Point2d Acadpoint, int number)
     {
-      using (var tr = db.TransactionManager.StartTransaction())
-      {
-        action.Invoke(db, tr);
-        tr.Commit();
-      }
+      return new Point2D(Acadpoint.X, Acadpoint.Y, number);
     }
 
-    private void ExecuteActionOnTable<T>(Database db,
-      Expression<Func<Database, ObjectId>> tableIdProperty, Action<T> action) where T : class, IDisposable
+    public Point2D ConvertAcadPoint3dToPoint2D(Autodesk.AutoCAD.Geometry.Point3d Acadpoint, int number)
     {
-      var c = tableIdProperty.Compile();
-      using (var t = c.Invoke(db).GetObject<T>())
-      {
-        action.Invoke(t);
-      }
-    }
-
-    public void ExecuteActionOnBlockTable(Database db, Action<BlockTable> action) =>
-      ExecuteActionOnTable(db, x => x.BlockTableId, action);
-
-    public void ExecuteActionOnLayerTable(Database db, Action<LayerTable> action) =>
-      ExecuteActionOnTable(db, x => x.LayerTableId, action);
-
-    public Point2D ConvertAcadVertex2DToPoint2D(Vertex2d Acadvertex)
-    {
-      return new Point2D(Acadvertex.Position.X, Acadvertex.Position.Y, "test");
-    }
-
-    public Point2D ConvertAcadPoint2dToPoint2D(Autodesk.AutoCAD.Geometry.Point2d Acadpoint)
-    {
-      return new Point2D(Acadpoint.X, Acadpoint.Y, "test");
-    }
-    public List<Point2D> GetPointofAcadObjects(Database db, Polyline2d p2d)
-    {
-      var points2D = new List<Point2D>();
-      ExecuteActionOnModelSpace(db, (tr, ms) =>
-      {
-        foreach (ObjectId vId in p2d)
-        {
-          Vertex2d v2d = (Vertex2d)tr.GetObject(vId, OpenMode.ForRead);
-          var point = ConvertAcadVertex2DToPoint2D(v2d);
-          points2D.Add(point);
-        }
-      });
-      return points2D;
+      return new Point2D(Acadpoint.X, Acadpoint.Y, number);
     }
 
     public JsonLineProperty LineSerializator(DBObject item)
@@ -85,76 +38,43 @@ namespace EquipmentPosition
       {
         var line = item as Line;
 
-        jsonLineProperty.Start.X = line.StartPoint.X;
-        jsonLineProperty.Start.Y = line.StartPoint.Y;
-        jsonLineProperty.End.X = line.EndPoint.X;
-        jsonLineProperty.End.Y = line.EndPoint.Y;
+        jsonLineProperty.LinePoints.Add(ConvertAcadPoint3dToPoint2D(line.StartPoint, 1));
+        jsonLineProperty.LinePoints.Add(ConvertAcadPoint3dToPoint2D(line.EndPoint, 2));
+
       }
-      //else if (item is Polyline2d)
-      //{
-      //  var p2d = item as Polyline2d;
-      //  //var pls2d = new List<double>();
-      //  foreach (Vertex2d polyline in p2d)
-      //  {
-      //    jsonLineProperty.Start.X = polyline.Position.X;
-      //    jsonLineProperty.Start.Y = polyline.Position.Y;
-      //    jsonLineProperty.pls.Add(jsonLineProperty.Start.X);
-      //    jsonLineProperty.pls.Add(jsonLineProperty.Start.Y);
-      //  }
-      //}
       else if (item is Polyline)
       {
-        //ar Jpoint2D = new JsonFindKey.Point2D();
-
         var p = item as Polyline;
-        var pls = new List<Point2d>();    
-
         for (var i = 0; i < p.NumberOfVertices; i++)
         {
-           //Point2d acPoint = p.GetPoint2dAt(i);
-
           var point = p.GetPoint2dAt(i);
-          //var mypoint = new Point2D(point.X, point.Y);
-          jsonLineProperty.pls.Add(ConvertAcadPoint2dToPoint2D(point));
-
-          //jsonLineProperty.Start.X = acPoint.X;
-          //jsonLineProperty.Start.Y = acPoint.Y;
-          //pls.Add(acPoint);
-          //jsonLineProperty.pls.Add(20);
-          System.Diagnostics.Debug.WriteLine($"\t\tPOLYLINE POINTS: {point}");
+          jsonLineProperty.LinePoints.Add(ConvertAcadPoint2dToPoint2D(point, i + 1));
+          //System.Diagnostics.Debug.WriteLine($"\t\tPOLYLINE POINTS: {point}");
         }
-        p.Closed = jsonLineProperty.IsClosed;
-        System.Diagnostics.Debug.WriteLine($"\t\tPOLYLINE POINTS: {p.Closed}");
-        //foreach (var i in pls)
-        //{
-        //  System.Diagnostics.Debug.WriteLine($"\t\tPOLYLINE POINTS: {i}");
-        //}
+        p.Closed = false;
       }
-
-      //try
-      //{
-      //  var line = tr.GetObject(entityId, OpenMode.ForRead) as Line;
-      //  var polyline = tr.GetObject(entityId, OpenMode.ForRead) as Vertex2d;
-
-      //  jsonLineProperty.ObjectId = Convert.ToString(entityId);
-
-      //  if (line != null || polyline != null)
-      //  {
-      //    jsonLineProperty.End.X = line.EndPoint.X;
-      //    jsonLineProperty.End.Y = line.EndPoint.Y;
-      //    jsonLineProperty.Start.X = line.StartPoint.X;
-      //    jsonLineProperty.Start.Y = line.StartPoint.Y;
-
-      //    jsonLineProperty.End.X = polyline.Position.X;
-      //    jsonLineProperty.End.Y = polyline.Position.Y;
-      //    //jsonLineProperty.Start.X = polyline.;
-      //    //jsonLineProperty.Start.Y = polyline.StartPoint.Y;
-      //  }
-      //}
-      //catch (NullReferenceException ex)
-      //{
-      //  System.Diagnostics.Debug.Print(ex.Message);
-      //}   
+      else if (item is Polyline2d)
+      {
+        var p2d = item as Polyline2d;
+        int i = 1;
+        foreach (Vertex2d polyline in p2d)
+        {
+          jsonLineProperty.LinePoints.Add(ConvertAcadVertex2DToPoint2D(polyline, i));
+          i++;
+        }
+        p2d.Closed = false;
+      }
+      else if (item is Polyline3d)
+      {
+        var p3d = item as Polyline3d;
+        int i = 1;
+        foreach (Vertex2d polyline in p3d)
+        {
+          jsonLineProperty.LinePoints.Add(ConvertAcadVertex2DToPoint2D(polyline, i));
+          i++;
+        }
+        p3d.Closed = false;
+      }
       return jsonLineProperty;
     }
   }

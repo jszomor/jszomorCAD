@@ -317,7 +317,7 @@ namespace jszomorCAD
         var jsonProperty = new JsonBlockProperty();
 
         var entitiesToSerialize = new List<JsonBlockProperty>();
-        var linesToSerialize = new List<JsonLineProperty>();
+        var linesToSerialize = new List<JsonClassProperty>();
 
         foreach (ObjectId objectId in btrModelSpace)
         {
@@ -327,7 +327,7 @@ namespace jszomorCAD
 
           if (entity == null) continue;
 
-          if (entity is Line || entity is Polyline)
+          if (entity is Line || entity is Polyline || entity is Polyline2d || entity is Polyline3d)
           {
             linesToSerialize.Add(SerializeLines.LineSerializator(item));
           }
