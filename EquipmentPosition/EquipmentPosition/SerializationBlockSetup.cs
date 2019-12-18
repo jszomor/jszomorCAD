@@ -14,7 +14,7 @@ namespace EquipmentPosition
   {
     public JsonBlockProperty SetupBlockProperty (BlockTableRecord btr, Transaction tr,  BlockReference blockReference, JsonBlockProperty jsonProperty)
     {
-      jsonProperty.NextEquipment = blockReference.ObjectId;
+      jsonProperty.ObjectId = blockReference.ObjectId;
 
       var setupAttributeProperty = new SerializationAttributeSetup();
       setupAttributeProperty.SetupAttributeProperty(tr, blockReference, jsonProperty);
