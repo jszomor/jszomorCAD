@@ -1,25 +1,16 @@
 ﻿using Autodesk.AutoCAD.Geometry;
 using JsonParse;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace JsonFindKey
 {
-  public class JsonClassProperty
-  {
-    public JsonLineProperty jsonLineProperty { get; set; } = new JsonLineProperty();
-    public JsonBlockProperty jsonBlockProperty { get; set; } = new JsonBlockProperty();
-  }
-
   public class JsonLineProperty
   {
     public string Type { get; set; }
-    public string ObjectId { get; set; }
-    //public Coordinate Start { get; set; } = new Coordinate();
-    //public Coordinate End { get; set; } = new Coordinate();
     public List<Point2D> LinePoints { get; set; } = new List<Point2D>();
-    //public Point2D Point2D { get; set; } = new Point2D();
   }
 
   public class Coordinate
