@@ -1,5 +1,4 @@
-﻿using Autodesk.AutoCAD.Geometry;
-using JsonParse;
+﻿using JsonParse;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
