@@ -5,7 +5,7 @@ using System.Text;
 
 namespace JsonFindKey
 {
-  class JsonDeserializer
+  public class JsonDeserializer
   {
     public long SearchedValue { get; set; }
 

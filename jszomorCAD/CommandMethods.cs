@@ -11,6 +11,7 @@ using EquipmentPosition;
 using System.Runtime.InteropServices;
 using OrganiCAD.AutoCAD;
 using JsonFindKey;
+using jCAD.PID_Builder;
 
 namespace jszomorCAD
 {
@@ -54,8 +55,9 @@ namespace jszomorCAD
       long indexOfEqPump = JsonClass.JsonEquipmentValue("Equalization Tank Pump");
       var promptEqIndex = Convert.ToInt16(indexOfEqPump);
 
-      var eqt = new EqualizationTank(numberOfPumps: EquipmentSelector.EqPumpSelect(), distanceOfPump: 20, eqIndex: promptEqIndex);
+      //var eqt = new EqualizationTank(numberOfPumps: EquipmentSelector.EqPumpSelect(), distanceOfPump: 20, eqIndex: promptEqIndex);
 
+      //var InsBlock = new BlockMapping();
       #region old code
       //var blocks = new[]
       //{
@@ -109,7 +111,8 @@ namespace jszomorCAD
       var layerCreator = new LayerCreator();
       layerCreator.LayerCreatorMethod(layers);
 
-      DrawBlocks(db, eqt.Blocks);
+      //DrawBlocks(db, eqt.Blocks);
+      //DrawBlocks(db, InsBlock.Blocks);
 
       #region oldcode
       ////short shortCheckValveIndex = 2;
@@ -284,7 +287,15 @@ namespace jszomorCAD
       SendClass.SendZoomExtents();
     }
 
+    [CommandMethod("JCAD_BlockSearch", CommandFlags.Modal)]
+    public void BlockSearch()
+    {
+      var blockDeserialize = new BlockDeserialize();
 
+      var eqType = blockDeserialize.BlockSearch("Name");
+
+      System.Diagnostics.Debug.Print($"BlockName: {eqType}");
+    }
 
     [CommandMethod("JCAD_Fillet", CommandFlags.Modal)]
     public void ComCommand()

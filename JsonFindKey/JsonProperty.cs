@@ -40,16 +40,16 @@ namespace JsonParse
   }
   public class Custom
   {
-    [JsonProperty("Position X")]
+    [JsonProperty("TAG X")]
     public double? TagX { get; set; }
 
-    [JsonProperty("Position Y")]
+    [JsonProperty("TAG Y")]
     public double? TagY { get; set; }
 
-    [JsonProperty("Position1 X")]
+    [JsonProperty("TAG1 X")]
     public double? TagX1 { get; set; }
 
-    [JsonProperty("Position1 Y")]
+    [JsonProperty("TAG1 Y")]
     public double? TagY1 { get; set; }
 
     [JsonProperty("Angle")]

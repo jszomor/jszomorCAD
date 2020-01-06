@@ -26,6 +26,10 @@ namespace EquipmentPosition
 
   public class InsertBlockBase
   {
+    private double? x;
+    private double? y;
+    private EquipmentStateProperty equipmentStateProperty;
+
     public double X => Position.X;
     public double Y => Position.Y;
 
@@ -41,6 +45,7 @@ namespace EquipmentPosition
     public EquipmentStateProperty StateProperty { get; }    
     public IEnumerable<Action<AttributeReference>> ActionToExecuteOnAttRef { get; set; }
     public IEnumerable<Action<DynamicBlockReferenceProperty>> ActionToExecuteOnDynPropAfter { get; set; }
+
     public InsertBlockBase(long numberOfItem,
       string blockName, string layerName, double x, double y, string hostName,
       EquipmentStateProperty equipmentStateProperty, double rotation = 0.0d)
@@ -52,6 +57,22 @@ namespace EquipmentPosition
       HostName = hostName;
       Rotation = rotation;
       StateProperty = equipmentStateProperty;
+    }
+
+    public InsertBlockBase(int numberOfItem, string blockName, string layerName, double? x, double? y, double rotation, EquipmentStateProperty equipmentStateProperty)
+    {
+      NumberOfItem = numberOfItem;
+      BlockName = blockName;
+      LayerName = layerName;
+      this.x = x;
+      this.y = y;
+      Rotation = rotation;
+      this.equipmentStateProperty = equipmentStateProperty;
+    }
+
+    public InsertBlockBase(string blockName)
+    {
+      BlockName = blockName;
     }
   }
 
