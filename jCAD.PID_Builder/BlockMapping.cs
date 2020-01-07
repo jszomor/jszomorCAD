@@ -9,38 +9,39 @@ using System.Threading.Tasks;
 
 namespace jCAD.PID_Builder
 {
-  //public class BlockMapping : EquipmentBase
-  //{
-  //  //public void SetBlockMapping()
-  //  //{
-  //  //  var InsertBlockBase = new InsertBlockBase(Convert.ToString(BlockDeserialize.BlockSearch("Name")));
+  public class BlockMapping
+  {
+    public void SetBlockMapping()
+    {
+      //var InsertBlockBase = new InsertBlockBase(Convert.ToString(BlockDeserialize.BlockSearch("Name")));
 
-  //  //  //var jsonBlockProperty = new JsonBlockProperty();
-  //  //  //jsonBlockProperty.ObjectId = blockReference.ObjectId;
+      //var jsonBlockProperty = new JsonBlockProperty();
+      //jsonBlockProperty.ObjectId = blockReference.ObjectId;
 
-  //  //  //if (!btr.IsAnonymous && !btr.IsLayout)
-  //  //  //  jsonBlockProperty.Misc.BlockName = btr.Name;
+      //if (!btr.IsAnonymous && !btr.IsLayout)
+      //  jsonBlockProperty.Misc.BlockName = btr.Name;
 
-  //  //  ////long blockName = BlockDeserialize.BlockSearch("Name");
+      ////long blockName = BlockDeserialize.BlockSearch("Name");
 
-  //  //  //foreach (DynamicBlockReferenceProperty dbrProp in blockReference.DynamicBlockReferencePropertyCollection)
-  //  //  //{
-  //  //  //  if (dbrProp.PropertyName == "Position X") { jsonBlockProperty.Custom.TagX = DoubleConverter(dbrProp.Value); continue; }
-  //  //  //}
-  //  //}
+      //foreach (DynamicBlockReferenceProperty dbrProp in blockReference.DynamicBlockReferencePropertyCollection)
+      //{
+      //  if (dbrProp.PropertyName == "Position X") { jsonBlockProperty.Custom.TagX = DoubleConverter(dbrProp.Value); continue; }
+      //}
+    }
 
-  //  //public override IEnumerable<InsertBlockBase> Blocks
-  //  //{
-  //  //  get
-  //  //  {
-  //  //    #region Eq Pump
-  //  //    yield return
-  //  //    new InsertBlockBase(
-  //  //      //blockName: Convert.ToString(BlockDeserialize.BlockSearch("Name"))
-  //  //      );
-  //  //    #endregion
-  //  //  }
-  //  //}
-  //  //public override string AreaName => throw new NotImplementedException();
-  //}
+    //public override IEnumerable<InsertBlockBase> Blocks
+    //{
+    //  get
+    //  {
+    //    #region Eq Pump
+    //    yield return
+    //    new InsertBlockBase(
+    //      //blockName: Convert.ToString(BlockDeserialize.BlockSearch("Name"))
+    //      );
+    //    #endregion
+    //  }
+    //}
+    //public override string AreaName => throw new NotImplementedException();
+  }
 }
+

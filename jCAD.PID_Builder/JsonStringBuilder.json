@@ -1,51 +1,49 @@
-[
-  {
-    "ObjectId": {},
-    "Geometry": {
-      "Position X": 2700.0,
-      "Position Y": 900.0
-    },
-    "Misc": {
-      "Name": "pump",
-      "Rotation": 0.0
-    },
-    "General": {
-      "Layer": "equipment"
-    },
-    "Custom": {
-      "TAG X": 0.026011082201989666,
-      "TAG Y": -6.0096995464432155,
-      "Angle": 1.5707963267948977,
-      "Angle1": 0.38397243543875248,
-      "Angle2": 0.87266462599716477,
-      "Centrifugal Pump": 55,
-      "Try1": 10.0
-    },
-    "Attributes": {
-      "NOTE": "Anoxic recycle pump",
-      "MODEL": "blabla",
-      "CONSUMED_POWER": "-",
-      "INSTALLED_POWER": "12",
-      "INSTALLATION": "-",
-      "MATERIAL_HOUSING": "ASTM 306",
-      "SP_HEAD": "6",
-      "SP_CAPACITY": "112",
-      "UNIT_HEAD": "m",
-      "UNIT_CAPACITY": "m3/h",
-      "TAG": "010",
-      "RUNNINGHOURS": "24",
-      "PUMP_TYPE": "Propeller  -VFD drive",
-      "NOTE_CHINESE": "缺氧循环泵",
-      "STB_DTY": "1",
-      "AREA_CODE": "00",
-      "DI": "3",
-      "DO": "1",
-      "AI": "3",
-      "AO": "1",
-      "PB": "1",
-      "PO": "2",
-      "TAG_ID": "PP",
-      "PROCESSUNITAREA": "01"
-    }
+{
+  "ObjectId": {},
+  "Geometry": {
+    "Position X": 2700.0,
+    "Position Y": 900.0
+  },
+  "Misc": {
+    "Name": "pump",
+    "Rotation": 0.0
+  },
+  "General": {
+    "Layer": "equipment"
+  },
+  "Custom": {
+    "TAG X": 0.026011082201989666,
+    "TAG Y": -6.0096995464432155,
+    "Angle": 1.5707963267948977,
+    "Angle1": 0.38397243543875248,
+    "Angle2": 0.87266462599716477,
+    "Centrifugal Pump": 55,
+    "Try1": 10.0
+  },
+  "Attributes": {
+    "NOTE": "Anoxic recycle pump",
+    "MODEL": "blabla",
+    "CONSUMED_POWER": "-",
+    "INSTALLED_POWER": "12",
+    "INSTALLATION": "-",
+    "MATERIAL_HOUSING": "ASTM 306",
+    "SP_HEAD": "6",
+    "SP_CAPACITY": "112",
+    "UNIT_HEAD": "m",
+    "UNIT_CAPACITY": "m3/h",
+    "TAG": "010",
+    "RUNNINGHOURS": "24",
+    "PUMP_TYPE": "Propeller  -VFD drive",
+    "NOTE_CHINESE": "缺氧循环泵",
+    "STB_DTY": "1",
+    "AREA_CODE": "00",
+    "DI": "3",
+    "DO": "1",
+    "AI": "3",
+    "AO": "1",
+    "PB": "1",
+    "PO": "2",
+    "TAG_ID": "PP",
+    "PROCESSUNITAREA": "01"
   }
-][]
+}

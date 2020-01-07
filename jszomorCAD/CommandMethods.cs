@@ -55,7 +55,7 @@ namespace jszomorCAD
       long indexOfEqPump = JsonClass.JsonEquipmentValue("Equalization Tank Pump");
       var promptEqIndex = Convert.ToInt16(indexOfEqPump);
 
-      //var eqt = new EqualizationTank(numberOfPumps: EquipmentSelector.EqPumpSelect(), distanceOfPump: 20, eqIndex: promptEqIndex);
+      var eqt = new EqualizationTank(numberOfPumps: EquipmentSelector.EqPumpSelect(), distanceOfPump: 20, eqIndex: promptEqIndex);
 
       //var InsBlock = new BlockMapping();
       #region old code
@@ -111,7 +111,7 @@ namespace jszomorCAD
       var layerCreator = new LayerCreator();
       layerCreator.LayerCreatorMethod(layers);
 
-      //DrawBlocks(db, eqt.Blocks);
+      DrawBlocks(db, eqt.Blocks);
       //DrawBlocks(db, InsBlock.Blocks);
 
       #region oldcode
@@ -290,11 +290,27 @@ namespace jszomorCAD
     [CommandMethod("JCAD_BlockSearch", CommandFlags.Modal)]
     public void BlockSearch()
     {
+      var db = Application.DocumentManager.MdiActiveDocument.Database;
       var blockDeserialize = new BlockDeserialize();
+      string path = @"E:\Munka\Test\Autocad PID blocks work in progress.dwg";
+      // Copy blocks from sourcefile into opened file
+      var copyBlock = new CopyBlock();
+      var btrNamesToCopy = new[] { "pump", "valve", "chamber", "instrumentation tag", "channel gate", "pipe", "pipe2", "channel", "channel2" };
+      copyBlock.CopyBlockTable(db, path, btr =>
+      {
+        System.Diagnostics.Debug.Print(btr.Name);
+        return btrNamesToCopy.Contains(btr.Name);
+      });
 
-      var eqType = blockDeserialize.BlockSearch("Name");
+      var defultLayers = new LayerCreator();
+      defultLayers.Layers();
 
-      System.Diagnostics.Debug.Print($"BlockName: {eqType}");
+      var insertBlock = new InsertBlock(db);
+      insertBlock.PlaceBlock();
+      //var blockDeserialize = new BlockDeserialize();
+      //var eqType = blockDeserialize.BlockSearch("Name");
+
+      //System.Diagnostics.Debug.Print($"BlockName: {eqType}");
     }
 
     [CommandMethod("JCAD_Fillet", CommandFlags.Modal)]
