@@ -44,12 +44,12 @@ namespace EquipmentPosition
         if (dbrProp.PropertyName == "Distance3") { jsonBlockProperty.Custom.Distance3 = DoubleConverter(dbrProp.Value); continue; }
         if (dbrProp.PropertyName == "Distance4") { jsonBlockProperty.Custom.Distance4 = DoubleConverter(dbrProp.Value); continue; }
         if (dbrProp.PropertyName == "Distance5") { jsonBlockProperty.Custom.Distance5 = DoubleConverter(dbrProp.Value); continue; }
-        if (dbrProp.PropertyName == "Flip state") { jsonBlockProperty.Custom.FlipState = DoubleConverter(dbrProp.Value); continue; }
-        if (dbrProp.PropertyName == "Flip state1") { jsonBlockProperty.Custom.FlipState1 = DoubleConverter(dbrProp.Value); continue; }
+        if (dbrProp.PropertyName == "Flip state") { jsonBlockProperty.Custom.FlipState = Convert.ToInt16(dbrProp.Value); continue; }
+        if (dbrProp.PropertyName == "Flip state1") { jsonBlockProperty.Custom.FlipState1 = Convert.ToInt16(dbrProp.Value); continue; }
         if (dbrProp.PropertyName == "Try1") { jsonBlockProperty.Custom.Try1 = DoubleConverter(dbrProp.Value); continue; }
-        if (dbrProp.PropertyName == "Try") { jsonBlockProperty.Custom.Try = DoubleConverter(dbrProp.Value); continue; }
-        if (dbrProp.PropertyName == "Housing") { jsonBlockProperty.Custom.Housing = DoubleConverter(dbrProp.Value); continue; }
-        if (dbrProp.PropertyName == "TTRY") { jsonBlockProperty.Custom.TTRY = DoubleConverter(dbrProp.Value); continue; }
+        if (dbrProp.PropertyName == "Try") { jsonBlockProperty.Custom.Try = Convert.ToString(dbrProp.Value); continue; }
+        if (dbrProp.PropertyName == "Housing") { jsonBlockProperty.Custom.Housing = Convert.ToString(dbrProp.Value); continue; }
+        if (dbrProp.PropertyName == "TTRY") { jsonBlockProperty.Custom.TTRY = Convert.ToString(dbrProp.Value); continue; }
 
         if (dbrProp.PropertyName == "Centrifugal Pump")
           jsonBlockProperty.Custom.PumpTableValue = dbrProp.Value;

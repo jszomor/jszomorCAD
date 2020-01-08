@@ -25,7 +25,6 @@ namespace jCAD.PID_Builder
 
     public object JsonDeser(string jsonString, string variableName)
     {
-
       var jsonDict = JsonConvert.DeserializeObject<Dictionary<string, object>>(jsonString);
       try
       {
@@ -44,7 +43,17 @@ namespace jCAD.PID_Builder
     {
       foreach (var key in inputDict.Keys)
       {
-        if (key == searchedKey)
+        //if(inputDict.ContainsKey(key))
+        //{
+
+        //}
+
+        //if(inputDict.TryGetValue(key, out object value))
+        //{
+
+        //}
+
+        if (key == searchedKey && !string.IsNullOrEmpty(key))
         {
           var seachedValue = inputDict[key];
 

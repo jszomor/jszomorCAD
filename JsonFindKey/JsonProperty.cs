@@ -56,10 +56,10 @@ namespace JsonParse
     public double? Angle { get; set; }
 
     [JsonProperty("Flip state")]
-    public double? FlipState { get; set; }
+    public short FlipState { get; set; }
 
     [JsonProperty("Flip state1")]
-    public object FlipState1 { get; set; }
+    public short FlipState1 { get; set; }
 
     [JsonProperty("Angle1")]
     public double? Angle1 { get; set; }
@@ -83,13 +83,13 @@ namespace JsonParse
     public object Try1 { get; set; }
 
     [JsonProperty("Try")]
-    public object Try { get; set; }
+    public string Try { get; set; }
 
     [JsonProperty("Housing")]
-    public object Housing { get; set; }
+    public string Housing { get; set; }
 
     [JsonProperty("TTRY")]
-    public object TTRY { get; set; }
+    public string TTRY { get; set; }
 
     public double? Distance { get; set; }
     public double? Distance1 { get; set; }

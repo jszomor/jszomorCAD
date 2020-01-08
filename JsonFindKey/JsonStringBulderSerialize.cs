@@ -12,7 +12,7 @@ namespace JsonFindKey
     public void StringBuilderSerialize(IEnumerable<JsonLineProperty> lineProperties, IEnumerable<JsonBlockProperty> blockProperties)
     {
       string fileJson = "JsonStringBuilder.json";
-      string dirPath = @"C:\Users\jszomor\Google Drive\Programozas\Practice"; //work
+      string dirPath = @"C:\Users\jszomor\source\repos\jszomorCAD\jCAD.PID_Builder\"; //work
 
       var fileName = System.IO.Path.Combine(dirPath, fileJson);
 

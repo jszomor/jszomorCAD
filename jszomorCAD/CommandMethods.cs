@@ -307,6 +307,7 @@ namespace jszomorCAD
 
       var insertBlock = new InsertBlock(db);
       insertBlock.PlaceBlock();
+      MoveToBottom.SendToBackBlock();
       //var blockDeserialize = new BlockDeserialize();
       //var eqType = blockDeserialize.BlockSearch("Name");
 
