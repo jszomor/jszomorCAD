@@ -7,9 +7,6 @@ namespace JsonParse
 {
   public class JsonBlockProperty
   {
-    [JsonProperty("ObjectId")]
-    public object ObjectId;
-
     public Geometry Geometry { get; } = new Geometry();
 
     public Misc Misc { get; } = new Misc();

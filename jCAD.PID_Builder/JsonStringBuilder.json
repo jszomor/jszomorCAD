@@ -1,6 +1,5 @@
-
+[
   {
-    "ObjectId": {},
     "Geometry": {
       "Position X": 2700.0,
       "Position Y": 900.0
@@ -52,4 +51,60 @@
       "TAG_ID": "PP",
       "PROCESSUNITAREA": "01"
     }
+  },
+  {
+    "Geometry": {
+      "Position X": 2730.0,
+      "Position Y": 900.0
+    },
+    "Misc": {
+      "Name": "mixer",
+      "Rotation": 0.0
+    },
+    "General": {
+      "Layer": "equipment"
+    },
+    "Custom": {
+      "TAG X": 2.5,
+      "TAG Y": 4.3541600657069921,
+      "Angle": 0.0,
+      "Flip state": 0,
+      "Flip state1": 0,
+      "Angle1": 0.0,
+      "Block Table1": 0,
+      "Distance": 1.5958723916406399
+    },
+    "Attributes": {
+      "NOTE": "Coagulation mixer",
+      "EQUIP_TYPE": "Vertical Shaft Mixer (fix rpm)",
+      "MODEL": "-",
+      "POWER_CONSUMED": "-",
+      "POWER_INSTALLED": "-",
+      "INSTALLATION": "-",
+      "MATERIAL_BODY": "",
+      "MATERIAL_SHAFT": "",
+      "MATERIAL_BLADE": "",
+      "SP_TANKW": "-",
+      "SP_TANKL": "-",
+      "SP_TANKD": "-",
+      "SP_TANKV": "-",
+      "UNIT_TANKV": "m3",
+      "UNIT_TANKD": "m",
+      "UNIT_TANKL": "m",
+      "TAG": "000",
+      "RUNNINGHOURS": "-",
+      "NUMBER_OF_UNIT": "",
+      "NOTE_CHINESE": "混凝搅拌机",
+      "STB_DTY": "-",
+      "AREA_CODE": "00",
+      "DI": "3",
+      "DO": "1",
+      "AI": "0",
+      "AO": "0",
+      "PB": "0",
+      "PO": "2",
+      "TAG_ID": "MV",
+      "PROCESSUNITAREA": ""
+    }
   }
+][]
