@@ -119,6 +119,7 @@
     <None Include="App.config" />
     <None Include="JsonStringBuilder.json" />
     <None Include="packages.config" />
+    <None Include="test.json" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EquipmentPosition\EquipmentPosition\jCAD.EquipmentProperty.csproj">

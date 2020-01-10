@@ -314,8 +314,7 @@ namespace jszomorCAD
         var jsonLineSetup = new JsonLineSetup();
         var jsonBlockSetup = new JsonBlockSetup();
 
-        var jsonBlockToSerialize = new List<JsonBlockProperty>();
-        var jsonLineToSerialize = new List<JsonLineProperty>();
+        var jsonPID = new JsonPID();
 
         foreach (ObjectId objectId in btrModelSpace)
         {
@@ -325,7 +324,8 @@ namespace jszomorCAD
 
             if (item is Line || item is Polyline || item is Polyline2d || item is Polyline3d)
             {
-              jsonLineToSerialize.Add(jsonLineSetup.SetupLineProperty(item));
+              //jsonLineToSerialize.Add(jsonLineSetup.SetupLineProperty(item));
+              jsonPID.Lines.Add(jsonLineSetup.SetupLineProperty(item));
             }
 
             if (item is BlockReference)
@@ -334,12 +334,12 @@ namespace jszomorCAD
               if (blockReference == null) continue;
               var btrObjectId = blockReference.DynamicBlockTableRecord; //must be Dynamic to find every blocks
               var blockDefinition = btrObjectId.GetObject(OpenMode.ForRead) as BlockTableRecord;
-              jsonBlockToSerialize.Add(jsonBlockSetup.SetupBlockProperty(blockDefinition, tr, blockReference));
+              jsonPID.Blocks.Add(jsonBlockSetup.SetupBlockProperty(blockDefinition, tr, blockReference));
             }
           }
         }
         var seralizer = new JsonStringBuilderSerialize();
-        seralizer.StringBuilderSerialize(jsonLineToSerialize, jsonBlockToSerialize);
+        seralizer.StringBuilderSerialize(jsonPID);
       });
     }
   }

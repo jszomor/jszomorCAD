@@ -9,7 +9,7 @@ namespace JsonFindKey
 {
   public class JsonStringBuilderSerialize
   {
-    public void StringBuilderSerialize(IEnumerable<JsonLineProperty> lineProperties, IEnumerable<JsonBlockProperty> blockProperties)
+    public void StringBuilderSerialize(JsonPID jsonPID)
     {
       string fileJson = "JsonStringBuilder.json";
       string dirPath = @"C:\Users\jszomor\source\repos\jszomorCAD\jCAD.PID_Builder\"; //work
@@ -23,8 +23,7 @@ namespace JsonFindKey
       {
         using (JsonWriter writer = new JsonTextWriter(sw))
         {
-          serializer.Serialize(writer, blockProperties);
-          serializer.Serialize(writer, lineProperties);
+          serializer.Serialize(writer, jsonPID);
         }
       }
       return;

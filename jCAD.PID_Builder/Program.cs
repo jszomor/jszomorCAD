@@ -15,16 +15,45 @@ namespace jCAD.PID_Builder
 
     static void Main(string[] args)
     {
-      //string jsonString = System.IO.File.ReadAllText(@"C:\Users\jszomor\source\repos\jszomorCAD\jCAD.PID_Builder\JsonStringBuilder.json");
-      //Misc misc = JsonConvert.DeserializeObject<Misc>(jsonString);
+      JObject o = JObject.Parse(@"{
+  'CPU': 'Intel',
+  'Drives': [
+    'DVD read/writer',
+    '500 gigabyte hard drive'
+  ]
+}");
 
-      //var blockDeserialize = new BlockDeserialize();
+      string jsonStringText = System.IO.File.ReadAllText(@"C:\Users\jszomor\source\repos\jszomorCAD\jCAD.PID_Builder\JsonStringBuilder.json");
 
-      BlockDeserialize blockDeserialize = new BlockDeserialize();
-      var eqType = blockDeserialize.BlockSearch("Position X");
+      JObject jsonString = JObject.Parse(jsonStringText);
 
-      System.Diagnostics.Debug.Print($"BlockName: {eqType}");
-      Console.WriteLine(eqType);
+      Console.WriteLine(jsonString["Blocks"]);
+
+      // get JSON result objects into a list
+      //IList<string> results = jsonString["Blocks"].Select(t => (string)t).ToList();
+      //IList<JToken> results = jsonString["Blocks"][0].Children().ToList();
+      // serialize JSON results into .NET objects
+      //IList<JsonBlockProperty> searchResults = new List<JsonBlockProperty>();
+      //foreach (string result in results)
+      //{
+      //  //Type type = typeof(string);
+      //  //var i1 = System.Convert.ChangeType(result.ToString(), type);
+      //  //var i3 = Convert.ToString(i1);
+
+      //  //JsonDeser(result, equipmentName);
+      //  // JToken.ToObject is a helper method that uses JsonSerializer internally
+      //  //JsonBlockProperty searchResult = result.ToObject<JsonBlockProperty>();
+      //  //searchResults.Add(searchResult);
+      //}
+
+      ////JsonDeser(jsonStringText, equipmentName);
+
+
+
+      //foreach (var item in results)
+      //{
+      //  Console.WriteLine(item);
+      //}
       Console.ReadKey();
     }
   }

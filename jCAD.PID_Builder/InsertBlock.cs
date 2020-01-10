@@ -57,11 +57,12 @@ namespace jCAD.PID_Builder
       _db = db;
     }
 
-    public void PlaceBlock()
+    public void PlaceBlock(JsonPID jsonPID, string blockName)
     {
-      var blockDeserialize = new BlockDeserialize();
-      ObjectId blockId = GetBlockTable(Convert.ToString(blockDeserialize.BlockSearch("Name")));
-
+      var block = jsonPID.BlockSearch(blockName);
+      if (block == null) throw new ArgumentNullException("Block not found " + blockName);
+      ObjectId blockId = GetBlockTable(block.Misc.BlockName);
+      
       //var defultLayers = new LayerCreator();
       using (var tr = _db.TransactionManager.StartTransaction())
       {
@@ -70,19 +71,19 @@ namespace jCAD.PID_Builder
         using (var blockDefinition = (BlockTableRecord)tr.GetObject(blockId, OpenMode.ForRead, false))
         {
           using (var acBlkRef = new BlockReference(
-            new Point3d(Convert.ToInt64(blockDeserialize.BlockSearch("Position X")),
-                        Convert.ToInt64(blockDeserialize.BlockSearch("Position Y")), 0), blockId))
+            new Point3d(block.Geometry.X,
+                        block.Geometry.Y, 0), blockId))
           {
 
             btr.AppendEntity(acBlkRef);
             tr.AddNewlyCreatedDBObject(acBlkRef, true);
 
-            SetBlockReferenceLayer(acBlkRef, Convert.ToString(blockDeserialize.BlockSearch("Layer")));
-            SetRotate(acBlkRef, Convert.ToInt64(blockDeserialize.BlockSearch("Rotation")));
+            SetBlockReferenceLayer(acBlkRef, block.General.Layer);
+            SetRotate(acBlkRef, block.Misc.Rotation);
             CreateBlockRefenceAttributes(acBlkRef, blockDefinition, tr);
-            SetVisibilityIndex(acBlkRef, blockDeserialize);
-            SetDynamicReference(acBlkRef, blockDeserialize);
-            SetupAttributeProperty(tr, acBlkRef, blockDeserialize);
+            SetVisibilityIndex(acBlkRef, block);
+            SetDynamicReference(acBlkRef, block);
+            //SetupAttributeProperty(tr, acBlkRef, block);
             //SetBlockRefenceAttributesValues(acBlkRef, insertBlock.ActionToExecuteOnAttRef);
             //SetDynamicBlockReferenceValues(acBlkRef, insertBlock.ActionToExecuteOnDynPropAfter);
             //SetHostName(acBlkRef, insertBlock.HostName);
@@ -132,49 +133,49 @@ namespace jCAD.PID_Builder
       }
     }
 
-    private void SetVisibilityIndex(BlockReference acBlkRef, BlockDeserialize blockDeserialize)
+    private void SetVisibilityIndex(BlockReference acBlkRef, JsonBlockProperty jsonBlockProperty)
     {
       if (acBlkRef.IsDynamicBlock)
       {
         foreach (DynamicBlockReferenceProperty dbrProp in acBlkRef.DynamicBlockReferencePropertyCollection)
         {
           if (dbrProp.PropertyName == "Centrifugal Pump" && acBlkRef.Name == "pump")
-            dbrProp.Value = Convert.ToInt16(blockDeserialize.BlockSearch("Centrifugal Pump"));
+            dbrProp.Value = Convert.ToInt16(jsonBlockProperty.Custom.PumpTableValue);
 
           else if (dbrProp.PropertyName == "Visibility" && acBlkRef.Name == "chamber")
-            dbrProp.Value = Convert.ToString(blockDeserialize.BlockSearch("Visibility"));
+            dbrProp.Value = jsonBlockProperty.Custom.VisibilityValue;
 
           else if (dbrProp.PropertyName == "Block Table1")
-            dbrProp.Value = Convert.ToInt16(blockDeserialize.BlockSearch("Block Table1"));
+            dbrProp.Value = Convert.ToInt16(jsonBlockProperty.Custom.BlockTableValue);
         }
       }
     }
 
-    public void SetDynamicReference(BlockReference acBlkRef, BlockDeserialize blockDeserialize)
+    public void SetDynamicReference(BlockReference acBlkRef, JsonBlockProperty jsonBlockProperty)
     {
       if (acBlkRef.IsDynamicBlock)
       {
         foreach (DynamicBlockReferenceProperty dbrProp in acBlkRef.DynamicBlockReferencePropertyCollection)
         {
-          if (dbrProp.PropertyName == "Position X") { dbrProp.Value = DoubleConverter(blockDeserialize.BlockSearch("TAG X")); continue; }
-          if (dbrProp.PropertyName == "Position Y") { dbrProp.Value = DoubleConverter(blockDeserialize.BlockSearch("TAG Y")); continue; }
-          if (dbrProp.PropertyName == "Position1 X") { dbrProp.Value = DoubleConverter(blockDeserialize.BlockSearch("TAG1 X")); continue; }
-          if (dbrProp.PropertyName == "Position1 Y") { dbrProp.Value = DoubleConverter(blockDeserialize.BlockSearch("TAG1 Y")); continue; }
-          if (dbrProp.PropertyName == "Angle") { dbrProp.Value = DoubleConverter(blockDeserialize.BlockSearch("Angle")); continue; }
-          if (dbrProp.PropertyName == "Angle1") { dbrProp.Value = DoubleConverter(blockDeserialize.BlockSearch("Angle1")); continue; }
-          if (dbrProp.PropertyName == "Angle2") { dbrProp.Value = DoubleConverter(blockDeserialize.BlockSearch("Angle2")); continue; }
-          if (dbrProp.PropertyName == "Distance") { dbrProp.Value = DoubleConverter(blockDeserialize.BlockSearch("Distance")); continue; }
-          if (dbrProp.PropertyName == "Distance1") { dbrProp.Value = DoubleConverter(blockDeserialize.BlockSearch("Distance1")); continue; }
-          if (dbrProp.PropertyName == "Distance2") { dbrProp.Value = DoubleConverter(blockDeserialize.BlockSearch("Distance2")); continue; }
-          if (dbrProp.PropertyName == "Distance3") { dbrProp.Value = DoubleConverter(blockDeserialize.BlockSearch("Distance3")); continue; }
-          if (dbrProp.PropertyName == "Distance4") { dbrProp.Value = DoubleConverter(blockDeserialize.BlockSearch("Distance4")); continue; }
-          if (dbrProp.PropertyName == "Distance5") { dbrProp.Value = DoubleConverter(blockDeserialize.BlockSearch("Distance5")); continue; }
-          if (dbrProp.PropertyName == "Flip state") { dbrProp.Value = Convert.ToInt16(blockDeserialize.BlockSearch("Flip state")); continue; }
-          if (dbrProp.PropertyName == "Flip state1") { dbrProp.Value = Convert.ToInt16(blockDeserialize.BlockSearch("Flip state1")); continue; }
-          if (dbrProp.PropertyName == "Try1") { dbrProp.Value = DoubleConverter(blockDeserialize.BlockSearch("Try1")); continue; }
-          if (dbrProp.PropertyName == "Try") { dbrProp.Value = Convert.ToString(blockDeserialize.BlockSearch("Try")); continue; }
-          if (dbrProp.PropertyName == "Housing") { dbrProp.Value = Convert.ToString(blockDeserialize.BlockSearch("Housing")); continue; }
-          if (dbrProp.PropertyName == "TTRY") { dbrProp.Value = Convert.ToString(blockDeserialize.BlockSearch("TTRY")); continue; }
+          if (dbrProp.PropertyName == "Position X") { dbrProp.Value = jsonBlockProperty.Custom.TagX; continue; }
+          if (dbrProp.PropertyName == "Position Y") { dbrProp.Value = jsonBlockProperty.Custom.TagY; continue; }
+          if (dbrProp.PropertyName == "Position1 X") { dbrProp.Value = jsonBlockProperty.Custom.TagX1; continue; }
+          if (dbrProp.PropertyName == "Position1 Y") { dbrProp.Value = jsonBlockProperty.Custom.TagY1; continue; }
+          if (dbrProp.PropertyName == "Angle") { dbrProp.Value = jsonBlockProperty.Custom.Angle; continue; }
+          if (dbrProp.PropertyName == "Angle1") { dbrProp.Value = jsonBlockProperty.Custom.Angle1; continue; }
+          if (dbrProp.PropertyName == "Angle2") { dbrProp.Value = jsonBlockProperty.Custom.Angle2; continue; }
+          if (dbrProp.PropertyName == "Distance") { dbrProp.Value = jsonBlockProperty.Custom.Distance; continue; }
+          if (dbrProp.PropertyName == "Distance1") { dbrProp.Value = jsonBlockProperty.Custom.Distance1; continue; }
+          if (dbrProp.PropertyName == "Distance2") { dbrProp.Value = jsonBlockProperty.Custom.Distance2; continue; }
+          if (dbrProp.PropertyName == "Distance3") { dbrProp.Value = jsonBlockProperty.Custom.Distance3; continue; }
+          if (dbrProp.PropertyName == "Distance4") { dbrProp.Value = jsonBlockProperty.Custom.Distance4; continue; }
+          if (dbrProp.PropertyName == "Distance5") { dbrProp.Value = jsonBlockProperty.Custom.Distance5; continue; }
+          if (dbrProp.PropertyName == "Flip state") { dbrProp.Value = jsonBlockProperty.Custom.FlipState; continue; }
+          if (dbrProp.PropertyName == "Flip state1") { dbrProp.Value = jsonBlockProperty.Custom.FlipState1; continue; }
+          if (dbrProp.PropertyName == "Try1") { dbrProp.Value = jsonBlockProperty.Custom.Try1; continue; }
+          if (dbrProp.PropertyName == "Try") { dbrProp.Value = jsonBlockProperty.Custom.Try; continue; }
+          if (dbrProp.PropertyName == "Housing") { dbrProp.Value = jsonBlockProperty.Custom.Housing; continue; }
+          if (dbrProp.PropertyName == "TTRY") { dbrProp.Value = jsonBlockProperty.Custom.TTRY; continue; }
         }
       }
     }
@@ -225,132 +226,132 @@ namespace jCAD.PID_Builder
       return null;
     }
 
-    public void SetupAttributeProperty(Transaction tr, BlockReference blockReference, BlockDeserialize blockDeserialize)
-    {
-      AttributeCollection attCol = blockReference.AttributeCollection;
-      foreach (ObjectId attId in attCol)
-      {
-        AttributeReference attRef = (AttributeReference)tr.GetObject(attId, OpenMode.ForRead);
+    //public void SetupAttributeProperty(Transaction tr, BlockReference blockReference, BlockDeserialize blockDeserialize)
+    //{
+    //  AttributeCollection attCol = blockReference.AttributeCollection;
+    //  foreach (ObjectId attId in attCol)
+    //  {
+    //    AttributeReference attRef = (AttributeReference)tr.GetObject(attId, OpenMode.ForRead);
 
-        if (attRef.Tag == "NOTE")                 { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("NOTE")); continue; }
-        if (attRef.Tag == "NOTE_CHINESE")         { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("NOTE_CHINESE")); continue; }
-        if (attRef.Tag == "NAME1")                { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("NAME1")); continue; }
-        if (attRef.Tag == "NAME2")                { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("NAME2")); continue; }
-        if (attRef.Tag == "TAG")                  { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("TAG")); continue; }
-        if (attRef.Tag == "TAG_ID")               { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("TAG_ID")); continue; }
-        if (attRef.Tag == "AREA_CODE")            { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("AREA_CODE")); continue; }
-        if (attRef.Tag == "MANUFACTURER")         { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("MANUFACTURER")); continue; }
-        if (attRef.Tag == "MODEL")                { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("MODEL")); continue; }
-        if (attRef.Tag == "MATERIAL_COVER")       { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("MATERIAL_COVER")); continue; }
-        if (attRef.Tag == "MATERIAL_BARS")        { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("MATERIAL_BARS")); continue; }
-        if (attRef.Tag == "MATERIAL_FIXED")       { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("MATERIAL_FIXED")); continue; }
-        if (attRef.Tag == "MATERIAL_FRAME")       { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("MATERIAL_FRAME")); continue; }
-        if (attRef.Tag == "MATERIAL_HOUSING")     { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("MATERIAL_HOUSING")); continue; }
-        if (attRef.Tag == "MATERIAL")             { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("MATERIAL")); continue; }
-        if (attRef.Tag == "MATERIAL_SCREW_LINER") { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("MATERIAL_SCREW_LINER")); continue; }
-        if (attRef.Tag == "MATERIAL_CARPENTRY")   { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("MATERIAL_CARPENTRY")); continue; }
-        if (attRef.Tag == "MATERIAL_BODY")        { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("MATERIAL_BODY")); continue; }
-        if (attRef.Tag == "MATERIAL_GEAR")        { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("MATERIAL_GEAR")); continue; }
-        if (attRef.Tag == "MATERIAL_SHAFT")       { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("MATERIAL_SHAFT")); continue; }
-        if (attRef.Tag == "MATERIAL_ROTOR")       { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("MATERIAL_ROTOR")); continue; }
-        if (attRef.Tag == "MATERIAL_SUBSURFACE")  { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("MATERIAL_SUBSURFACE")); continue; }
-        if (attRef.Tag == "MATERIAL_ABOVE_WATER") { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("MATERIAL_ABOVE_WATER")); continue; }
-        if (attRef.Tag == "MATERIAL_SEALING")     { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("MATERIAL_SEALING")); continue; }
-        if (attRef.Tag == "MATERIAL_STEM")        { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("MATERIAL_STEM")); continue; }
-        if (attRef.Tag == "MATERIAL_BLADE")       { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("MATERIAL_BLADE")); continue; }
-        if (attRef.Tag == "MATERIAL_ABOVE")       { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("MATERIAL_ABOVE")); continue; }
-        if (attRef.Tag == "SP_FLOW")              { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("SP_FLOW")); continue; }
-        if (attRef.Tag == "SP_FLUID")             { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("SP_FLUID")); continue; }
-        if (attRef.Tag == "SP_SPACING")           { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("SP_SPACING")); continue; }
-        if (attRef.Tag == "SP_ACTUATED")          { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("SP_ACTUATED")); continue; }
-        if (attRef.Tag == "SP_CAPACITY")          { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("SP_CAPACITY")); continue; }
-        if (attRef.Tag == "SP_HEAD")              { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("SP_HEAD")); continue; }
-        if (attRef.Tag == "SP_TSS_INLET")         { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("SP_TSS_INLET")); continue; }
-        if (attRef.Tag == "SP_TSS_OUTLET")        { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("SP_TSS_OUTLET")); continue; }
-        if (attRef.Tag == "SP_DIAMETER")          { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("SP_DIAMETER")); continue; }
-        if (attRef.Tag == "SP_VOLUME")            { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("SP_VOLUME")); continue; }
-        if (attRef.Tag == "SP_PRESSURE")          { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("SP_PRESSURE")); continue; }
-        if (attRef.Tag == "SP_WIDTH")             { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("SP_WIDTH")); continue; }
-        if (attRef.Tag == "SP_LEVEL")             { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("SP_LEVEL")); continue; }
-        if (attRef.Tag == "SP_BOARD")             { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("SP_BOARD")); continue; }
-        if (attRef.Tag == "SP_LENGTH")            { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("SP_LENGTH")); continue; }
-        if (attRef.Tag == "SP_INLET")             { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("SP_INLET")); continue; }
-        if (attRef.Tag == "SP_OUTLET")            { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("SP_OUTLET")); continue; }
-        if (attRef.Tag == "SP_CHANNELH")          { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("SP_CHANNELH")); continue; }
-        if (attRef.Tag == "SP_CHANNELW")          { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("SP_CHANNELW")); continue; }
-        if (attRef.Tag == "SP_WATER_LEVEL")       { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("SP_WATER_LEVEL")); continue; }
-        if (attRef.Tag == "SP_FLOWMAX")           { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("SP_FLOWMAX")); continue; }
-        if (attRef.Tag == "SP_FLOWMIN")           { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("SP_FLOWMIN")); continue; }
-        if (attRef.Tag == "SP_TANKW")             { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("SP_TANKW")); continue; }
-        if (attRef.Tag == "SP_TANKL")             { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("SP_TANKL")); continue; }
-        if (attRef.Tag == "SP_TANKD")             { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("SP_TANKD")); continue; }
-        if (attRef.Tag == "SP_TANKV")             { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("SP_TANKV")); continue; }
-        if (attRef.Tag == "SP_CLARIFIER_DIA")     { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("SP_CLARIFIER_DIA")); continue; }
-        if (attRef.Tag == "SP_OPERATION_LEVEL")   { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("SP_OPERATION_LEVEL")); continue; }
-        if (attRef.Tag == "SP_FREE_BOARD")        { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("SP_FREE_BOARD")); continue; }
-        if (attRef.Tag == "UNIT_SPACING")         { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("UNIT_SPACING")); continue; }
-        if (attRef.Tag == "UNIT_FLOW")            { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("UNIT_FLOW")); continue; }
-        if (attRef.Tag == "UNIT_HEAD")            { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("UNIT_HEAD")); continue; }
-        if (attRef.Tag == "UNIT_CAPACITY")        { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("UNIT_CAPACITY")); continue; }
-        if (attRef.Tag == "UNIT_TSS_INLET")       { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("UNIT_TSS_INLET")); continue; }
-        if (attRef.Tag == "UNIT_TSS_OUTLET")      { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("UNIT_TSS_OUTLET")); continue; }
-        if (attRef.Tag == "UNIT_DIAMETER")        { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("UNIT_DIAMETER")); continue; }
-        if (attRef.Tag == "UNIT_PRESSURE")        { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("UNIT_PRESSURE")); continue; }
-        if (attRef.Tag == "UNIT_WIDTH")           { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("UNIT_WIDTH")); continue; }
-        if (attRef.Tag == "UNIT_LEVEL")           { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("UNIT_LEVEL")); continue; }
-        if (attRef.Tag == "UNIT_BOARD")           { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("UNIT_BOARD")); continue; }
-        if (attRef.Tag == "UNIT_LENGTH")          { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("UNIT_LENGTH")); continue; }
-        if (attRef.Tag == "UNIT_INLET")           { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("UNIT_INLET")); continue; }
-        if (attRef.Tag == "UNIT_OUTLET")          { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("UNIT_OUTLET")); continue; }
-        if (attRef.Tag == "UNIT_CHANNELW")        { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("UNIT_CHANNELW")); continue; }
-        if (attRef.Tag == "UNIT_CHANNELH")        { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("UNIT_CHANNELH")); continue; }
-        //if (attRef.Tag == "UNIT_CLARIFIER") { jsonBlockProperty.Attributes.UnitClarifier = attRef.TextString; continue; }
-        //if (attRef.Tag == "UNIT_OPERATIONAL_LEVEL") { jsonBlockProperty.Attributes.UnitOperationalLevel = attRef.TextString; continue; }
-        //if (attRef.Tag == "UNIT_FREE_BOARD") { jsonBlockProperty.Attributes.UnitFreeboard = attRef.TextString; continue; }
-        //if (attRef.Tag == "UNIT_WATER_LEVEL") { jsonBlockProperty.Attributes.UnitWaterLevel = attRef.TextString; continue; }
-        //if (attRef.Tag == "UNIT_FLOWMAX") { jsonBlockProperty.Attributes.UnitFlowMax = attRef.TextString; continue; }
-        //if (attRef.Tag == "UNIT_FLOWMIN") { jsonBlockProperty.Attributes.UnitFlowMin = attRef.TextString; continue; }
-        //if (attRef.Tag == "UNIT_CLARIFIER_DIA") { jsonBlockProperty.Attributes.UnitClarifierDia = attRef.TextString; continue; }
-        //if (attRef.Tag == "UNIT_VOLUME") { jsonBlockProperty.Attributes.UnitVolume = attRef.TextString; continue; }
-        //if (attRef.Tag == "UNIT_TANKD") { jsonBlockProperty.Attributes.UnitTankD = attRef.TextString; continue; }
-        //if (attRef.Tag == "UNIT_TANKL") { jsonBlockProperty.Attributes.UnitTankL = attRef.TextString; continue; }
-        //if (attRef.Tag == "UNIT_TANW") { jsonBlockProperty.Attributes.UnitTankW = attRef.TextString; continue; }
-        //if (attRef.Tag == "UNIT_TANKV") { jsonBlockProperty.Attributes.UnitTankV = attRef.TextString; continue; }
-        //if (attRef.Tag == "RUNNINGHOURS") { jsonBlockProperty.Attributes.RunningHours = attRef.TextString; continue; }
-        //if (attRef.Tag == "EQUIP_TYPE") { jsonBlockProperty.Attributes.EquipType = attRef.TextString; continue; }
-        //if (attRef.Tag == "BLOWER_TYPE") { jsonBlockProperty.Attributes.BlowerType = attRef.TextString; continue; }
-        //if (attRef.Tag == "STB_DTY") { jsonBlockProperty.Attributes.StandByDuty = attRef.TextString; continue; }
-        //if (attRef.Tag == "DI") { jsonBlockProperty.Attributes.DI = attRef.TextString; continue; }
-        //if (attRef.Tag == "DO") { jsonBlockProperty.Attributes.DO = attRef.TextString; continue; }
-        //if (attRef.Tag == "AI") { jsonBlockProperty.Attributes.AI = attRef.TextString; continue; }
-        //if (attRef.Tag == "AO") { jsonBlockProperty.Attributes.AO = attRef.TextString; continue; }
-        //if (attRef.Tag == "PB") { jsonBlockProperty.Attributes.PB = attRef.TextString; continue; }
-        //if (attRef.Tag == "PO") { jsonBlockProperty.Attributes.PO = attRef.TextString; continue; }
-        //if (attRef.Tag == "PROCESSUNITAREA") { jsonBlockProperty.Attributes.ProcessUnitArea = attRef.TextString; continue; }
-        //if (attRef.Tag == "VOLUME") { jsonBlockProperty.Attributes.Volume = attRef.TextString; continue; }
-        //if (attRef.Tag == "LIQUIDLEVEL") { jsonBlockProperty.Attributes.LiquidLevel = attRef.TextString; continue; }
-        //if (attRef.Tag == "LENGTH") { jsonBlockProperty.Attributes.Length = attRef.TextString; continue; }
-        //if (attRef.Tag == "HEIGHT") { jsonBlockProperty.Attributes.Height = attRef.TextString; continue; }
-        //if (attRef.Tag == "WIDTH") { jsonBlockProperty.Attributes.Width = attRef.TextString; continue; }
-        //if (attRef.Tag == "CHANNELWIDTH") { jsonBlockProperty.Attributes.ChannelWidth = attRef.TextString; continue; }
-        //if (attRef.Tag == "PRESSURE") { jsonBlockProperty.Attributes.Pressure = attRef.TextString; continue; }
-        //if (attRef.Tag == "SIZE") { jsonBlockProperty.Attributes.Size = attRef.TextString; continue; }
-        //if (attRef.Tag == "INSTALLATION") { jsonBlockProperty.Attributes.Installation = attRef.TextString; continue; }
-        //if (attRef.Tag == "FC_MOD") { jsonBlockProperty.Attributes.FcMod = attRef.TextString; continue; }
-        //if (attRef.Tag == "FC_MAN") { jsonBlockProperty.Attributes.FcMan = attRef.TextString; continue; }
-        //if (attRef.Tag == "PUMP_TYPE") { jsonBlockProperty.Attributes.PumpType = attRef.TextString; continue; }
-        //if (attRef.Tag == "FILTER") { jsonBlockProperty.Attributes.Filter = attRef.TextString; continue; }
-        //if (attRef.Tag == "FLOW") { jsonBlockProperty.Attributes.Flow = attRef.TextString; continue; }
-        //if (attRef.Tag == "DIAMETER") { jsonBlockProperty.Attributes.Diameter = attRef.TextString; continue; }
-        //if (attRef.Tag == "POWER") { jsonBlockProperty.Attributes.Power = attRef.TextString; continue; }
-        //if (attRef.Tag == "INSTALLED_POWER") { jsonBlockProperty.Attributes.InstalledPower = attRef.TextString; continue; }
-        //if (attRef.Tag == "POWER_INSTALLED") { jsonBlockProperty.Attributes.PowerInstalled = attRef.TextString; continue; }
-        //if (attRef.Tag == "CONSUMED_POWER") { jsonBlockProperty.Attributes.ConsumedPower = attRef.TextString; continue; }
-        //if (attRef.Tag == "POWER_CONSUMED") { jsonBlockProperty.Attributes.PowerConsumed = attRef.TextString; continue; }
-        //if (attRef.Tag == "NUMBER_OF_UNIT") { jsonBlockProperty.Attributes.NumberOfUnits = attRef.TextString; continue; }
-        //if (attRef.Tag == "TYP") { jsonBlockProperty.Attributes.Typ = attRef.TextString; continue; }
-        //if (attRef.Tag == "HOST_NAME") { jsonBlockProperty.Attributes.HostName = attRef.TextString; continue; }
-      }
-    }
+    //    if (attRef.Tag == "NOTE")                 { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("NOTE")); continue; }
+    //    if (attRef.Tag == "NOTE_CHINESE")         { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("NOTE_CHINESE")); continue; }
+    //    if (attRef.Tag == "NAME1")                { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("NAME1")); continue; }
+    //    if (attRef.Tag == "NAME2")                { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("NAME2")); continue; }
+    //    if (attRef.Tag == "TAG")                  { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("TAG")); continue; }
+    //    if (attRef.Tag == "TAG_ID")               { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("TAG_ID")); continue; }
+    //    if (attRef.Tag == "AREA_CODE")            { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("AREA_CODE")); continue; }
+    //    if (attRef.Tag == "MANUFACTURER")         { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("MANUFACTURER")); continue; }
+    //    if (attRef.Tag == "MODEL")                { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("MODEL")); continue; }
+    //    if (attRef.Tag == "MATERIAL_COVER")       { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("MATERIAL_COVER")); continue; }
+    //    if (attRef.Tag == "MATERIAL_BARS")        { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("MATERIAL_BARS")); continue; }
+    //    if (attRef.Tag == "MATERIAL_FIXED")       { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("MATERIAL_FIXED")); continue; }
+    //    if (attRef.Tag == "MATERIAL_FRAME")       { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("MATERIAL_FRAME")); continue; }
+    //    if (attRef.Tag == "MATERIAL_HOUSING")     { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("MATERIAL_HOUSING")); continue; }
+    //    if (attRef.Tag == "MATERIAL")             { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("MATERIAL")); continue; }
+    //    if (attRef.Tag == "MATERIAL_SCREW_LINER") { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("MATERIAL_SCREW_LINER")); continue; }
+    //    if (attRef.Tag == "MATERIAL_CARPENTRY")   { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("MATERIAL_CARPENTRY")); continue; }
+    //    if (attRef.Tag == "MATERIAL_BODY")        { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("MATERIAL_BODY")); continue; }
+    //    if (attRef.Tag == "MATERIAL_GEAR")        { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("MATERIAL_GEAR")); continue; }
+    //    if (attRef.Tag == "MATERIAL_SHAFT")       { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("MATERIAL_SHAFT")); continue; }
+    //    if (attRef.Tag == "MATERIAL_ROTOR")       { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("MATERIAL_ROTOR")); continue; }
+    //    if (attRef.Tag == "MATERIAL_SUBSURFACE")  { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("MATERIAL_SUBSURFACE")); continue; }
+    //    if (attRef.Tag == "MATERIAL_ABOVE_WATER") { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("MATERIAL_ABOVE_WATER")); continue; }
+    //    if (attRef.Tag == "MATERIAL_SEALING")     { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("MATERIAL_SEALING")); continue; }
+    //    if (attRef.Tag == "MATERIAL_STEM")        { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("MATERIAL_STEM")); continue; }
+    //    if (attRef.Tag == "MATERIAL_BLADE")       { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("MATERIAL_BLADE")); continue; }
+    //    if (attRef.Tag == "MATERIAL_ABOVE")       { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("MATERIAL_ABOVE")); continue; }
+    //    if (attRef.Tag == "SP_FLOW")              { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("SP_FLOW")); continue; }
+    //    if (attRef.Tag == "SP_FLUID")             { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("SP_FLUID")); continue; }
+    //    if (attRef.Tag == "SP_SPACING")           { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("SP_SPACING")); continue; }
+    //    if (attRef.Tag == "SP_ACTUATED")          { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("SP_ACTUATED")); continue; }
+    //    if (attRef.Tag == "SP_CAPACITY")          { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("SP_CAPACITY")); continue; }
+    //    if (attRef.Tag == "SP_HEAD")              { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("SP_HEAD")); continue; }
+    //    if (attRef.Tag == "SP_TSS_INLET")         { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("SP_TSS_INLET")); continue; }
+    //    if (attRef.Tag == "SP_TSS_OUTLET")        { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("SP_TSS_OUTLET")); continue; }
+    //    if (attRef.Tag == "SP_DIAMETER")          { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("SP_DIAMETER")); continue; }
+    //    if (attRef.Tag == "SP_VOLUME")            { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("SP_VOLUME")); continue; }
+    //    if (attRef.Tag == "SP_PRESSURE")          { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("SP_PRESSURE")); continue; }
+    //    if (attRef.Tag == "SP_WIDTH")             { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("SP_WIDTH")); continue; }
+    //    if (attRef.Tag == "SP_LEVEL")             { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("SP_LEVEL")); continue; }
+    //    if (attRef.Tag == "SP_BOARD")             { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("SP_BOARD")); continue; }
+    //    if (attRef.Tag == "SP_LENGTH")            { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("SP_LENGTH")); continue; }
+    //    if (attRef.Tag == "SP_INLET")             { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("SP_INLET")); continue; }
+    //    if (attRef.Tag == "SP_OUTLET")            { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("SP_OUTLET")); continue; }
+    //    if (attRef.Tag == "SP_CHANNELH")          { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("SP_CHANNELH")); continue; }
+    //    if (attRef.Tag == "SP_CHANNELW")          { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("SP_CHANNELW")); continue; }
+    //    if (attRef.Tag == "SP_WATER_LEVEL")       { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("SP_WATER_LEVEL")); continue; }
+    //    if (attRef.Tag == "SP_FLOWMAX")           { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("SP_FLOWMAX")); continue; }
+    //    if (attRef.Tag == "SP_FLOWMIN")           { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("SP_FLOWMIN")); continue; }
+    //    if (attRef.Tag == "SP_TANKW")             { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("SP_TANKW")); continue; }
+    //    if (attRef.Tag == "SP_TANKL")             { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("SP_TANKL")); continue; }
+    //    if (attRef.Tag == "SP_TANKD")             { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("SP_TANKD")); continue; }
+    //    if (attRef.Tag == "SP_TANKV")             { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("SP_TANKV")); continue; }
+    //    if (attRef.Tag == "SP_CLARIFIER_DIA")     { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("SP_CLARIFIER_DIA")); continue; }
+    //    if (attRef.Tag == "SP_OPERATION_LEVEL")   { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("SP_OPERATION_LEVEL")); continue; }
+    //    if (attRef.Tag == "SP_FREE_BOARD")        { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("SP_FREE_BOARD")); continue; }
+    //    if (attRef.Tag == "UNIT_SPACING")         { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("UNIT_SPACING")); continue; }
+    //    if (attRef.Tag == "UNIT_FLOW")            { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("UNIT_FLOW")); continue; }
+    //    if (attRef.Tag == "UNIT_HEAD")            { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("UNIT_HEAD")); continue; }
+    //    if (attRef.Tag == "UNIT_CAPACITY")        { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("UNIT_CAPACITY")); continue; }
+    //    if (attRef.Tag == "UNIT_TSS_INLET")       { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("UNIT_TSS_INLET")); continue; }
+    //    if (attRef.Tag == "UNIT_TSS_OUTLET")      { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("UNIT_TSS_OUTLET")); continue; }
+    //    if (attRef.Tag == "UNIT_DIAMETER")        { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("UNIT_DIAMETER")); continue; }
+    //    if (attRef.Tag == "UNIT_PRESSURE")        { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("UNIT_PRESSURE")); continue; }
+    //    if (attRef.Tag == "UNIT_WIDTH")           { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("UNIT_WIDTH")); continue; }
+    //    if (attRef.Tag == "UNIT_LEVEL")           { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("UNIT_LEVEL")); continue; }
+    //    if (attRef.Tag == "UNIT_BOARD")           { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("UNIT_BOARD")); continue; }
+    //    if (attRef.Tag == "UNIT_LENGTH")          { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("UNIT_LENGTH")); continue; }
+    //    if (attRef.Tag == "UNIT_INLET")           { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("UNIT_INLET")); continue; }
+    //    if (attRef.Tag == "UNIT_OUTLET")          { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("UNIT_OUTLET")); continue; }
+    //    if (attRef.Tag == "UNIT_CHANNELW")        { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("UNIT_CHANNELW")); continue; }
+    //    if (attRef.Tag == "UNIT_CHANNELH")        { attRef.TextString = Convert.ToString(blockDeserialize.BlockSearch("UNIT_CHANNELH")); continue; }
+    //    //if (attRef.Tag == "UNIT_CLARIFIER") { jsonBlockProperty.Attributes.UnitClarifier = attRef.TextString; continue; }
+    //    //if (attRef.Tag == "UNIT_OPERATIONAL_LEVEL") { jsonBlockProperty.Attributes.UnitOperationalLevel = attRef.TextString; continue; }
+    //    //if (attRef.Tag == "UNIT_FREE_BOARD") { jsonBlockProperty.Attributes.UnitFreeboard = attRef.TextString; continue; }
+    //    //if (attRef.Tag == "UNIT_WATER_LEVEL") { jsonBlockProperty.Attributes.UnitWaterLevel = attRef.TextString; continue; }
+    //    //if (attRef.Tag == "UNIT_FLOWMAX") { jsonBlockProperty.Attributes.UnitFlowMax = attRef.TextString; continue; }
+    //    //if (attRef.Tag == "UNIT_FLOWMIN") { jsonBlockProperty.Attributes.UnitFlowMin = attRef.TextString; continue; }
+    //    //if (attRef.Tag == "UNIT_CLARIFIER_DIA") { jsonBlockProperty.Attributes.UnitClarifierDia = attRef.TextString; continue; }
+    //    //if (attRef.Tag == "UNIT_VOLUME") { jsonBlockProperty.Attributes.UnitVolume = attRef.TextString; continue; }
+    //    //if (attRef.Tag == "UNIT_TANKD") { jsonBlockProperty.Attributes.UnitTankD = attRef.TextString; continue; }
+    //    //if (attRef.Tag == "UNIT_TANKL") { jsonBlockProperty.Attributes.UnitTankL = attRef.TextString; continue; }
+    //    //if (attRef.Tag == "UNIT_TANW") { jsonBlockProperty.Attributes.UnitTankW = attRef.TextString; continue; }
+    //    //if (attRef.Tag == "UNIT_TANKV") { jsonBlockProperty.Attributes.UnitTankV = attRef.TextString; continue; }
+    //    //if (attRef.Tag == "RUNNINGHOURS") { jsonBlockProperty.Attributes.RunningHours = attRef.TextString; continue; }
+    //    //if (attRef.Tag == "EQUIP_TYPE") { jsonBlockProperty.Attributes.EquipType = attRef.TextString; continue; }
+    //    //if (attRef.Tag == "BLOWER_TYPE") { jsonBlockProperty.Attributes.BlowerType = attRef.TextString; continue; }
+    //    //if (attRef.Tag == "STB_DTY") { jsonBlockProperty.Attributes.StandByDuty = attRef.TextString; continue; }
+    //    //if (attRef.Tag == "DI") { jsonBlockProperty.Attributes.DI = attRef.TextString; continue; }
+    //    //if (attRef.Tag == "DO") { jsonBlockProperty.Attributes.DO = attRef.TextString; continue; }
+    //    //if (attRef.Tag == "AI") { jsonBlockProperty.Attributes.AI = attRef.TextString; continue; }
+    //    //if (attRef.Tag == "AO") { jsonBlockProperty.Attributes.AO = attRef.TextString; continue; }
+    //    //if (attRef.Tag == "PB") { jsonBlockProperty.Attributes.PB = attRef.TextString; continue; }
+    //    //if (attRef.Tag == "PO") { jsonBlockProperty.Attributes.PO = attRef.TextString; continue; }
+    //    //if (attRef.Tag == "PROCESSUNITAREA") { jsonBlockProperty.Attributes.ProcessUnitArea = attRef.TextString; continue; }
+    //    //if (attRef.Tag == "VOLUME") { jsonBlockProperty.Attributes.Volume = attRef.TextString; continue; }
+    //    //if (attRef.Tag == "LIQUIDLEVEL") { jsonBlockProperty.Attributes.LiquidLevel = attRef.TextString; continue; }
+    //    //if (attRef.Tag == "LENGTH") { jsonBlockProperty.Attributes.Length = attRef.TextString; continue; }
+    //    //if (attRef.Tag == "HEIGHT") { jsonBlockProperty.Attributes.Height = attRef.TextString; continue; }
+    //    //if (attRef.Tag == "WIDTH") { jsonBlockProperty.Attributes.Width = attRef.TextString; continue; }
+    //    //if (attRef.Tag == "CHANNELWIDTH") { jsonBlockProperty.Attributes.ChannelWidth = attRef.TextString; continue; }
+    //    //if (attRef.Tag == "PRESSURE") { jsonBlockProperty.Attributes.Pressure = attRef.TextString; continue; }
+    //    //if (attRef.Tag == "SIZE") { jsonBlockProperty.Attributes.Size = attRef.TextString; continue; }
+    //    //if (attRef.Tag == "INSTALLATION") { jsonBlockProperty.Attributes.Installation = attRef.TextString; continue; }
+    //    //if (attRef.Tag == "FC_MOD") { jsonBlockProperty.Attributes.FcMod = attRef.TextString; continue; }
+    //    //if (attRef.Tag == "FC_MAN") { jsonBlockProperty.Attributes.FcMan = attRef.TextString; continue; }
+    //    //if (attRef.Tag == "PUMP_TYPE") { jsonBlockProperty.Attributes.PumpType = attRef.TextString; continue; }
+    //    //if (attRef.Tag == "FILTER") { jsonBlockProperty.Attributes.Filter = attRef.TextString; continue; }
+    //    //if (attRef.Tag == "FLOW") { jsonBlockProperty.Attributes.Flow = attRef.TextString; continue; }
+    //    //if (attRef.Tag == "DIAMETER") { jsonBlockProperty.Attributes.Diameter = attRef.TextString; continue; }
+    //    //if (attRef.Tag == "POWER") { jsonBlockProperty.Attributes.Power = attRef.TextString; continue; }
+    //    //if (attRef.Tag == "INSTALLED_POWER") { jsonBlockProperty.Attributes.InstalledPower = attRef.TextString; continue; }
+    //    //if (attRef.Tag == "POWER_INSTALLED") { jsonBlockProperty.Attributes.PowerInstalled = attRef.TextString; continue; }
+    //    //if (attRef.Tag == "CONSUMED_POWER") { jsonBlockProperty.Attributes.ConsumedPower = attRef.TextString; continue; }
+    //    //if (attRef.Tag == "POWER_CONSUMED") { jsonBlockProperty.Attributes.PowerConsumed = attRef.TextString; continue; }
+    //    //if (attRef.Tag == "NUMBER_OF_UNIT") { jsonBlockProperty.Attributes.NumberOfUnits = attRef.TextString; continue; }
+    //    //if (attRef.Tag == "TYP") { jsonBlockProperty.Attributes.Typ = attRef.TextString; continue; }
+    //    //if (attRef.Tag == "HOST_NAME") { jsonBlockProperty.Attributes.HostName = attRef.TextString; continue; }
+    //  }
+    //}
   }
 }

@@ -295,7 +295,8 @@ namespace jszomorCAD
       string path = @"E:\Munka\Test\Autocad PID blocks work in progress.dwg";
       // Copy blocks from sourcefile into opened file
       var copyBlock = new CopyBlock();
-      var btrNamesToCopy = new[] { "pump", "valve", "chamber", "instrumentation tag", "channel gate", "pipe", "pipe2", "channel", "channel2" };
+      var btrNamesToCopy = new[] { "pump", "valve", "chamber", "instrumentation tag",
+        "channel gate", "pipe", "pipe2", "channel", "channel2", "mixer" };
       copyBlock.CopyBlockTable(db, path, btr =>
       {
         System.Diagnostics.Debug.Print(btr.Name);
@@ -306,8 +307,20 @@ namespace jszomorCAD
       defultLayers.Layers();
 
       var insertBlock = new InsertBlock(db);
-      insertBlock.PlaceBlock();
-      MoveToBottom.SendToBackBlock();
+      var jsonPID = blockDeserialize.ReadJsonData();
+
+      foreach (var blockName in btrNamesToCopy)
+      {
+        try
+        {
+          insertBlock.PlaceBlock(jsonPID, blockName);
+          MoveToBottom.SendToBackBlock();
+        }
+        catch (ArgumentNullException)
+        {
+          // ignore
+        }
+      }
       //var blockDeserialize = new BlockDeserialize();
       //var eqType = blockDeserialize.BlockSearch("Name");
 

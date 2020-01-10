@@ -1,10 +1,20 @@
-﻿using Newtonsoft.Json;
+﻿using JsonFindKey;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace JsonParse
 {
+  public class JsonPID
+  {
+    public List<JsonBlockProperty> Blocks { get; } = new List<JsonBlockProperty>();
+    public List<JsonLineProperty> Lines { get; } = new List<JsonLineProperty>();
+
+    public JsonBlockProperty BlockSearch(string equipmentName) => 
+      Blocks.SingleOrDefault(b => b.Misc.BlockName == equipmentName);
+  }
   public class JsonBlockProperty
   {
     public Geometry Geometry { get; } = new Geometry();
