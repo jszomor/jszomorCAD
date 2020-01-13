@@ -287,7 +287,7 @@ namespace jszomorCAD
       SendClass.SendZoomExtents();
     }
 
-    [CommandMethod("JCAD_BlockSearch", CommandFlags.Modal)]
+    [CommandMethod("JCAD_PIDBuilder", CommandFlags.Modal)]
     public void BlockSearch()
     {
       var db = Application.DocumentManager.MdiActiveDocument.Database;
@@ -296,7 +296,7 @@ namespace jszomorCAD
       // Copy blocks from sourcefile into opened file
       var copyBlock = new CopyBlock();
       var btrNamesToCopy = new[] { "pump", "valve", "chamber", "instrumentation tag",
-        "channel gate", "pipe", "pipe2", "channel", "channel2", "mixer" };
+        "channel gate", "channel", "channel2", "mixer", "aeration diffuzer" };
       copyBlock.CopyBlockTable(db, path, btr =>
       {
         System.Diagnostics.Debug.Print(btr.Name);
@@ -313,7 +313,7 @@ namespace jszomorCAD
       {
         try
         {
-          insertBlock.PlaceBlock(jsonPID, blockName);
+          insertBlock.PlaceBlocksByName(jsonPID, blockName);
           MoveToBottom.SendToBackBlock();
         }
         catch (ArgumentNullException)

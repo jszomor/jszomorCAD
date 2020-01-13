@@ -53,7 +53,7 @@ namespace EquipmentPosition
         if (dbrProp.PropertyName == "Centrifugal Pump")
           jsonBlockProperty.Custom.PumpTableValue = dbrProp.Value;
 
-        else if (jsonBlockProperty.Misc.BlockName == "chamber" && dbrProp.PropertyName == "Visibility")
+        else if (jsonBlockProperty.Misc.BlockName.EndsWith("chamber") && dbrProp.PropertyName == "Visibility")
           jsonBlockProperty.Custom.VisibilityValue = dbrProp.Value;
 
         else if (dbrProp.PropertyName == "Block Table1")

@@ -12,8 +12,12 @@ namespace JsonParse
     public List<JsonBlockProperty> Blocks { get; } = new List<JsonBlockProperty>();
     public List<JsonLineProperty> Lines { get; } = new List<JsonLineProperty>();
 
-    public JsonBlockProperty BlockSearch(string equipmentName) => 
-      Blocks.SingleOrDefault(b => b.Misc.BlockName == equipmentName);
+    //[Obsolete("Use BlocksSearch method instead, as it returns multiple lements with the same name")]
+    //public JsonBlockProperty BlockSearch(string equipmentName) => 
+    //  Blocks.SingleOrDefault(b => b.Misc.BlockName == equipmentName);
+
+    public IEnumerable<JsonBlockProperty> BlocksSearch(string equipmentName) =>
+      Blocks.Where(b => b.Misc.BlockName.EndsWith(equipmentName));
   }
   public class JsonBlockProperty
   {

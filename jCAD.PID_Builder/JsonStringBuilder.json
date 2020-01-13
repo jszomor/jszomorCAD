@@ -2,201 +2,165 @@
   "Blocks": [
     {
       "Geometry": {
-        "Position X": 2700.0,
-        "Position Y": 900.0
+        "Position X": 2753.1307563974678,
+        "Position Y": 948.10328841961655
       },
       "Misc": {
-        "Name": "pump",
+        "Name": "RefPIDSandTrap$0$chamber",
         "Rotation": 0.0
       },
       "General": {
-        "Layer": "equipment"
+        "Layer": "unit"
       },
       "Custom": {
-        "TAG X": 0.026011082201989666,
-        "TAG Y": -6.0096995464432155,
+        "TAG X": 20.0,
+        "TAG Y": -6.0,
         "Angle": 0.0,
         "Flip state": 0,
         "Flip state1": 0,
-        "Angle1": 0.0,
-        "Angle2": 0.0,
-        "Centrifugal Pump": 55,
-        "Try1": 10.0,
-        "Try": "pp",
-        "Housing": "Gray Cast Iron",
-        "TTRY": "ASTM 304"
+        "Visibility": "right channel",
+        "Distance": 40.0,
+        "Distance1": 15.0,
+        "Distance2": 33.0,
+        "Distance3": 21.0,
+        "Distance4": 11.801209410282013,
+        "Distance5": 43.0
       },
       "Attributes": {
-        "NOTE": "Anoxic recycle pump",
-        "MODEL": "blabla",
-        "CONSUMED_POWER": "-",
-        "INSTALLED_POWER": "12",
-        "INSTALLATION": "-",
-        "MATERIAL_HOUSING": "ASTM 306",
-        "SP_HEAD": "6",
-        "SP_CAPACITY": "112",
-        "UNIT_HEAD": "m",
-        "UNIT_CAPACITY": "m3/h",
-        "TAG": "010",
-        "RUNNINGHOURS": "24",
-        "PUMP_TYPE": "Propeller  -VFD drive",
-        "NOTE_CHINESE": "缺氧循环泵",
-        "STB_DTY": "1",
-        "AREA_CODE": "00",
-        "DI": "3",
-        "DO": "1",
-        "AI": "3",
-        "AO": "1",
-        "PB": "1",
-        "PO": "2",
-        "TAG_ID": "PP",
-        "PROCESSUNITAREA": "01"
+        "NAME1": "AERATED GRIT CHAMBER",
+        "VOLUME": "-",
+        "WIDTH": "-",
+        "LIQUIDLEVEL": "-",
+        "LENGTH": "-",
+        "HEIGHT": "-"
       }
     },
     {
       "Geometry": {
-        "Position X": 2730.0,
-        "Position Y": 900.0
+        "Position X": 2830.0,
+        "Position Y": 950.0
       },
       "Misc": {
-        "Name": "mixer",
+        "Name": "chamber",
+        "Rotation": 0.0
+      },
+      "General": {
+        "Layer": "unit"
+      },
+      "Custom": {
+        "TAG X": 15.918030944061968,
+        "TAG Y": -6.2861815611742031,
+        "Angle": 0.0,
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "2 channels",
+        "Distance": 32.0,
+        "Distance1": 21.0,
+        "Distance2": 33.0,
+        "Distance3": 21.0,
+        "Distance4": 11.801209410282013,
+        "Distance5": 43.0
+      },
+      "Attributes": {
+        "NAME1": "-",
+        "NAME2": "-",
+        "VOLUME": "-",
+        "WIDTH": "-",
+        "LIQUIDLEVEL": "-",
+        "LENGTH": "-",
+        "HEIGHT": "-"
+      }
+    },
+    {
+      "Geometry": {
+        "Position X": 2791.0,
+        "Position Y": 1001.5
+      },
+      "Misc": {
+        "Name": "Diffusor_CoarseBubbleDiffuserAeratedgritchamber$0$aeration diffuzer",
         "Rotation": 0.0
       },
       "General": {
         "Layer": "equipment"
       },
       "Custom": {
-        "TAG X": 2.5,
-        "TAG Y": 4.3541600657069921,
+        "TAG X": 7.6672578022253219,
+        "TAG Y": 4.7220163585446358,
         "Angle": 0.0,
         "Flip state": 0,
         "Flip state1": 0,
         "Angle1": 0.0,
-        "Block Table1": 0,
-        "Distance": 1.5958723916406399
+        "Block Table1": 2,
+        "Distance": 0.88655911323610326
       },
       "Attributes": {
-        "NOTE": "Coagulation mixer",
-        "EQUIP_TYPE": "Vertical Shaft Mixer (fix rpm)",
-        "MODEL": "-",
-        "POWER_CONSUMED": "-",
-        "POWER_INSTALLED": "-",
+        "NOTE": "Coarse Bubble Diffuser - Aerated grit chamber",
+        "EQUIP_TYPE": "Diffusor",
+        "MODEL": "",
         "INSTALLATION": "-",
-        "MATERIAL_BODY": "",
-        "MATERIAL_SHAFT": "",
-        "MATERIAL_BLADE": "",
-        "SP_TANKW": "-",
-        "SP_TANKL": "-",
-        "SP_TANKD": "-",
-        "SP_TANKV": "-",
-        "UNIT_TANKV": "m3",
-        "UNIT_TANKD": "m",
-        "UNIT_TANKL": "m",
-        "TAG": "000",
-        "RUNNINGHOURS": "-",
-        "NUMBER_OF_UNIT": "",
-        "NOTE_CHINESE": "混凝搅拌机",
-        "STB_DTY": "-",
+        "MATERIAL_FRAME": "",
+        "SP_FLOWMAX": "-",
+        "SP_FLOWMIN": "-",
+        "UNIT_FLOWMAX": "m3/h",
+        "UNIT_FLOWMIN": "m3/h",
+        "TAG": "014",
+        "NOTE_CHINESE": "粗孔曝气（曝气沉砂池）",
+        "STB_DTY": "1",
         "AREA_CODE": "00",
-        "DI": "3",
-        "DO": "1",
-        "AI": "0",
-        "AO": "0",
-        "PB": "0",
-        "PO": "2",
-        "TAG_ID": "MV",
+        "TAG_ID": "GC",
         "PROCESSUNITAREA": ""
       }
     },
     {
       "Geometry": {
-        "Position X": 2700.0,
-        "Position Y": 870.0
+        "Position X": 2842.9999908818972,
+        "Position Y": 1009.249998624593
       },
       "Misc": {
-        "Name": "pump",
+        "Name": "ChannelGatemotoractuated_Channelgatesandtrap$0$channel gate",
         "Rotation": 0.0
       },
       "General": {
         "Layer": "equipment"
       },
       "Custom": {
-        "TAG X": 0.026011082201989666,
-        "TAG Y": -6.0096995464432155,
+        "TAG X": 0.5,
+        "TAG Y": -2.0679422580926,
         "Angle": 0.0,
         "Flip state": 0,
         "Flip state1": 0,
-        "Angle1": 0.0,
-        "Angle2": 0.0,
-        "Centrifugal Pump": 55,
-        "Try1": 10.0,
-        "Try": "pp",
-        "Housing": "Gray Cast Iron",
-        "TTRY": "ASTM 304"
+        "Block Table1": 0
       },
       "Attributes": {
-        "NOTE": "Anoxic recycle pump",
-        "MODEL": "blabla",
+        "NOTE": "Channel Gate",
+        "EQUIP_TYPE": "Channel Gate",
+        "MODEL": "-",
         "CONSUMED_POWER": "-",
-        "INSTALLED_POWER": "12",
-        "INSTALLATION": "-",
-        "MATERIAL_HOUSING": "ASTM 306",
-        "SP_HEAD": "6",
-        "SP_CAPACITY": "112",
-        "UNIT_HEAD": "m",
-        "UNIT_CAPACITY": "m3/h",
-        "TAG": "010",
-        "RUNNINGHOURS": "24",
-        "PUMP_TYPE": "Propeller  -VFD drive",
-        "NOTE_CHINESE": "缺氧循环泵",
+        "INSTALLED_POWER": "-",
+        "MATERIAL_FRAME": "ASTM 304",
+        "MATERIAL_BODY": "ASTM 304",
+        "MATERIAL_SEALING": "EPDM/Rubber",
+        "MATERIAL_STEM": "ASTM 306",
+        "SP_CHANNELH": "1,100",
+        "SP_CHANNELW": "1,200",
+        "SP_WATER_LEVEL": "-",
+        "UNIT_CHANNELW": "mm",
+        "UNIT_CHANNELH": "mm",
+        "UNIT_WATER_LEVEL": "mm",
+        "TAG": "025",
+        "NOTE_CHINESE": "渠道闸阀",
         "STB_DTY": "1",
         "AREA_CODE": "00",
-        "DI": "3",
-        "DO": "1",
-        "AI": "3",
-        "AO": "1",
-        "PB": "1",
-        "PO": "2",
-        "TAG_ID": "PP",
-        "PROCESSUNITAREA": "01"
+        "DI": "0",
+        "DO": "0",
+        "AI": "0",
+        "AO": "0",
+        "PB": "0",
+        "PO": "0",
+        "TAG_ID": "VT",
+        "PROCESSUNITAREA": ""
       }
     }
   ],
-  "Lines": [
-    {
-      "Type": "Autodesk.AutoCAD.DatabaseServices.Line",
-      "LinePoints": [
-        {
-          "Point": 1,
-          "X": 2760.0,
-          "Y": 880.0
-        },
-        {
-          "Point": 2,
-          "X": 2760.0,
-          "Y": 910.0
-        }
-      ]
-    },
-    {
-      "Type": "Autodesk.AutoCAD.DatabaseServices.Polyline",
-      "LinePoints": [
-        {
-          "Point": 1,
-          "X": 2770.0,
-          "Y": 880.0
-        },
-        {
-          "Point": 2,
-          "X": 2770.0,
-          "Y": 900.0
-        },
-        {
-          "Point": 3,
-          "X": 2790.0,
-          "Y": 900.0
-        }
-      ]
-    }
-  ]
+  "Lines": []
 }

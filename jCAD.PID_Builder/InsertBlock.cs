@@ -57,12 +57,20 @@ namespace jCAD.PID_Builder
       _db = db;
     }
 
-    public void PlaceBlock(JsonPID jsonPID, string blockName)
+    public void PlaceBlocksByName(JsonPID jsonPID, string blockName)
     {
-      var block = jsonPID.BlockSearch(blockName);
-      if (block == null) throw new ArgumentNullException("Block not found " + blockName);
+      var blocks = jsonPID.BlocksSearch(blockName).ToList();
+      if (blocks == null || blocks.Count == 0) throw new ArgumentNullException("Block not found " + blockName);
+      foreach (var block in blocks)
+      {
+        PlaceOneBlock(block);
+      }
+    }
+
+    private void PlaceOneBlock(JsonBlockProperty block)
+    {
       ObjectId blockId = GetBlockTable(block.Misc.BlockName);
-      
+
       //var defultLayers = new LayerCreator();
       using (var tr = _db.TransactionManager.StartTransaction())
       {
@@ -106,7 +114,7 @@ namespace jCAD.PID_Builder
           using (var btr = tr.GetObject(btrId, OpenMode.ForRead, false) as BlockTableRecord)
           {
             // Only add named & non-layout blocks to the copy list
-            if (!btr.IsAnonymous && !btr.IsLayout && btr.Name == blockName && !string.IsNullOrEmpty(blockName))
+            if (!btr.IsAnonymous && !btr.IsLayout && blockName.EndsWith(btr.Name) && !string.IsNullOrEmpty(blockName))
               blockIds.Add(btrId);
           }
         }
@@ -121,16 +129,25 @@ namespace jCAD.PID_Builder
 
     private void SetBlockReferenceLayer(BlockReference acBlkRef, string layerName)
     {
-      try
-      {
-        acBlkRef.Layer = layerName;
-      }
-      catch (Autodesk.AutoCAD.Runtime.Exception ex)
-      {
-        if (ex.ErrorStatus == Autodesk.AutoCAD.Runtime.ErrorStatus.KeyNotFound) throw new Exception($"Layer name not found: {layerName}");
+      //if(layerName == acBlkRef.Layer)
+      //{
+      //  acBlkRef.Layer = layerName;
+      //}
+      //else if (layerName.Contains(acBlkRef.Layer) && acBlkRef.Layer != "0")
+      //{
+        //layerName = acBlkRef.Layer;
 
-        else throw;
-      }
+        try
+        {
+          acBlkRef.Layer = layerName;
+        }
+        catch (Autodesk.AutoCAD.Runtime.Exception ex)
+        {
+          if (ex.ErrorStatus == Autodesk.AutoCAD.Runtime.ErrorStatus.KeyNotFound) throw new Exception($"Layer name not found: {layerName}");
+
+          else throw;
+        }
+      //}
     }
 
     private void SetVisibilityIndex(BlockReference acBlkRef, JsonBlockProperty jsonBlockProperty)
@@ -140,13 +157,22 @@ namespace jCAD.PID_Builder
         foreach (DynamicBlockReferenceProperty dbrProp in acBlkRef.DynamicBlockReferencePropertyCollection)
         {
           if (dbrProp.PropertyName == "Centrifugal Pump" && acBlkRef.Name == "pump")
+          {
             dbrProp.Value = Convert.ToInt16(jsonBlockProperty.Custom.PumpTableValue);
+            break;
+          }
 
           else if (dbrProp.PropertyName == "Visibility" && acBlkRef.Name == "chamber")
+          {
             dbrProp.Value = jsonBlockProperty.Custom.VisibilityValue;
+            break;
+          }
 
           else if (dbrProp.PropertyName == "Block Table1")
+          {
             dbrProp.Value = Convert.ToInt16(jsonBlockProperty.Custom.BlockTableValue);
+            break;
+          }
         }
       }
     }
