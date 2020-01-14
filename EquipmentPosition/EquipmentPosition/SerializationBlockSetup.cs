@@ -15,18 +15,19 @@ namespace EquipmentPosition
     public JsonBlockProperty SetupBlockProperty (BlockTableRecord btr, Transaction tr,  BlockReference blockReference)
     {
       var jsonBlockProperty = new JsonBlockProperty();
-
+      string validBlockName = RealNameFinder(btr.Name);
+      string validLayerName = RealNameFinder(blockReference.Layer);
       var setupAttributeProperty = new JsonAttributeSetup();
       setupAttributeProperty.SetupAttributeProperty(tr, blockReference, jsonBlockProperty);
 
       if (!btr.IsAnonymous && !btr.IsLayout)
-      jsonBlockProperty.Misc.BlockName = btr.Name;
+      jsonBlockProperty.Misc.BlockName = validBlockName;
 
       jsonBlockProperty.Geometry.X = blockReference.Position.X;
       jsonBlockProperty.Geometry.Y = blockReference.Position.Y;
 
       jsonBlockProperty.Misc.Rotation = blockReference.Rotation;
-      jsonBlockProperty.General.Layer = blockReference.Layer;
+      jsonBlockProperty.General.Layer = validLayerName;
 
       foreach (DynamicBlockReferenceProperty dbrProp in blockReference.DynamicBlockReferencePropertyCollection)
       {
@@ -50,16 +51,24 @@ namespace EquipmentPosition
         if (dbrProp.PropertyName == "Housing") { jsonBlockProperty.Custom.Housing = Convert.ToString(dbrProp.Value); continue; }
         if (dbrProp.PropertyName == "TTRY") { jsonBlockProperty.Custom.TTRY = Convert.ToString(dbrProp.Value); continue; }
 
-        if (dbrProp.PropertyName == "Centrifugal Pump")
+        if (dbrProp.PropertyName == "Centrifugal Pump" && jsonBlockProperty.Misc.BlockName == "pump")
           jsonBlockProperty.Custom.PumpTableValue = dbrProp.Value;
 
-        else if (jsonBlockProperty.Misc.BlockName.EndsWith("chamber") && dbrProp.PropertyName == "Visibility")
+        else if (jsonBlockProperty.Misc.BlockName == "chamber" && dbrProp.PropertyName == "Visibility")
           jsonBlockProperty.Custom.VisibilityValue = dbrProp.Value;
 
         else if (dbrProp.PropertyName == "Block Table1")
           jsonBlockProperty.Custom.BlockTableValue = dbrProp.Value;
       }
       return jsonBlockProperty;
+    }
+
+    public String RealNameFinder(string originalName)
+    {
+      if (originalName == null) return null;
+      var result = originalName;
+      if (originalName.Contains("$")) result = originalName.Substring(originalName.LastIndexOf('$') + 1);
+      return result;
     }
 
     public double? DoubleConverter(object value)

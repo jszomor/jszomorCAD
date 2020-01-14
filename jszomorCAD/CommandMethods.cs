@@ -296,7 +296,11 @@ namespace jszomorCAD
       // Copy blocks from sourcefile into opened file
       var copyBlock = new CopyBlock();
       var btrNamesToCopy = new[] { "pump", "valve", "chamber", "instrumentation tag",
-        "channel gate", "channel", "channel2", "mixer", "aeration diffuzer" };
+      "channel gate", "channel", "channel2", "mixer", "aeration diffuzer", "blower", "break", "chamber circular", "arrow", "chamber description",
+      "Clarifier circular", "clarifier longitudial", "collector", "controll tag e", "digester cap", "drum filter", "filter", "filter2", "Gas equipment",
+      "gas flame", "gas holder", "heating", "moister trap", "ozone unit", "poli dosing", "reactor", "sand trap", "screen", "screening press",
+      "sludge dewatering", "tank - vessel", "Vortex_grit_chamber", "vortexEQ"};
+
       copyBlock.CopyBlockTable(db, path, btr =>
       {
         System.Diagnostics.Debug.Print(btr.Name);

@@ -30,7 +30,7 @@ namespace jCAD.PID_Builder
             using (var btr = objectId.GetObject<BlockTableRecord>())
             {
               // Only add named & non-layout blocks to the copy list and filter for specific item
-              if (!btr.IsAnonymous && !btr.IsLayout) // && predicate(btr)
+              if (!btr.IsAnonymous && !btr.IsLayout && predicate(btr)) // 
                 blockIds.Add(objectId);
             }
           }
