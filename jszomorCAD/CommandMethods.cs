@@ -299,7 +299,8 @@ namespace jszomorCAD
       "channel gate", "channel", "channel2", "mixer", "aeration diffuzer", "blower", "break", "chamber circular", "arrow", "chamber description",
       "Clarifier circular", "clarifier longitudial", "collector", "controll tag e", "digester cap", "drum filter", "filter", "filter2", "Gas equipment",
       "gas flame", "gas holder", "heating", "moister trap", "ozone unit", "poli dosing", "reactor", "sand trap", "screen", "screening press",
-      "sludge dewatering", "tank - vessel", "Vortex_grit_chamber", "vortexEQ"};
+      "sludge dewatering", "tank - vessel", "Vortex_grit_chamber", "vortexEQ", "RefARSewage", "instrumentairheaderarrow", "RefALRecSludge",
+      "grease_coll_chmbr"};
 
       copyBlock.CopyBlockTable(db, path, btr =>
       {

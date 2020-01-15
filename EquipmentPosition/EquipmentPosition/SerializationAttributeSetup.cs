@@ -20,6 +20,7 @@ namespace EquipmentPosition
 
         if (attRef.Tag == "NOTE") { jsonBlockProperty.Attributes.Note = attRef.TextString; continue; }
         if (attRef.Tag == "NOTE_CHINESE") { jsonBlockProperty.Attributes.NoteChinese = attRef.TextString; continue; }
+        if (attRef.Tag == "Name") { jsonBlockProperty.Attributes.Name = attRef.TextString; continue; }
         if (attRef.Tag == "NAME1") { jsonBlockProperty.Attributes.Name1 = attRef.TextString; continue; }
         if (attRef.Tag == "NAME2") { jsonBlockProperty.Attributes.Name2 = attRef.TextString; continue; }
         if (attRef.Tag == "TAG") { jsonBlockProperty.Attributes.Tag = attRef.TextString; continue; }

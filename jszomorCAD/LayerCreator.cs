@@ -92,16 +92,24 @@ namespace jszomorCAD
       LayerCreatorMethod("unit", Color.FromRgb(255, 0, 0), 0.25, false);
       LayerCreatorMethod("valve", Color.FromRgb(255, 255, 255), 0.25, false);
       LayerCreatorMethod("valve2", Color.FromRgb(255, 255, 255), 0.25, true);
-      LayerCreatorMethod("instrumentation", Color.FromRgb(0, 255, 255), 0.25, false);
+      LayerCreatorMethod("instrumentation", Color.FromRgb(255, 255, 255), 0.25, false);
       LayerCreatorMethod("text", Color.FromRgb(255, 255, 255), 0.25, false);
       LayerCreatorMethod("sewer", Color.FromRgb(28, 38, 0), 0.25, false);
       LayerCreatorMethod("sludge", Color.FromRgb(38, 19, 19), 0.25, false);
+      LayerCreatorMethod("chemical", Color.FromRgb(0, 255, 255), 0.25, false);
       LayerCreatorMethod("chemicals", Color.FromRgb(0, 255, 255), 0.25, false);
       LayerCreatorMethod("water", Color.FromRgb(0, 0, 255), 0.25, false);
       LayerCreatorMethod("treated_water", Color.FromRgb(0, 127, 255), 0.25, false);
+      LayerCreatorMethod("TreatedWater", Color.FromRgb(0, 127, 255), 0.25, false);
       LayerCreatorMethod("air", Color.FromRgb(63, 255, 0), 0.25, false);
       LayerCreatorMethod("recycle_flow", Color.FromRgb(145, 165, 82), 0.25, false);
-      LayerCreatorMethod("pipeTag", Color.FromRgb(255, 255, 255), 0.25, false);
+      LayerCreatorMethod("biofilter", Color.FromColorIndex(ColorMethod.ByLayer, 80), 0.25, false);
+      LayerCreatorMethod("hot water", Color.FromColorIndex(ColorMethod.ByLayer, 5), 0.25, false);
+      LayerCreatorMethod("LEGEND", Color.FromColorIndex(ColorMethod.ByLayer, 7), 0.25, false);
+      LayerCreatorMethod("Leachate", Color.FromColorIndex(ColorMethod.ByLayer, 63), 0.25, false);
+      LayerCreatorMethod("effluent", Color.FromColorIndex(ColorMethod.ByLayer, 5), 0.25, false);
+      LayerCreatorMethod("gas", Color.FromColorIndex(ColorMethod.ByLayer, 3), 0.25, false);
+      LayerCreatorMethod("potable water", Color.FromColorIndex(ColorMethod.ByLayer, 150), 0.25, false);
     }
 
     public void LayerStatus()

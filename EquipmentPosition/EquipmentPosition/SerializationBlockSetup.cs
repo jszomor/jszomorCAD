@@ -31,6 +31,15 @@ namespace EquipmentPosition
 
       foreach (DynamicBlockReferenceProperty dbrProp in blockReference.DynamicBlockReferencePropertyCollection)
       {
+        if (dbrProp.PropertyName == "Centrifugal Pump" && jsonBlockProperty.Misc.BlockName == "pump")
+          jsonBlockProperty.Custom.PumpTableValue = dbrProp.Value;
+
+        else if (jsonBlockProperty.Misc.BlockName == "chamber" && dbrProp.PropertyName == "Visibility")
+          jsonBlockProperty.Custom.VisibilityValue = dbrProp.Value;
+
+        else if (dbrProp.PropertyName == "Block Table1")
+          jsonBlockProperty.Custom.BlockTableValue = dbrProp.Value;
+
         if (dbrProp.PropertyName == "Position X") { jsonBlockProperty.Custom.TagX = DoubleConverter(dbrProp.Value); continue; }
         if (dbrProp.PropertyName == "Position Y") { jsonBlockProperty.Custom.TagY = DoubleConverter(dbrProp.Value); continue; }
         if (dbrProp.PropertyName == "Position1 X") { jsonBlockProperty.Custom.TagX1 = DoubleConverter(dbrProp.Value); continue; }
@@ -50,15 +59,6 @@ namespace EquipmentPosition
         if (dbrProp.PropertyName == "Try") { jsonBlockProperty.Custom.Try = Convert.ToString(dbrProp.Value); continue; }
         if (dbrProp.PropertyName == "Housing") { jsonBlockProperty.Custom.Housing = Convert.ToString(dbrProp.Value); continue; }
         if (dbrProp.PropertyName == "TTRY") { jsonBlockProperty.Custom.TTRY = Convert.ToString(dbrProp.Value); continue; }
-
-        if (dbrProp.PropertyName == "Centrifugal Pump" && jsonBlockProperty.Misc.BlockName == "pump")
-          jsonBlockProperty.Custom.PumpTableValue = dbrProp.Value;
-
-        else if (jsonBlockProperty.Misc.BlockName == "chamber" && dbrProp.PropertyName == "Visibility")
-          jsonBlockProperty.Custom.VisibilityValue = dbrProp.Value;
-
-        else if (dbrProp.PropertyName == "Block Table1")
-          jsonBlockProperty.Custom.BlockTableValue = dbrProp.Value;
       }
       return jsonBlockProperty;
     }
@@ -68,6 +68,10 @@ namespace EquipmentPosition
       if (originalName == null) return null;
       var result = originalName;
       if (originalName.Contains("$")) result = originalName.Substring(originalName.LastIndexOf('$') + 1);
+      else if (originalName == "refvalve" || originalName == "ref_valve")
+      {
+        result = "valve";
+      }
       return result;
     }
 
