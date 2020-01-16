@@ -124,6 +124,9 @@ namespace JsonParse
     [JsonProperty("NAME2")]
     public string Name2 { get; set; }
 
+    [JsonProperty("NAME3")]
+    public string Name3 { get; set; }
+
     [JsonProperty("NOTE")]
     public string Note { get; set; }
 
@@ -307,6 +310,9 @@ namespace JsonParse
     [JsonProperty("SP_FLUID")]
     public string SpFluid { get; set; }
 
+    [JsonProperty("UNIT")]
+    public string Unit { get; set; }
+
     [JsonProperty("UNIT_HEAD")]
     public string UnitHead { get; set; }
 
@@ -471,6 +477,84 @@ namespace JsonParse
 
     [JsonProperty("DIAMETER")]
     public string Diameter { get; set; }
+
+    [JsonProperty("COD")]
+    public string COD { get; set; }
+
+    [JsonProperty("BOD5")]
+    public string BOD5 { get; set; }
+
+    [JsonProperty("TSS")]
+    public string TSS { get; set; }
+
+    [JsonProperty("TN")]
+    public string TN { get; set; }
+
+    [JsonProperty("TP")]
+    public string TP { get; set; }
+
+    [JsonProperty("NH4N")]
+    public string NH4N { get; set; }
+
+    [JsonProperty("PO4_3_P")]
+    public string PO4_3_P { get; set; }
+
+    [JsonProperty("TMIN")]
+    public string TMIN { get; set; }
+
+    [JsonProperty("QAVG")]
+    public string QAVG { get; set; }
+
+    [JsonProperty("QPEAK")]
+    public string QPEAK { get; set; }
+
+    [JsonProperty("QPEAKD")]
+    public string QPEAKD { get; set; }
+
+    [JsonProperty("QPEAKDH")]
+    public string QPEAKDH { get; set; }
+
+    [JsonProperty("TMAX")]
+    public string TMAX { get; set; }
+
+    [JsonProperty("i18N-PID-0003")]
+    public string I18N { get; set; }
+
+    [JsonProperty("VALUE")]
+    public string VALUE { get; set; }
+
+    [JsonProperty("PARAM")]
+    public string PARAM { get; set; }
+
+    [JsonProperty("BOD_compl")]
+    public string BOD_compl { get; set; }
+
+    [JsonProperty("TSS_compl")]
+    public string TSS_compl { get; set; }
+
+    [JsonProperty("N_tot_compl")]
+    public string N_tot_compl { get; set; }
+
+    [JsonProperty("P_tot_compl")]
+    public string P_tot_compl { get; set; }
+
+    [JsonProperty("Ammonia_compl")]
+    public string Ammonia_compl { get; set; }
+
+    [JsonProperty("NITRATE_COMPL")]
+    public string NITRATE_COMPL { get; set; }
+
+    [JsonProperty("FOG_COMPL")]
+    public string FOG_COMPL { get; set; }
+
+    [JsonProperty("FC_COMPL")]
+    public string FC_COMPL { get; set; }
+
+    [JsonProperty("TC_COMPL")]
+    public string TC_COMPL { get; set; }
+
+    [JsonProperty("COD_COMPL")]
+    public string COD_COMPL { get; set; }
   }
 
 }

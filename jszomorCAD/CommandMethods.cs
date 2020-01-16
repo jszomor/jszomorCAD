@@ -298,6 +298,7 @@ namespace jszomorCAD
       var btrNamesToCopy = new[] {
         "aeration diffuzer",
         "arrow",
+        "alkalinity_chamber",
         "blower",
         "break",
         "chamber",
