@@ -26,14 +26,6 @@ namespace EquipmentPosition
           //System.Diagnostics.Debug.WriteLine($"\tJSONProperty Name: {jsonTagName}");
           if (attRef.Tag == jsonTagName)
           {
-            //var propValue = prop.GetValue(block.Attributes);
-            //if (propValue == null) continue;
-            //if (!string.IsNullOrWhiteSpace(propValue.ToString()))
-            //{
-            //  attRef.TextString = propValue.ToString();
-            //  break;
-            //}
-
             prop.SetValue(block.Attributes, attRef.TextString); //serialization
           }
         }

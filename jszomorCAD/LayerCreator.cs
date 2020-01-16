@@ -128,7 +128,6 @@ namespace jszomorCAD
       });
     }
 
-
     public void SelectEntity(Database db)
     {
       using (var tr = db.TransactionManager.StartTransaction())

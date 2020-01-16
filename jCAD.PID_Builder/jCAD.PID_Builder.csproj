@@ -108,7 +108,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BlockDeserialize.cs" />
-    <Compile Include="BlockMapping.cs" />
     <Compile Include="CopyBlock.cs" />
     <Compile Include="InsertBlock.cs" />
     <Compile Include="Layers.cs" />
