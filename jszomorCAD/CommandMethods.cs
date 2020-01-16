@@ -324,7 +324,7 @@ namespace jszomorCAD
         "instrumentation tag",
         "moister trap",
         "ozone unit",
-        "PID-PS-FRAME",
+        //"PID-PS-FRAME",
         "pipe",
         "pipe2",
         "poli dosing",

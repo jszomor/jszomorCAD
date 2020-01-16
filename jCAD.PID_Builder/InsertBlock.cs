@@ -276,7 +276,7 @@ namespace jCAD.PID_Builder
       {
         AttributeReference attRef = (AttributeReference)tr.GetObject(attId, OpenMode.ForRead);
 
-        SetRefTextString(attRef, jsonBlockProperty);
+        GetRefTextString(attRef, jsonBlockProperty);
         #region
         //if (attRef.Tag == "NOTE") { attRef.TextString = jsonBlockProperty.Attributes.Note; continue; }
         //if (attRef.Tag == "NOTE_CHINESE") { attRef.TextString = jsonBlockProperty.Attributes.NoteChinese; continue; }
@@ -412,7 +412,7 @@ namespace jCAD.PID_Builder
       if (!string.IsNullOrWhiteSpace(f)) attRef.TextString = f;
     }
 
-    private void SetRefTextString(AttributeReference attRef, JsonBlockProperty block)
+    private void GetRefTextString(AttributeReference attRef, JsonBlockProperty block)
     {
       //System.Diagnostics.Debug.WriteLine($"AutoCAD TAG: {attRef.Tag}");
       var properties = block.Attributes.GetType().GetProperties();
@@ -435,7 +435,7 @@ namespace jCAD.PID_Builder
               break;
             }
 
-            prop.SetValue(block.Attributes, attRef.TextString); //serialization
+            //prop.SetValue(block.Attributes, attRef.TextString); //serialization
           }
         }
       }

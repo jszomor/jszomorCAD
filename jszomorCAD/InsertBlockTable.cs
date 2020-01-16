@@ -334,7 +334,10 @@ namespace jszomorCAD
               if (blockReference == null) continue;
               var btrObjectId = blockReference.DynamicBlockTableRecord; //must be Dynamic to find every blocks
               var blockDefinition = btrObjectId.GetObject(OpenMode.ForRead) as BlockTableRecord;
-              jsonPID.Blocks.Add(jsonBlockSetup.SetupBlockProperty(blockDefinition, tr, blockReference));
+              if(blockDefinition.Name != "PID-PS-FRAME")
+              {
+                jsonPID.Blocks.Add(jsonBlockSetup.SetupBlockProperty(blockDefinition, tr, blockReference));
+              }
             }
           }
         }
