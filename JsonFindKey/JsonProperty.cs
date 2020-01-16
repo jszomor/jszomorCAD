@@ -47,6 +47,7 @@ namespace JsonParse
   {
     [JsonProperty("Name")]
     public string BlockName { get; set; }
+
     public double Rotation { get; set; }
   }
   public class Custom
