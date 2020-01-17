@@ -17,7 +17,7 @@ namespace jszomorCAD
 {
   public class CommandMethods
   {
-    public string path = @"E:\Munka\Test\Autocad PID blocks work in progress.dwg";
+    public string path = @"C:\Users\jszomor\source\repos\jszomorCAD\jCAD.PID_Builder\Autocad PID blocks work in progress.dwg";
 
     [CommandMethod("jcad_EqTankBuilder")]
     public void ListBlocks()
@@ -292,7 +292,7 @@ namespace jszomorCAD
     {
       var db = Application.DocumentManager.MdiActiveDocument.Database;
       var blockDeserialize = new BlockDeserialize();
-      string path = @"E:\Munka\Test\Autocad PID blocks work in progress.dwg";
+      string path = @"C:\Users\jszomor\source\repos\jszomorCAD\jCAD.PID_Builder\Autocad PID blocks work in progress.dwg";
       // Copy blocks from sourcefile into opened file
       var copyBlock = new CopyBlock();
       var btrNamesToCopy = new[] {
@@ -312,6 +312,7 @@ namespace jszomorCAD
         "clarifier longitudial",
         "collector",
         "controll tag e",
+        "digester",
         "digester cap",
         "drum filter",
         "filter",
@@ -323,7 +324,9 @@ namespace jszomorCAD
         "heating",
         "instrumentairheaderarrow",
         "instrumentation tag",
+        "leachet_coll_chmbr",
         "moister trap",
+        "TWT",
         "ozone unit",
         //"PID-PS-FRAME",
         "pipe",
@@ -349,13 +352,24 @@ namespace jszomorCAD
         "RefARSewage",
         "RefPIDEfluent",
         "RefPIDInfluent",
+        "RefAR12Gas",
+        "RefAR13Sludge",
+        "RefAR7WasteAir",
+        "RefAR4Leachate",
+        "RefAL5Leachate",
+        "RefAR16Water",
+        "RefAL17Water",
         "sand trap",
         "screen",
+        "screening press",
+        "sst2_chmbr",
+        "sst2Dig",
         "screening press",
         "sludge dewatering",
         "tank - vessel",
         "valve",
         "Vortex_grit_chamber",
+        "Vortex_sand_chamber",
         "vortexEQ"};
 
       copyBlock.CopyBlockTable(db, path, btr =>

@@ -34,11 +34,28 @@ namespace EquipmentPosition
         if (dbrProp.PropertyName == "Centrifugal Pump" && jsonBlockProperty.Misc.BlockName == "pump")
           jsonBlockProperty.Custom.PumpTableValue = dbrProp.Value;
 
-        else if (jsonBlockProperty.Misc.BlockName == "chamber" && dbrProp.PropertyName == "Visibility")
-          jsonBlockProperty.Custom.VisibilityValue = dbrProp.Value;
-
+        else if (dbrProp.PropertyName == "Visibility")
+        {
+          string value = Convert.ToString(dbrProp.Value);
+          var isNumeric = double.TryParse(value, out double n);
+          if (isNumeric)
+          {
+            jsonBlockProperty.Custom.VisibilityValue = n;
+          }
+          else
+            jsonBlockProperty.Custom.VisibilityValue = dbrProp.Value;
+        }
         else if (dbrProp.PropertyName == "Block Table1")
-          jsonBlockProperty.Custom.BlockTableValue = dbrProp.Value;
+        {
+          if (jsonBlockProperty.Misc.BlockName == "filter")
+          {
+            jsonBlockProperty.Custom.BlockTableValue = DoubleConverter(dbrProp.Value) + 1; // for some reason this equipment get one less value
+          }
+          else
+          {
+            jsonBlockProperty.Custom.BlockTableValue = DoubleConverter(dbrProp.Value);
+          }
+        }
 
         if (dbrProp.PropertyName == "Position X") { jsonBlockProperty.Custom.TagX = DoubleConverter(dbrProp.Value); continue; }
         if (dbrProp.PropertyName == "Position Y") { jsonBlockProperty.Custom.TagY = DoubleConverter(dbrProp.Value); continue; }

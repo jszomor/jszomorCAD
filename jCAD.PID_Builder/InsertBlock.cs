@@ -170,9 +170,16 @@ namespace jCAD.PID_Builder
             break;
           }
 
-          else if (dbrProp.PropertyName == "Visibility" && acBlkRef.Name == "chamber")
+          else if (dbrProp.PropertyName == "Visibility" && acBlkRef.Name != "blower" && acBlkRef.Name != "filter")
           {
+            if(acBlkRef.Name == "sst2_chmbr")
+            {
+              string dbValue = Convert.ToString(dbrProp.Value);
+              dbValue = Convert.ToString(jsonBlockProperty.Custom.VisibilityValue);
+            }
+            else
             dbrProp.Value = jsonBlockProperty.Custom.VisibilityValue;
+
             break;
           }
 
@@ -404,13 +411,13 @@ namespace jCAD.PID_Builder
       }
     }
 
-    private void SetRefTextString(AttributeReference attRef, JsonBlockProperty block, Expression<Func<Attributes, string>> expression)
-    {
-      var c = expression.Compile();
-      var f = c.Invoke(block.Attributes);
+    //private void SetRefTextString(AttributeReference attRef, JsonBlockProperty block, Expression<Func<Attributes, string>> expression)
+    //{
+    //  var c = expression.Compile();
+    //  var f = c.Invoke(block.Attributes);
 
-      if (!string.IsNullOrWhiteSpace(f)) attRef.TextString = f;
-    }
+    //  if (!string.IsNullOrWhiteSpace(f)) attRef.TextString = f;
+    //}
 
     private void GetRefTextString(AttributeReference attRef, JsonBlockProperty block)
     {

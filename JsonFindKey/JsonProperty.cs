@@ -518,7 +518,10 @@ namespace JsonParse
     public string TMAX { get; set; }
 
     [JsonProperty("i18N-PID-0003")]
-    public string I18N { get; set; }
+    public string I18N_PID_0003 { get; set; }
+
+    [JsonProperty("i18N-PID-0352")]
+    public string I18N_PID_0352 { get; set; }
 
     [JsonProperty("VALUE")]
     public string VALUE { get; set; }
