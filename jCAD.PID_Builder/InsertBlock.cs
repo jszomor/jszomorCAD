@@ -105,12 +105,22 @@ namespace jCAD.PID_Builder
     {
       if (originalName == null) return null;
       var result = originalName;
-      //ref layers
-      if (originalName.Contains("$")) result = originalName.Substring(originalName.LastIndexOf('$') + 1);
+
+      if (originalName.Contains("$") && originalName.StartsWith("RefA"))
+      {
+        result = originalName.Substring(0, originalName.LastIndexOf('$') - 2);
+      }
+
+      else if (originalName.Contains("$"))
+      {
+        result = originalName.Substring(originalName.LastIndexOf('$') + 1);
+      }
+
       else if (originalName == "refvalve" || originalName == "ref_valve")
       {
         result = "valve";
       }
+
       return result;
     }
 
@@ -198,34 +208,40 @@ namespace jCAD.PID_Builder
       {
         foreach (DynamicBlockReferenceProperty dbrProp in acBlkRef.DynamicBlockReferencePropertyCollection)
         {
-          try
+          if(dbrProp.PropertyName != "Centrifugal Pump" && dbrProp.PropertyName != "Visibility" && dbrProp.PropertyName != "Block Table1")
           {
-            //if (jsonBlockProperty.Custom == null) return;
-            if (dbrProp.PropertyName == "Position X") { dbrProp.Value = jsonBlockProperty.Custom.TagX; continue; }
-            if (dbrProp.PropertyName == "Position Y") { dbrProp.Value = jsonBlockProperty.Custom.TagY; continue; }
-            if (dbrProp.PropertyName == "Position1 X") { dbrProp.Value = jsonBlockProperty.Custom.TagX1; continue; }
-            if (dbrProp.PropertyName == "Position1 Y") { dbrProp.Value = jsonBlockProperty.Custom.TagY1; continue; }
-            if (dbrProp.PropertyName == "Angle") { dbrProp.Value = jsonBlockProperty.Custom.Angle; continue; }
-            if (dbrProp.PropertyName == "Angle1") { dbrProp.Value = jsonBlockProperty.Custom.Angle1; continue; }
-            if (dbrProp.PropertyName == "Angle2") { dbrProp.Value = jsonBlockProperty.Custom.Angle2; continue; }
-            if (dbrProp.PropertyName == "Distance") { dbrProp.Value = jsonBlockProperty.Custom.Distance; continue; }
-            if (dbrProp.PropertyName == "Distance1") { dbrProp.Value = jsonBlockProperty.Custom.Distance1; continue; }
-            if (dbrProp.PropertyName == "Distance2") { dbrProp.Value = jsonBlockProperty.Custom.Distance2; continue; }
-            if (dbrProp.PropertyName == "Distance3") { dbrProp.Value = jsonBlockProperty.Custom.Distance3; continue; }
-            if (dbrProp.PropertyName == "Distance4") { dbrProp.Value = jsonBlockProperty.Custom.Distance4; continue; }
-            if (dbrProp.PropertyName == "Distance5") { dbrProp.Value = jsonBlockProperty.Custom.Distance5; continue; }
-            if (dbrProp.PropertyName == "Flip state") { dbrProp.Value = jsonBlockProperty.Custom.FlipState; continue; }
-            if (dbrProp.PropertyName == "Flip state1") { dbrProp.Value = jsonBlockProperty.Custom.FlipState1; continue; }
-            if (dbrProp.PropertyName == "Try1") { dbrProp.Value = jsonBlockProperty.Custom.Try1; continue; }
-            if (dbrProp.PropertyName == "Try") { dbrProp.Value = jsonBlockProperty.Custom.Try; continue; }
-            if (dbrProp.PropertyName == "Housing") { dbrProp.Value = jsonBlockProperty.Custom.Housing; continue; }
-            if (dbrProp.PropertyName == "TTRY") { dbrProp.Value = jsonBlockProperty.Custom.TTRY; continue; }
+            GetDynamicValue(dbrProp, jsonBlockProperty);
           }
-          catch (NullReferenceException)
-          {
-            continue;
-            //throw new NullReferenceException($"selected property: {dbrProp.PropertyName} got null value");
-          }
+          //try
+          //{
+          //  if (jsonBlockProperty.Custom != null)
+          //  {
+          //    if (dbrProp.PropertyName == "Position X") { dbrProp.Value = jsonBlockProperty.Custom.TagX; continue; }
+          //    if (dbrProp.PropertyName == "Position Y") { dbrProp.Value = jsonBlockProperty.Custom.TagY; continue; }
+          //    if (dbrProp.PropertyName == "Position1 X") { dbrProp.Value = jsonBlockProperty.Custom.TagX1; continue; }
+          //    if (dbrProp.PropertyName == "Position1 Y") { dbrProp.Value = jsonBlockProperty.Custom.TagY1; continue; }
+          //    if (dbrProp.PropertyName == "Angle") { dbrProp.Value = jsonBlockProperty.Custom.Angle; continue; }
+          //    if (dbrProp.PropertyName == "Angle1") { dbrProp.Value = jsonBlockProperty.Custom.Angle1; continue; }
+          //    if (dbrProp.PropertyName == "Angle2") { dbrProp.Value = jsonBlockProperty.Custom.Angle2; continue; }
+          //    if (dbrProp.PropertyName == "Distance") { dbrProp.Value = jsonBlockProperty.Custom.Distance; continue; }
+          //    if (dbrProp.PropertyName == "Distance1") { dbrProp.Value = jsonBlockProperty.Custom.Distance1; continue; }
+          //    if (dbrProp.PropertyName == "Distance2") { dbrProp.Value = jsonBlockProperty.Custom.Distance2; continue; }
+          //    if (dbrProp.PropertyName == "Distance3") { dbrProp.Value = jsonBlockProperty.Custom.Distance3; continue; }
+          //    if (dbrProp.PropertyName == "Distance4") { dbrProp.Value = jsonBlockProperty.Custom.Distance4; continue; }
+          //    if (dbrProp.PropertyName == "Distance5") { dbrProp.Value = jsonBlockProperty.Custom.Distance5; continue; }
+          //    if (dbrProp.PropertyName == "Flip state") { dbrProp.Value = jsonBlockProperty.Custom.FlipState; continue; }
+          //    if (dbrProp.PropertyName == "Flip state1") { dbrProp.Value = jsonBlockProperty.Custom.FlipState1; continue; }
+          //    if (dbrProp.PropertyName == "Try1") { dbrProp.Value = jsonBlockProperty.Custom.Try1; continue; }
+          //    if (dbrProp.PropertyName == "Try") { dbrProp.Value = jsonBlockProperty.Custom.Try; continue; }
+          //    if (dbrProp.PropertyName == "Housing") { dbrProp.Value = jsonBlockProperty.Custom.Housing; continue; }
+          //    if (dbrProp.PropertyName == "TTRY") { dbrProp.Value = jsonBlockProperty.Custom.TTRY; continue; }
+          //  }
+          //}
+          //catch (NullReferenceException)
+          //{
+          //  //continue;
+          //  throw new NullReferenceException($"selected property: {dbrProp.PropertyName} got null value");
+          //}
         }
       }
     }
@@ -441,6 +457,34 @@ namespace jCAD.PID_Builder
               attRef.TextString = propValue.ToString();
               break;
             }
+
+            //prop.SetValue(block.Attributes, attRef.TextString); //serialization
+          }
+        }
+      }
+    }
+
+    private void GetDynamicValue(DynamicBlockReferenceProperty dbrProp, JsonBlockProperty block)
+    {
+      //System.Diagnostics.Debug.WriteLine($"AutoCAD TAG: {attRef.Tag}");
+      var properties = block.Custom.GetType().GetProperties();
+      foreach (var prop in properties)
+      {
+        var customAttributes = prop
+          .GetCustomAttributes(typeof(Newtonsoft.Json.JsonPropertyAttribute), false);
+        if (customAttributes.Length == 1)
+        {
+          var jsonProp = customAttributes[0];
+          var jsonTagName = (jsonProp as Newtonsoft.Json.JsonPropertyAttribute).PropertyName;
+          //System.Diagnostics.Debug.WriteLine($"\tJSONProperty Name: {jsonTagName}");
+          if (dbrProp.PropertyName == jsonTagName)
+          {
+            var propValue = prop.GetValue(block.Custom);
+            if (propValue == null) continue;
+            
+              dbrProp.Value = propValue;
+              break;
+            
 
             //prop.SetValue(block.Attributes, attRef.TextString); //serialization
           }

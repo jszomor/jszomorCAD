@@ -111,6 +111,7 @@ namespace jszomorCAD
       LayerCreatorMethod("effluent", Color.FromColorIndex(ColorMethod.ByLayer, 5), 0.25, false);
       LayerCreatorMethod("gas", Color.FromColorIndex(ColorMethod.ByLayer, 3), 0.25, false);
       LayerCreatorMethod("potable water", Color.FromColorIndex(ColorMethod.ByLayer, 150), 0.25, false);
+      LayerCreatorMethod("controll", Color.FromColorIndex(ColorMethod.ByLayer, 150), 0.25, false);
     }
 
     public void LayerStatus()

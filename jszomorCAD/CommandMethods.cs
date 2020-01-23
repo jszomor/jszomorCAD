@@ -12,6 +12,7 @@ using System.Runtime.InteropServices;
 using OrganiCAD.AutoCAD;
 using JsonFindKey;
 using jCAD.PID_Builder;
+using JsonParse;
 
 namespace jszomorCAD
 {
@@ -295,6 +296,8 @@ namespace jszomorCAD
       string path = @"C:\Users\jszomor\source\repos\jszomorCAD\jCAD.PID_Builder\Autocad PID blocks work in progress.dwg";
       // Copy blocks from sourcefile into opened file
       var copyBlock = new CopyBlock();
+
+      #region btrNamesToCopy
       var btrNamesToCopy = new[] {
         "aeration diffuzer",
         "arrow",
@@ -371,6 +374,7 @@ namespace jszomorCAD
         "Vortex_grit_chamber",
         "Vortex_sand_chamber",
         "vortexEQ"};
+      #endregion
 
       copyBlock.CopyBlockTable(db, path, btr =>
       {
@@ -384,7 +388,12 @@ namespace jszomorCAD
       var insertBlock = new InsertBlock(db);
       var jsonPID = blockDeserialize.ReadJsonData();
 
-      foreach (var blockName in btrNamesToCopy)
+      //var sBlockName = jsonPID.Blocks.Select(b => b.Misc.BlockName);
+      var blockNames =
+        from b in jsonPID.Blocks
+        select b.Misc.BlockName;
+
+      foreach (var blockName in blockNames)
       {
         try
         {

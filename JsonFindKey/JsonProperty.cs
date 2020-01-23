@@ -41,6 +41,7 @@ namespace JsonParse
   }
   public class General
   {
+    [JsonProperty("Layer")]
     public string Layer { get; set; }
   }
   public class Misc
@@ -48,20 +49,21 @@ namespace JsonParse
     [JsonProperty("Name")]
     public string BlockName { get; set; }
 
+    [JsonProperty("Rotation")]
     public double Rotation { get; set; }
   }
   public class Custom
   {
-    [JsonProperty("TAG X")]
+    [JsonProperty("Position X")]
     public double? TagX { get; set; }
 
-    [JsonProperty("TAG Y")]
+    [JsonProperty("Position Y")]
     public double? TagY { get; set; }
 
-    [JsonProperty("TAG1 X")]
+    [JsonProperty("Position1 X")]
     public double? TagX1 { get; set; }
 
-    [JsonProperty("TAG1 Y")]
+    [JsonProperty("Position1 Y")]
     public double? TagY1 { get; set; }
 
     [JsonProperty("Angle")]
@@ -103,11 +105,22 @@ namespace JsonParse
     [JsonProperty("TTRY")]
     public string TTRY { get; set; }
 
-    public double? Distance { get; set; }
-    public double? Distance1 { get; set; }
+    [JsonProperty("Distance")]
+    public double Distance { get; set; }
+
+    [JsonProperty("Distance1")]
+    public double Distance1 { get; set; }
+
+    [JsonProperty("Distance2")]
     public double? Distance2 { get; set; }
+
+    [JsonProperty("Distance3")]
     public double? Distance3 { get; set; }
+
+    [JsonProperty("Distance4")]
     public double? Distance4 { get; set; }
+
+    [JsonProperty("Distance5")]
     public double? Distance5 { get; set; }
   }
   public class Attributes
@@ -523,6 +536,9 @@ namespace JsonParse
     [JsonProperty("i18N-PID-0352")]
     public string I18N_PID_0352 { get; set; }
 
+    [JsonProperty("i18N-PID-0445")]
+    public string I18N_PID_0445 { get; set; }
+
     [JsonProperty("VALUE")]
     public string VALUE { get; set; }
 
@@ -558,6 +574,9 @@ namespace JsonParse
 
     [JsonProperty("COD_COMPL")]
     public string COD_COMPL { get; set; }
+
+    [JsonProperty("ID")]
+    public string ID { get; set; }
   }
 
 }
