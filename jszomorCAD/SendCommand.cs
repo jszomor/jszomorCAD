@@ -1,6 +1,7 @@
 ﻿using Autodesk.AutoCAD.ApplicationServices;
 using Autodesk.AutoCAD.DatabaseServices;
 using Autodesk.AutoCAD.EditorInput;
+using Autodesk.AutoCAD.Geometry;
 using Autodesk.AutoCAD.Runtime;
 using System;
 using System.Collections.Generic;
@@ -9,9 +10,11 @@ using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using AcRx = Autodesk.AutoCAD.Runtime;
+using OrganiCAD.AutoCAD;
 
 namespace jszomorCAD
 {
+  #region code from net
   //  class Attsync
   //  {
   //    [CommandMethod("MySynch", CommandFlags.Modal)]
@@ -397,6 +400,7 @@ namespace jszomorCAD
   //      }
   //    }
   //  }
+  #endregion
 
   public static class SendClass
   {
@@ -408,13 +412,51 @@ namespace jszomorCAD
       acDoc.SendStringToExecute("_regen" + " ", true, false, false);
     }
 
-    [CommandMethod("SendSync", CommandFlags.Modal)]
-    public static void SendSync()
+    #region attsync (not work)
+    public static void SendSync(Editor ed, string blockName, Database db)
     {
-      Document acDoc = Application.DocumentManager.MdiActiveDocument;
+      using (Transaction acTrans = db.TransactionManager.StartTransaction())
+      {
+        var blockIds = new List<ObjectId>();
 
-      acDoc.SendStringToExecute("attsync " + " " + " " + " " + " ",true,false,false);      
+        using (var bt = db.BlockTableId.GetObject<BlockTable>(OpenMode.ForRead))
+        {
+          // Open the Block table record Model space for write
+          using (var btrModelSpace = acTrans.GetObject(bt[BlockTableRecord.ModelSpace], OpenMode.ForWrite) as BlockTableRecord)
+          {
+            foreach (var btrId in btrModelSpace)
+            {
+              var item = btrId.GetObject(OpenMode.ForRead);
+              if (item == null) continue;
+              if (item is BlockReference)
+              {
+                var attrDef = item as BlockReference;
+
+                if (attrDef.IsErased || attrDef.IsDisposed)
+                {
+                  continue;
+                }
+                var dynBtr = acTrans.GetObject(attrDef.DynamicBlockTableRecord, OpenMode.ForRead, false) as BlockTableRecord;
+
+                System.Diagnostics.Debug.Print("DynBlockName: " + dynBtr.Name);
+
+                if (!dynBtr.IsAnonymous && !dynBtr.IsLayout && dynBtr.Name == blockName)
+                  blockIds.Add(btrId);
+              }
+            }
+
+            var first = blockIds.First();
+            var acEnt = acTrans.GetObject(first, OpenMode.ForWrite) as DBObject;
+
+            ed.Command("_attsync", "\n", first, "\n"); // does not work, I have no idea why.
+
+            if (blockIds.Count == 0) ed.WriteMessage($"No block record found with the name {blockName}");
+
+          }
+        }
+      }
     }
+    #endregion
 
     [CommandMethod("SendZoomExtents", CommandFlags.Modal)]
     public static void SendZoomExtents()
@@ -423,49 +465,40 @@ namespace jszomorCAD
 
       acDoc.SendStringToExecute("_zoom _extents" + " ", true, false, false);
     }
+
+    public static ObjectId ToModelSpace(Entity ent)
+    {
+      Database db = HostApplicationServices.WorkingDatabase;
+      ObjectId endId;
+      using (Transaction trans = db.TransactionManager.StartTransaction())
+      {
+        BlockTable bt = (BlockTable)trans.GetObject(db.BlockTableId, OpenMode.ForRead);
+        BlockTableRecord btr = (BlockTableRecord)trans.GetObject(bt[BlockTableRecord.ModelSpace], OpenMode.ForWrite);
+        endId = btr.AppendEntity(ent);
+        trans.AddNewlyCreatedDBObject(ent, true);
+        trans.Commit();
+      }
+      return endId;
+    }
+
+    public static void FilletCommand(Editor ed, Database db, Line l1, Line l2)
+    {
+      // Start a transaction
+      using (Transaction acTrans = db.TransactionManager.StartTransaction())
+      {
+        // Open the selected object for write
+        Entity acEnt1 = acTrans.GetObject(l1.ObjectId, OpenMode.ForWrite) as Entity;
+
+        // Open the selected object for write
+        Entity acEnt2 = acTrans.GetObject(l2.ObjectId, OpenMode.ForWrite) as Entity;
+
+        ed.Command("_fillet", "_R", 0);
+        ed.Command("_fillet", acEnt1.ObjectId, acEnt2.ObjectId);
+
+        // Save the new object to the database
+        acTrans.Commit();
+      }
+      // Dispose of the transaction  
+    }
   }
-  
-  //public class Connect
-  //{
-  //  [CommandMethod("ConnectToAcad")]
-  //  public static void ConnectToAcad()
-  //  {
-  //    AcadApplication acAppComObj = null;
-  //    const string strProgId = "AutoCAD.Application.18";
-  //    // Get a running instance of AutoCAD
-  //    try
-  //    {
-  //      acAppComObj = (AcadApplication)Marshal.GetActiveObject(strProgId);
-  //    }
-  //    catch // An error occurs if no instance is running
-  //    {
-  //      try
-  //      {
-  //        // Create a new instance of AutoCAD
-  //        acAppComObj =
-  //        (AcadApplication)Activator.CreateInstance(Type.GetTypeFromProgID(strProgId),
-  //        true);
-  //      }
-  //      catch
-  //      {
-  //        // If an instance of AutoCAD is not created then message and exit
-  //        System.Windows.Forms.MessageBox.Show("Instance of 'AutoCAD.Application'"
-  //        +
-  //        " could not be created.");
-  //        return;
-  //      }
-  //    }
-  //    // Display the application and return the name and version
-  //    acAppComObj.Visible = true;
-  //    System.Windows.Forms.MessageBox.Show("Now running " + acAppComObj.Name +
-  //    " version " + acAppComObj.Version);
-  //    // Get the active document
-  //    AcadDocument acDocComObj;
-  //    acDocComObj = acAppComObj.ActiveDocument;
-  //    // Optionally, load your assembly and start your command or if your assembly
-  //    // is demandloaded, simply start the command of your in-process assembly.
-  //    acDocComObj.SendCommand("(command " + (char)34 + "NETLOAD" + (char)34 + " " + (char)34 + "c:/myapps/mycommands.dll" + (char)34 + ")");
-  //    acDocComObj.SendCommand("MyCommand ");
-  //  }
-  //}
 }

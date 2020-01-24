@@ -31,60 +31,60 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AcCoreMgd, Version=23.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\AutoCAD.NET.Core.23.0.0\lib\net47\AcCoreMgd.dll</HintPath>
+    <Reference Include="AcCoreMgd, Version=23.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoCAD.NET.Core.23.1.0\lib\net47\AcCoreMgd.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="AcCui, Version=23.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\AutoCAD.NET.23.0.0\lib\net47\AcCui.dll</HintPath>
+    <Reference Include="AcCui, Version=23.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoCAD.NET.23.1.0\lib\net47\AcCui.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="AcDbMgd, Version=23.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\AutoCAD.NET.Model.23.0.0\lib\net47\AcDbMgd.dll</HintPath>
+    <Reference Include="AcDbMgd, Version=23.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoCAD.NET.Model.23.1.0\lib\net47\AcDbMgd.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="acdbmgdbrep, Version=23.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\AutoCAD.NET.Model.23.0.0\lib\net47\acdbmgdbrep.dll</HintPath>
+    <Reference Include="acdbmgdbrep, Version=23.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoCAD.NET.Model.23.1.0\lib\net47\acdbmgdbrep.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="AcDx, Version=23.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\AutoCAD.NET.23.0.0\lib\net47\AcDx.dll</HintPath>
+    <Reference Include="AcDx, Version=23.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoCAD.NET.23.1.0\lib\net47\AcDx.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="AcMgd, Version=23.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\AutoCAD.NET.23.0.0\lib\net47\AcMgd.dll</HintPath>
+    <Reference Include="AcMgd, Version=23.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoCAD.NET.23.1.0\lib\net47\AcMgd.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="AcMr, Version=23.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\AutoCAD.NET.23.0.0\lib\net47\AcMr.dll</HintPath>
+    <Reference Include="AcMr, Version=23.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoCAD.NET.23.1.0\lib\net47\AcMr.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="AcSeamless, Version=23.0.0.0, Culture=neutral, processorArchitecture=AMD64">
-      <HintPath>..\packages\AutoCAD.NET.23.0.0\lib\net47\AcSeamless.dll</HintPath>
+    <Reference Include="AcSeamless, Version=23.1.0.0, Culture=neutral, processorArchitecture=AMD64">
+      <HintPath>..\packages\AutoCAD.NET.23.1.0\lib\net47\AcSeamless.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="AcTcMgd, Version=23.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\AutoCAD.NET.23.0.0\lib\net47\AcTcMgd.dll</HintPath>
+    <Reference Include="AcTcMgd, Version=23.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoCAD.NET.23.1.0\lib\net47\AcTcMgd.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="AcWindows, Version=23.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\AutoCAD.NET.23.0.0\lib\net47\AcWindows.dll</HintPath>
+    <Reference Include="AcWindows, Version=23.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoCAD.NET.23.1.0\lib\net47\AcWindows.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="AdUIMgd, Version=23.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\AutoCAD.NET.23.0.0\lib\net47\AdUIMgd.dll</HintPath>
+    <Reference Include="AdUIMgd, Version=23.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoCAD.NET.23.1.0\lib\net47\AdUIMgd.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="AdUiPalettes, Version=23.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\AutoCAD.NET.23.0.0\lib\net47\AdUiPalettes.dll</HintPath>
+    <Reference Include="AdUiPalettes, Version=23.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoCAD.NET.23.1.0\lib\net47\AdUiPalettes.dll</HintPath>
       <Private>False</Private>
     </Reference>
-    <Reference Include="AdWindows, Version=2017.11.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\AutoCAD.NET.23.0.0\lib\net47\AdWindows.dll</HintPath>
+    <Reference Include="AdWindows, Version=2018.11.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoCAD.NET.23.1.0\lib\net47\AdWindows.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <HintPath>..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -96,6 +96,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Select.cs" />
     <Compile Include="SendCommand.cs" />
     <Compile Include="CommandMethods.cs" />
     <Compile Include="CopyBlockTable.cs" />
@@ -107,12 +108,32 @@
   <ItemGroup>
     <None Include="Equipments.json" />
     <None Include="packages.config" />
+    <None Include="process.json" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\EquipmentPosition\EquipmentPosition\jCAD.EquipmentPosition.csproj">
-      <Project>{fe7104a8-3f0b-4441-8b60-d9e21aea1bb5}</Project>
-      <Name>jCAD.EquipmentPosition</Name>
+    <ProjectReference Include="..\..\..\..\..\Munka\OrganiCad\OrganiCAD.AutoCAD\OrganiCAD.AutoCAD.csproj">
+      <Project>{f6263436-2892-4372-a84f-7bd6a8a4af1e}</Project>
+      <Name>OrganiCAD.AutoCAD</Name>
     </ProjectReference>
+    <ProjectReference Include="..\EquipmentPosition\EquipmentPosition\jCAD.EquipmentProperty.csproj">
+      <Project>{fe7104a8-3f0b-4441-8b60-d9e21aea1bb5}</Project>
+      <Name>jCAD.EquipmentProperty</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\jCAD.PID_Builder\jCAD.PID_Builder.csproj">
+      <Project>{bea8bdac-c575-4cdf-b08c-2d4455d3eaef}</Project>
+      <Name>jCAD.PID_Builder</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\JsonFindKey\JsonFindKey.csproj">
+      <Project>{6af4b808-9848-4afa-bc0b-7dc1f7674cc8}</Project>
+      <Name>JsonFindKey</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="acad.exe" />
+    <Content Include="accore.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

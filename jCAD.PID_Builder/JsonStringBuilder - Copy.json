@@ -1,0 +1,3063 @@
+{
+  "Blocks": [
+    {
+      "Geometry": {
+        "Position X": -1.2111740943510085E-06,
+        "Position Y": 416.99999601660443
+      },
+      "Misc": {
+        "Name": "PID-PS-FRAME",
+        "Rotation": 0.0
+      },
+      "General": {
+        "Layer": "DEFPOINTS"
+      },
+      "Custom": {
+        "Flip state": 0,
+        "Flip state1": 0
+      },
+      "Attributes": {}
+    },
+    {
+      "Geometry": {
+        "Position X": 5.9999987888259056,
+        "Position Y": 416.9999960166042
+      },
+      "Misc": {
+        "Name": "PID-PS-FRAME",
+        "Rotation": 0.0
+      },
+      "General": {
+        "Layer": "DEFPOINTS"
+      },
+      "Custom": {
+        "Flip state": 0,
+        "Flip state1": 0
+      },
+      "Attributes": {}
+    },
+    {
+      "Geometry": {
+        "Position X": 175.99999878882591,
+        "Position Y": 296.9999960166042
+      },
+      "Misc": {
+        "Name": "break",
+        "Rotation": 0.0
+      },
+      "General": {
+        "Layer": "sludge"
+      },
+      "Custom": {
+        "Flip state": 0,
+        "Flip state1": 0
+      },
+      "Attributes": {}
+    },
+    {
+      "Geometry": {
+        "Position X": 191.99999878882591,
+        "Position Y": 416.9999960166042
+      },
+      "Misc": {
+        "Name": "PID-PS-FRAME",
+        "Rotation": 0.0
+      },
+      "General": {
+        "Layer": "DEFPOINTS"
+      },
+      "Custom": {
+        "Flip state": 0,
+        "Flip state1": 0
+      },
+      "Attributes": {}
+    },
+    {
+      "Geometry": {
+        "Position X": 197.99999878882591,
+        "Position Y": 416.9999960166042
+      },
+      "Misc": {
+        "Name": "PID-PS-FRAME",
+        "Rotation": 0.0
+      },
+      "General": {
+        "Layer": "DEFPOINTS"
+      },
+      "Custom": {
+        "Flip state": 0,
+        "Flip state1": 0
+      },
+      "Attributes": {}
+    },
+    {
+      "Geometry": {
+        "Position X": 281.99999878882591,
+        "Position Y": 416.99999601660443
+      },
+      "Misc": {
+        "Name": "PID-PS-FRAME",
+        "Rotation": 0.0
+      },
+      "General": {
+        "Layer": "DEFPOINTS"
+      },
+      "Custom": {
+        "Flip state": 0,
+        "Flip state1": 0
+      },
+      "Attributes": {}
+    },
+    {
+      "Geometry": {
+        "Position X": 191.99999878882591,
+        "Position Y": 201.9999960166042
+      },
+      "Misc": {
+        "Name": "RefARRawSludge",
+        "Rotation": 0.0
+      },
+      "General": {
+        "Layer": "0"
+      },
+      "Custom": {
+        "Flip state": 0,
+        "Flip state1": 0
+      },
+      "Attributes": {}
+    },
+    {
+      "Geometry": {
+        "Position X": 197.99999878882591,
+        "Position Y": 406.9999960166042
+      },
+      "Misc": {
+        "Name": "chamber",
+        "Rotation": 0.0
+      },
+      "General": {
+        "Layer": "unit"
+      },
+      "Custom": {
+        "TAG X": 16.0,
+        "TAG Y": -5.0,
+        "Angle": 0.0,
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "no channels",
+        "Distance": 32.0,
+        "Distance1": 20.0,
+        "Distance2": 33.0,
+        "Distance3": 21.0,
+        "Distance4": 11.801209410282013,
+        "Distance5": 43.0
+      },
+      "Attributes": {
+        "NAME1": "DISTRIBUTION CHAMBER",
+        "VOLUME": "-",
+        "WIDTH": "-",
+        "LIQUIDLEVEL": "-",
+        "LENGTH": "-",
+        "HEIGHT": "-"
+      }
+    },
+    {
+      "Geometry": {
+        "Position X": 281.99999878882591,
+        "Position Y": 456.9999960166042
+      },
+      "Misc": {
+        "Name": "RefAL5Leachate",
+        "Rotation": 0.0
+      },
+      "General": {
+        "Layer": "0"
+      },
+      "Custom": {
+        "Flip state": 0,
+        "Flip state1": 0
+      },
+      "Attributes": {}
+    },
+    {
+      "Geometry": {
+        "Position X": 228.99999878882591,
+        "Position Y": 476.9999960166042
+      },
+      "Misc": {
+        "Name": "RefAR6WasteSludge",
+        "Rotation": 0.0
+      },
+      "General": {
+        "Layer": "0"
+      },
+      "Custom": {
+        "Flip state": 0,
+        "Flip state1": 0
+      },
+      "Attributes": {}
+    },
+    {
+      "Geometry": {
+        "Position X": 72.766475446592722,
+        "Position Y": 440.4999960166042
+      },
+      "Misc": {
+        "Name": "chamber circular",
+        "Rotation": 0.0
+      },
+      "General": {
+        "Layer": "unit"
+      },
+      "Custom": {
+        "TAG X": -22.0,
+        "TAG Y": -28.0,
+        "Angle": 0.0,
+        "Flip state": 0,
+        "Flip state1": 0
+      },
+      "Attributes": {
+        "NAME1": "PRIMARY CLARIFIER",
+        "NAME2": "",
+        "VOLUME": "-",
+        "LIQUIDLEVEL": "-",
+        "HEIGHT": "-",
+        "DIAMETER": "-"
+      }
+    },
+    {
+      "Geometry": {
+        "Position X": 83.266475446592722,
+        "Position Y": 360.9999960166042
+      },
+      "Misc": {
+        "Name": "instrumentation tag",
+        "Rotation": 0.0
+      },
+      "General": {
+        "Layer": "instrumentation"
+      },
+      "Custom": {
+        "Angle": 3.1415926535897931,
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Level Transmitter",
+        "Block Table1": 24,
+        "Distance": 13.0
+      },
+      "Attributes": {
+        "NOTE": "Transmitter",
+        "EQUIP_TYPE": "Level",
+        "MODEL": "",
+        "SP_FLOW": "",
+        "SP_FLUID": "",
+        "TAG": "048",
+        "NOTE_CHINESE": "",
+        "AREA_CODE": "",
+        "DI": "1",
+        "DO": "0",
+        "AI": "1",
+        "AO": "0",
+        "PB": "0",
+        "PO": "2",
+        "TAG_ID": "LIT"
+      }
+    },
+    {
+      "Geometry": {
+        "Position X": 148.26647544659272,
+        "Position Y": 403.9999960166042
+      },
+      "Misc": {
+        "Name": "instrumentation tag",
+        "Rotation": 0.0
+      },
+      "General": {
+        "Layer": "instrumentation"
+      },
+      "Custom": {
+        "Angle": 3.1415926535897931,
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Flow Indicator/Transmitter",
+        "Block Table1": 8,
+        "Distance": 11.0
+      },
+      "Attributes": {
+        "NOTE": "Indicator+Transmitter",
+        "EQUIP_TYPE": "Flow",
+        "MODEL": "",
+        "SP_FLOW": "",
+        "SP_FLUID": "Sludge",
+        "TAG": "046",
+        "NOTE_CHINESE": "",
+        "AREA_CODE": "",
+        "DI": "1",
+        "DO": "0",
+        "AI": "1",
+        "AO": "0",
+        "PB": "0",
+        "PO": "2",
+        "TAG_ID": "FIT"
+      }
+    },
+    {
+      "Geometry": {
+        "Position X": 73.266475446592722,
+        "Position Y": 346.9999960166042
+      },
+      "Misc": {
+        "Name": "pr_cl_chmbr",
+        "Rotation": 0.0
+      },
+      "General": {
+        "Layer": "unit"
+      },
+      "Custom": {
+        "TAG X": 47.0,
+        "TAG Y": -6.0,
+        "Angle": 0.0,
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "no channels",
+        "Distance": 94.0,
+        "Distance1": 29.0,
+        "Distance2": 33.0,
+        "Distance3": 21.0,
+        "Distance4": 11.801209410282013,
+        "Distance5": 43.0
+      },
+      "Attributes": {
+        "NAME1": "PRIMARY CLARIFIER SLUDGE CHAMBER",
+        "VOLUME": "-",
+        "WIDTH": "-",
+        "LIQUIDLEVEL": "-",
+        "LENGTH": "-",
+        "HEIGHT": "-"
+      }
+    },
+    {
+      "Geometry": {
+        "Position X": 123.26647544659272,
+        "Position Y": 371.9999960166042
+      },
+      "Misc": {
+        "Name": "valve",
+        "Rotation": 1.5707963267948966
+      },
+      "General": {
+        "Layer": "valve"
+      },
+      "Custom": {
+        "TAG X": 0.45072820179160555,
+        "TAG Y": -3.8962674149591736,
+        "Angle": 0.0,
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Check Valve",
+        "Block Table1": 5
+      },
+      "Attributes": {
+        "NOTE": "Check Valve",
+        "EQUIP_TYPE": "Hand Actuated",
+        "MATERIAL": "-",
+        "SIZE": "-",
+        "SP_ACTUATED": "Hand",
+        "TAG": "051",
+        "NOTE_CHINESE": "",
+        "AREA_CODE": "-",
+        "DI": "0",
+        "DO": "0",
+        "AI": "0",
+        "AO": "0",
+        "PB": "0",
+        "PO": "0",
+        "TAG_ID": "VC",
+        "PRESSURE": "-"
+      }
+    },
+    {
+      "Geometry": {
+        "Position X": 144.26647544659272,
+        "Position Y": 371.9999960166042
+      },
+      "Misc": {
+        "Name": "valve",
+        "Rotation": 1.5707963267948966
+      },
+      "General": {
+        "Layer": "valve"
+      },
+      "Custom": {
+        "TAG X": 0.45072820179160555,
+        "TAG Y": -3.8962674149591736,
+        "Angle": 0.0,
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Check Valve",
+        "Block Table1": 5
+      },
+      "Attributes": {
+        "NOTE": "Check Valve",
+        "EQUIP_TYPE": "Hand Actuated",
+        "MATERIAL": "-",
+        "SIZE": "-",
+        "SP_ACTUATED": "Hand",
+        "TAG": "052",
+        "NOTE_CHINESE": "",
+        "AREA_CODE": "-",
+        "DI": "0",
+        "DO": "0",
+        "AI": "0",
+        "AO": "0",
+        "PB": "0",
+        "PO": "0",
+        "TAG_ID": "VC",
+        "PRESSURE": "-"
+      }
+    },
+    {
+      "Geometry": {
+        "Position X": 123.26647544659272,
+        "Position Y": 391.9999960166042
+      },
+      "Misc": {
+        "Name": "valve",
+        "Rotation": 1.5707963267948966
+      },
+      "General": {
+        "Layer": "valve"
+      },
+      "Custom": {
+        "TAG X": 0.45072820179160555,
+        "TAG Y": -3.8962674149591736,
+        "Angle": 0.0,
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Knife Valve",
+        "Block Table1": 1
+      },
+      "Attributes": {
+        "NOTE": "Knife Gate Valve",
+        "EQUIP_TYPE": "Hand Actuated",
+        "MATERIAL": "-",
+        "SIZE": "-",
+        "SP_ACTUATED": "Hand",
+        "TAG": "054",
+        "NOTE_CHINESE": "",
+        "AREA_CODE": "-",
+        "DI": "0",
+        "DO": "0",
+        "AI": "0",
+        "AO": "0",
+        "PB": "0",
+        "PO": "0",
+        "TAG_ID": "VK",
+        "PRESSURE": "-"
+      }
+    },
+    {
+      "Geometry": {
+        "Position X": 144.26647544659272,
+        "Position Y": 391.9999960166042
+      },
+      "Misc": {
+        "Name": "valve",
+        "Rotation": 1.5707963267948966
+      },
+      "General": {
+        "Layer": "valve"
+      },
+      "Custom": {
+        "TAG X": 0.45072820179160555,
+        "TAG Y": -3.8962674149591736,
+        "Angle": 0.0,
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Knife Valve",
+        "Block Table1": 1
+      },
+      "Attributes": {
+        "NOTE": "Knife Gate Valve",
+        "EQUIP_TYPE": "Hand Actuated",
+        "MATERIAL": "-",
+        "SIZE": "-",
+        "SP_ACTUATED": "Hand",
+        "TAG": "056",
+        "NOTE_CHINESE": "",
+        "AREA_CODE": "-",
+        "DI": "0",
+        "DO": "0",
+        "AI": "0",
+        "AO": "0",
+        "PB": "0",
+        "PO": "0",
+        "TAG_ID": "VK",
+        "PRESSURE": "-"
+      }
+    },
+    {
+      "Geometry": {
+        "Position X": 93.63638086489857,
+        "Position Y": 404.1575113007741
+      },
+      "Misc": {
+        "Name": "valve",
+        "Rotation": 0.0
+      },
+      "General": {
+        "Layer": "valve"
+      },
+      "Custom": {
+        "TAG X": 0.45072820179160544,
+        "TAG Y": -3.8962674149591727,
+        "Angle": 0.0,
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Knife Valve - Motor",
+        "Block Table1": 7
+      },
+      "Attributes": {
+        "NOTE": "Knife Gate Valve",
+        "EQUIP_TYPE": "Motor Actuated - Regulated",
+        "MATERIAL": "-",
+        "SIZE": "-",
+        "SP_ACTUATED": "Motor",
+        "TAG": "058",
+        "NOTE_CHINESE": "",
+        "AREA_CODE": "-",
+        "DI": "3",
+        "DO": "1",
+        "AI": "1",
+        "AO": "1",
+        "PB": "0",
+        "PO": "2",
+        "TAG_ID": "VK",
+        "PRESSURE": "-"
+      }
+    },
+    {
+      "Geometry": {
+        "Position X": 18.999998788825906,
+        "Position Y": 412.9999960166042
+      },
+      "Misc": {
+        "Name": "channel gate",
+        "Rotation": 0.0
+      },
+      "General": {
+        "Layer": "equipment"
+      },
+      "Custom": {
+        "TAG X": 0.5,
+        "TAG Y": -2.0679422580926,
+        "Angle": 0.0,
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Manual",
+        "Block Table1": 0
+      },
+      "Attributes": {
+        "NOTE": "Channel gate (Primary Clarifier)",
+        "EQUIP_TYPE": "Channel Gate",
+        "MODEL": "-",
+        "CONSUMED_POWER": "-",
+        "INSTALLED_POWER": "-",
+        "MATERIAL_FRAME": "ASTM 304",
+        "MATERIAL_BODY": "ASTM 304",
+        "MATERIAL_SEALING": "EPDM/Rubber",
+        "MATERIAL_STEM": "ASTM 306",
+        "SP_CHANNELH": "1,400",
+        "SP_CHANNELW": "1,200",
+        "SP_WATER_LEVEL": "-",
+        "UNIT_CHANNELW": "mm",
+        "UNIT_CHANNELH": "mm",
+        "UNIT_WATER_LEVEL": "mm",
+        "TAG": "065",
+        "NOTE_CHINESE": "渠道闸阀",
+        "STB_DTY": "1",
+        "AREA_CODE": "00",
+        "DI": "0",
+        "DO": "0",
+        "AI": "0",
+        "AO": "0",
+        "PB": "0",
+        "PO": "0",
+        "TAG_ID": "VT",
+        "PROCESSUNITAREA": ""
+      }
+    },
+    {
+      "Geometry": {
+        "Position X": 72.499998788812718,
+        "Position Y": 320.4999960166042
+      },
+      "Misc": {
+        "Name": "chamber circular",
+        "Rotation": 0.0
+      },
+      "General": {
+        "Layer": "unit"
+      },
+      "Custom": {
+        "TAG X": -22.0,
+        "TAG Y": -28.0,
+        "Angle": 0.0,
+        "Flip state": 0,
+        "Flip state1": 0
+      },
+      "Attributes": {
+        "NAME1": "PRIMARY CLARIFIER",
+        "NAME2": "",
+        "VOLUME": "-",
+        "LIQUIDLEVEL": "-",
+        "HEIGHT": "-",
+        "DIAMETER": "-"
+      }
+    },
+    {
+      "Geometry": {
+        "Position X": 82.999998788812718,
+        "Position Y": 240.9999960166042
+      },
+      "Misc": {
+        "Name": "instrumentation tag",
+        "Rotation": 0.0
+      },
+      "General": {
+        "Layer": "instrumentation"
+      },
+      "Custom": {
+        "Angle": 3.1415926535897931,
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Level Transmitter",
+        "Block Table1": 24,
+        "Distance": 13.0
+      },
+      "Attributes": {
+        "NOTE": "Transmitter",
+        "EQUIP_TYPE": "Level",
+        "MODEL": "",
+        "SP_FLOW": "",
+        "SP_FLUID": "",
+        "TAG": "047",
+        "NOTE_CHINESE": "",
+        "AREA_CODE": "",
+        "DI": "1",
+        "DO": "0",
+        "AI": "1",
+        "AO": "0",
+        "PB": "0",
+        "PO": "2",
+        "TAG_ID": "LIT"
+      }
+    },
+    {
+      "Geometry": {
+        "Position X": 147.99999878881272,
+        "Position Y": 283.9999960166042
+      },
+      "Misc": {
+        "Name": "instrumentation tag",
+        "Rotation": 0.0
+      },
+      "General": {
+        "Layer": "instrumentation"
+      },
+      "Custom": {
+        "Angle": 3.1415926535897931,
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Flow Indicator/Transmitter",
+        "Block Table1": 8,
+        "Distance": 11.0
+      },
+      "Attributes": {
+        "NOTE": "Indicator+Transmitter",
+        "EQUIP_TYPE": "Flow",
+        "MODEL": "",
+        "SP_FLOW": "",
+        "SP_FLUID": "Sludge",
+        "TAG": "045",
+        "NOTE_CHINESE": "",
+        "AREA_CODE": "",
+        "DI": "1",
+        "DO": "0",
+        "AI": "1",
+        "AO": "0",
+        "PB": "0",
+        "PO": "2",
+        "TAG_ID": "FIT"
+      }
+    },
+    {
+      "Geometry": {
+        "Position X": 72.999998788812718,
+        "Position Y": 226.9999960166042
+      },
+      "Misc": {
+        "Name": "pr_cl_chmbr",
+        "Rotation": 0.0
+      },
+      "General": {
+        "Layer": "unit"
+      },
+      "Custom": {
+        "TAG X": 47.0,
+        "TAG Y": -6.0,
+        "Angle": 0.0,
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "no channels",
+        "Distance": 94.0,
+        "Distance1": 29.0,
+        "Distance2": 33.0,
+        "Distance3": 21.0,
+        "Distance4": 11.801209410282013,
+        "Distance5": 43.0
+      },
+      "Attributes": {
+        "NAME1": "PRIMARY CLARIFIER SLUDGE CHAMBER",
+        "VOLUME": "-",
+        "WIDTH": "-",
+        "LIQUIDLEVEL": "-",
+        "LENGTH": "-",
+        "HEIGHT": "-"
+      }
+    },
+    {
+      "Geometry": {
+        "Position X": 122.99999878881272,
+        "Position Y": 251.9999960166042
+      },
+      "Misc": {
+        "Name": "valve",
+        "Rotation": 1.5707963267948966
+      },
+      "General": {
+        "Layer": "valve"
+      },
+      "Custom": {
+        "TAG X": 0.45072820179160555,
+        "TAG Y": -3.8962674149591736,
+        "Angle": 0.0,
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Check Valve",
+        "Block Table1": 5
+      },
+      "Attributes": {
+        "NOTE": "Check Valve",
+        "EQUIP_TYPE": "Hand Actuated",
+        "MATERIAL": "-",
+        "SIZE": "-",
+        "SP_ACTUATED": "Hand",
+        "TAG": "049",
+        "NOTE_CHINESE": "",
+        "AREA_CODE": "-",
+        "DI": "0",
+        "DO": "0",
+        "AI": "0",
+        "AO": "0",
+        "PB": "0",
+        "PO": "0",
+        "TAG_ID": "VC",
+        "PRESSURE": "-"
+      }
+    },
+    {
+      "Geometry": {
+        "Position X": 143.99999878881272,
+        "Position Y": 251.9999960166042
+      },
+      "Misc": {
+        "Name": "valve",
+        "Rotation": 1.5707963267948966
+      },
+      "General": {
+        "Layer": "valve"
+      },
+      "Custom": {
+        "TAG X": 0.45072820179160555,
+        "TAG Y": -3.8962674149591736,
+        "Angle": 0.0,
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Check Valve",
+        "Block Table1": 5
+      },
+      "Attributes": {
+        "NOTE": "Check Valve",
+        "EQUIP_TYPE": "Hand Actuated",
+        "MATERIAL": "-",
+        "SIZE": "-",
+        "SP_ACTUATED": "Hand",
+        "TAG": "050",
+        "NOTE_CHINESE": "",
+        "AREA_CODE": "-",
+        "DI": "0",
+        "DO": "0",
+        "AI": "0",
+        "AO": "0",
+        "PB": "0",
+        "PO": "0",
+        "TAG_ID": "VC",
+        "PRESSURE": "-"
+      }
+    },
+    {
+      "Geometry": {
+        "Position X": 122.99999878881272,
+        "Position Y": 271.9999960166042
+      },
+      "Misc": {
+        "Name": "valve",
+        "Rotation": 1.5707963267948966
+      },
+      "General": {
+        "Layer": "valve"
+      },
+      "Custom": {
+        "TAG X": 0.45072820179160555,
+        "TAG Y": -3.8962674149591736,
+        "Angle": 0.0,
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Knife Valve",
+        "Block Table1": 1
+      },
+      "Attributes": {
+        "NOTE": "Knife Gate Valve",
+        "EQUIP_TYPE": "Hand Actuated",
+        "MATERIAL": "-",
+        "SIZE": "-",
+        "SP_ACTUATED": "Hand",
+        "TAG": "053",
+        "NOTE_CHINESE": "",
+        "AREA_CODE": "-",
+        "DI": "0",
+        "DO": "0",
+        "AI": "0",
+        "AO": "0",
+        "PB": "0",
+        "PO": "0",
+        "TAG_ID": "VK",
+        "PRESSURE": "-"
+      }
+    },
+    {
+      "Geometry": {
+        "Position X": 143.99999878881272,
+        "Position Y": 271.9999960166042
+      },
+      "Misc": {
+        "Name": "valve",
+        "Rotation": 1.5707963267948966
+      },
+      "General": {
+        "Layer": "valve"
+      },
+      "Custom": {
+        "TAG X": 0.45072820179160555,
+        "TAG Y": -3.8962674149591736,
+        "Angle": 0.0,
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Knife Valve",
+        "Block Table1": 1
+      },
+      "Attributes": {
+        "NOTE": "Knife Gate Valve",
+        "EQUIP_TYPE": "Hand Actuated",
+        "MATERIAL": "-",
+        "SIZE": "-",
+        "SP_ACTUATED": "Hand",
+        "TAG": "055",
+        "NOTE_CHINESE": "",
+        "AREA_CODE": "-",
+        "DI": "0",
+        "DO": "0",
+        "AI": "0",
+        "AO": "0",
+        "PB": "0",
+        "PO": "0",
+        "TAG_ID": "VK",
+        "PRESSURE": "-"
+      }
+    },
+    {
+      "Geometry": {
+        "Position X": 93.369904207118566,
+        "Position Y": 284.1575113007741
+      },
+      "Misc": {
+        "Name": "valve",
+        "Rotation": 0.0
+      },
+      "General": {
+        "Layer": "valve"
+      },
+      "Custom": {
+        "TAG X": 0.45072820179160544,
+        "TAG Y": -3.8962674149591727,
+        "Angle": 0.0,
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Knife Valve - Motor",
+        "Block Table1": 7
+      },
+      "Attributes": {
+        "NOTE": "Knife Gate Valve",
+        "EQUIP_TYPE": "Motor Actuated - Regulated",
+        "MATERIAL": "-",
+        "SIZE": "-",
+        "SP_ACTUATED": "Motor",
+        "TAG": "057",
+        "NOTE_CHINESE": "",
+        "AREA_CODE": "-",
+        "DI": "3",
+        "DO": "1",
+        "AI": "1",
+        "AO": "1",
+        "PB": "0",
+        "PO": "2",
+        "TAG_ID": "VK",
+        "PRESSURE": "-"
+      }
+    },
+    {
+      "Geometry": {
+        "Position X": 18.999998788812718,
+        "Position Y": 292.9999960166042
+      },
+      "Misc": {
+        "Name": "channel gate",
+        "Rotation": 0.0
+      },
+      "General": {
+        "Layer": "equipment"
+      },
+      "Custom": {
+        "TAG X": 0.5,
+        "TAG Y": -2.0679422580926,
+        "Angle": 0.0,
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Manual",
+        "Block Table1": 0
+      },
+      "Attributes": {
+        "NOTE": "Channel gate (Primary Clarifier)",
+        "EQUIP_TYPE": "Channel Gate",
+        "MODEL": "-",
+        "CONSUMED_POWER": "-",
+        "INSTALLED_POWER": "-",
+        "MATERIAL_FRAME": "ASTM 304",
+        "MATERIAL_BODY": "ASTM 304",
+        "MATERIAL_SEALING": "EPDM/Rubber",
+        "MATERIAL_STEM": "ASTM 306",
+        "SP_CHANNELH": "1,400",
+        "SP_CHANNELW": "1,200",
+        "SP_WATER_LEVEL": "-",
+        "UNIT_CHANNELW": "mm",
+        "UNIT_CHANNELH": "mm",
+        "UNIT_WATER_LEVEL": "mm",
+        "TAG": "066",
+        "NOTE_CHINESE": "渠道闸阀",
+        "STB_DTY": "1",
+        "AREA_CODE": "00",
+        "DI": "0",
+        "DO": "0",
+        "AI": "0",
+        "AO": "0",
+        "PB": "0",
+        "PO": "0",
+        "TAG_ID": "VT",
+        "PROCESSUNITAREA": ""
+      }
+    },
+    {
+      "Geometry": {
+        "Position X": 72.766475446592722,
+        "Position Y": 440.4999960166042
+      },
+      "Misc": {
+        "Name": "clarifier circular",
+        "Rotation": 0.0
+      },
+      "General": {
+        "Layer": "equipment"
+      },
+      "Custom": {
+        "TAG X": -22.692230025789961,
+        "TAG Y": 15.256702260412069,
+        "Angle": 0.0,
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Scraper Circular",
+        "Block Table1": 0
+      },
+      "Attributes": {
+        "NOTE": "Primary clarifier bridge",
+        "EQUIP_TYPE": "Circular clarifier",
+        "MODEL": "-",
+        "CONSUMED_POWER": "0.54",
+        "INSTALLED_POWER": "0.75",
+        "MATERIAL_SUBSURFACE": "ASTM 304",
+        "MATERIAL_ABOVE": "Hot Deep Galvanized Carbon Steel",
+        "SP_CLARIFIER_DIA": "41",
+        "SP_FREE_BOARD": "-",
+        "UNIT_CLARIFIER_DIA": "m",
+        "UNIT_OPERATIONAL_LEVEL": "m",
+        "UNIT_FREE_BOARD": "m",
+        "TAG": "060",
+        "RUNNINGHOURS": "24",
+        "NOTE_CHINESE": "初沉池刮泥机",
+        "STB_DTY": "1",
+        "AREA_CODE": "00",
+        "DI": "3",
+        "DO": "1",
+        "AI": "0",
+        "AO": "0",
+        "PB": "1",
+        "PO": "2",
+        "TAG_ID": "CR",
+        "PROCESSUNITAREA": ""
+      }
+    },
+    {
+      "Geometry": {
+        "Position X": 144.26647544659272,
+        "Position Y": 359.9999960166042
+      },
+      "Misc": {
+        "Name": "pump",
+        "Rotation": 0.0
+      },
+      "General": {
+        "Layer": "equipment"
+      },
+      "Custom": {
+        "TAG X": 0.026011082201989666,
+        "TAG Y": -6.0096995464432155,
+        "Angle": 0.0,
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Angle1": 1.570796326794897,
+        "Angle2": 4.71238898038469,
+        "Visibility": "Centrifugal pump+tag+freq",
+        "Try1": 10.0,
+        "Try": "pp",
+        "Housing": "Gray Cast Iron",
+        "TTRY": "ASTM 304"
+      },
+      "Attributes": {
+        "NOTE": "Primary clarifier sludge pump",
+        "MODEL": "-",
+        "CONSUMED_POWER": "14.4",
+        "INSTALLED_POWER": "15.00",
+        "INSTALLATION": "-",
+        "MATERIAL_HOUSING": "GCI",
+        "SP_HEAD": "-",
+        "SP_CAPACITY": "-",
+        "UNIT_HEAD": "m",
+        "UNIT_CAPACITY": "m3/h",
+        "TAG": "061",
+        "RUNNINGHOURS": "12",
+        "PUMP_TYPE": "Centrifugal - VFD drive",
+        "NOTE_CHINESE": "初沉池污泥泵",
+        "STB_DTY": "0",
+        "AREA_CODE": "00",
+        "DI": "3",
+        "DO": "1",
+        "AI": "3",
+        "AO": "1",
+        "PB": "1",
+        "PO": "2",
+        "TAG_ID": "PC"
+      }
+    },
+    {
+      "Geometry": {
+        "Position X": 123.26647544659272,
+        "Position Y": 359.9999960166042
+      },
+      "Misc": {
+        "Name": "pump",
+        "Rotation": 0.0
+      },
+      "General": {
+        "Layer": "equipment"
+      },
+      "Custom": {
+        "TAG X": 0.026011082201989666,
+        "TAG Y": -6.0096995464432155,
+        "Angle": 0.0,
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Angle1": 1.570796326794897,
+        "Angle2": 4.71238898038469,
+        "Visibility": "Centrifugal pump+tag+freq",
+        "Try1": 10.0,
+        "Try": "pp",
+        "Housing": "Gray Cast Iron",
+        "TTRY": "ASTM 304"
+      },
+      "Attributes": {
+        "NOTE": "Primary clarifier sludge pump",
+        "MODEL": "-",
+        "CONSUMED_POWER": "14.4",
+        "INSTALLED_POWER": "15.00",
+        "INSTALLATION": "-",
+        "MATERIAL_HOUSING": "GCI",
+        "SP_HEAD": "-",
+        "SP_CAPACITY": "-",
+        "UNIT_HEAD": "m",
+        "UNIT_CAPACITY": "m3/h",
+        "TAG": "063",
+        "RUNNINGHOURS": "12",
+        "PUMP_TYPE": "Centrifugal - VFD drive",
+        "NOTE_CHINESE": "初沉池污泥泵",
+        "STB_DTY": "1",
+        "AREA_CODE": "00",
+        "DI": "3",
+        "DO": "1",
+        "AI": "3",
+        "AO": "1",
+        "PB": "1",
+        "PO": "2",
+        "TAG_ID": "PC",
+        "PROCESSUNITAREA": ""
+      }
+    },
+    {
+      "Geometry": {
+        "Position X": 72.499998788812718,
+        "Position Y": 320.4999960166042
+      },
+      "Misc": {
+        "Name": "clarifier circular",
+        "Rotation": 0.0
+      },
+      "General": {
+        "Layer": "equipment"
+      },
+      "Custom": {
+        "TAG X": -22.692230025789961,
+        "TAG Y": 15.256702260412069,
+        "Angle": 0.0,
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Scraper Circular",
+        "Block Table1": 0
+      },
+      "Attributes": {
+        "NOTE": "Primary clarifier bridge",
+        "EQUIP_TYPE": "Circular clarifier",
+        "MODEL": "-",
+        "CONSUMED_POWER": "0.54",
+        "INSTALLED_POWER": "0.75",
+        "MATERIAL_SUBSURFACE": "ASTM 304",
+        "MATERIAL_ABOVE": "Hot Deep Galvanized Carbon Steel",
+        "SP_CLARIFIER_DIA": "41",
+        "SP_FREE_BOARD": "-",
+        "UNIT_CLARIFIER_DIA": "m",
+        "UNIT_OPERATIONAL_LEVEL": "m",
+        "UNIT_FREE_BOARD": "m",
+        "TAG": "059",
+        "RUNNINGHOURS": "24",
+        "NOTE_CHINESE": "初沉池刮泥机",
+        "STB_DTY": "1",
+        "AREA_CODE": "00",
+        "DI": "3",
+        "DO": "1",
+        "AI": "0",
+        "AO": "0",
+        "PB": "1",
+        "PO": "2",
+        "TAG_ID": "CR",
+        "PROCESSUNITAREA": ""
+      }
+    },
+    {
+      "Geometry": {
+        "Position X": 143.99999878881272,
+        "Position Y": 239.9999960166042
+      },
+      "Misc": {
+        "Name": "pump",
+        "Rotation": 0.0
+      },
+      "General": {
+        "Layer": "equipment"
+      },
+      "Custom": {
+        "TAG X": 0.026011082201989666,
+        "TAG Y": -6.0096995464432155,
+        "Angle": 0.0,
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Angle1": 1.570796326794897,
+        "Angle2": 4.71238898038469,
+        "Visibility": "Centrifugal pump+tag+freq",
+        "Try1": 10.0,
+        "Try": "pp",
+        "Housing": "Gray Cast Iron",
+        "TTRY": "ASTM 304"
+      },
+      "Attributes": {
+        "NOTE": "Primary clarifier sludge pump",
+        "MODEL": "-",
+        "CONSUMED_POWER": "14.4",
+        "INSTALLED_POWER": "15.00",
+        "INSTALLATION": "-",
+        "MATERIAL_HOUSING": "GCI",
+        "SP_HEAD": "-",
+        "SP_CAPACITY": "-",
+        "UNIT_HEAD": "m",
+        "UNIT_CAPACITY": "m3/h",
+        "TAG": "062",
+        "RUNNINGHOURS": "12",
+        "PUMP_TYPE": "Centrifugal - VFD drive",
+        "NOTE_CHINESE": "初沉池污泥泵",
+        "STB_DTY": "0",
+        "AREA_CODE": "00",
+        "DI": "3",
+        "DO": "1",
+        "AI": "3",
+        "AO": "1",
+        "PB": "1",
+        "PO": "2",
+        "TAG_ID": "PC"
+      }
+    },
+    {
+      "Geometry": {
+        "Position X": 122.99999878881272,
+        "Position Y": 239.9999960166042
+      },
+      "Misc": {
+        "Name": "pump",
+        "Rotation": 0.0
+      },
+      "General": {
+        "Layer": "equipment"
+      },
+      "Custom": {
+        "TAG X": 0.026011082201989666,
+        "TAG Y": -6.0096995464432155,
+        "Angle": 0.0,
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Angle1": 1.570796326794897,
+        "Angle2": 4.71238898038469,
+        "Visibility": "Centrifugal pump+tag+freq",
+        "Try1": 10.0,
+        "Try": "pp",
+        "Housing": "Gray Cast Iron",
+        "TTRY": "ASTM 304"
+      },
+      "Attributes": {
+        "NOTE": "Primary clarifier sludge pump",
+        "MODEL": "-",
+        "CONSUMED_POWER": "14.4",
+        "INSTALLED_POWER": "15.00",
+        "INSTALLATION": "-",
+        "MATERIAL_HOUSING": "GCI",
+        "SP_HEAD": "-",
+        "SP_CAPACITY": "-",
+        "UNIT_HEAD": "m",
+        "UNIT_CAPACITY": "m3/h",
+        "TAG": "064",
+        "RUNNINGHOURS": "12",
+        "PUMP_TYPE": "Centrifugal - VFD drive",
+        "NOTE_CHINESE": "初沉池污泥泵",
+        "STB_DTY": "1",
+        "AREA_CODE": "00",
+        "DI": "3",
+        "DO": "1",
+        "AI": "3",
+        "AO": "1",
+        "PB": "1",
+        "PO": "2",
+        "TAG_ID": "PC",
+        "PROCESSUNITAREA": ""
+      }
+    },
+    {
+      "Geometry": {
+        "Position X": 250.0,
+        "Position Y": 360.0
+      },
+      "Misc": {
+        "Name": "pump",
+        "Rotation": 0.0
+      },
+      "General": {
+        "Layer": "equipment"
+      },
+      "Custom": {
+        "TAG X": 0.026011082201989666,
+        "TAG Y": -6.0096995464432155,
+        "Angle": 0.0,
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Angle1": 0.0,
+        "Angle2": 0.0,
+        "Visibility": "Centrifugal pump+tag+freq",
+        "Try1": 10.0,
+        "Try": "pp",
+        "Housing": "Gray Cast Iron",
+        "TTRY": "ASTM 304"
+      },
+      "Attributes": {
+        "NOTE": "Primary clarifier sludge pump",
+        "MODEL": "-",
+        "CONSUMED_POWER": "-",
+        "INSTALLED_POWER": "-",
+        "INSTALLATION": "-",
+        "MATERIAL_HOUSING": "GCI",
+        "SP_HEAD": "-",
+        "SP_CAPACITY": "-",
+        "UNIT_HEAD": "m",
+        "UNIT_CAPACITY": "m3/h",
+        "TAG": "000",
+        "RUNNINGHOURS": "-",
+        "PUMP_TYPE": "Centrifugal - VFD drive",
+        "NOTE_CHINESE": "初沉池污泥泵",
+        "STB_DTY": "1",
+        "AREA_CODE": "00",
+        "DI": "3",
+        "DO": "1",
+        "AI": "3",
+        "AO": "1",
+        "PB": "1",
+        "PO": "2",
+        "TAG_ID": "PC",
+        "PROCESSUNITAREA": ""
+      }
+    },
+    {
+      "Geometry": {
+        "Position X": 250.0,
+        "Position Y": 320.0
+      },
+      "Misc": {
+        "Name": "pump",
+        "Rotation": 0.0
+      },
+      "General": {
+        "Layer": "equipment"
+      },
+      "Custom": {
+        "TAG X": 0.026011082201989666,
+        "TAG Y": -6.0096995464432155,
+        "Angle": 0.0,
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Angle1": 0.0,
+        "Angle2": 0.0,
+        "Visibility": "Centrifugal pump+tag",
+        "Try1": 10.0,
+        "Try": "pp",
+        "Housing": "Gray Cast Iron",
+        "TTRY": "ASTM 304"
+      },
+      "Attributes": {
+        "NOTE": "Emergency Tank Pump",
+        "MODEL": "-",
+        "CONSUMED_POWER": "-",
+        "INSTALLED_POWER": "-",
+        "INSTALLATION": "-",
+        "MATERIAL_HOUSING": "GCI",
+        "SP_HEAD": "-",
+        "SP_CAPACITY": "-",
+        "UNIT_HEAD": "m",
+        "UNIT_CAPACITY": "m3/h",
+        "TAG": "000",
+        "RUNNINGHOURS": "-",
+        "PUMP_TYPE": "Centrifugal",
+        "NOTE_CHINESE": "应急塔泵",
+        "STB_DTY": "1",
+        "AREA_CODE": "00",
+        "DI": "3",
+        "DO": "1",
+        "AI": "0",
+        "AO": "0",
+        "PB": "0",
+        "PO": "2",
+        "TAG_ID": "PC",
+        "PROCESSUNITAREA": ""
+      }
+    },
+    {
+      "Geometry": {
+        "Position X": 250.0,
+        "Position Y": 300.0
+      },
+      "Misc": {
+        "Name": "pump",
+        "Rotation": 0.0
+      },
+      "General": {
+        "Layer": "equipment"
+      },
+      "Custom": {
+        "TAG X": 0.026011082201989666,
+        "TAG Y": -6.0096995464432155,
+        "Angle": 0.0,
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Angle1": 0.0,
+        "Angle2": 0.0,
+        "Visibility": "Dosing pump+tag",
+        "Try1": 10.0,
+        "Try": "pp",
+        "Housing": "Gray Cast Iron",
+        "TTRY": "ASTM 304"
+      },
+      "Attributes": {
+        "NOTE": "Dosing Pump (NaOCl)",
+        "MODEL": "-",
+        "CONSUMED_POWER": "-",
+        "INSTALLED_POWER": "-",
+        "INSTALLATION": "-",
+        "MATERIAL_HOUSING": "PVDF",
+        "SP_HEAD": "-",
+        "SP_CAPACITY": "-",
+        "UNIT_HEAD": "m",
+        "UNIT_CAPACITY": "l/h",
+        "TAG": "000",
+        "RUNNINGHOURS": "-",
+        "PUMP_TYPE": "Membrane",
+        "NOTE_CHINESE": "加药泵(NaOCl)",
+        "STB_DTY": "1",
+        "AREA_CODE": "00",
+        "DI": "3",
+        "DO": "1",
+        "AI": "0",
+        "AO": "0",
+        "PB": "0",
+        "PO": "2",
+        "TAG_ID": "PD",
+        "PROCESSUNITAREA": ""
+      }
+    },
+    {
+      "Geometry": {
+        "Position X": 250.0,
+        "Position Y": 280.0
+      },
+      "Misc": {
+        "Name": "pump",
+        "Rotation": 0.0
+      },
+      "General": {
+        "Layer": "equipment"
+      },
+      "Custom": {
+        "TAG X": 0.026011082201989666,
+        "TAG Y": -6.0096995464432155,
+        "Angle": 0.0,
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Angle1": 0.0,
+        "Angle2": 0.0,
+        "Visibility": "Dosing pump+tag+freq",
+        "Try1": 10.0,
+        "Try": "pp",
+        "Housing": "Gray Cast Iron",
+        "TTRY": "ASTM 304"
+      },
+      "Attributes": {
+        "NOTE": "Dosing Pump (NaOH)",
+        "MODEL": "-",
+        "CONSUMED_POWER": "-",
+        "INSTALLED_POWER": "-",
+        "INSTALLATION": "-",
+        "MATERIAL_HOUSING": "PVDF",
+        "SP_HEAD": "-",
+        "SP_CAPACITY": "-",
+        "UNIT_HEAD": "m",
+        "UNIT_CAPACITY": "l/h",
+        "TAG": "000",
+        "RUNNINGHOURS": "-",
+        "PUMP_TYPE": "Membrane - VFD drive",
+        "NOTE_CHINESE": "加药泵（NaOH）",
+        "STB_DTY": "1",
+        "AREA_CODE": "00",
+        "DI": "3",
+        "DO": "1",
+        "AI": "2",
+        "AO": "1",
+        "PB": "1",
+        "PO": "2",
+        "TAG_ID": "PD",
+        "PROCESSUNITAREA": ""
+      }
+    },
+    {
+      "Geometry": {
+        "Position X": 250.0,
+        "Position Y": 260.0
+      },
+      "Misc": {
+        "Name": "pump",
+        "Rotation": 0.0
+      },
+      "General": {
+        "Layer": "equipment"
+      },
+      "Custom": {
+        "TAG X": 0.026011082201989666,
+        "TAG Y": -6.0096995464432155,
+        "Angle": 0.0,
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Angle1": 0.0,
+        "Angle2": 0.0,
+        "Visibility": "Propeller pump+tag",
+        "Try1": 10.0,
+        "Try": "pp",
+        "Housing": "Gray Cast Iron",
+        "TTRY": "ASTM 304"
+      },
+      "Attributes": {
+        "NOTE": "RAS Pump",
+        "MODEL": "-",
+        "CONSUMED_POWER": "-",
+        "INSTALLED_POWER": "-",
+        "INSTALLATION": "-",
+        "MATERIAL_HOUSING": "ASTM 306",
+        "SP_HEAD": "-",
+        "SP_CAPACITY": "-",
+        "UNIT_HEAD": "m",
+        "UNIT_CAPACITY": "m3/h",
+        "TAG": "000",
+        "RUNNINGHOURS": "-",
+        "PUMP_TYPE": "Propeller ",
+        "NOTE_CHINESE": "活性污泥循环泵",
+        "STB_DTY": "1",
+        "AREA_CODE": "00",
+        "DI": "3",
+        "DO": "1",
+        "AI": "0",
+        "AO": "0",
+        "PB": "0",
+        "PO": "2",
+        "TAG_ID": "PP",
+        "PROCESSUNITAREA": ""
+      }
+    },
+    {
+      "Geometry": {
+        "Position X": 250.0,
+        "Position Y": 240.0
+      },
+      "Misc": {
+        "Name": "pump",
+        "Rotation": 0.0
+      },
+      "General": {
+        "Layer": "equipment"
+      },
+      "Custom": {
+        "TAG X": 0.026011082201989666,
+        "TAG Y": -6.0096995464432155,
+        "Angle": 0.0,
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Angle1": 0.0,
+        "Angle2": 0.0,
+        "Visibility": "Propeller pump+tag+freq",
+        "Try1": 10.0,
+        "Try": "pp",
+        "Housing": "Gray Cast Iron",
+        "TTRY": "ASTM 304"
+      },
+      "Attributes": {
+        "NOTE": "RAS Pump",
+        "MODEL": "-",
+        "CONSUMED_POWER": "-",
+        "INSTALLED_POWER": "-",
+        "INSTALLATION": "-",
+        "MATERIAL_HOUSING": "ASTM 306",
+        "SP_HEAD": "-",
+        "SP_CAPACITY": "-",
+        "UNIT_HEAD": "m",
+        "UNIT_CAPACITY": "m3/h",
+        "TAG": "000",
+        "RUNNINGHOURS": "-",
+        "PUMP_TYPE": "Propeller  -VFD drive",
+        "NOTE_CHINESE": "活性污泥循环泵",
+        "STB_DTY": "1",
+        "AREA_CODE": "00",
+        "DI": "3",
+        "DO": "1",
+        "AI": "3",
+        "AO": "1",
+        "PB": "1",
+        "PO": "2",
+        "TAG_ID": "PP",
+        "PROCESSUNITAREA": ""
+      }
+    },
+    {
+      "Geometry": {
+        "Position X": 250.0,
+        "Position Y": 220.0
+      },
+      "Misc": {
+        "Name": "pump",
+        "Rotation": 0.0
+      },
+      "General": {
+        "Layer": "equipment"
+      },
+      "Custom": {
+        "TAG X": 0.026011082201989666,
+        "TAG Y": -6.0096995464432155,
+        "Angle": 0.0,
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Angle1": 0.0,
+        "Angle2": 0.0,
+        "Visibility": "Screw pump+tag",
+        "Try1": 10.0,
+        "Try": "pp",
+        "Housing": "Gray Cast Iron",
+        "TTRY": "ASTM 304"
+      },
+      "Attributes": {
+        "NOTE": "Polyelectrolyte dosing pump",
+        "MODEL": "-",
+        "CONSUMED_POWER": "-",
+        "INSTALLED_POWER": "-",
+        "INSTALLATION": "-",
+        "MATERIAL_HOUSING": "GCI",
+        "SP_HEAD": "-",
+        "SP_CAPACITY": "-",
+        "UNIT_HEAD": "m",
+        "UNIT_CAPACITY": "m3/h",
+        "TAG": "000",
+        "RUNNINGHOURS": "-",
+        "PUMP_TYPE": "Screw",
+        "NOTE_CHINESE": "PAM加药泵",
+        "STB_DTY": "1",
+        "AREA_CODE": "00",
+        "DI": "3",
+        "DO": "1",
+        "AI": "0",
+        "AO": "0",
+        "PB": "0",
+        "PO": "2",
+        "TAG_ID": "PS",
+        "PROCESSUNITAREA": ""
+      }
+    },
+    {
+      "Geometry": {
+        "Position X": 250.0,
+        "Position Y": 190.0
+      },
+      "Misc": {
+        "Name": "pump",
+        "Rotation": 0.0
+      },
+      "General": {
+        "Layer": "equipment"
+      },
+      "Custom": {
+        "TAG X": 0.026011082201989666,
+        "TAG Y": -6.0096995464432155,
+        "Angle": 0.0,
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Angle1": 0.0,
+        "Angle2": 0.0,
+        "Visibility": "Screw pump+tag+freq",
+        "Try1": 10.0,
+        "Try": "pp",
+        "Housing": "Gray Cast Iron",
+        "TTRY": "ASTM 304"
+      },
+      "Attributes": {
+        "NOTE": "Thickener feed pump",
+        "MODEL": "-",
+        "CONSUMED_POWER": "-",
+        "INSTALLED_POWER": "-",
+        "INSTALLATION": "-",
+        "MATERIAL_HOUSING": "GCI",
+        "SP_HEAD": "-",
+        "SP_CAPACITY": "-",
+        "UNIT_HEAD": "m",
+        "UNIT_CAPACITY": "m3/h",
+        "TAG": "000",
+        "RUNNINGHOURS": "-",
+        "PUMP_TYPE": "Screw - VFD drive",
+        "NOTE_CHINESE": "浓缩机进料泵",
+        "STB_DTY": "1",
+        "AREA_CODE": "00",
+        "DI": "3",
+        "DO": "1",
+        "AI": "3",
+        "AO": "1",
+        "PB": "1",
+        "PO": "2",
+        "TAG_ID": "PS",
+        "PROCESSUNITAREA": ""
+      }
+    },
+    {
+      "Geometry": {
+        "Position X": 250.0,
+        "Position Y": 160.0
+      },
+      "Misc": {
+        "Name": "pump",
+        "Rotation": 0.0
+      },
+      "General": {
+        "Layer": "equipment"
+      },
+      "Custom": {
+        "TAG X": 0.026011082201989666,
+        "TAG Y": -6.0096995464432155,
+        "Angle": 0.0,
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Angle1": 0.0,
+        "Angle2": 0.0,
+        "Visibility": "Muncher",
+        "Try1": 10.0,
+        "Try": "pp",
+        "Housing": "Gray Cast Iron",
+        "TTRY": "ASTM 304"
+      },
+      "Attributes": {
+        "NOTE": "Grease Grinder",
+        "MODEL": "-",
+        "CONSUMED_POWER": "-",
+        "INSTALLED_POWER": "-",
+        "INSTALLATION": "-",
+        "MATERIAL_HOUSING": "GCI",
+        "SP_HEAD": "-",
+        "SP_CAPACITY": "-",
+        "UNIT_HEAD": "",
+        "UNIT_CAPACITY": "m3/h",
+        "TAG": "000",
+        "RUNNINGHOURS": "-",
+        "PUMP_TYPE": "Muncher",
+        "NOTE_CHINESE": "",
+        "STB_DTY": "1",
+        "AREA_CODE": "00",
+        "DI": "3",
+        "DO": "1",
+        "AI": "0",
+        "AO": "0",
+        "PB": "0",
+        "PO": "2",
+        "TAG_ID": "PM",
+        "PROCESSUNITAREA": ""
+      }
+    }
+  ],
+  "Lines": [
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Line",
+      "LinePoints": [
+        {
+          "Point": 1,
+          "X": -1.2111740943510085E-06,
+          "Y": 416.99999601660443
+        },
+        {
+          "Point": 2,
+          "X": 2.9999987888259056,
+          "Y": 416.99999601660443
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Line",
+      "LinePoints": [
+        {
+          "Point": 1,
+          "X": 2.9999987888259056,
+          "Y": 416.99999601660443
+        },
+        {
+          "Point": 2,
+          "X": 2.9999987888259056,
+          "Y": 356.99999601660443
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Line",
+      "LinePoints": [
+        {
+          "Point": 1,
+          "X": 2.9999987888259056,
+          "Y": 296.99999601660443
+        },
+        {
+          "Point": 2,
+          "X": 5.9999987888259056,
+          "Y": 296.99999601660443
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Line",
+      "LinePoints": [
+        {
+          "Point": 1,
+          "X": 2.9999987888259056,
+          "Y": 356.99999601660443
+        },
+        {
+          "Point": 2,
+          "X": 2.9999987888259056,
+          "Y": 296.99999601660443
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Line",
+      "LinePoints": [
+        {
+          "Point": 1,
+          "X": 2.9999987888259056,
+          "Y": 416.99999601660443
+        },
+        {
+          "Point": 2,
+          "X": 5.9999987888259056,
+          "Y": 416.99999601660443
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Line",
+      "LinePoints": [
+        {
+          "Point": 1,
+          "X": 175.99999878880192,
+          "Y": 403.9999960166042
+        },
+        {
+          "Point": 2,
+          "X": 175.99999878880192,
+          "Y": 201.9999960166042
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Line",
+      "LinePoints": [
+        {
+          "Point": 1,
+          "X": 172.99999878880169,
+          "Y": 283.9999960166042
+        },
+        {
+          "Point": 2,
+          "X": 167.999998788855,
+          "Y": 283.9999960166042
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Line",
+      "LinePoints": [
+        {
+          "Point": 1,
+          "X": 172.99999878882443,
+          "Y": 201.9999960166042
+        },
+        {
+          "Point": 2,
+          "X": 172.99999878880169,
+          "Y": 283.9999960166042
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Line",
+      "LinePoints": [
+        {
+          "Point": 1,
+          "X": 175.99999878882534,
+          "Y": 201.9999960166042
+        },
+        {
+          "Point": 2,
+          "X": 178.99999878882579,
+          "Y": 201.99999601660321
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Line",
+      "LinePoints": [
+        {
+          "Point": 1,
+          "X": 172.99999878882443,
+          "Y": 201.9999960166042
+        },
+        {
+          "Point": 2,
+          "X": 175.99999878882545,
+          "Y": 201.9999960166042
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Line",
+      "LinePoints": [
+        {
+          "Point": 1,
+          "X": 175.99999878880192,
+          "Y": 403.9999960166042
+        },
+        {
+          "Point": 2,
+          "X": 167.99999878885524,
+          "Y": 403.9999960166042
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Polyline",
+      "LinePoints": [
+        {
+          "Point": 1,
+          "X": 178.99999878882579,
+          "Y": 201.99999601660321
+        },
+        {
+          "Point": 2,
+          "X": 191.99999878882591,
+          "Y": 201.9999960166042
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Line",
+      "LinePoints": [
+        {
+          "Point": 1,
+          "X": 197.99999878882591,
+          "Y": 416.9999960166042
+        },
+        {
+          "Point": 2,
+          "X": 194.99999878882591,
+          "Y": 416.99999601660443
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Line",
+      "LinePoints": [
+        {
+          "Point": 1,
+          "X": 194.99999878882591,
+          "Y": 416.99999601660443
+        },
+        {
+          "Point": 2,
+          "X": 194.99999878882591,
+          "Y": 356.99999601660443
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Line",
+      "LinePoints": [
+        {
+          "Point": 1,
+          "X": 194.99999878882591,
+          "Y": 296.99999601660443
+        },
+        {
+          "Point": 2,
+          "X": 191.99999878882591,
+          "Y": 296.99999601660454
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Line",
+      "LinePoints": [
+        {
+          "Point": 1,
+          "X": 194.99999878882591,
+          "Y": 356.99999601660443
+        },
+        {
+          "Point": 2,
+          "X": 194.99999878882591,
+          "Y": 296.99999601660443
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Line",
+      "LinePoints": [
+        {
+          "Point": 1,
+          "X": 194.99999878882591,
+          "Y": 416.99999601660443
+        },
+        {
+          "Point": 2,
+          "X": 191.99999878882591,
+          "Y": 416.99999601660443
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Line",
+      "LinePoints": [
+        {
+          "Point": 1,
+          "X": 229.99999878882591,
+          "Y": 416.9999960166042
+        },
+        {
+          "Point": 2,
+          "X": 281.99999878882591,
+          "Y": 416.9999960166042
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Polyline",
+      "LinePoints": [
+        {
+          "Point": 1,
+          "X": 229.99999878882591,
+          "Y": 456.9999960166042
+        },
+        {
+          "Point": 2,
+          "X": 219.99999878882591,
+          "Y": 456.9999960166042
+        },
+        {
+          "Point": 3,
+          "X": 219.99999878882591,
+          "Y": 416.9999960166042
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Polyline",
+      "LinePoints": [
+        {
+          "Point": 1,
+          "X": 219.99999878882591,
+          "Y": 416.9999960166042
+        },
+        {
+          "Point": 2,
+          "X": 220.99999878882591,
+          "Y": 421.9999960166042
+        },
+        {
+          "Point": 3,
+          "X": 218.99999878882591,
+          "Y": 421.9999960166042
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Polyline",
+      "LinePoints": [
+        {
+          "Point": 1,
+          "X": 228.99999878882591,
+          "Y": 476.9999960166042
+        },
+        {
+          "Point": 2,
+          "X": 209.99999878882591,
+          "Y": 476.9999960166042
+        },
+        {
+          "Point": 3,
+          "X": 209.99999878882591,
+          "Y": 416.9999960166042
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Polyline",
+      "LinePoints": [
+        {
+          "Point": 1,
+          "X": 209.99999878882591,
+          "Y": 416.9999960166042
+        },
+        {
+          "Point": 2,
+          "X": 210.99999878882591,
+          "Y": 421.9999960166042
+        },
+        {
+          "Point": 3,
+          "X": 208.99999878882591,
+          "Y": 421.9999960166042
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Line",
+      "LinePoints": [
+        {
+          "Point": 1,
+          "X": 281.99999878882591,
+          "Y": 416.99999601660443
+        },
+        {
+          "Point": 2,
+          "X": 284.99999878882591,
+          "Y": 416.99999601660443
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Line",
+      "LinePoints": [
+        {
+          "Point": 1,
+          "X": 284.99999878882591,
+          "Y": 416.99999601660443
+        },
+        {
+          "Point": 2,
+          "X": 284.99999878882591,
+          "Y": 356.99999601660443
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Line",
+      "LinePoints": [
+        {
+          "Point": 1,
+          "X": 284.99999878882591,
+          "Y": 416.99999601660443
+        },
+        {
+          "Point": 2,
+          "X": 284.99999878882591,
+          "Y": 476.99999601660443
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Line",
+      "LinePoints": [
+        {
+          "Point": 1,
+          "X": 284.99999878882591,
+          "Y": 536.99999601660443
+        },
+        {
+          "Point": 2,
+          "X": 287.99999878882591,
+          "Y": 536.99999601660443
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Line",
+      "LinePoints": [
+        {
+          "Point": 1,
+          "X": 284.99999878882591,
+          "Y": 476.99999601660443
+        },
+        {
+          "Point": 2,
+          "X": 284.99999878882591,
+          "Y": 536.99999601660443
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Line",
+      "LinePoints": [
+        {
+          "Point": 1,
+          "X": 284.99999878882591,
+          "Y": 296.99999601660443
+        },
+        {
+          "Point": 2,
+          "X": 287.99999878882591,
+          "Y": 296.99999601660443
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Line",
+      "LinePoints": [
+        {
+          "Point": 1,
+          "X": 284.99999878882591,
+          "Y": 356.99999601660443
+        },
+        {
+          "Point": 2,
+          "X": 284.99999878882591,
+          "Y": 296.99999601660443
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Line",
+      "LinePoints": [
+        {
+          "Point": 1,
+          "X": 284.99999878882591,
+          "Y": 416.99999601660443
+        },
+        {
+          "Point": 2,
+          "X": 287.99999878882591,
+          "Y": 416.99999601660443
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Line",
+      "LinePoints": [
+        {
+          "Point": 1,
+          "X": 168.26647544659272,
+          "Y": 439.59999601660422
+        },
+        {
+          "Point": 2,
+          "X": 168.26647544659272,
+          "Y": 416.96088443217343
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Line",
+      "LinePoints": [
+        {
+          "Point": 1,
+          "X": 5.9999987888259056,
+          "Y": 416.9999960166042
+        },
+        {
+          "Point": 2,
+          "X": 28.266475446592722,
+          "Y": 416.9999960166042
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Line",
+      "LinePoints": [
+        {
+          "Point": 1,
+          "X": 168.26647544659272,
+          "Y": 416.96088443217343
+        },
+        {
+          "Point": 2,
+          "X": 191.99999878882591,
+          "Y": 416.99999601660443
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Line",
+      "LinePoints": [
+        {
+          "Point": 1,
+          "X": 167.99999878881272,
+          "Y": 319.59999601660422
+        },
+        {
+          "Point": 2,
+          "X": 167.99999878881272,
+          "Y": 296.9999960166042
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Line",
+      "LinePoints": [
+        {
+          "Point": 1,
+          "X": 5.999998788812718,
+          "Y": 296.9999960166042
+        },
+        {
+          "Point": 2,
+          "X": 27.999998788812718,
+          "Y": 296.9999960166042
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Line",
+      "LinePoints": [
+        {
+          "Point": 1,
+          "X": 167.99999878881272,
+          "Y": 296.9999960166042
+        },
+        {
+          "Point": 2,
+          "X": 191.99999878881272,
+          "Y": 296.99999601660443
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Polyline",
+      "LinePoints": [
+        {
+          "Point": 1,
+          "X": 174.99999878882591,
+          "Y": 329.9999960166042
+        },
+        {
+          "Point": 2,
+          "X": 175.99999878882591,
+          "Y": 324.9999960166042
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Polyline",
+      "LinePoints": [
+        {
+          "Point": 1,
+          "X": 175.99999878882591,
+          "Y": 324.9999960166042
+        },
+        {
+          "Point": 2,
+          "X": 176.99999878882591,
+          "Y": 329.9999960166042
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Polyline",
+      "LinePoints": [
+        {
+          "Point": 1,
+          "X": 176.99999878882591,
+          "Y": 329.9999960166042
+        },
+        {
+          "Point": 2,
+          "X": 174.99999878882591,
+          "Y": 329.9999960166042
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Polyline",
+      "LinePoints": [
+        {
+          "Point": 1,
+          "X": 171.99999878882591,
+          "Y": 248.9999960166042
+        },
+        {
+          "Point": 2,
+          "X": 172.99999878882591,
+          "Y": 243.9999960166042
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Polyline",
+      "LinePoints": [
+        {
+          "Point": 1,
+          "X": 172.99999878882591,
+          "Y": 243.9999960166042
+        },
+        {
+          "Point": 2,
+          "X": 173.99999878882591,
+          "Y": 248.9999960166042
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Polyline",
+      "LinePoints": [
+        {
+          "Point": 1,
+          "X": 173.99999878882591,
+          "Y": 248.9999960166042
+        },
+        {
+          "Point": 2,
+          "X": 171.99999878882591,
+          "Y": 248.9999960166042
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Polyline",
+      "LinePoints": [
+        {
+          "Point": 1,
+          "X": 249.48235907435594,
+          "Y": 415.9999960166042
+        },
+        {
+          "Point": 2,
+          "X": 254.48235907435594,
+          "Y": 416.9999960166042
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Polyline",
+      "LinePoints": [
+        {
+          "Point": 1,
+          "X": 254.48235907435594,
+          "Y": 416.9999960166042
+        },
+        {
+          "Point": 2,
+          "X": 249.48235907435594,
+          "Y": 417.9999960166042
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Polyline",
+      "LinePoints": [
+        {
+          "Point": 1,
+          "X": 249.48235907435594,
+          "Y": 417.9999960166042
+        },
+        {
+          "Point": 2,
+          "X": 249.48235907435594,
+          "Y": 415.9999960166042
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Polyline",
+      "LinePoints": [
+        {
+          "Point": 1,
+          "X": 52.96647544659271,
+          "Y": 420.29999601660421
+        },
+        {
+          "Point": 2,
+          "X": 83.266475446592722,
+          "Y": 420.29999601660421
+        },
+        {
+          "Point": 3,
+          "X": 83.266475446592722,
+          "Y": 403.9999960166042
+        },
+        {
+          "Point": 4,
+          "X": 103.26647544659272,
+          "Y": 403.9999960166042
+        },
+        {
+          "Point": 5,
+          "X": 103.26647544659272,
+          "Y": 366.9999960166042
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Line",
+      "LinePoints": [
+        {
+          "Point": 1,
+          "X": 50.210733056732238,
+          "Y": 416.9999960166042
+        },
+        {
+          "Point": 2,
+          "X": 50.210733056732238,
+          "Y": 435.9999960166042
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Line",
+      "LinePoints": [
+        {
+          "Point": 1,
+          "X": 71.46647544659271,
+          "Y": 439.59999601660422
+        },
+        {
+          "Point": 2,
+          "X": 168.26647544659272,
+          "Y": 439.59999601660422
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Polyline",
+      "LinePoints": [
+        {
+          "Point": 1,
+          "X": 144.26647544659272,
+          "Y": 363.9999960166042
+        },
+        {
+          "Point": 2,
+          "X": 144.26647544659272,
+          "Y": 403.9999960166042
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Line",
+      "LinePoints": [
+        {
+          "Point": 1,
+          "X": 168.26647544659272,
+          "Y": 403.9999960166042
+        },
+        {
+          "Point": 2,
+          "X": 123.26647544659272,
+          "Y": 403.9999960166042
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Line",
+      "LinePoints": [
+        {
+          "Point": 1,
+          "X": 123.26647544659272,
+          "Y": 403.9999960166042
+        },
+        {
+          "Point": 2,
+          "X": 123.26647544659272,
+          "Y": 363.9999960166042
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Line",
+      "LinePoints": [
+        {
+          "Point": 1,
+          "X": 28.266475446592722,
+          "Y": 416.9999960166042
+        },
+        {
+          "Point": 2,
+          "X": 50.210733056732238,
+          "Y": 416.9999960166042
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Polyline",
+      "LinePoints": [
+        {
+          "Point": 1,
+          "X": 52.699998788812707,
+          "Y": 300.29999601660421
+        },
+        {
+          "Point": 2,
+          "X": 82.999998788812718,
+          "Y": 300.29999601660421
+        },
+        {
+          "Point": 3,
+          "X": 82.999998788812718,
+          "Y": 283.9999960166042
+        },
+        {
+          "Point": 4,
+          "X": 102.99999878881272,
+          "Y": 283.9999960166042
+        },
+        {
+          "Point": 5,
+          "X": 102.99999878881272,
+          "Y": 246.9999960166042
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Line",
+      "LinePoints": [
+        {
+          "Point": 1,
+          "X": 49.944256398952234,
+          "Y": 296.9999960166042
+        },
+        {
+          "Point": 2,
+          "X": 49.944256398952234,
+          "Y": 315.9999960166042
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Line",
+      "LinePoints": [
+        {
+          "Point": 1,
+          "X": 71.1999987888127,
+          "Y": 319.59999601660422
+        },
+        {
+          "Point": 2,
+          "X": 167.99999878881272,
+          "Y": 319.59999601660422
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Polyline",
+      "LinePoints": [
+        {
+          "Point": 1,
+          "X": 143.99999878881272,
+          "Y": 243.9999960166042
+        },
+        {
+          "Point": 2,
+          "X": 143.99999878881272,
+          "Y": 283.9999960166042
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Line",
+      "LinePoints": [
+        {
+          "Point": 1,
+          "X": 167.99999878881272,
+          "Y": 283.9999960166042
+        },
+        {
+          "Point": 2,
+          "X": 122.99999878881272,
+          "Y": 283.9999960166042
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Line",
+      "LinePoints": [
+        {
+          "Point": 1,
+          "X": 122.99999878881272,
+          "Y": 283.9999960166042
+        },
+        {
+          "Point": 2,
+          "X": 122.99999878881272,
+          "Y": 243.9999960166042
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Line",
+      "LinePoints": [
+        {
+          "Point": 1,
+          "X": 27.999998788812718,
+          "Y": 296.9999960166042
+        },
+        {
+          "Point": 2,
+          "X": 49.944256398952234,
+          "Y": 296.9999960166042
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Polyline",
+      "LinePoints": [
+        {
+          "Point": 1,
+          "X": 84.266475446592722,
+          "Y": 416.72077062287462
+        },
+        {
+          "Point": 2,
+          "X": 83.266475446592722,
+          "Y": 411.72077062287462
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Polyline",
+      "LinePoints": [
+        {
+          "Point": 1,
+          "X": 83.266475446592722,
+          "Y": 411.72077062287462
+        },
+        {
+          "Point": 2,
+          "X": 82.266475446592722,
+          "Y": 416.72077062287462
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Polyline",
+      "LinePoints": [
+        {
+          "Point": 1,
+          "X": 82.266475446592722,
+          "Y": 416.72077062287462
+        },
+        {
+          "Point": 2,
+          "X": 84.266475446592722,
+          "Y": 416.72077062287462
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Polyline",
+      "LinePoints": [
+        {
+          "Point": 1,
+          "X": 49.210733056732238,
+          "Y": 430.9999960166042
+        },
+        {
+          "Point": 2,
+          "X": 50.210733056732238,
+          "Y": 435.9999960166042
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Polyline",
+      "LinePoints": [
+        {
+          "Point": 1,
+          "X": 50.210733056732238,
+          "Y": 435.9999960166042
+        },
+        {
+          "Point": 2,
+          "X": 51.210733056732238,
+          "Y": 430.9999960166042
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Polyline",
+      "LinePoints": [
+        {
+          "Point": 1,
+          "X": 51.210733056732238,
+          "Y": 430.9999960166042
+        },
+        {
+          "Point": 2,
+          "X": 49.210733056732238,
+          "Y": 430.9999960166042
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Polyline",
+      "LinePoints": [
+        {
+          "Point": 1,
+          "X": 104.26647544659272,
+          "Y": 372.24864166269191
+        },
+        {
+          "Point": 2,
+          "X": 103.26647544659272,
+          "Y": 367.24864166269191
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Polyline",
+      "LinePoints": [
+        {
+          "Point": 1,
+          "X": 103.26647544659272,
+          "Y": 367.24864166269191
+        },
+        {
+          "Point": 2,
+          "X": 102.26647544659272,
+          "Y": 372.24864166269191
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Polyline",
+      "LinePoints": [
+        {
+          "Point": 1,
+          "X": 102.26647544659272,
+          "Y": 372.24864166269191
+        },
+        {
+          "Point": 2,
+          "X": 104.26647544659272,
+          "Y": 372.24864166269191
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Polyline",
+      "LinePoints": [
+        {
+          "Point": 1,
+          "X": 114.86647544659274,
+          "Y": 440.59999601660422
+        },
+        {
+          "Point": 2,
+          "X": 119.86647544659274,
+          "Y": 439.59999601660422
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Polyline",
+      "LinePoints": [
+        {
+          "Point": 1,
+          "X": 119.86647544659274,
+          "Y": 439.59999601660422
+        },
+        {
+          "Point": 2,
+          "X": 114.86647544659274,
+          "Y": 438.59999601660422
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Polyline",
+      "LinePoints": [
+        {
+          "Point": 1,
+          "X": 114.86647544659274,
+          "Y": 438.59999601660422
+        },
+        {
+          "Point": 2,
+          "X": 114.86647544659274,
+          "Y": 440.59999601660422
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Polyline",
+      "LinePoints": [
+        {
+          "Point": 1,
+          "X": 83.999998788812718,
+          "Y": 296.72077062287462
+        },
+        {
+          "Point": 2,
+          "X": 82.999998788812718,
+          "Y": 291.72077062287462
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Polyline",
+      "LinePoints": [
+        {
+          "Point": 1,
+          "X": 82.999998788812718,
+          "Y": 291.72077062287462
+        },
+        {
+          "Point": 2,
+          "X": 81.999998788812718,
+          "Y": 296.72077062287462
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Polyline",
+      "LinePoints": [
+        {
+          "Point": 1,
+          "X": 81.999998788812718,
+          "Y": 296.72077062287462
+        },
+        {
+          "Point": 2,
+          "X": 83.999998788812718,
+          "Y": 296.72077062287462
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Polyline",
+      "LinePoints": [
+        {
+          "Point": 1,
+          "X": 48.944256398952234,
+          "Y": 310.9999960166042
+        },
+        {
+          "Point": 2,
+          "X": 49.944256398952234,
+          "Y": 315.9999960166042
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Polyline",
+      "LinePoints": [
+        {
+          "Point": 1,
+          "X": 49.944256398952234,
+          "Y": 315.9999960166042
+        },
+        {
+          "Point": 2,
+          "X": 50.944256398952234,
+          "Y": 310.9999960166042
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Polyline",
+      "LinePoints": [
+        {
+          "Point": 1,
+          "X": 50.944256398952234,
+          "Y": 310.9999960166042
+        },
+        {
+          "Point": 2,
+          "X": 48.944256398952234,
+          "Y": 310.9999960166042
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Polyline",
+      "LinePoints": [
+        {
+          "Point": 1,
+          "X": 103.99999878881272,
+          "Y": 252.24864166269191
+        },
+        {
+          "Point": 2,
+          "X": 102.99999878881272,
+          "Y": 247.24864166269191
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Polyline",
+      "LinePoints": [
+        {
+          "Point": 1,
+          "X": 102.99999878881272,
+          "Y": 247.24864166269191
+        },
+        {
+          "Point": 2,
+          "X": 101.99999878881272,
+          "Y": 252.24864166269191
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Polyline",
+      "LinePoints": [
+        {
+          "Point": 1,
+          "X": 101.99999878881272,
+          "Y": 252.24864166269191
+        },
+        {
+          "Point": 2,
+          "X": 103.99999878881272,
+          "Y": 252.24864166269191
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Polyline",
+      "LinePoints": [
+        {
+          "Point": 1,
+          "X": 114.59999878881274,
+          "Y": 320.59999601660422
+        },
+        {
+          "Point": 2,
+          "X": 119.59999878881274,
+          "Y": 319.59999601660422
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Polyline",
+      "LinePoints": [
+        {
+          "Point": 1,
+          "X": 119.59999878881274,
+          "Y": 319.59999601660422
+        },
+        {
+          "Point": 2,
+          "X": 114.59999878881274,
+          "Y": 318.59999601660422
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Polyline",
+      "LinePoints": [
+        {
+          "Point": 1,
+          "X": 114.59999878881274,
+          "Y": 318.59999601660422
+        },
+        {
+          "Point": 2,
+          "X": 114.59999878881274,
+          "Y": 320.59999601660422
+        }
+      ]
+    }
+  ]
+}

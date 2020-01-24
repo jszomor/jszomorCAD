@@ -4,189 +4,346 @@ using Autodesk.AutoCAD.DatabaseServices;
 using Autodesk.AutoCAD.EditorInput;
 using Autodesk.AutoCAD.Geometry;
 using EquipmentPosition;
-using OrganiCAD.AutoCAD;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using OrganiCAD.AutoCAD;
+using JsonFindKey;
+using JsonParse;
+using System.Linq.Expressions;
 
 namespace jszomorCAD
 {
   public class InsertBlockTable
   {
-    //public void InsertVfdPump(Database db, PromptIntegerResult number, PromptIntegerResult distance, string blockName, string layerName, int eqIndex) => 
-    //  InsertBlockTableMethod(db, number, distance, blockName, layerName, "Centrifugal Pump", eqIndex); // todo: magic number
 
-    public void InsertBlockTableMethodAsTable(Database db, double number, double distance, string blockName, string layerName, string propertyName, short eqIndex, double X, double Y) => 
-      InsertBlockTableMethod(db, number, distance, blockName, layerName, propertyName, eqIndex, X, Y);
-
-    public void InsertBlockTableMethodAsVisibility(Database db, double number, double distance, string blockName, string layerName, string propertyName, string visibilityStateName, double X, double Y) =>
-      InsertBlockTableMethod(db, number, distance, blockName, layerName, propertyName, visibilityStateName, X, Y);
-
-    private void InsertBlockTableMethod(Database db, double number, double distance, string blockName, string layerName, string propertyName, object eqIndex, double X, double Y)
+    public void ExecuteActionOnModelSpace(Database database, Action<Transaction, BlockTableRecord> action)
     {
-      var sizeProperty = new PositionProperty();
-      sizeProperty.FreeSpace = 60;
-
-      Editor ed = Application.DocumentManager.MdiActiveDocument.Editor;     
-      var aw = new AutoCadWrapper();
-      BlockTableRecord btr;
-      var blockDefinitions = new List<ObjectId>();
-      var positionProperty = new PositionProperty();
-
-      //setup default layers
-      var layerCreator = new LayerCreator();
-      layerCreator.LayerCreatorMethod("equipment", Color.FromRgb(0, 0, 255), 0.25);      
-      layerCreator.LayerCreatorMethod("unit", Color.FromRgb(255, 0, 0), 0.25);
-      layerCreator.LayerCreatorMethod("valve", Color.FromRgb(255, 255, 255), 0.25);
-      layerCreator.LayerCreatorMethod("valve2", Color.FromRgb(255, 255, 255), 0.25);
-      layerCreator.LayerCreatorMethod("instrumentation", Color.FromRgb(0, 255, 255), 0.25);
-      layerCreator.LayerCreatorMethod("text", Color.FromRgb(255, 255, 255), 0.25);
-      layerCreator.LayerCreatorMethod("sewer", Color.FromRgb(28, 38, 0), 0.25);
-      layerCreator.LayerCreatorMethod("sludge", Color.FromRgb(38, 19, 19), 0.25);
-      layerCreator.LayerCreatorMethod("chemical", Color.FromRgb(0, 255, 255), 0.25);
-      layerCreator.LayerCreatorMethod("water", Color.FromRgb(0, 0, 255), 0.25);
-      layerCreator.LayerCreatorMethod("treated_water", Color.FromRgb(0, 127, 255), 0.25);
-      layerCreator.LayerCreatorMethod("air", Color.FromRgb(63, 255, 0), 0.25);
-      layerCreator.LayerCreatorMethod("recycle_flow", Color.FromRgb(145, 165, 82), 0.25);
-
-      //var shortEqIndex = Convert.ToInt16(eqIndex);
-
-      // Start transaction to insert equipment
-      aw.ExecuteActionOnBlockTable(db, (tr, bt) =>
-      {        
-        foreach (ObjectId btrId in bt)
+      ExecuteActionInTransaction(database, (db, tr) =>
+        ExecuteActionOnBlockTable(db, bt =>
         {
-          using (btr = (BlockTableRecord)tr.GetObject(btrId, OpenMode.ForRead, false))
+          using (var ms = bt[BlockTableRecord.ModelSpace].GetObject<BlockTableRecord>())
+          {
+            action.Invoke(tr, ms);
+          }
+        }
+        ));
+    }
+
+    public void ExecuteActionInTransaction(Database db, Action<Database, Transaction> action)
+    {
+      using (var tr = db.TransactionManager.StartTransaction())
+      {
+        action.Invoke(db, tr);
+        tr.Commit();
+      }
+    }
+
+    private void ExecuteActionOnTable<T>(Database db,
+      Expression<Func<Database, ObjectId>> tableIdProperty, Action<T> action) where T : class, IDisposable
+    {
+      var c = tableIdProperty.Compile();
+      using (var t = c.Invoke(db).GetObject<T>())
+      {
+        action.Invoke(t);
+      }
+    }
+
+    public void ExecuteActionOnBlockTable(Database db, Action<BlockTable> action) =>
+      ExecuteActionOnTable(db, x => x.BlockTableId, action);
+
+    public void ExecuteActionOnLayerTable(Database db, Action<LayerTable> action) =>
+      ExecuteActionOnTable(db, x => x.LayerTableId, action);
+
+    /// <summary>
+    /// wrapper from OrganiCad
+    /// </summary>
+    /// 
+
+    private Database _db;
+
+    public InsertBlockTable(Database db)
+    {
+      _db = db;
+    }
+
+    #region
+    //public void InsertVfdPump(Database db, PromptIntegerResult numberOfItem, PromptIntegerResult distance, string blockName, string layerName, int visibilitystateIndex) => 
+    //  InsertBlockTableMethod(db, numberOfItem, distance, blockName, layerName, "Centrifugal Pump", visibilitystateIndex); // todo: magic numberOfItem
+
+    //public void InsertBlockTableMethodAsTable(Database db, InsertBlockBase insertData)
+    //  => InsertBlockTableMethod(db, insertData);
+
+    //public void InsertBlockTableMethodAsVisibility(Database db, InsertBlockBase insertData)
+    //  => InsertBlockTableMethod(db, insertData);
+
+    //public void InsertBlockTableMethodAsPipe(Database db, InsertBlockBase insertData)
+    //  => InsertBlockTableMethod(db, insertData);
+
+
+
+    #endregion
+    public ObjectId GetBlockTable(string blockName)
+    {
+      var blockIds = new List<ObjectId>();
+
+      using (var tr = _db.TransactionManager.StartTransaction())
+      {
+        var bt = _db.BlockTableId.GetObject<BlockTable>(OpenMode.ForRead);
+
+        foreach (var btrId in bt)
+        {
+          using (var btr = tr.GetObject(btrId, OpenMode.ForRead, false) as BlockTableRecord)
           {
             // Only add named & non-layout blocks to the copy list
             if (!btr.IsAnonymous && !btr.IsLayout && btr.Name == blockName)
-            {  
-              blockDefinitions.Add(btrId);             
-            }
+              blockIds.Add(btrId);
           }
-        }        
+        }
+      }
 
-        var currentSpaceId = tr.GetObject(db.CurrentSpaceId, OpenMode.ForWrite) as BlockTableRecord;
+      if (blockIds.Count > 1) throw new Exception($"More than one block record found with the name {blockName}");
 
-        for (int i = 0; i < number; i++)
+      else if (blockIds.Count == 0) throw new Exception($"No block record found with the name {blockName}");
+
+      else return blockIds.First();
+    }
+
+    private void PlaceBlock(ObjectId blockId, InsertBlockBase insertBlock, double offsetX = 0.0d, double offsetY = 0.0d)
+    {
+      //var defultLayers = new LayerCreator();
+      using (var tr = _db.TransactionManager.StartTransaction())
+      {
+        var currentSpaceId = tr.GetObject(_db.CurrentSpaceId, OpenMode.ForWrite) as BlockTableRecord;
+
+        using (var blockDefinition = (BlockTableRecord)tr.GetObject(blockId, OpenMode.ForRead, false))
         {
-          foreach (var objectId in blockDefinitions)
+          using (var acBlkRef = new BlockReference(
+            new Point3d(insertBlock.Position.X + offsetX, insertBlock.Position.Y + offsetY, 0), blockId))
           {
-            using (var blockDefinition = (BlockTableRecord)tr.GetObject(objectId, OpenMode.ForRead, false))
+
+            //InsertBlockBase insertData;
+            currentSpaceId.AppendEntity(acBlkRef);
+            tr.AddNewlyCreatedDBObject(acBlkRef, true);
+
+            SetBlockReferenceLayer(acBlkRef, insertBlock.LayerName);
+            SetRotate(acBlkRef, insertBlock.Rotation);
+            CreateBlockRefenceAttributes(acBlkRef, blockDefinition, tr);
+            SetVisibilityIndex(acBlkRef, insertBlock.StateProperty);
+            SetBlockRefenceAttributesValues(acBlkRef, insertBlock.ActionToExecuteOnAttRef);
+            SetDynamicBlockReferenceValues(acBlkRef, insertBlock.ActionToExecuteOnDynPropAfter);
+            SetHostName(acBlkRef, insertBlock.HostName);
+          }
+        }
+        tr.Commit();
+      }
+    }
+
+    private void SetBlockReferenceLayer(BlockReference acBlkRef, string layerName)
+    {
+      try
+      {
+        acBlkRef.Layer = layerName;
+      }
+      catch (Autodesk.AutoCAD.Runtime.Exception ex)
+      {
+        if (ex.ErrorStatus == Autodesk.AutoCAD.Runtime.ErrorStatus.KeyNotFound) throw new Exception($"Layer name not found: {layerName}");
+
+        else throw;
+      }
+    }
+
+    private void SetRotate(BlockReference acBlkRef, double rotation)
+    {
+      try
+      {
+        acBlkRef.Rotation = rotation;
+      }
+      catch (Autodesk.AutoCAD.Runtime.Exception ex)
+      {
+        if (ex.ErrorStatus == Autodesk.AutoCAD.Runtime.ErrorStatus.KeyNotFound) throw new Exception($"Invalid number");
+
+        else throw;
+      }
+    }
+
+    private void SetHostName(BlockReference acBlkRef, string hostName)
+    {
+      foreach (ObjectId objectId in acBlkRef.AttributeCollection)
+      {
+        var ar = objectId.GetObject<AttributeReference>();
+        if (ar == null) continue;
+
+        if (ar.Tag == "HOSTNAME")
+          ar.TextString = hostName;
+      }
+    }
+
+    private void CreateBlockRefenceAttributes(BlockReference acBlkRef, BlockTableRecord blockDefinition, Transaction tr)
+    {
+      // copy/create attribute references
+      foreach (var bdEntityObjectId in blockDefinition)
+      {
+        var ad = tr.GetObject(bdEntityObjectId, OpenMode.ForRead) as AttributeDefinition;
+        if (ad == null) continue;
+
+        using (var ar = new AttributeReference())
+        {
+          ar.SetDatabaseDefaults(_db);
+          ar.SetAttributeFromBlock(ad, acBlkRef.BlockTransform);
+          ar.TextString = ad.TextString; // set default value, copied from AttributeDefinition
+          ar.AdjustAlignment(HostApplicationServices.WorkingDatabase);
+
+          acBlkRef.AttributeCollection.AppendAttribute(ar);
+          tr.AddNewlyCreatedDBObject(ar, true);
+        }
+      }
+    }
+    private void SetBlockRefenceAttributesValues(BlockReference acBlkRef, IEnumerable<Action<AttributeReference>> actionToExecuteOnAttRef)
+    {
+      if (actionToExecuteOnAttRef == null) return;
+
+      foreach (ObjectId objectId in acBlkRef.AttributeCollection)
+      {
+        var ar = objectId.GetObject<AttributeReference>();
+        if (ar == null) continue;
+
+        foreach (var action in actionToExecuteOnAttRef)
+        {
+          action.Invoke(ar);
+        }
+      }
+    }
+
+    private void SetDynamicBlockReferenceValues(BlockReference acBlkRef,
+      IEnumerable<Action<DynamicBlockReferenceProperty>> actionToExecuteOnDynProp)
+    {
+      if (acBlkRef.IsDynamicBlock)
+      {
+        foreach (DynamicBlockReferenceProperty dbrProp in acBlkRef.DynamicBlockReferencePropertyCollection)
+        {
+          foreach (var a in actionToExecuteOnDynProp)
+          {
+            a.Invoke(dbrProp);
+          }
+        }
+      }
+    }
+
+    private void SetVisibilityIndex(BlockReference acBlkRef, EquipmentStateProperty stateProperty)
+    {
+      if (acBlkRef.IsDynamicBlock)
+      {
+        foreach (DynamicBlockReferenceProperty dbrProp in acBlkRef.DynamicBlockReferencePropertyCollection)
+        {
+          if (dbrProp.PropertyName == stateProperty.PropertyName)
+            dbrProp.Value = stateProperty.Value;
+        }
+      }
+    }
+    public bool InsertBlock(InsertBlockBase insertData)
+    {
+      // 1. which block to insert? insertData.BlockName
+      // get the block to insert
+      var blockId = GetBlockTable(insertData.BlockName);
+
+      var offsetX = 0.0d;
+      var offsetY = 0.0d;
+      // 2. insert block
+      for (var i = 0; i < insertData.NumberOfItem; i++)
+      {
+        PlaceBlock(blockId, insertData, offsetX, offsetY);
+        offsetX += insertData.OffsetX;
+        offsetY += insertData.OffsetY;
+      }
+      return true;
+    }
+
+    public void ReadBlockTableRecord(Database db)
+    {
+      ExecuteActionOnModelSpace(db, (tr, btrModelSpace) =>
+      {
+        foreach (ObjectId objectId in btrModelSpace)
+        {
+          using (var blockReference = tr.GetObject(objectId, OpenMode.ForRead) as BlockReference)
+          {
+            if (blockReference == null) continue;
+
+            var btrObjectId = blockReference.DynamicBlockTableRecord; //must be Dynamic to find every blocks
+            using (var blockDefinition = btrObjectId.GetObject(OpenMode.ForRead) as BlockTableRecord)
             {
-              using (var acBlkRef = new BlockReference(new Point3d(X, Y, positionProperty.Z), objectId))
+              //System.Diagnostics.Debug.Print(blockDefinition.Name);
+
+              //if (blockDefinition.Name == "RefPIDDenit$0$reactor")
+              //{
+              //  System.Diagnostics.Debug.Print("STOP! Hammertime!");
+              //}
+
+              var jsonBlockProperty = new JsonBlockProperty();
+              if (!blockDefinition.IsAnonymous && !blockDefinition.IsLayout)
               {
-                currentSpaceId.AppendEntity(acBlkRef);
-                tr.AddNewlyCreatedDBObject(acBlkRef, true);
+                //jsonBlockProperty.Misc = new Misc(blockName: blockDefinition.Name, rotation: 0);
+              }
 
-                acBlkRef.Layer = layerName;                
-
-                // copy/create attribute references
-                foreach (var bdEntityObjectId in blockDefinition)
+              if (blockReference.IsDynamicBlock)
+              {
+                foreach (DynamicBlockReferenceProperty dbrProp in blockReference.DynamicBlockReferencePropertyCollection)
                 {
-                  var ad = tr.GetObject(bdEntityObjectId, OpenMode.ForRead) as AttributeDefinition;
-                  if (ad == null) continue;
-
-                  var ar = new AttributeReference();
-                  ar.SetDatabaseDefaults(db);
-                  ar.SetAttributeFromBlock(ad, acBlkRef.BlockTransform);
-                  ar.TextString = ad.TextString;
-                  ar.AdjustAlignment(HostApplicationServices.WorkingDatabase);
-
-                  acBlkRef.AttributeCollection.AppendAttribute(ar);
-                  tr.AddNewlyCreatedDBObject(ar, true);
-                
-                  System.Diagnostics.Debug.Print($"Tag={ar.Tag} TextString={ar.TextString}");
-
-                  if (acBlkRef.IsDynamicBlock)
-                  {
-                    foreach (DynamicBlockReferenceProperty dbrProp in acBlkRef.DynamicBlockReferencePropertyCollection) // this loop must be here
-                                                                                                                        //else tag rotation for pump will be wrong!
-                    {
-                      if (dbrProp.PropertyName == propertyName)
-                        dbrProp.Value = eqIndex; // SHORT !!!!!!!!!!!!    
-
-                      // for jet pump rotate
-                      if (ar.TextString == "Air Jet Pump")                      
-                        acBlkRef.Rotation = DegreeHelper.DegreeToRadian(270); // this command must be here else tag rotation will be wrong!
-                    }
-                  }
-
-                  //text for EQ tank - Attributes
-                  if (ar.Tag == "NAME1" && blockName == "chamber")
-                    ar.TextString = "EQUALIZATION";
-                  if (ar.Tag == "NAME2" && blockName == "chamber")
-                    ar.TextString = "TANK";
-
-                  //valve setup
-                  if (blockName == "valve")
-                  {
-                    //ar.Rotation = DegreeHelper.DegreeToRadian(90);
-                    acBlkRef.Rotation = DegreeHelper.DegreeToRadian(90);
-                  }
                 }
+              }
 
-                // setup item by index
-                #region
-                //if (acBlkRef.IsDynamicBlock)
-                //{
-                //  foreach (DynamicBl ockReferenceProperty dbrProp in acBlkRef.DynamicBlockReferencePropertyCollection)
-                //  {       
-                //    if (dbrProp.PropertyName == propertyName)                                    
-                //      dbrProp.Value = eqIndex; // SHORT !!!!!!!!!!!!                                                           
-                //  }
-                //}
-                #endregion
+              foreach (ObjectId BlockObjectId in blockDefinition)
+              {
+                var entity = tr.GetObject(BlockObjectId, OpenMode.ForWrite) as Autodesk.AutoCAD.DatabaseServices.Entity;
 
-                // udpate attribute reference values after setting the visibility state or block table index
-                foreach (ObjectId arObjectId in acBlkRef.AttributeCollection)
-                {
-                  foreach (DynamicBlockReferenceProperty dbrProp in acBlkRef.DynamicBlockReferencePropertyCollection)
-                  {
-                    var ar = arObjectId.GetObject<AttributeReference>();
-                    if (ar == null) continue;
+                if (entity == null) continue;
 
-                    // for jet pump tag position
-                    if (ar.Tag == "NOTE" && ar.TextString == "Air Jet Pump" && blockName == "pump")
-                    {
-                      //acBlkRef.Rotation = DegreeHelper.DegreeToRadian(270); // this command has a wrong result that is why should be in the upper loop.
-
-                      if (acBlkRef.IsDynamicBlock)
-                      {
-                        // tag horizontal positioning
-                        if (dbrProp.PropertyName == "Angle")
-                          dbrProp.Value = DegreeHelper.DegreeToRadian(90);
-                        if (dbrProp.PropertyName == "Position X")
-                          dbrProp.Value = (double)6;
-                        if (dbrProp.PropertyName == "Position Y")
-                          dbrProp.Value = (double)0;
-                      }
-                    }
-                    //for pumps VFD rotate
-                    if (dbrProp.PropertyName == "Angle1" && ar.TextString == "Equalization Tank Pump")
-                      dbrProp.Value = DegreeHelper.DegreeToRadian(90);
-
-                    // pumps VFD rotate
-                    if (dbrProp.PropertyName == "Angle2" && ar.TextString == "Equalization Tank Pump")
-                      dbrProp.Value = DegreeHelper.DegreeToRadian(270);
-
-                    //setup chamber width
-                    if (dbrProp.PropertyName == "Distance" && blockName == "chamber")
-                      dbrProp.Value = PositionProperty.NumberOfPump * PositionProperty.DistanceOfPump + sizeProperty.FreeSpace; //last value is the free space for other items
-                    //text position for chamber
-                    if (dbrProp.PropertyName == "Position X" && blockName == "chamber")
-                      dbrProp.Value = ((PositionProperty.NumberOfPump * PositionProperty.DistanceOfPump + sizeProperty.FreeSpace) / (double)2); //place text middle of chamber horizontaly 
-                  }
-                }
               }
             }
           }
-          X += distance;
         }
-        currentSpaceId.UpdateAnonymousBlocks();
       });
     }
-  } 
+
+    public void ReadBtrForSeri(Database db)
+    {
+      ExecuteActionOnModelSpace(db, (tr, btrModelSpace) =>
+      {
+        var jsonLineSetup = new JsonLineSetup();
+        var jsonBlockSetup = new JsonBlockSetup();
+
+        var jsonPID = new JsonPID();
+
+        foreach (ObjectId objectId in btrModelSpace)
+        {
+          using (var item = objectId.GetObject(OpenMode.ForWrite))
+          {
+            if (item == null) continue;
+
+            if (item is Line || item is Polyline || item is Polyline2d || item is Polyline3d)
+            {
+              //jsonLineToSerialize.Add(jsonLineSetup.SetupLineProperty(item));
+              jsonPID.Lines.Add(jsonLineSetup.SetupLineProperty(item));
+            }
+
+            if (item is BlockReference)
+            {
+              BlockReference blockReference = item as BlockReference;
+              if (blockReference == null) continue;
+              var btrObjectId = blockReference.DynamicBlockTableRecord; //must be Dynamic to find every blocks
+              var blockDefinition = btrObjectId.GetObject(OpenMode.ForRead) as BlockTableRecord;
+              if(blockDefinition.Name != "PID-PS-FRAME")
+              {
+                jsonPID.Blocks.Add(jsonBlockSetup.SetupBlockProperty(blockDefinition, tr, blockReference));
+              }
+            }
+          }
+        }
+        var seralizer = new JsonStringBuilderSerialize();
+        seralizer.StringBuilderSerialize(jsonPID);
+      });
+    }
+  }
 }

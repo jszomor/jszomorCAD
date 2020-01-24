@@ -66,8 +66,8 @@ namespace jszomorCAD
       }
     }
 
-    [CommandMethod("SendToBackWipeout")]
-    public static void SendToBackWipeout()
+    [CommandMethod("SendToBackBlock")]
+    public static void SendToBackBlock()
     {
       Document acDoc = Application.DocumentManager.MdiActiveDocument;
       Database acCurDb = acDoc.Database;
@@ -80,7 +80,8 @@ namespace jszomorCAD
           using (var btr = objectId.GetObject(OpenMode.ForRead) as BlockTableRecord)
           {
             //System.Diagnostics.Debug.Print(btr.Name);
-            ParseBlockTableRecord(btr);
+            //ParseBlockTableRecord(btr);
+            ParseBlockRef(btr);
           }
         }
 
@@ -104,6 +105,26 @@ namespace jszomorCAD
           }
         }
       }      
+    }
+
+    private static void ParseBlockRef(BlockTableRecord btr)
+    {
+      foreach (var objectId in btr)
+      {
+        //System.Diagnostics.Debug.Print("\t" + objectId.ObjectClass.Name);
+        using (var blockReference = objectId.GetObject(OpenMode.ForRead) as BlockReference)
+        {
+          
+            using (var drawOrderTable = btr.DrawOrderTableId.GetObject(OpenMode.ForWrite) as DrawOrderTable)
+            {
+
+              drawOrderTable.MoveToBottom(new ObjectIdCollection { objectId });
+              //System.Diagnostics.Debug.Print("\tMoveToBottom");
+            }
+          
+          
+        }
+      }
     }
 
     private static void SendToBack(Database acCurDb, Transaction acTrans, ObjectIdCollection objToMove)
