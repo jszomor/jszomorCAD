@@ -131,6 +131,9 @@ namespace JsonParse
     [JsonProperty("Name")]
     public string Name { get; set; }
 
+    [JsonProperty("NAME")]
+    public string NameUpper { get; set; }
+
     [JsonProperty("NAME1")]
     public string Name1 { get; set; }
 

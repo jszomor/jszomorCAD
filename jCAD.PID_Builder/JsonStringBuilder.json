@@ -2,11 +2,11 @@
   "Blocks": [
     {
       "Geometry": {
-        "Position X": 1784.5872900646118,
-        "Position Y": 1490.073217445206
+        "Position X": 10.271015689848355,
+        "Position Y": 12.502179489832088
       },
       "Misc": {
-        "Name": "RefAL5Leachate",
+        "Name": "RefARRawSludge",
         "Rotation": 0.0
       },
       "General": {
@@ -19,17 +19,17 @@
         "Distance1": 0.0
       },
       "Attributes": {
-        "Name": "RECYCLE FLOW",
-        "ID": "5"
+        "Name": "PRIMARY SLUDGE",
+        "ID": "11"
       }
     },
     {
       "Geometry": {
-        "Position X": 1731.5872900646118,
-        "Position Y": 1510.073217445206
+        "Position X": 60.552404429392482,
+        "Position Y": 32.7047525125605
       },
       "Misc": {
-        "Name": "RefAL22WasteSludge",
+        "Name": "RefALRawSludge",
         "Rotation": 0.0
       },
       "General": {
@@ -42,96 +42,8 @@
         "Distance1": 0.0
       },
       "Attributes": {
-        "Name": "WASTE SLUDGE",
-        "ID": "22"
-      }
-    },
-    {
-      "Geometry": {
-        "Position X": 1737.0014263132307,
-        "Position Y": 1455.1298884658136
-      },
-      "Misc": {
-        "Name": "chamber",
-        "Rotation": 0.0
-      },
-      "General": {
-        "Layer": "unit"
-      },
-      "Custom": {
-        "Position X": 16.0,
-        "Position Y": -5.0,
-        "Angle": 0.0,
-        "Flip state": 0,
-        "Flip state1": 0,
-        "Visibility": "no channels",
-        "Distance": 32.0,
-        "Distance1": 20.0,
-        "Distance2": 33.0,
-        "Distance3": 21.0,
-        "Distance4": 11.801209410282013,
-        "Distance5": 43.0
-      },
-      "Attributes": {
-        "NAME1": "DISTRIBUTION CHAMBER",
-        "VOLUME": "-",
-        "WIDTH": "-",
-        "LIQUIDLEVEL": "-",
-        "LENGTH": "-",
-        "HEIGHT": "-"
-      }
-    },
-    {
-      "Geometry": {
-        "Position X": 1801.7175680257169,
-        "Position Y": 1457.4423886133836
-      },
-      "Misc": {
-        "Name": "channel gate",
-        "Rotation": 0.0
-      },
-      "General": {
-        "Layer": "equipment"
-      },
-      "Custom": {
-        "Position X": 0.5,
-        "Position Y": -2.0679422580926,
-        "Angle": 0.0,
-        "Flip state": 0,
-        "Flip state1": 0,
-        "Visibility": "Manual",
-        "Block Table1": 0.0,
-        "Distance": 0.0,
-        "Distance1": 0.0
-      },
-      "Attributes": {
-        "NOTE": "Channel gate (biological reactor)",
-        "EQUIP_TYPE": "Channel Gate",
-        "MODEL": "-",
-        "CONSUMED_POWER": "-",
-        "INSTALLED_POWER": "-",
-        "MATERIAL_FRAME": "ASTM 304",
-        "MATERIAL_BODY": "ASTM 304",
-        "MATERIAL_SEALING": "EPDM/Rubber",
-        "MATERIAL_STEM": "ASTM 306",
-        "SP_CHANNELH": "1,100",
-        "SP_CHANNELW": "1,200",
-        "SP_WATER_LEVEL": "-",
-        "UNIT_CHANNELW": "mm",
-        "UNIT_CHANNELH": "mm",
-        "UNIT_WATER_LEVEL": "mm",
-        "TAG": "141",
-        "NOTE_CHINESE": "渠道闸阀",
-        "STB_DTY": "1",
-        "AREA_CODE": "00",
-        "DI": "0",
-        "DO": "0",
-        "AI": "0",
-        "AO": "0",
-        "PB": "0",
-        "PO": "0",
-        "TAG_ID": "VT",
-        "PROCESSUNITAREA": ""
+        "NAME": "PRIMARY SLUDGE",
+        "ID": "11"
       }
     }
   ],
