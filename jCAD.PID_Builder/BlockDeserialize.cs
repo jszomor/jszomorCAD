@@ -12,7 +12,7 @@ namespace jCAD.PID_Builder
 {
   public class BlockDeserialize
   {
-    public JsonPID ReadJsonData() => ReadJsonData(@"C:\Users\jszomor\source\repos\jszomorCAD\jCAD.PID_Builder\JsonStringBuilder.json");
+    public JsonPID ReadJsonData() => ReadJsonData(@"E:\Jszomor\source\repos\jszomorCAD\jCAD.PID_Builder\JsonStringBuilder.json");
 
     public JsonPID ReadJsonData(string fileName)
     {

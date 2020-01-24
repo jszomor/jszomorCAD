@@ -12,7 +12,7 @@ namespace JsonFindKey
     public void JsonSeri(JsonBlockProperty jsonBlockProperty)
     {
       string fileJson = @"\fileJson.json";
-      string dirPath = @"C:\Users\jszomor\Google Drive\Programozas\Practice"; //work
+      string dirPath = @"E:\Jszomor\Google Drive\Programozas\Practice"; //work
       //string dirPath = @"C:\Users\JANO\Google Drive\Programozas\Practice"; //home
 
       string filePath = dirPath + fileJson;

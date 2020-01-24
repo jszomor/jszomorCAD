@@ -18,7 +18,7 @@ namespace jszomorCAD
 {
   public class CommandMethods
   {
-    public string path = @"C:\Users\jszomor\source\repos\jszomorCAD\jCAD.PID_Builder\Autocad PID blocks work in progress.dwg";
+    public string path = @"E:\Jszomor\source\repos\jszomorCAD\jCAD.PID_Builder\Autocad PID blocks work in progress.dwg";
 
     [CommandMethod("jcad_EqTankBuilder")]
     public void ListBlocks()
@@ -293,7 +293,7 @@ namespace jszomorCAD
     {
       var db = Application.DocumentManager.MdiActiveDocument.Database;
       var blockDeserialize = new BlockDeserialize();
-      string path = @"C:\Users\jszomor\source\repos\jszomorCAD\jCAD.PID_Builder\Autocad PID blocks work in progress.dwg";
+      string path = @"E:\Jszomor\source\repos\jszomorCAD\jCAD.PID_Builder\Autocad PID blocks work in progress.dwg";
       // Copy blocks from sourcefile into opened file
       var copyBlock = new CopyBlock();
 

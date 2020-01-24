@@ -12,7 +12,7 @@ namespace JsonFindKey
     public void StringBuilderSerialize(JsonPID jsonPID)
     {
       string fileJson = "JsonStringBuilder.json";
-      string dirPath = @"C:\Users\jszomor\source\repos\jszomorCAD\jCAD.PID_Builder\"; //work
+      string dirPath = @"E:\Jszomor\source\repos\jszomorCAD\jCAD.PID_Builder\"; //work
 
       var fileName = System.IO.Path.Combine(dirPath, fileJson);
 
