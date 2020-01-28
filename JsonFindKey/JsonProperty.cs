@@ -7,7 +7,7 @@ using System.Text;
 
 namespace JsonParse
 {
-  public class JsonPID
+  public class JsonPID 
   {
     public List<JsonBlockProperty> Blocks { get; } = new List<JsonBlockProperty>();
     public List<JsonLineProperty> Lines { get; } = new List<JsonLineProperty>();
@@ -19,7 +19,7 @@ namespace JsonParse
     public IEnumerable<JsonBlockProperty> BlocksSearch(string equipmentName) =>
       Blocks.Where(b => b.Misc.BlockName.EndsWith(equipmentName));
   }
-  public class JsonBlockProperty
+  public class JsonBlockProperty : IComparable<JsonBlockProperty>
   {
     public Geometry Geometry { get; } = new Geometry();
 
@@ -30,6 +30,16 @@ namespace JsonParse
     public Custom Custom { get; } = new Custom();
 
     public Attributes Attributes { get; } = new Attributes();
+
+    public int CompareTo(JsonBlockProperty comparePart)
+    {
+      // A null value means that this object is greater.
+      if (comparePart == null)
+        return 1;
+
+      else
+        return Geometry.X.CompareTo(comparePart.Geometry.X);
+    }
   }
   public class Geometry
   {

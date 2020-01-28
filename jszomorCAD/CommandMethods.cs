@@ -320,7 +320,7 @@ namespace jszomorCAD
         "drum filter",
         "filter",
         "filter2",
-        "Gas equipment",
+        "Gas equipments",
         "gas flame",
         "gas holder",
         "grease_coll_chmbr",
@@ -342,9 +342,11 @@ namespace jszomorCAD
         "RefALPoly",
         "RefALPotable",
         "RefALRecSludge",
+        "RefARRecSludge",
         "RefALTransport",
         "RefARRawSludge",
         "RefARSewage",
+        "RefARNaturalGas",
         "RefALRawSludge",
         "RefPIDEfluent",
         "RefPIDInfluent",
@@ -359,6 +361,7 @@ namespace jszomorCAD
         "RefAL5Leachate",
         "RefAL6WasteSludge",
         "RefAR6WasteSludge",
+        "RefAL7WasteAir",
         "RefAR7WasteAir",
         "RefAR10Sludge",
         "RefAR12Gas",
@@ -367,11 +370,15 @@ namespace jszomorCAD
         "RefAL15Water",
         "RefAR16Water",
         "RefAL17Water",
+        "RefAR18Water",
+        "RefAL19Water",
         "RefAL22WasteSludge",
         "RefAR22WasteSludge",
         "RefAL23Leachate",
         "RefAR24UtilityWater",
         "RefAL25UtilityWater",
+        "RefAR25UtilityWater",
+        "RefAR26Leachate",
         "RefAL26Leachate",
         "sand trap",
         "screen",
@@ -409,7 +416,7 @@ namespace jszomorCAD
         try
         {
           insertBlock.PlaceBlocksByName(jsonPID, blockName);
-          MoveToBottom.SendToBackBlock();
+          //MoveToBottom.SendToBackBlock();
         }
         catch (ArgumentNullException)
         {

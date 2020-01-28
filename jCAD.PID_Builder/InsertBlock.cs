@@ -76,7 +76,7 @@ namespace jCAD.PID_Builder
       {
         var btr = tr.GetObject(_db.CurrentSpaceId, OpenMode.ForWrite) as BlockTableRecord;
 
-        using (var blockDefinition = (BlockTableRecord)tr.GetObject(blockId, OpenMode.ForRead, false))
+        using (var blockDefinition = tr.GetObject(blockId, OpenMode.ForRead, false) as BlockTableRecord)
         {
           using (var acBlkRef = new BlockReference(
             new Point3d(block.Geometry.X,

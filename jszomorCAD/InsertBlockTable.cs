@@ -336,7 +336,8 @@ namespace jszomorCAD
               var blockDefinition = btrObjectId.GetObject(OpenMode.ForRead) as BlockTableRecord;
               if(blockDefinition.Name != "PID-PS-FRAME")
               {
-                jsonPID.Blocks.Add(jsonBlockSetup.SetupBlockProperty(blockDefinition, tr, blockReference));
+                 jsonPID.Blocks.Sort();
+                 jsonPID.Blocks.Add(jsonBlockSetup.SetupBlockProperty(blockDefinition, tr, blockReference));
               }
             }
           }

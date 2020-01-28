@@ -74,19 +74,79 @@ namespace jszomorCAD
 
       using (Transaction acTrans = acCurDb.TransactionManager.StartTransaction())
       {
-        var blockTable = acTrans.GetObject(acCurDb.BlockTableId, OpenMode.ForRead) as BlockTable;
-        foreach (var objectId in blockTable)
+        using (var blockTable = acTrans.GetObject(acCurDb.BlockTableId, OpenMode.ForRead) as BlockTable)
         {
-          using (var btr = objectId.GetObject(OpenMode.ForRead) as BlockTableRecord)
+          // so called BlockDefinitions...
+          foreach (var btrObjectId in blockTable)
           {
-            //System.Diagnostics.Debug.Print(btr.Name);
-            //ParseBlockTableRecord(btr);
-            ParseBlockRef(btr);
+            using (var btr = btrObjectId.GetObject(OpenMode.ForRead) as BlockTableRecord)
+            {
+              if (btr == null) continue;
+
+              SendWipeoutToBack(btr);
+            }
           }
         }
-
         acTrans.Commit();
       }
+    }
+
+    private static void SendWipeoutToBack(BlockTableRecord btr)
+    {
+      using (var wipeoutCollection = new ObjectIdCollection())
+      {
+        var foundWipeout = false;
+        foreach (var objectId in btr)
+        {
+          if (objectId.IsNull) continue;
+          var wipeout = objectId.GetObject(OpenMode.ForRead) as Wipeout;
+          if (wipeout == null) continue;
+
+          wipeoutCollection.Add(objectId);
+          foundWipeout = true;
+        }
+
+        if (!foundWipeout) return;
+
+        // found wipeout
+        using (var drawOrderTable = btr.DrawOrderTableId.GetObject(OpenMode.ForWrite) as DrawOrderTable)
+        {
+          drawOrderTable.MoveToBottom(wipeoutCollection);
+        }
+
+        //foreach (ObjectId id in wipeoutCollection)
+        //{
+        //  using (var w = id.GetObject(OpenMode.ForWrite) as Wipeout)
+        //  {
+        //    w.Erase(true);
+        //  }
+        //}
+        btr.UpdateAnonymousBlocks();
+      }
+
+      //var anonymBlocks = btr.GetAnonymousBlockIds();
+      //foreach (ObjectId anonymObjectId in anonymBlocks)
+      //{
+      //  using (var anonymBtr = anonymObjectId.GetObject(OpenMode.ForRead) as BlockTableRecord)
+      //  {
+      //    if (anonymBtr == null) continue;
+      //    SendWipeoutToBack(anonymBtr);
+      //  }
+      //}
+
+      //var blockRefs = btr.GetBlockReferenceIds(true, false);
+      //foreach (ObjectId brObjectId in blockRefs)
+      //{
+      //  using (var br = brObjectId.GetObject(OpenMode.ForRead) as BlockReference)
+      //  {
+      //    if (br == null) continue;
+      //    System.Diagnostics.Debug.Print($"Name: {br.Name} | BlockName: {br.BlockName}");
+      //    using (var parentBtr = br.DynamicBlockTableRecord.GetObject(OpenMode.ForRead) as BlockTableRecord)
+      //    {
+      //      SendWipeoutToBack(parentBtr);
+      //    }
+      //  }
+      //}
     }
 
     private static void ParseBlockTableRecord(BlockTableRecord btr)
@@ -104,7 +164,46 @@ namespace jszomorCAD
             //System.Diagnostics.Debug.Print("\tMoveToBottom");
           }
         }
-      }      
+      }
+    }
+    private static void ParseBlockWipe(BlockTableRecord btr, Transaction acTrans)
+    {
+      foreach (var objectId in btr)
+      {
+        var blockReference = acTrans.GetObject(objectId, OpenMode.ForRead) as BlockReference;
+        if (blockReference == null) continue;
+
+        ParseBlockWipe(blockReference);
+      }
+    }
+
+    private static void ParseBlockWipe(BlockReference br)
+    {
+      var btrObjectId = br.BlockTableRecord;
+      var blockDefinition = btrObjectId.GetObject(OpenMode.ForRead) as BlockTableRecord;
+
+      var objToMove = new ObjectIdCollection();
+
+      foreach (var itemId in blockDefinition)
+      {
+        if (itemId.IsNull) continue;
+        var item = itemId.GetObject(OpenMode.ForRead);
+        if (item == null) continue;
+        if (item is Wipeout)
+        {
+          objToMove.Add(itemId);
+          //yield return itemId;
+        }
+      }
+
+      if (objToMove.Count > 0)
+      {
+        using (var drawOrderTable = blockDefinition.DrawOrderTableId.GetObject(OpenMode.ForWrite) as DrawOrderTable)
+        {
+          drawOrderTable.MoveToBottom(objToMove);
+          //System.Diagnostics.Debug.Print("\tMoveToBottom");
+        }
+      }
     }
 
     private static void ParseBlockRef(BlockTableRecord btr)
@@ -114,15 +213,15 @@ namespace jszomorCAD
         //System.Diagnostics.Debug.Print("\t" + objectId.ObjectClass.Name);
         using (var blockReference = objectId.GetObject(OpenMode.ForRead) as BlockReference)
         {
-          
-            using (var drawOrderTable = btr.DrawOrderTableId.GetObject(OpenMode.ForWrite) as DrawOrderTable)
-            {
 
-              drawOrderTable.MoveToBottom(new ObjectIdCollection { objectId });
-              //System.Diagnostics.Debug.Print("\tMoveToBottom");
-            }
-          
-          
+          using (var drawOrderTable = btr.DrawOrderTableId.GetObject(OpenMode.ForWrite) as DrawOrderTable)
+          {
+
+            drawOrderTable.MoveToBottom(new ObjectIdCollection { objectId });
+            //System.Diagnostics.Debug.Print("\tMoveToBottom");
+          }
+
+
         }
       }
     }

@@ -116,7 +116,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="JsonStringBuilder.json" />
     <None Include="JsonStringBuilderOrig.json" />
     <None Include="packages.config" />
     <None Include="test.json" />
