@@ -9,17 +9,17 @@ namespace JsonFindKey
 {
   public class JsonStringBuilderSerialize
   {
-    public void StringBuilderSerialize(JsonPID jsonPID)
+    public void StringBuilderSerialize(JsonPID jsonPID, string fileName)
     {
-      string fileJson = "JsonStringBuilder.json";
+      //string fileJson = "JsonStringBuilder.json";
       string dirPath = @"E:\Jszomor\source\repos\jszomorCAD\jCAD.PID_Builder\"; //work
 
-      var fileName = System.IO.Path.Combine(dirPath, fileJson);
+      var path = System.IO.Path.Combine(dirPath, fileName);
 
       var serializer = new JsonSerializer();
       serializer.NullValueHandling = NullValueHandling.Ignore;
       serializer.Formatting = Formatting.Indented;
-      using (StreamWriter sw = new StreamWriter(fileName))
+      using (StreamWriter sw = new StreamWriter(path))
       {
         using (JsonWriter writer = new JsonTextWriter(sw))
         {

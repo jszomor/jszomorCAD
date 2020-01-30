@@ -8,6 +8,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using OrganiCAD.AutoCAD;
+using Autodesk.AutoCAD.ApplicationServices;
 
 namespace jCAD.PID_Builder
 {
@@ -89,6 +90,7 @@ namespace jCAD.PID_Builder
             SetBlockReferenceLayer(acBlkRef, block.General.Layer);
             SetRotate(acBlkRef, block.Misc.Rotation);
             CreateBlockRefenceAttributes(acBlkRef, blockDefinition, tr);
+            CreateNewAttributeDefinition(blockDefinition, tr);
             SetVisibilityIndex(acBlkRef, block);
             SetDynamicReference(acBlkRef, block);
             SetupAttributeProperty(tr, acBlkRef, block);
@@ -243,6 +245,28 @@ namespace jCAD.PID_Builder
           //  throw new NullReferenceException($"selected property: {dbrProp.PropertyName} got null value");
           //}
         }
+      }
+    }
+
+    private void CreateNewAttributeDefinition(BlockTableRecord btr, Transaction tr)
+    {
+      var acCurDb = Application.DocumentManager.MdiActiveDocument.Database;
+      var acBlkTbl = tr.GetObject(acCurDb.BlockTableId, OpenMode.ForWrite) as BlockTable;
+
+      using (AttributeDefinition acAttDef = new AttributeDefinition())
+      {
+        acAttDef.Position = new Point3d(0, 0, 0);
+        acAttDef.Verifiable = true;
+        acAttDef.Prompt = "OrderId #: ";
+        acAttDef.Tag = "OrderId#";
+        acAttDef.TextString = "OrderId";
+        acAttDef.Height = 1;
+        acAttDef.Justify = AttachmentPoint.MiddleCenter;
+        btr.AppendEntity(acAttDef);
+
+        btr.UpgradeOpen();
+        acBlkTbl.Add(btr);
+        tr.AddNewlyCreatedDBObject(btr, true);
       }
     }
 

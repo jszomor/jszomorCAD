@@ -307,7 +307,7 @@ namespace jszomorCAD
       });
     }
 
-    public void ReadBtrForSeri(Database db)
+    public void ReadBtrForSeri(Database db, string fileName)
     {
       ExecuteActionOnModelSpace(db, (tr, btrModelSpace) =>
       {
@@ -343,7 +343,7 @@ namespace jszomorCAD
           }
         }
         var seralizer = new JsonStringBuilderSerialize();
-        seralizer.StringBuilderSerialize(jsonPID);
+        seralizer.StringBuilderSerialize(jsonPID, fileName);
       });
     }
   }

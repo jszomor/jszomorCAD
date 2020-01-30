@@ -107,7 +107,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BlockDeserialize.cs" />
+    <Compile Include="BlockDeserializer.cs" />
     <Compile Include="CopyBlock.cs" />
     <Compile Include="InsertBlock.cs" />
     <Compile Include="Layers.cs" />
@@ -116,7 +116,8 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="JsonStringBuilderOrig.json" />
+    <None Include="JsonPIDBuild.json" />
+    <None Include="JsonPIDBuildCopy.json" />
     <None Include="packages.config" />
     <None Include="test.json" />
   </ItemGroup>

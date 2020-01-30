@@ -10,9 +10,9 @@ using System.Threading.Tasks;
 
 namespace jCAD.PID_Builder
 {
-  public class BlockDeserialize
+  public class BlockDeserializer
   {
-    public JsonPID ReadJsonData() => ReadJsonData(@"E:\Jszomor\source\repos\jszomorCAD\jCAD.PID_Builder\JsonStringBuilder.json");
+    public JsonPID ReadJsonData() => ReadJsonData(@"E:\Jszomor\source\repos\jszomorCAD\jCAD.PID_Builder\JsonPIDBuild.json");
 
     public JsonPID ReadJsonData(string fileName)
     {

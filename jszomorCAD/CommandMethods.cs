@@ -292,13 +292,13 @@ namespace jszomorCAD
     public void BlockSearch()
     {
       var db = Application.DocumentManager.MdiActiveDocument.Database;
-      var blockDeserialize = new BlockDeserialize();
+      var blockDeserialize = new BlockDeserializer();
       string path = @"E:\Jszomor\source\repos\jszomorCAD\jCAD.PID_Builder\Autocad PID blocks work in progress.dwg";
       // Copy blocks from sourcefile into opened file
       var copyBlock = new CopyBlock();
 
       #region btrNamesToCopy
-      var btrNamesToCopy = new[] {
+      var eqType = new[] {
         "aeration diffuzer",
         "arrow",
         "alkalinity_chamber",
@@ -338,7 +338,7 @@ namespace jszomorCAD
         "pump",
         "mixer",
         "reactor",
-        "RefARSewage",
+        "RefALSewage",
         "RefALPoly",
         "RefALPotable",
         "RefALRecSludge",
@@ -393,6 +393,8 @@ namespace jszomorCAD
         "Vortex_sand_chamber",
         "vortexEQ"};
       #endregion
+      
+      string[] btrNamesToCopy = eqType.Distinct().ToArray();
 
       copyBlock.CopyBlockTable(db, path, btr =>
       {
@@ -423,6 +425,10 @@ namespace jszomorCAD
           // ignore
         }
       }
+
+      var insertBlockTable = new InsertBlockTable(db);
+      string fileName = "JsonPIDBuildCopy.json";
+      insertBlockTable.ReadBtrForSeri(db, fileName);
       //var blockDeserialize = new BlockDeserialize();
       //var eqType = blockDeserialize.BlockSearch("Name");
 
@@ -519,7 +525,8 @@ namespace jszomorCAD
       //var insertBlockTable = new InsertBlockTable(db);
       //insertBlockTable.ReadBtrForSeri(db);
       var insertBlockTable = new InsertBlockTable(db);
-      insertBlockTable.ReadBtrForSeri(db);
+      string fileName = "JsonPIDBuild.json";
+      insertBlockTable.ReadBtrForSeri(db, fileName);
     }
   }
 }
