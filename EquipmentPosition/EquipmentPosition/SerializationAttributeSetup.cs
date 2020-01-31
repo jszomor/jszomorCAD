@@ -11,7 +11,7 @@ namespace EquipmentPosition
 {
   public class JsonAttributeSetup
   {
-    private void SetRefTextString(AttributeReference attRef, JsonBlockProperty block)
+    private void SetRefTextString(AttributeReference attRef, JsonBlockProperty block, int counter)
     {
       //System.Diagnostics.Debug.WriteLine($"AutoCAD TAG: {attRef.Tag}");
       var properties = block.Attributes.GetType().GetProperties();
@@ -24,22 +24,31 @@ namespace EquipmentPosition
           var jsonProp = customAttributes[0];
           var jsonTagName = (jsonProp as Newtonsoft.Json.JsonPropertyAttribute).PropertyName;
           //System.Diagnostics.Debug.WriteLine($"\tJSONProperty Name: {jsonTagName}");
-          if (attRef.Tag == jsonTagName)
+          if (attRef.Tag == jsonTagName && attRef.Tag != "OrderId") //first json serializer orderId does not exist in block
           {
             prop.SetValue(block.Attributes, attRef.TextString); //serialization
+          }
+          else if (attRef.Tag == "OrderId") // second serialization orderId is exist in block
+          {
+            prop.SetValue(block.Attributes, attRef.TextString);
+          }
+          else // first json serialization setup phantom variable 
+          {
+            block.Attributes.OrderId = Convert.ToString(counter);
           }
         }
       }
     }
 
-    public JsonBlockProperty SetupAttributeProperty (Transaction tr, BlockReference blockReference, JsonBlockProperty jsonBlockProperty)
+    public JsonBlockProperty SetupAttributeProperty (Transaction tr, BlockReference blockReference, JsonBlockProperty jsonBlockProperty, int counter)
     {
       AttributeCollection attCol = blockReference.AttributeCollection;
       foreach (ObjectId attId in attCol)
       {
-        AttributeReference attRef = (AttributeReference)tr.GetObject(attId, OpenMode.ForRead);
-
-        SetRefTextString(attRef, jsonBlockProperty);
+        using (AttributeReference attRef = (AttributeReference)tr.GetObject(attId, OpenMode.ForRead))
+        {
+           SetRefTextString(attRef, jsonBlockProperty, counter);          
+        }   
 
         #region Tags
         //if (attRef.Tag == "NOTE") { jsonBlockProperty.Attributes.Note = attRef.TextString; continue; }

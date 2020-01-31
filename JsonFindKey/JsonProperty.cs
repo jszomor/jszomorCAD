@@ -34,25 +34,25 @@ namespace JsonParse
     public int CompareTo(JsonBlockProperty comparePart)
     {
       // A null value means that this object is greater.
-      //if (comparePart == null)
-      //  return 1;
+      if (comparePart == null)
+        return 1;
 
-      //else
-      //  return Geometry.X.CompareTo(comparePart.Geometry.X);
-      if (comparePart is JsonBlockProperty)
-      {
-        //var compareObj = (JsonBlockProperty)comparePart;
-        if (Geometry.X.CompareTo(comparePart.Geometry.X) == 0)
-        {
-          // compare second value
-          return Geometry.X.CompareTo(comparePart.Geometry.X);
-        }
-        return Geometry.Y.CompareTo(comparePart.Geometry.Y);
-      }
       else
-      {
-        throw new ArgumentException("Object is not a MyObject ");
-      }
+        return Attributes.OrderId.CompareTo(comparePart.Attributes.OrderId);
+      //if (comparePart is JsonBlockProperty)
+      //{
+      //  //var compareObj = (JsonBlockProperty)comparePart;
+      //  if (Geometry.X.CompareTo(comparePart.Geometry.X) == 0)
+      //  {
+      //    // compare second value
+      //    return Geometry.X.CompareTo(comparePart.Geometry.X);
+      //  }
+      //  return Geometry.Y.CompareTo(comparePart.Geometry.Y);
+      //}
+      //else
+      //{
+      //  throw new ArgumentException("Object is not a MyObject ");
+      //}
     }
   }
 
@@ -154,7 +154,7 @@ namespace JsonParse
     //public string HostName { get; set; }
 
     [JsonProperty("OrderId")]
-    public double OrderId { get; set; }
+    public string OrderId { get; set; }
 
     [JsonProperty("Name")]
     public string Name { get; set; }

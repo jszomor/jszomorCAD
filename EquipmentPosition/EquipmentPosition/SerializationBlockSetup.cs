@@ -12,13 +12,13 @@ namespace EquipmentPosition
 {
   public class JsonBlockSetup
   {
-    public JsonBlockProperty SetupBlockProperty (BlockTableRecord btr, Transaction tr,  BlockReference blockReference)
+    public JsonBlockProperty SetupBlockProperty (BlockTableRecord btr, Transaction tr,  BlockReference blockReference, int counter)
     {
       var jsonBlockProperty = new JsonBlockProperty();
       string validBlockName = RealNameFinder(btr.Name);
       string validLayerName = RealNameFinder(blockReference.Layer);
       var setupAttributeProperty = new JsonAttributeSetup();
-      setupAttributeProperty.SetupAttributeProperty(tr, blockReference, jsonBlockProperty);
+      setupAttributeProperty.SetupAttributeProperty(tr, blockReference, jsonBlockProperty, counter);
 
       if (!btr.IsAnonymous && !btr.IsLayout)
       jsonBlockProperty.Misc.BlockName = validBlockName;
@@ -60,6 +60,8 @@ namespace EquipmentPosition
         {
           SetDynamicValue(dbrProp, jsonBlockProperty);
         }
+
+        #region old mapper
         //if (dbrProp.PropertyName == "Position X") { jsonBlockProperty.Custom.TagX = DoubleConverter(dbrProp.Value); continue; }
         //if (dbrProp.PropertyName == "Position Y") { jsonBlockProperty.Custom.TagY = DoubleConverter(dbrProp.Value); continue; }
         //if (dbrProp.PropertyName == "Position1 X") { jsonBlockProperty.Custom.TagX1 = DoubleConverter(dbrProp.Value); continue; }
@@ -79,6 +81,7 @@ namespace EquipmentPosition
         //if (dbrProp.PropertyName == "Try") { jsonBlockProperty.Custom.Try = Convert.ToString(dbrProp.Value); continue; }
         //if (dbrProp.PropertyName == "Housing") { jsonBlockProperty.Custom.Housing = Convert.ToString(dbrProp.Value); continue; }
         //if (dbrProp.PropertyName == "TTRY") { jsonBlockProperty.Custom.TTRY = Convert.ToString(dbrProp.Value); continue; }
+        #endregion
       }
       return jsonBlockProperty;
     }

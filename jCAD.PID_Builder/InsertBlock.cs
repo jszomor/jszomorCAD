@@ -77,20 +77,32 @@ namespace jCAD.PID_Builder
       {
         var btr = tr.GetObject(_db.CurrentSpaceId, OpenMode.ForWrite) as BlockTableRecord;
 
-        using (var blockDefinition = tr.GetObject(blockId, OpenMode.ForRead, false) as BlockTableRecord)
+        using (var blockDefinition = tr.GetObject(blockId, OpenMode.ForWrite, false) as BlockTableRecord)
         {
-          using (var acBlkRef = new BlockReference(
-            new Point3d(block.Geometry.X,
-                        block.Geometry.Y, 0), blockId))
+          using (var acBlkRef = new BlockReference( new Point3d(block.Geometry.X, block.Geometry.Y, 0), blockId))
           {
-
             btr.AppendEntity(acBlkRef);
+
+            CreateNewAttributeDefinition(blockDefinition, tr);
+            //using (AttributeDefinition acAttDef = new AttributeDefinition())
+            //{
+            //  acAttDef.Position = new Point3d(0, 0, 0);
+            //  acAttDef.Verifiable = true;
+            //  acAttDef.Prompt = "OrderId: ";
+            //  acAttDef.Tag = "OrderId";
+            //  acAttDef.TextString = "OrderId";
+            //  acAttDef.Height = 1;
+            //  acAttDef.Invisible = true;
+            //  acAttDef.Justify = AttachmentPoint.MiddleCenter;
+            //  blockDefinition.AppendEntity(acAttDef);
+            //  tr.AddNewlyCreatedDBObject(acAttDef, true);
+            //}
+
             tr.AddNewlyCreatedDBObject(acBlkRef, true);
 
             SetBlockReferenceLayer(acBlkRef, block.General.Layer);
             SetRotate(acBlkRef, block.Misc.Rotation);
             CreateBlockRefenceAttributes(acBlkRef, blockDefinition, tr);
-            CreateNewAttributeDefinition(blockDefinition, tr);
             SetVisibilityIndex(acBlkRef, block);
             SetDynamicReference(acBlkRef, block);
             SetupAttributeProperty(tr, acBlkRef, block);
@@ -100,6 +112,26 @@ namespace jCAD.PID_Builder
           }
         }
         tr.Commit();
+      }
+    }
+
+    private void CreateNewAttributeDefinition(BlockTableRecord blockDefinition, Transaction tr)
+    {
+      using (AttributeDefinition acAttDef = new AttributeDefinition())
+      {
+        if(acAttDef.Tag != "OrderId")
+        {
+          var position = new Point3d(-20, 10, 0);
+          acAttDef.Verifiable = true;
+          acAttDef.Prompt = "OrderId";
+          acAttDef.Tag = "OrderId";
+          acAttDef.Height = 2;
+          acAttDef.Invisible = true;
+          acAttDef.Justify = AttachmentPoint.MiddleCenter;
+          acAttDef.AlignmentPoint = position;
+          blockDefinition.AppendEntity(acAttDef);
+          tr.AddNewlyCreatedDBObject(acAttDef, true);
+        }
       }
     }
 
@@ -248,28 +280,6 @@ namespace jCAD.PID_Builder
       }
     }
 
-    private void CreateNewAttributeDefinition(BlockTableRecord btr, Transaction tr)
-    {
-      var acCurDb = Application.DocumentManager.MdiActiveDocument.Database;
-      var acBlkTbl = tr.GetObject(acCurDb.BlockTableId, OpenMode.ForWrite) as BlockTable;
-
-      using (AttributeDefinition acAttDef = new AttributeDefinition())
-      {
-        acAttDef.Position = new Point3d(0, 0, 0);
-        acAttDef.Verifiable = true;
-        acAttDef.Prompt = "OrderId #: ";
-        acAttDef.Tag = "OrderId#";
-        acAttDef.TextString = "OrderId";
-        acAttDef.Height = 1;
-        acAttDef.Justify = AttachmentPoint.MiddleCenter;
-        btr.AppendEntity(acAttDef);
-
-        btr.UpgradeOpen();
-        acBlkTbl.Add(btr);
-        tr.AddNewlyCreatedDBObject(btr, true);
-      }
-    }
-
     private void CreateBlockRefenceAttributes(BlockReference acBlkRef, BlockTableRecord blockDefinition, Transaction tr)
     {
       // copy/create attribute references
@@ -321,9 +331,14 @@ namespace jCAD.PID_Builder
       AttributeCollection attCol = blockReference.AttributeCollection;
       foreach (ObjectId attId in attCol)
       {
-        AttributeReference attRef = (AttributeReference)tr.GetObject(attId, OpenMode.ForRead);
+        using (AttributeReference attRef = (AttributeReference)tr.GetObject(attId, OpenMode.ForRead))
+        {
+          if(attRef.TextString != "OrderId")
+          {
+            GetRefTextString(attRef, jsonBlockProperty);
+          }
+        }
 
-        GetRefTextString(attRef, jsonBlockProperty);
         #region
         //if (attRef.Tag == "NOTE") { attRef.TextString = jsonBlockProperty.Attributes.Note; continue; }
         //if (attRef.Tag == "NOTE_CHINESE") { attRef.TextString = jsonBlockProperty.Attributes.NoteChinese; continue; }

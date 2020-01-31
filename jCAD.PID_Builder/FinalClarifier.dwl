@@ -1,3 +1,3 @@
 jszomor
 OTWS794 
-2020. január 30., csütörtök  16:00:34
+2020. január 31., péntek  16:58:16
