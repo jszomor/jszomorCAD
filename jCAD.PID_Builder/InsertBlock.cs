@@ -82,22 +82,7 @@ namespace jCAD.PID_Builder
           using (var acBlkRef = new BlockReference( new Point3d(block.Geometry.X, block.Geometry.Y, 0), blockId))
           {
             btr.AppendEntity(acBlkRef);
-
             CreateNewAttributeDefinition(blockDefinition, tr);
-            //using (AttributeDefinition acAttDef = new AttributeDefinition())
-            //{
-            //  acAttDef.Position = new Point3d(0, 0, 0);
-            //  acAttDef.Verifiable = true;
-            //  acAttDef.Prompt = "OrderId: ";
-            //  acAttDef.Tag = "OrderId";
-            //  acAttDef.TextString = "OrderId";
-            //  acAttDef.Height = 1;
-            //  acAttDef.Invisible = true;
-            //  acAttDef.Justify = AttachmentPoint.MiddleCenter;
-            //  blockDefinition.AppendEntity(acAttDef);
-            //  tr.AddNewlyCreatedDBObject(acAttDef, true);
-            //}
-
             tr.AddNewlyCreatedDBObject(acBlkRef, true);
 
             SetBlockReferenceLayer(acBlkRef, block.General.Layer);
@@ -246,6 +231,7 @@ namespace jCAD.PID_Builder
           {
             GetDynamicValue(dbrProp, jsonBlockProperty);
           }
+          #region old mapper
           //try
           //{
           //  if (jsonBlockProperty.Custom != null)
@@ -276,6 +262,7 @@ namespace jCAD.PID_Builder
           //  //continue;
           //  throw new NullReferenceException($"selected property: {dbrProp.PropertyName} got null value");
           //}
+          #endregion
         }
       }
     }

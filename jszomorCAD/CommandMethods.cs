@@ -426,7 +426,7 @@ namespace jszomorCAD
         }
       }
 
-      var insertBlockTable = new InsertBlockTable(db);
+      var insertBlockTable = new BlockTableRead(db);
       string fileName = "JsonPIDBuildCopy.json";
       insertBlockTable.ReadBtrForSeri(db, fileName);
       //var blockDeserialize = new BlockDeserialize();
@@ -524,7 +524,7 @@ namespace jszomorCAD
       var db = Application.DocumentManager.MdiActiveDocument.Database;
       //var insertBlockTable = new InsertBlockTable(db);
       //insertBlockTable.ReadBtrForSeri(db);
-      var insertBlockTable = new InsertBlockTable(db);
+      var insertBlockTable = new BlockTableRead(db);
       string fileName = "JsonPIDBuild.json";
       insertBlockTable.ReadBtrForSeri(db, fileName);
     }

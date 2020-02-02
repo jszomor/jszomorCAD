@@ -111,13 +111,13 @@
     <None Include="process.json" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\Munka\OrganiCad\OrganiCAD.AutoCAD\OrganiCAD.AutoCAD.csproj">
-      <Project>{f6263436-2892-4372-a84f-7bd6a8a4af1e}</Project>
-      <Name>OrganiCAD.AutoCAD</Name>
-    </ProjectReference>
     <ProjectReference Include="..\EquipmentPosition\EquipmentPosition\jCAD.EquipmentProperty.csproj">
       <Project>{fe7104a8-3f0b-4441-8b60-d9e21aea1bb5}</Project>
       <Name>jCAD.EquipmentProperty</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Helper.AutoCAD\OrganiCAD.AutoCAD.csproj">
+      <Project>{f6263436-2892-4372-a84f-7bd6a8a4af1e}</Project>
+      <Name>OrganiCAD.AutoCAD</Name>
     </ProjectReference>
     <ProjectReference Include="..\jCAD.PID_Builder\jCAD.PID_Builder.csproj">
       <Project>{bea8bdac-c575-4cdf-b08c-2d4455d3eaef}</Project>

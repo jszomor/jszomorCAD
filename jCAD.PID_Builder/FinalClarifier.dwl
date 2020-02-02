@@ -1,3 +1,3 @@
-jszomor
-OTWS794 
-2020. január 31., péntek  16:58:16
+jszom
+DESKTOP-69H3MH0 
+2020. február 2., vasárnap  23:35:51

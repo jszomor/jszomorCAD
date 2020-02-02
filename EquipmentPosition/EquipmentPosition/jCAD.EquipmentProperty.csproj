@@ -95,6 +95,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BlockTableRead.cs" />
     <Compile Include="DegreeHelper.cs" />
     <Compile Include="SerializationAttributeSetup.cs" />
     <Compile Include="EqualizationTank.cs" />
@@ -107,12 +108,13 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SelectorProperty.cs" />
     <Compile Include="SerializeLines.cs" />
+    <Compile Include="Wrapper.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\..\Munka\OrganiCad\OrganiCAD.AutoCAD\OrganiCAD.AutoCAD.csproj">
+    <ProjectReference Include="..\..\Helper.AutoCAD\OrganiCAD.AutoCAD.csproj">
       <Project>{f6263436-2892-4372-a84f-7bd6a8a4af1e}</Project>
       <Name>OrganiCAD.AutoCAD</Name>
     </ProjectReference>

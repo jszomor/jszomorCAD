@@ -12,13 +12,13 @@ namespace EquipmentPosition
 {
   public class JsonBlockSetup
   {
-    public JsonBlockProperty SetupBlockProperty (BlockTableRecord btr, Transaction tr,  BlockReference blockReference, int counter)
+    public JsonBlockProperty SetupBlockProperty (BlockTableRecord btr, Transaction tr,  BlockReference blockReference)
     {
       var jsonBlockProperty = new JsonBlockProperty();
       string validBlockName = RealNameFinder(btr.Name);
       string validLayerName = RealNameFinder(blockReference.Layer);
       var setupAttributeProperty = new JsonAttributeSetup();
-      setupAttributeProperty.SetupAttributeProperty(tr, blockReference, jsonBlockProperty, counter);
+      setupAttributeProperty.SetupAttributeProperty(tr, blockReference, jsonBlockProperty);
 
       if (!btr.IsAnonymous && !btr.IsLayout)
       jsonBlockProperty.Misc.BlockName = validBlockName;

@@ -9,7 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\..\..\Munka\OrganiCad\OrganiCAD.AutoCAD\OrganiCAD.AutoCAD.csproj" />
+    <ProjectReference Include="..\Helper.AutoCAD\OrganiCAD.AutoCAD.csproj" />
   </ItemGroup>
 
 </Project>

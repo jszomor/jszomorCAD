@@ -19,43 +19,43 @@ namespace jszomorCAD
   public class InsertBlockTable
   {
 
-    public void ExecuteActionOnModelSpace(Database database, Action<Transaction, BlockTableRecord> action)
-    {
-      ExecuteActionInTransaction(database, (db, tr) =>
-        ExecuteActionOnBlockTable(db, bt =>
-        {
-          using (var ms = bt[BlockTableRecord.ModelSpace].GetObject<BlockTableRecord>())
-          {
-            action.Invoke(tr, ms);
-          }
-        }
-        ));
-    }
+    //public void ExecuteActionOnModelSpace(Database database, Action<Transaction, BlockTableRecord> action)
+    //{
+    //  ExecuteActionInTransaction(database, (db, tr) =>
+    //    ExecuteActionOnBlockTable(db, bt =>
+    //    {
+    //      using (var ms = bt[BlockTableRecord.ModelSpace].GetObject<BlockTableRecord>())
+    //      {
+    //        action.Invoke(tr, ms);
+    //      }
+    //    }
+    //    ));
+    //}
 
-    public void ExecuteActionInTransaction(Database db, Action<Database, Transaction> action)
-    {
-      using (var tr = db.TransactionManager.StartTransaction())
-      {
-        action.Invoke(db, tr);
-        tr.Commit();
-      }
-    }
+    //public void ExecuteActionInTransaction(Database db, Action<Database, Transaction> action)
+    //{
+    //  using (var tr = db.TransactionManager.StartTransaction())
+    //  {
+    //    action.Invoke(db, tr);
+    //    tr.Commit();
+    //  }
+    //}
 
-    private void ExecuteActionOnTable<T>(Database db,
-      Expression<Func<Database, ObjectId>> tableIdProperty, Action<T> action) where T : class, IDisposable
-    {
-      var c = tableIdProperty.Compile();
-      using (var t = c.Invoke(db).GetObject<T>())
-      {
-        action.Invoke(t);
-      }
-    }
+    //private void ExecuteActionOnTable<T>(Database db,
+    //  Expression<Func<Database, ObjectId>> tableIdProperty, Action<T> action) where T : class, IDisposable
+    //{
+    //  var c = tableIdProperty.Compile();
+    //  using (var t = c.Invoke(db).GetObject<T>())
+    //  {
+    //    action.Invoke(t);
+    //  }
+    //}
 
-    public void ExecuteActionOnBlockTable(Database db, Action<BlockTable> action) =>
-      ExecuteActionOnTable(db, x => x.BlockTableId, action);
+    //public void ExecuteActionOnBlockTable(Database db, Action<BlockTable> action) =>
+    //  ExecuteActionOnTable(db, x => x.BlockTableId, action);
 
-    public void ExecuteActionOnLayerTable(Database db, Action<LayerTable> action) =>
-      ExecuteActionOnTable(db, x => x.LayerTableId, action);
+    //public void ExecuteActionOnLayerTable(Database db, Action<LayerTable> action) =>
+    //  ExecuteActionOnTable(db, x => x.LayerTableId, action);
 
     /// <summary>
     /// wrapper from OrganiCad
@@ -263,7 +263,8 @@ namespace jszomorCAD
 
     public void ReadBlockTableRecord(Database db)
     {
-      ExecuteActionOnModelSpace(db, (tr, btrModelSpace) =>
+      var wr = new Wrapper();
+      wr.ExecuteActionOnModelSpace(db, (tr, btrModelSpace) =>
       {
         foreach (ObjectId objectId in btrModelSpace)
         {
@@ -304,47 +305,6 @@ namespace jszomorCAD
             }
           }
         }
-      });
-    }
-
-    public void ReadBtrForSeri(Database db, string fileName)
-    {
-      ExecuteActionOnModelSpace(db, (tr, btrModelSpace) =>
-      {
-        var jsonLineSetup = new JsonLineSetup();
-        var jsonBlockSetup = new JsonBlockSetup();
-
-        var jsonPID = new JsonPID();
-        int counter = 1;
-        foreach (ObjectId objectId in btrModelSpace)
-        {
-          using (var item = objectId.GetObject(OpenMode.ForWrite))
-          {
-            if (item == null) continue;
-
-            if (item is Line || item is Polyline || item is Polyline2d || item is Polyline3d)
-            {
-              //jsonLineToSerialize.Add(jsonLineSetup.SetupLineProperty(item));
-              jsonPID.Lines.Add(jsonLineSetup.SetupLineProperty(item));
-            }
-
-            if (item is BlockReference)
-            {
-              BlockReference blockReference = item as BlockReference;
-              if (blockReference == null) continue;
-              var btrObjectId = blockReference.DynamicBlockTableRecord; //must be Dynamic to find every blocks
-              var blockDefinition = btrObjectId.GetObject(OpenMode.ForRead) as BlockTableRecord;
-              if(blockDefinition.Name != "PID-PS-FRAME")
-              {
-                jsonPID.Blocks.Sort();
-                jsonPID.Blocks.Add(jsonBlockSetup.SetupBlockProperty(blockDefinition, tr, blockReference, counter));
-                counter++;
-              }
-            }
-          }
-        }
-        var seralizer = new JsonStringBuilderSerialize();
-        seralizer.StringBuilderSerialize(jsonPID, fileName);
       });
     }
   }
