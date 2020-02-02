@@ -33,7 +33,7 @@ namespace EquipmentPosition
             prop.SetValue(block.Attributes, attRef.TextString);
 
           }
-          else if(attRef.Tag != "OrderId") // first json serialization add phantom variable 
+          else // first json serialization add phantom variable 
           {
             //prop.SetValue(block.Attributes.OrderId, Convert.ToString(BlockTableRead.OrderCounter));
             block.Attributes.OrderId = Convert.ToString(BlockTableRead.OrderCounter);
