@@ -99,7 +99,6 @@
     <Compile Include="Select.cs" />
     <Compile Include="SendCommand.cs" />
     <Compile Include="CommandMethods.cs" />
-    <Compile Include="CopyBlockTable.cs" />
     <Compile Include="InsertBlockTable.cs" />
     <Compile Include="LayerCreator.cs" />
     <Compile Include="MoveToBottom.cs" />

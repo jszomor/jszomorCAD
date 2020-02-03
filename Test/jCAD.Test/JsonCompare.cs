@@ -46,34 +46,37 @@ namespace jCAD.Test
     public void HashCompare()
     {
       string jsonInput = @"E:\Jszomor\source\repos\jszomorCAD\jCAD.PID_Builder\JsonPIDBuild.json";
-      var input = System.IO.File.ReadAllLines(jsonInput);
       string jsonOutput = @"E:\Jszomor\source\repos\jszomorCAD\jCAD.PID_Builder\JsonPIDBuildCopy.json";
-      var output = System.IO.File.ReadAllLines(jsonOutput);
-      if (output.Length == input.Length)
+
+      var inputFileInfo = new System.IO.FileInfo(jsonInput);
+      var outputFileInfo = new System.IO.FileInfo(jsonOutput);
+      if (inputFileInfo.Length == outputFileInfo.Length && inputFileInfo.Length > 0)
       {
-        if (jsonInput != "" && jsonOutput != "")
+        byte[] hash1, hash2;
+        using (HashAlgorithm ha = HashAlgorithm.Create())
         {
-          HashAlgorithm ha = HashAlgorithm.Create();
-          FileStream f1 = new FileStream(jsonInput, FileMode.Open);
-          FileStream f2 = new FileStream(jsonOutput, FileMode.Open);
-          /* Calculate Hash */
-          byte[] hash1 = ha.ComputeHash(f1);
-          byte[] hash2 = ha.ComputeHash(f2);
-          f1.Close();
-          f2.Close();
-          /* Show Hash in TextBoxes */
-          var jsonInputHash = BitConverter.ToString(hash1);
-          var jsonOutputHash = BitConverter.ToString(hash2);
-          /* Compare the hash and Show Message box */
-          Assert.AreEqual(jsonInputHash, jsonOutputHash);
-          if (jsonInputHash == jsonOutputHash)
+          using (FileStream f1 = new FileStream(jsonInput, FileMode.Open))
           {
-            MessageBox.Show("Files are Equal !");
+            using (FileStream f2 = new FileStream(jsonOutput, FileMode.Open))
+            {
+              /* Calculate Hash */
+              hash1 = ha.ComputeHash(f1);
+              hash2 = ha.ComputeHash(f2);
+            }
           }
-          else
-          {
-            MessageBox.Show("Files are Different !");
-          }
+        }
+        /* Show Hash in TextBoxes */
+        var jsonInputHash = BitConverter.ToString(hash1);
+        var jsonOutputHash = BitConverter.ToString(hash2);
+        /* Compare the hash and Show Message box */
+        Assert.AreEqual(jsonInputHash, jsonOutputHash);
+        if (jsonInputHash == jsonOutputHash)
+        {
+          MessageBox.Show("Files are Equal !");
+        }
+        else
+        {
+          MessageBox.Show("Files are Different !");
         }
       }
       else

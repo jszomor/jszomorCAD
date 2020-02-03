@@ -13,6 +13,7 @@ using OrganiCAD.AutoCAD;
 using JsonFindKey;
 using JsonParse;
 using System.Linq.Expressions;
+using jCAD.PID_Builder;
 
 namespace jszomorCAD
 {
@@ -91,7 +92,7 @@ namespace jszomorCAD
 
       using (var tr = _db.TransactionManager.StartTransaction())
       {
-        var bt = _db.BlockTableId.GetObject<BlockTable>(OpenMode.ForRead);
+        BlockTable bt = _db.BlockTableId.GetObject(OpenMode.ForRead) as BlockTable;
 
         foreach (var btrId in bt)
         {
@@ -173,7 +174,7 @@ namespace jszomorCAD
     {
       foreach (ObjectId objectId in acBlkRef.AttributeCollection)
       {
-        var ar = objectId.GetObject<AttributeReference>();
+        AttributeReference ar = objectId.GetObject(OpenMode.ForRead) as AttributeReference;
         if (ar == null) continue;
 
         if (ar.Tag == "HOSTNAME")
@@ -207,7 +208,7 @@ namespace jszomorCAD
 
       foreach (ObjectId objectId in acBlkRef.AttributeCollection)
       {
-        var ar = objectId.GetObject<AttributeReference>();
+        AttributeReference ar = objectId.GetObject(OpenMode.ForRead) as AttributeReference;
         if (ar == null) continue;
 
         foreach (var action in actionToExecuteOnAttRef)
@@ -263,8 +264,7 @@ namespace jszomorCAD
 
     public void ReadBlockTableRecord(Database db)
     {
-      var wr = new Wrapper();
-      wr.ExecuteActionOnModelSpace(db, (tr, btrModelSpace) =>
+      Wrappers.ExecuteActionOnModelSpace(db, (tr, btrModelSpace) =>
       {
         foreach (ObjectId objectId in btrModelSpace)
         {

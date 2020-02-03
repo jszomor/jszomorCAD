@@ -13,45 +13,7 @@ using Autodesk.AutoCAD.ApplicationServices;
 namespace jCAD.PID_Builder
 {
   public class InsertBlock
-  {
-    //public void ExecuteActionOnModelSpace(Database database, Action<Transaction, BlockTableRecord> action)
-    //{
-    //  ExecuteActionInTransaction(database, (db, tr) =>
-    //    ExecuteActionOnBlockTable(db, bt =>
-    //    {
-    //      using (var ms = bt[BlockTableRecord.ModelSpace].GetObject<BlockTableRecord>())
-    //      {
-    //        action.Invoke(tr, ms);
-    //      }
-    //    }
-    //    ));
-    //}
-
-    //public void ExecuteActionInTransaction(Database db, Action<Database, Transaction> action)
-    //{
-    //  using (var tr = db.TransactionManager.StartTransaction())
-    //  {
-    //    action.Invoke(db, tr);
-    //    tr.Commit();
-    //  }
-    //}
-
-    //private void ExecuteActionOnTable<T>(Database db,
-    //  Expression<Func<Database, ObjectId>> tableIdProperty, Action<T> action) where T : class, IDisposable
-    //{
-    //  var c = tableIdProperty.Compile();
-    //  using (var t = c.Invoke(db).GetObject<T>())
-    //  {
-    //    action.Invoke(t);
-    //  }
-    //}
-
-    //public void ExecuteActionOnBlockTable(Database db, Action<BlockTable> action) =>
-    //  ExecuteActionOnTable(db, x => x.BlockTableId, action);
-
-    //public void ExecuteActionOnLayerTable(Database db, Action<LayerTable> action) =>
-    //  ExecuteActionOnTable(db, x => x.LayerTableId, action);
-
+  {   
     private Database _db;
     public InsertBlock(Database db)
     {
@@ -62,54 +24,62 @@ namespace jCAD.PID_Builder
     {
       var blocks = jsonPID.BlocksSearch(blockName).ToList();
       if (blocks == null || blocks.Count == 0) throw new ArgumentNullException("Block not found " + blockName);
-      foreach (var block in blocks)
-      {
-        PlaceOneBlock(block);
-      }
-    }
-
-    private void PlaceOneBlock(JsonBlockProperty block)
-    {
-      ObjectId blockId = GetBlockTable(block.Misc.BlockName);
-
-      //var defultLayers = new LayerCreator();
+      
       using (var tr = _db.TransactionManager.StartTransaction())
       {
-        var btr = tr.GetObject(_db.CurrentSpaceId, OpenMode.ForWrite) as BlockTableRecord;
+        ObjectId blockId = GetBlockTable(blockName);
+
+        //var defultLayers = new LayerCreator();
+        var currentSpace = tr.GetObject(_db.CurrentSpaceId, OpenMode.ForWrite) as BlockTableRecord;
 
         using (var blockDefinition = tr.GetObject(blockId, OpenMode.ForWrite, false) as BlockTableRecord)
         {
-          using (var acBlkRef = new BlockReference( new Point3d(block.Geometry.X, block.Geometry.Y, 0), blockId))
-          {
-            btr.AppendEntity(acBlkRef);
-            CreateNewAttributeDefinition(blockDefinition, tr);
-            tr.AddNewlyCreatedDBObject(acBlkRef, true);
+          CreateInternal_IdAttributeDefinition(blockDefinition, tr); // adds Internal_Id attribute to parent
 
-            SetBlockReferenceLayer(acBlkRef, block.General.Layer);
-            SetRotate(acBlkRef, block.Misc.Rotation);
-            CreateBlockRefenceAttributes(acBlkRef, blockDefinition, tr);
-            SetVisibilityIndex(acBlkRef, block);
-            SetDynamicReference(acBlkRef, block);
-            SetupAttributeProperty(tr, acBlkRef, block);
-            //SetBlockRefenceAttributesValues(acBlkRef, insertBlock.ActionToExecuteOnAttRef);
-            //SetDynamicBlockReferenceValues(acBlkRef, insertBlock.ActionToExecuteOnDynPropAfter);
-            //SetHostName(acBlkRef, insertBlock.HostName);
+          foreach (var block in blocks)
+          {
+            InsertBlockRefenceFromBlockDefinition(currentSpace, block, blockDefinition, tr);
           }
         }
         tr.Commit();
       }
     }
 
-    private void CreateNewAttributeDefinition(BlockTableRecord blockDefinition, Transaction tr)
+    private void InsertBlockRefenceFromBlockDefinition(BlockTableRecord currentSpace, JsonBlockProperty block, 
+      BlockTableRecord blockDefinition, Transaction tr)
     {
-      using (AttributeDefinition acAttDef = new AttributeDefinition())
+      using (var acBlkRef = new BlockReference( new Point3d(block.Geometry.X, block.Geometry.Y, 0), blockDefinition.ObjectId))
       {
-        if(acAttDef.Tag != "OrderId")
+        currentSpace.AppendEntity(acBlkRef); // new block ref insterted to (model) space
+        tr.AddNewlyCreatedDBObject(acBlkRef, true); // added to transaction
+
+        SetBlockReferenceLayer(acBlkRef, block.General.Layer);
+        SetRotate(acBlkRef, block.Misc.Rotation);
+        CreateBlockRefenceAttributes(acBlkRef, blockDefinition, tr);
+        SetVisibilityIndex(acBlkRef, block);
+        SetDynamicReference(acBlkRef, block);
+        SetupAttributeProperty(tr, acBlkRef, block);
+      }
+    }
+
+    /// <summary>
+    /// Adds Internal_Id attribute definition to BlockTableRecord ("blockDefinition") - if the attribute does not exist
+    /// </summary>
+    /// <param name="blockDefinition">BlockTableRecord - parent, "blockDefinition"</param>
+    /// <param name="tr"></param>
+    private void CreateInternal_IdAttributeDefinition(BlockTableRecord blockDefinition, Transaction tr)
+    {
+      string attributeTag = "Internal_Id";
+
+      //if (!blockDefinition.ObjectId.IsValid()) return;
+      //if (!Wrappers.AlreadyHasAttributeDefined(blockDefinition, attributeTag))
+      //{
+        using (AttributeDefinition acAttDef = new AttributeDefinition())
         {
           var position = new Point3d(-20, 10, 0);
           acAttDef.Verifiable = true;
-          acAttDef.Prompt = "OrderId";
-          acAttDef.Tag = "OrderId";
+          acAttDef.Prompt = attributeTag;
+          acAttDef.Tag = attributeTag;
           acAttDef.Height = 2;
           acAttDef.Invisible = true;
           acAttDef.Justify = AttachmentPoint.MiddleCenter;
@@ -117,7 +87,7 @@ namespace jCAD.PID_Builder
           blockDefinition.AppendEntity(acAttDef);
           tr.AddNewlyCreatedDBObject(acAttDef, true);
         }
-      }
+      //}
     }
 
     public String RealNameFinder(string originalName)
@@ -168,7 +138,7 @@ namespace jCAD.PID_Builder
 
       else if (blockIds.Count == 0) throw new Exception($"No block record found with the name {blockName}");
 
-      else return blockIds.First();
+      else return blockIds[0];
     }
 
     private void SetBlockReferenceLayer(BlockReference acBlkRef, string layerName)
@@ -267,6 +237,12 @@ namespace jCAD.PID_Builder
       }
     }
 
+    /// <summary>
+    /// Copies attributes to BlockReference from "BlockDefinition"
+    /// </summary>
+    /// <param name="acBlkRef"></param>
+    /// <param name="blockDefinition"></param>
+    /// <param name="tr"></param>
     private void CreateBlockRefenceAttributes(BlockReference acBlkRef, BlockTableRecord blockDefinition, Transaction tr)
     {
       // copy/create attribute references
@@ -320,7 +296,7 @@ namespace jCAD.PID_Builder
       {
         using (AttributeReference attRef = (AttributeReference)tr.GetObject(attId, OpenMode.ForRead))
         {
-          if(attRef.TextString != "OrderId")
+          if(attRef.TextString != "Internal_Id")
           {
             GetRefTextString(attRef, jsonBlockProperty);
           }

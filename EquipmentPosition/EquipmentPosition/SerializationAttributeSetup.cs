@@ -24,19 +24,19 @@ namespace EquipmentPosition
           var jsonProp = customAttributes[0];
           var jsonTagName = (jsonProp as Newtonsoft.Json.JsonPropertyAttribute).PropertyName;
           //System.Diagnostics.Debug.WriteLine($"\tJSONProperty Name: {jsonTagName}");
-          if (attRef.Tag == jsonTagName && attRef.Tag != "OrderId") //first json serializer orderId does not exist in block
+          if (attRef.Tag == jsonTagName && attRef.Tag != "OrderId") //first json serialization orderId does not exist in block
           {
             prop.SetValue(block.Attributes, attRef.TextString); //serialization
           }
           else if (attRef.Tag == jsonTagName && attRef.Tag == "OrderId") // second serialization orderId exist inside block
           {
-            prop.SetValue(block.Attributes, attRef.TextString);
+            prop.SetValue(block.Attributes, Convert.ToInt32(attRef.TextString));
 
           }
           else // first json serialization add phantom variable 
           {
             //prop.SetValue(block.Attributes.OrderId, Convert.ToString(BlockTableRead.OrderCounter));
-            block.Attributes.OrderId = Convert.ToString(BlockTableRead.OrderCounter);
+            block.Attributes.OrderId = BlockTableRead.OrderCounter;
           }
         }
       }
@@ -179,7 +179,7 @@ namespace EquipmentPosition
       }   
       else if (blockReference.Name == "break")
       {
-        jsonBlockProperty.Attributes.OrderId = Convert.ToString(BlockTableRead.OrderCounter);
+        jsonBlockProperty.Attributes.OrderId = BlockTableRead.OrderCounter;
       }
 
       return jsonBlockProperty;

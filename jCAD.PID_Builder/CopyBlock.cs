@@ -1,19 +1,20 @@
 ﻿using Autodesk.AutoCAD.DatabaseServices;
+using EquipmentPosition;
 using OrganiCAD.AutoCAD;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace jCAD.PID_Builder
 {
   public class CopyBlock
-  {
+  {  
     public void CopyBlockTable(Database db, string filePath, Predicate<BlockTableRecord> predicate)
     {
       var aw = new AutoCadWrapper();
-
       using (Database sourceDb = new Database(false, true))
       {
         // Read the DWG into a side database

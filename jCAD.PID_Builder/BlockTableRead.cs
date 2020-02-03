@@ -9,7 +9,7 @@ using System.Linq.Expressions;
 using JsonParse;
 using JsonFindKey;
 
-namespace EquipmentPosition
+namespace jCAD.PID_Builder
 {
   public class BlockTableRead
   {
@@ -22,8 +22,7 @@ namespace EquipmentPosition
     public static int OrderCounter { get; set; }
     public void ReadBtrForSeri(Database db, string fileName)
     {
-      var wr = new Wrapper();
-      wr.ExecuteActionOnModelSpace(db, (tr, btrModelSpace) =>
+      Wrappers.ExecuteActionOnModelSpace(db, (tr, btrModelSpace) =>
       {
         var jsonLineSetup = new JsonLineSetup();
         var jsonBlockSetup = new JsonBlockSetup();
@@ -50,7 +49,7 @@ namespace EquipmentPosition
               var blockDefinition = btrObjectId.GetObject(OpenMode.ForRead) as BlockTableRecord;
               if (blockDefinition.Name != "PID-PS-FRAME")
               {
-                jsonPID.Blocks.Sort();
+                //jsonPID.Blocks.Sort();
                 jsonPID.Blocks.Add(jsonBlockSetup.SetupBlockProperty(blockDefinition, tr, blockReference));
                 OrderCounter++;
               }

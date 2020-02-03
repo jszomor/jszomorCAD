@@ -38,7 +38,7 @@ namespace JsonParse
     //    return 1;
 
     //  else
-    //    return Attributes.OrderId.CompareTo(comparePart.Attributes.OrderId);      
+    //    return Attributes.Internal_Id.CompareTo(comparePart.Attributes.Internal_Id);
     //}
   }
 
@@ -139,8 +139,8 @@ namespace JsonParse
     //[JsonProperty("HOSTNAME")]
     //public string HostName { get; set; }
 
-    [JsonProperty("OrderId")]
-    public string OrderId { get; set; }
+    [JsonProperty("Internal_Id")]
+    public string Internal_Id { get; set; }
 
     [JsonProperty("Name")]
     public string Name { get; set; }

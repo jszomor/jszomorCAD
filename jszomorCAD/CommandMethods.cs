@@ -26,9 +26,9 @@ namespace jszomorCAD
       var db = Application.DocumentManager.MdiActiveDocument.Database;
 
       // Copy blocks from sourcefile into opened file
-      var copyBlockTable = new CopyBlockTable();
+      var copyBlockTable = new CopyBlock();
       var btrNamesToCopy = new[] { "pump", "valve", "chamber", "instrumentation tag", "channel gate", "pipe", "pipe2", "channel", "channel2" };
-      copyBlockTable.CopyBlockTableMethod(db, path, btr =>
+      copyBlockTable.CopyBlockTable(db, path, btr =>
       {
         System.Diagnostics.Debug.Print(btr.Name);
         return btrNamesToCopy.Contains(btr.Name);
@@ -457,49 +457,49 @@ namespace jszomorCAD
       doc.SendStringToExecute(("_attsync" + "\n" + "n" + "\n" + "pump" + "\n"), true, false, false);
     }
 
-    public void SendSync(Editor ed, string blockName, Database db)
-    {
-      using (Transaction acTrans = db.TransactionManager.StartTransaction())
-      {
-        var blockIds = new List<ObjectId>();
+    //public void SendSync(Editor ed, string blockName, Database db)
+    //{
+    //  using (Transaction acTrans = db.TransactionManager.StartTransaction())
+    //  {
+    //    var blockIds = new List<ObjectId>();
 
-        using (var bt = db.BlockTableId.GetObject<BlockTable>(OpenMode.ForRead))
-        {
-          // Open the Block table record Model space for write
-          using (var btrModelSpace = acTrans.GetObject(bt[BlockTableRecord.ModelSpace], OpenMode.ForWrite) as BlockTableRecord)
-          {
-            foreach (var btrId in btrModelSpace)
-            {
-              var item = btrId.GetObject(OpenMode.ForRead);
-              if (item == null) continue;
-              if (item is BlockReference)
-              {
-                var attrDef = item as BlockReference;
+    //    using (BlockTable bt = db.BlockTableId.GetObject<BlockTable>(OpenMode.ForRead))
+    //    {
+    //      // Open the Block table record Model space for write
+    //      using (var btrModelSpace = acTrans.GetObject(bt[BlockTableRecord.ModelSpace], OpenMode.ForWrite) as BlockTableRecord)
+    //      {
+    //        foreach (var btrId in btrModelSpace)
+    //        {
+    //          var item = btrId.GetObject(OpenMode.ForRead);
+    //          if (item == null) continue;
+    //          if (item is BlockReference)
+    //          {
+    //            var attrDef = item as BlockReference;
 
-                if (attrDef.IsErased || attrDef.IsDisposed)
-                {
-                  continue;
-                }
-                var dynBtr = acTrans.GetObject(attrDef.DynamicBlockTableRecord, OpenMode.ForRead, false) as BlockTableRecord;
+    //            if (attrDef.IsErased || attrDef.IsDisposed)
+    //            {
+    //              continue;
+    //            }
+    //            var dynBtr = acTrans.GetObject(attrDef.DynamicBlockTableRecord, OpenMode.ForRead, false) as BlockTableRecord;
 
-                System.Diagnostics.Debug.Print("DynBlockName: " + dynBtr.Name);
+    //            System.Diagnostics.Debug.Print("DynBlockName: " + dynBtr.Name);
 
-                if (!dynBtr.IsAnonymous && !dynBtr.IsLayout && dynBtr.Name == blockName)
-                  blockIds.Add(btrId);
-              }
-            }
+    //            if (!dynBtr.IsAnonymous && !dynBtr.IsLayout && dynBtr.Name == blockName)
+    //              blockIds.Add(btrId);
+    //          }
+    //        }
 
-            var first = blockIds.First();
-            var acEnt = acTrans.GetObject(first, OpenMode.ForWrite) as DBObject;
+    //        var first = blockIds.First();
+    //        var acEnt = acTrans.GetObject(first, OpenMode.ForWrite) as DBObject;
 
-            ed.Command("_attsync"); // does not work, I have no idea why.
+    //        ed.Command("_attsync"); // does not work, I have no idea why.
 
-            if (blockIds.Count == 0) ed.WriteMessage($"No block record found with the name {blockName}");
+    //        if (blockIds.Count == 0) ed.WriteMessage($"No block record found with the name {blockName}");
 
-          }
-        }
-      }
-    }
+    //      }
+    //    }
+    //  }
+    //}
 
     [CommandMethod("JCAD_Layermerge", CommandFlags.Modal)]
     public void LayerMerge()
