@@ -11,7 +11,7 @@ using Autodesk.AutoCAD.Geometry;
 
 namespace jCAD.PID_Builder
 {
-	public static class Wrappers
+	public static class ExtensionMethod
 	{
 
 		public static void ExecuteActionOnModelSpace(Database database, Action<Transaction, BlockTableRecord> action)
@@ -636,7 +636,7 @@ namespace jCAD.PID_Builder
 		public static bool TryToSetStandByBasedonNoteAttribute(Database db, string blockNote, int numberOfStandby, bool isLeftToDownSelection)
 		{
 			var flag = true;
-			Wrappers.ExecuteActionInTransaction(db, tr =>
+			ExtensionMethod.ExecuteActionInTransaction(db, tr =>
 			{
 				//Filtering of the standby items (based on the numberOfStandby) from the blocks where  Note attribute of the autocad block is equal to blockNote
 				var standByItems = SelectStandbyBasedonNoteAttribute(db, tr, blockNote, numberOfStandby, isLeftToDownSelection);
@@ -1384,7 +1384,7 @@ namespace jCAD.PID_Builder
 			var returnValue = false;
 			try
 			{
-				returnValue = btr.ForEach<AttributeDefinition, bool>(ad => ad.Tag == attributeTag);
+				btr.ForEach<AttributeDefinition>(ad => returnValue |= ad.Tag == attributeTag); // executes an Action<> on every element. must set variable inside action
 			}
 			catch (System.Exception ex)
 			{
@@ -1393,8 +1393,13 @@ namespace jCAD.PID_Builder
 			return returnValue;
 		}
 
-		private static bool HasAttributes(BlockTableRecord btr) =>
-			btr.ForEach<AttributeDefinition, bool>(ad => true);
+		public static bool HasAttributes(BlockTableRecord btr)
+		{
+			var returnValue = false; // assume btr does not have any attributes
+			btr.ForEach<AttributeDefinition>(ad => returnValue &= true); // if any attribute iterated, the value will be set to true
+			return returnValue;
+		}
+			
 
 		//private static void ExplodeBlockReference(BlockReference br/*, ObjectId currentSpaceId, Transaction tr, Predicate<BlockReference> shouldExplodeChildItem, int deep = 0*/)
 		//{
@@ -1571,28 +1576,6 @@ namespace jCAD.PID_Builder
 					}
 				}
 			}
-		}
-
-		public static T ForEach<TEntity, T>(this System.Collections.IEnumerable enumerable,
-			Func<TEntity, T> action, OpenMode openMode = OpenMode.ForRead) where TEntity : class, IDisposable
-		{
-			foreach (var objectId in enumerable.Cast<ObjectId>())
-			{
-				//if (!objectId.IsValid()) continue;
-				using (var entity = objectId.GetObject<TEntity>(openMode))
-				{
-					if (entity == null) continue;
-					try
-					{
-						return action(entity);
-					}
-					catch (System.Exception ex)
-					{
-						System.Diagnostics.Debug.Print("Exception while iterating an AutoCAD enumerable", ex.ToString());
-					}
-				}
-			}
-			return default(T);
 		}
 	}
 

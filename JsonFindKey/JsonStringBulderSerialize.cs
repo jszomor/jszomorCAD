@@ -16,9 +16,12 @@ namespace JsonFindKey
 
       var path = System.IO.Path.Combine(dirPath, fileName);
 
-      var serializer = new JsonSerializer();
-      serializer.NullValueHandling = NullValueHandling.Ignore;
-      serializer.Formatting = Formatting.Indented;
+      var serializer = new JsonSerializer
+      {
+        NullValueHandling = NullValueHandling.Ignore,
+        DefaultValueHandling = DefaultValueHandling.Ignore,
+        Formatting = Formatting.Indented
+      };
       using (StreamWriter sw = new StreamWriter(path))
       {
         using (JsonWriter writer = new JsonTextWriter(sw))

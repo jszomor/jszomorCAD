@@ -264,7 +264,7 @@ namespace jszomorCAD
 
     public void ReadBlockTableRecord(Database db)
     {
-      Wrappers.ExecuteActionOnModelSpace(db, (tr, btrModelSpace) =>
+      ExtensionMethod.ExecuteActionOnModelSpace(db, (tr, btrModelSpace) =>
       {
         foreach (ObjectId objectId in btrModelSpace)
         {

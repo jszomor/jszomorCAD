@@ -22,7 +22,7 @@ namespace jCAD.PID_Builder
     public static int OrderCounter { get; set; }
     public void ReadBtrForSeri(Database db, string fileName)
     {
-      Wrappers.ExecuteActionOnModelSpace(db, (tr, btrModelSpace) =>
+      ExtensionMethod.ExecuteActionOnModelSpace(db, (tr, btrModelSpace) =>
       {
         var jsonLineSetup = new JsonLineSetup();
         var jsonBlockSetup = new JsonBlockSetup();
@@ -49,13 +49,15 @@ namespace jCAD.PID_Builder
               var blockDefinition = btrObjectId.GetObject(OpenMode.ForRead) as BlockTableRecord;
               if (blockDefinition.Name != "PID-PS-FRAME")
               {
-                //jsonPID.Blocks.Sort();
                 jsonPID.Blocks.Add(jsonBlockSetup.SetupBlockProperty(blockDefinition, tr, blockReference));
                 OrderCounter++;
               }
             }
           }
         }
+
+        jsonPID.Blocks.Sort();
+
         var seralizer = new JsonStringBuilderSerialize();
         seralizer.StringBuilderSerialize(jsonPID, fileName);
       });

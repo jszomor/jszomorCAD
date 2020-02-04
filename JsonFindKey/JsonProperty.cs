@@ -19,7 +19,7 @@ namespace JsonParse
     public IEnumerable<JsonBlockProperty> BlocksSearch(string equipmentName) =>
       Blocks.Where(b => b.Misc.BlockName.EndsWith(equipmentName));
   }
-  public class JsonBlockProperty //: IComparable<JsonBlockProperty>
+  public class JsonBlockProperty : IComparable<JsonBlockProperty>
   {
     public Geometry Geometry { get; } = new Geometry();
 
@@ -31,15 +31,15 @@ namespace JsonParse
 
     public Attributes Attributes { get; } = new Attributes();
 
-    //public int CompareTo(JsonBlockProperty comparePart)
-    //{
-    //  // A null value means that this object is greater.
-    //  if (comparePart == null)
-    //    return 1;
+    public int CompareTo(JsonBlockProperty comparePart)
+    {
+      // A null value means that this object is greater.
+      if (comparePart == null)
+        return 1;
 
-    //  else
-    //    return Attributes.Internal_Id.CompareTo(comparePart.Attributes.Internal_Id);
-    //}
+      else
+        return Attributes.Internal_Id.CompareTo(comparePart.Attributes.Internal_Id);
+    }
   }
 
   public class Geometry
@@ -140,7 +140,7 @@ namespace JsonParse
     //public string HostName { get; set; }
 
     [JsonProperty("Internal_Id")]
-    public string Internal_Id { get; set; }
+    public int Internal_Id { get; set; }
 
     [JsonProperty("Name")]
     public string Name { get; set; }

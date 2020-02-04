@@ -117,7 +117,7 @@
     <Compile Include="SerializationAttributeSetup.cs" />
     <Compile Include="SerializationBlockSetup.cs" />
     <Compile Include="SerializeLines.cs" />
-    <Compile Include="Wrappers.cs" />
+    <Compile Include="ExtensionMethod.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

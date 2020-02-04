@@ -2,294 +2,35 @@
   "Blocks": [
     {
       "Geometry": {
-        "Position X": 975.1443107785426,
-        "Position Y": 286.66890840371752
+        "Position X": 37.723076588720232,
+        "Position Y": 53.019021751399919
       },
       "Misc": {
-        "Name": "pump",
-        "Rotation": 0.0
+        "Name": "chamber"
       },
       "General": {
-        "Layer": "equipment"
+        "Layer": "unit"
       },
       "Custom": {
-        "Position X": 0.026011082201989666,
-        "Position Y": -6.0096995464432155,
+        "Position X": 49.924459200654894,
+        "Position Y": -3.1413846052624876,
         "Angle": 0.0,
-        "Flip state": 0,
-        "Flip state1": 0,
-        "Angle1": 1.570796326794897,
-        "Angle2": 4.71238898038469,
-        "Visibility": "Centrifugal pump+tag+freq",
-        "Centrifugal Pump": 20,
-        "Try1": 10.0,
-        "Try": "pp",
-        "Housing": "Gray Cast Iron",
-        "TTRY": "ASTM 304",
-        "Distance": 0.0,
-        "Distance1": 0.0
+        "Visibility": "no channels",
+        "Distance": 101.0,
+        "Distance1": 15.0,
+        "Distance2": 33.0,
+        "Distance3": 21.0,
+        "Distance4": 11.801209410282013,
+        "Distance5": 43.0
       },
       "Attributes": {
-        "Internal_Id": "1",
-        "NOTE": "RAS Pump",
-        "MODEL": "-",
-        "CONSUMED_POWER": "14.4",
-        "INSTALLED_POWER": "37.00",
-        "INSTALLATION": "-",
-        "MATERIAL_HOUSING": "GCI",
-        "MATERIAL_IMPELLER": "GCI",
-        "SP_HEAD": "6",
-        "SP_CAPACITY": "1,146",
-        "UNIT_HEAD": "m",
-        "UNIT_CAPACITY": "m3/h",
-        "TAG": "197",
-        "RUNNINGHOURS": "24",
-        "PUMP_TYPE": "Centrifugal - VFD drive",
-        "NOTE_CHINESE": "活性污泥循环泵",
-        "STB_DTY": "0",
-        "AREA_CODE": "00",
-        "DI": "3",
-        "DO": "1",
-        "AI": "3",
-        "AO": "1",
-        "PB": "1",
-        "PO": "2",
-        "TAG_ID": "PC",
-        "PROCESSUNITAREA": ""
-      }
-    },
-    {
-      "Geometry": {
-        "Position X": 995.1443107785426,
-        "Position Y": 286.66890840371752
-      },
-      "Misc": {
-        "Name": "pump",
-        "Rotation": 0.0
-      },
-      "General": {
-        "Layer": "equipment"
-      },
-      "Custom": {
-        "Position X": 0.026011082201989666,
-        "Position Y": -6.0096995464432155,
-        "Angle": 0.0,
-        "Flip state": 0,
-        "Flip state1": 0,
-        "Angle1": 1.570796326794897,
-        "Angle2": 4.71238898038469,
-        "Visibility": "Centrifugal pump+tag+freq",
-        "Centrifugal Pump": 20,
-        "Try1": 10.0,
-        "Try": "pp",
-        "Housing": "Gray Cast Iron",
-        "TTRY": "ASTM 304",
-        "Distance": 0.0,
-        "Distance1": 0.0
-      },
-      "Attributes": {
-        "Internal_Id": "2",
-        "NOTE": "RAS Pump",
-        "MODEL": "-",
-        "CONSUMED_POWER": "14.4",
-        "INSTALLED_POWER": "37.00",
-        "INSTALLATION": "-",
-        "MATERIAL_HOUSING": "GCI",
-        "MATERIAL_IMPELLER": "GCI",
-        "SP_HEAD": "6",
-        "SP_CAPACITY": "1,146",
-        "UNIT_HEAD": "m",
-        "UNIT_CAPACITY": "m3/h",
-        "TAG": "200",
-        "RUNNINGHOURS": "24",
-        "PUMP_TYPE": "Centrifugal - VFD drive",
-        "NOTE_CHINESE": "活性污泥循环泵",
-        "STB_DTY": "1",
-        "AREA_CODE": "00",
-        "DI": "3",
-        "DO": "1",
-        "AI": "3",
-        "AO": "1",
-        "PB": "1",
-        "PO": "2",
-        "TAG_ID": "PC",
-        "PROCESSUNITAREA": ""
-      }
-    },
-    {
-      "Geometry": {
-        "Position X": 995.1443107785426,
-        "Position Y": 298.81177587488287
-      },
-      "Misc": {
-        "Name": "valve",
-        "Rotation": 1.5707963267948966
-      },
-      "General": {
-        "Layer": "valve"
-      },
-      "Custom": {
-        "Position X": 0.45072820179160555,
-        "Position Y": -3.8962674149591736,
-        "Angle": 0.0,
-        "Flip state": 0,
-        "Flip state1": 0,
-        "Visibility": "Check Valve",
-        "Block Table1": 5.0,
-        "Distance": 0.0,
-        "Distance1": 0.0
-      },
-      "Attributes": {
-        "Internal_Id": "3",
-        "NOTE": "Check Valve",
-        "EQUIP_TYPE": "Hand Actuated",
-        "MATERIAL": "SS",
-        "SIZE": "40",
-        "SP_ACTUATED": "Hand",
-        "TAG": "159",
-        "NOTE_CHINESE": "",
-        "AREA_CODE": "-",
-        "DI": "0",
-        "DO": "0",
-        "AI": "0",
-        "AO": "0",
-        "PB": "0",
-        "PO": "0",
-        "TAG_ID": "VC",
-        "PROCESSUNITAREA": "",
-        "PRESSURE": "PN6"
-      }
-    },
-    {
-      "Geometry": {
-        "Position X": 995.1443107785426,
-        "Position Y": 309.69540048404588
-      },
-      "Misc": {
-        "Name": "valve",
-        "Rotation": 1.5707963267948966
-      },
-      "General": {
-        "Layer": "valve"
-      },
-      "Custom": {
-        "Position X": 0.45072820179160555,
-        "Position Y": -3.8962674149591736,
-        "Angle": 0.0,
-        "Flip state": 0,
-        "Flip state1": 0,
-        "Visibility": "Knife Valve",
-        "Block Table1": 1.0,
-        "Distance": 0.0,
-        "Distance1": 0.0
-      },
-      "Attributes": {
-        "Internal_Id": "4",
-        "NOTE": "Knife Gate Valve",
-        "EQUIP_TYPE": "Hand Actuated",
-        "MATERIAL": "SS",
-        "SIZE": "40",
-        "SP_ACTUATED": "Hand",
-        "TAG": "171",
-        "NOTE_CHINESE": "",
-        "AREA_CODE": "-",
-        "DI": "0",
-        "DO": "0",
-        "AI": "0",
-        "AO": "0",
-        "PB": "0",
-        "PO": "0",
-        "TAG_ID": "VK",
-        "PROCESSUNITAREA": "",
-        "PRESSURE": "PN6"
-      }
-    },
-    {
-      "Geometry": {
-        "Position X": 975.1443107785426,
-        "Position Y": 298.81177587488287
-      },
-      "Misc": {
-        "Name": "valve",
-        "Rotation": 1.5707963267948966
-      },
-      "General": {
-        "Layer": "valve"
-      },
-      "Custom": {
-        "Position X": 0.45072820179160555,
-        "Position Y": -3.8962674149591736,
-        "Angle": 0.0,
-        "Flip state": 0,
-        "Flip state1": 0,
-        "Visibility": "Check Valve",
-        "Block Table1": 5.0,
-        "Distance": 0.0,
-        "Distance1": 0.0
-      },
-      "Attributes": {
-        "Internal_Id": "5",
-        "NOTE": "Check Valve",
-        "EQUIP_TYPE": "Hand Actuated",
-        "MATERIAL": "SS",
-        "SIZE": "40",
-        "SP_ACTUATED": "Hand",
-        "TAG": "160",
-        "NOTE_CHINESE": "",
-        "AREA_CODE": "-",
-        "DI": "0",
-        "DO": "0",
-        "AI": "0",
-        "AO": "0",
-        "PB": "0",
-        "PO": "0",
-        "TAG_ID": "VC",
-        "PROCESSUNITAREA": "",
-        "PRESSURE": "PN6"
-      }
-    },
-    {
-      "Geometry": {
-        "Position X": 975.1443107785426,
-        "Position Y": 309.69540048404588
-      },
-      "Misc": {
-        "Name": "valve",
-        "Rotation": 1.5707963267948966
-      },
-      "General": {
-        "Layer": "valve"
-      },
-      "Custom": {
-        "Position X": 0.45072820179160555,
-        "Position Y": -3.8962674149591736,
-        "Angle": 0.0,
-        "Flip state": 0,
-        "Flip state1": 0,
-        "Visibility": "Knife Valve",
-        "Block Table1": 1.0,
-        "Distance": 0.0,
-        "Distance1": 0.0
-      },
-      "Attributes": {
-        "Internal_Id": "6",
-        "NOTE": "Knife Gate Valve",
-        "EQUIP_TYPE": "Hand Actuated",
-        "MATERIAL": "SS",
-        "SIZE": "40",
-        "SP_ACTUATED": "Hand",
-        "TAG": "172",
-        "NOTE_CHINESE": "",
-        "AREA_CODE": "-",
-        "DI": "0",
-        "DO": "0",
-        "AI": "0",
-        "AO": "0",
-        "PB": "0",
-        "PO": "0",
-        "TAG_ID": "VK",
-        "PROCESSUNITAREA": "",
-        "PRESSURE": "PN6"
+        "Internal_Id": 1,
+        "NAME1": "RAS/WAS CHAMBER",
+        "VOLUME": "-",
+        "WIDTH": "-",
+        "LIQUIDLEVEL": "-",
+        "LENGTH": "-",
+        "HEIGHT": "-"
       }
     }
   ],
