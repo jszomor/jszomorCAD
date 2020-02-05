@@ -435,6 +435,17 @@ namespace jszomorCAD
       //System.Diagnostics.Debug.Print($"BlockName: {eqType}");
     }
 
+    [CommandMethod("JCAD_SerializeBlock", CommandFlags.Modal)]
+    public void StringBuilderSerialize()
+    {
+      var db = Application.DocumentManager.MdiActiveDocument.Database;
+      //var insertBlockTable = new InsertBlockTable(db);
+      //insertBlockTable.ReadBtrForSeri(db);
+      var insertBlockTable = new BlockTableRead(db);
+      string fileName = "JsonPIDBuild.json";
+      insertBlockTable.ReadBtrForSeri(db, fileName);
+    }
+
     [CommandMethod("JCAD_Fillet", CommandFlags.Modal)]
     public void ComCommand()
     {
@@ -516,17 +527,6 @@ namespace jszomorCAD
       var db = Application.DocumentManager.MdiActiveDocument.Database;
       var select = new Select();
       select.SelectBlockReference(db);
-    }
-
-    [CommandMethod("JCAD_SerializeBlock", CommandFlags.Modal)]
-    public void StringBuilderSerialize()
-    {
-      var db = Application.DocumentManager.MdiActiveDocument.Database;
-      //var insertBlockTable = new InsertBlockTable(db);
-      //insertBlockTable.ReadBtrForSeri(db);
-      var insertBlockTable = new BlockTableRead(db);
-      string fileName = "JsonPIDBuild.json";
-      insertBlockTable.ReadBtrForSeri(db, fileName);
     }
   }
 }
