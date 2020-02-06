@@ -102,5 +102,11 @@ namespace jCAD.Test
       }
       Assert.IsTrue(true);
     }
+
+    [TestMethod]
+    public void DictComparer()
+    {
+      
+    }
   }
 }

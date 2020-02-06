@@ -16,11 +16,35 @@ namespace JsonParse
     //public JsonBlockProperty BlockSearch(string equipmentName) => 
     //  Blocks.SingleOrDefault(b => b.Misc.BlockName == equipmentName);
 
+    public bool IsEqual(JsonPID other)
+    {
+
+      for(int i = 0; i < Blocks.Count; i++)
+      {
+        if(!Blocks[i].IsIdentical(other.Blocks[i]))
+          return false;
+      }
+
+      for (int i = 0; i < Lines.Count; i++)
+      {
+        if (!Lines[i].IsIdentical(other.Lines[i]))
+          return false;
+      }
+
+      return true;
+    }
+
     public IEnumerable<JsonBlockProperty> BlocksSearch(string equipmentName) =>
       Blocks.Where(b => b.Misc.BlockName.EndsWith(equipmentName));
   }
   public class JsonBlockProperty : IComparable<JsonBlockProperty>
   {
+    internal bool IsIdentical(JsonBlockProperty jsonBlockProperty)
+    {
+      //throw new NotImplementedException();
+      return true;
+    }
+
     public Geometry Geometry { get; } = new Geometry();
 
     public Misc Misc { get; } = new Misc();

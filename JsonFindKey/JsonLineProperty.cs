@@ -10,6 +10,12 @@ namespace JsonFindKey
   {
     public string Type { get; set; }
     public List<Point2D> LinePoints { get; set; } = new List<Point2D>();
+
+    internal bool IsIdentical(JsonLineProperty jsonLineProperty)
+    {
+      //throw new NotImplementedException();
+      return true;
+    }
   }
 
   public class Coordinate
