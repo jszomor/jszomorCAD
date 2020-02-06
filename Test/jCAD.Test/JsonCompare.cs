@@ -8,6 +8,8 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using jCAD.PID_Builder;
+using JsonParse;
 
 namespace jCAD.Test
 {
@@ -106,7 +108,37 @@ namespace jCAD.Test
     [TestMethod]
     public void DictComparer()
     {
+      var fileName1 = @"E:\Jszomor\source\repos\jszomorCAD\jCAD.PID_Builder\JsonPIDBuild.json";
+      var fileName2 = @"E:\Jszomor\source\repos\jszomorCAD\jCAD.PID_Builder\JsonPIDBuild.json";
+      var blockDeserialize = new BlockDeserializer();
+      var jsonPID1 = blockDeserialize.ReadJsonData(fileName1);
+      var jsonPID2 = blockDeserialize.ReadJsonData(fileName2);
+      var dict1 = new Dictionary<int, Attributes>();
+      var dict2 = new Dictionary<int, JsonPID>();
+
+      for (int i = 0; i < jsonPID1.Blocks.Count; i++)
+      {
+        dict1[i] = jsonPID1.Blocks[i].Attributes;
+        //Assert.AreEqual(jsonPID1.Blocks[i], jsonPID2.Blocks[i]);       
+        if (!jsonPID1.Blocks[i].IsIdentical(jsonPID2.Blocks[i]))
+        {
+
+        }
+        //return false;
+      }
+
+      for (int i = 0; i < jsonPID1.Lines.Count; i++)
+      {
+        if (!jsonPID1.Lines[i].IsIdentical(jsonPID2.Lines[i]))
+        {
+
+        }
+        //return false;
+      }
       
+      //Console.Write(jsonPID1);
+      //Console.WriteLine();
+      //Console.Write(jsonPID2.Blocks[0]);
     }
   }
 }

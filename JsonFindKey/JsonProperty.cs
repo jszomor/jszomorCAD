@@ -36,10 +36,11 @@ namespace JsonParse
 
     public IEnumerable<JsonBlockProperty> BlocksSearch(string equipmentName) =>
       Blocks.Where(b => b.Misc.BlockName.EndsWith(equipmentName));
+
   }
   public class JsonBlockProperty : IComparable<JsonBlockProperty>
   {
-    internal bool IsIdentical(JsonBlockProperty jsonBlockProperty)
+    public bool IsIdentical(JsonBlockProperty jsonBlockProperty)
     {
       //throw new NotImplementedException();
       return true;

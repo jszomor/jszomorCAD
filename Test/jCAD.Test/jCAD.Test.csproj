@@ -70,6 +70,10 @@
       <Project>{f6263436-2892-4372-a84f-7bd6a8a4af1e}</Project>
       <Name>OrganiCAD.AutoCAD</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\jCAD.PID_Builder\jCAD.PID_Builder.csproj">
+      <Project>{bea8bdac-c575-4cdf-b08c-2d4455d3eaef}</Project>
+      <Name>jCAD.PID_Builder</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\JsonFindKey\JsonFindKey.csproj">
       <Project>{6af4b808-9848-4afa-bc0b-7dc1f7674cc8}</Project>
       <Name>JsonFindKey</Name>

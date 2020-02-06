@@ -406,7 +406,8 @@ namespace jszomorCAD
       defultLayers.Layers();
 
       var insertBlock = new InsertBlock(db);
-      var jsonPID = blockDeserialize.ReadJsonData();
+      var filePath = @"E:\Jszomor\source\repos\jszomorCAD\jCAD.PID_Builder\JsonPIDBuild.json";
+      var jsonPID = blockDeserialize.ReadJsonData(filePath);
 
       //var sBlockName = jsonPID.Blocks.Select(b => b.Misc.BlockName);
       var blockNames =
