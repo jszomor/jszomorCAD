@@ -108,21 +108,57 @@ namespace jCAD.Test
     [TestMethod]
     public void DictComparer()
     {
-      var fileName1 = @"E:\Jszomor\source\repos\jszomorCAD\jCAD.PID_Builder\JsonPIDBuild.json";
-      var fileName2 = @"E:\Jszomor\source\repos\jszomorCAD\jCAD.PID_Builder\JsonPIDBuild.json";
+      //var fileName1 = @"E:\Jszomor\source\repos\jszomorCAD\jCAD.PID_Builder\JsonPIDBuild.json";
+      var fileName1 = @"C:\Users\JANO\source\repos\jszomorCAD\jCAD.PID_Builder\JsonPIDBuild.json"; //DELL
+      //var fileName2 = @"E:\Jszomor\source\repos\jszomorCAD\jCAD.PID_Builder\JsonPIDBuild.json";
+      var fileName2 = @"C:\Users\JANO\source\repos\jszomorCAD\jCAD.PID_Builder\JsonPIDBuild.json";
       var blockDeserialize = new BlockDeserializer();
       var jsonPID1 = blockDeserialize.ReadJsonData(fileName1);
       var jsonPID2 = blockDeserialize.ReadJsonData(fileName2);
-      var dict1 = new Dictionary<int, Attributes>();
-      var dict2 = new Dictionary<int, JsonPID>();
+      var dict1 = new Dictionary<int, JsonBlockProperty>();
+      var dict2 = new Dictionary<int, JsonBlockProperty>();
+
+      DeepEx.CompareEx(jsonPID1, jsonPID2);
+
+      if (jsonPID1.Blocks.Count == jsonPID2.Blocks.Count)
+      {
+        for (int i = 0; i < jsonPID1.Blocks.Count; i++)
+        {
+          dict1.Add(jsonPID1.Blocks[i].Attributes.Internal_Id, jsonPID1.Blocks[i]);
+          dict2.Add(jsonPID2.Blocks[i].Attributes.Internal_Id, jsonPID2.Blocks[i]);
+          //Assert.AreEqual(jsonPID1.Blocks[i], jsonPID2.Blocks[i]);       
+          //if (!jsonPID1.Blocks[i].IsIdentical(jsonPID2.Blocks[i]))
+          //{
+
+          //}
+          //return false;
+        }
+      }
+
+      foreach (var i in dict1)
+      {
+        if(dict2.ContainsKey(i.Key))
+        {
+          
+
+
+          //if(dict2.ContainsValue(i.Value))
+          //{
+          //  Console.WriteLine("win");
+          //}
+          
+        }
+      }
 
       for (int i = 0; i < jsonPID1.Blocks.Count; i++)
       {
-        dict1[i] = jsonPID1.Blocks[i].Attributes;
         //Assert.AreEqual(jsonPID1.Blocks[i], jsonPID2.Blocks[i]);       
         if (!jsonPID1.Blocks[i].IsIdentical(jsonPID2.Blocks[i]))
         {
+          foreach(var j in jsonPID1.Blocks[i].Geometries)
+          {
 
+          }
         }
         //return false;
       }
@@ -135,10 +171,6 @@ namespace jCAD.Test
         }
         //return false;
       }
-      
-      //Console.Write(jsonPID1);
-      //Console.WriteLine();
-      //Console.Write(jsonPID2.Blocks[0]);
     }
   }
 }
