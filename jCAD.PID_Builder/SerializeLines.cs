@@ -40,6 +40,7 @@ namespace jCAD.PID_Builder
 
         jsonLineProperty.LinePoints.Add(ConvertAcadPoint3dToPoint2D(line.StartPoint, 1));
         jsonLineProperty.LinePoints.Add(ConvertAcadPoint3dToPoint2D(line.EndPoint, 2));
+        jsonLineProperty.Internal_Id = BlockTableRead.InternalCounter;
       }
       else if (item is Polyline)
       {
@@ -51,6 +52,7 @@ namespace jCAD.PID_Builder
           //System.Diagnostics.Debug.WriteLine($"\t\tPOLYLINE POINTS: {point}");
         }
         p.Closed = false;
+        jsonLineProperty.Internal_Id = BlockTableRead.InternalCounter;
       }
       else if (item is Polyline2d)
       {
@@ -62,6 +64,7 @@ namespace jCAD.PID_Builder
           i++;
         }
         p2d.Closed = false;
+        jsonLineProperty.Internal_Id = BlockTableRead.InternalCounter;
       }
       else if (item is Polyline3d)
       {
@@ -73,6 +76,7 @@ namespace jCAD.PID_Builder
           i++;
         }
         p3d.Closed = false;
+        jsonLineProperty.Internal_Id = BlockTableRead.InternalCounter;
       }
       return jsonLineProperty;
     }

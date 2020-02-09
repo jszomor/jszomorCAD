@@ -40,7 +40,7 @@ namespace jCAD.PID_Builder
       // if internal id is not defined as attribute or no attributes present, we retreive the OrderCounter property as internal id
       if (!ExtensionMethod.AlreadyHasAttributeDefined(btr, Internal_IdTag))
       {
-        jsonBlockProperty.Attributes.Internal_Id = BlockTableRead.OrderCounter;
+        jsonBlockProperty.Attributes.Internal_Id = BlockTableRead.InternalCounter;
       }
 
       // set attribute reference text values, based on JsonProperty name match

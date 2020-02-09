@@ -7,8 +7,12 @@ using System.Text;
 namespace JsonFindKey
 {
   public class JsonLineProperty
-  {
+  {  
     public string Type { get; set; }
+
+    [JsonProperty("Internal_Id")]
+    public int Internal_Id { get; set; }
+
     public List<Point2D> LinePoints { get; set; } = new List<Point2D>();
 
     public bool IsIdentical(JsonLineProperty jsonLineProperty)
