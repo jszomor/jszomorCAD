@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using jCAD.PID_Builder;
 using JsonParse;
+using static jCAD.Test.TestProperty;
 
 namespace jCAD.Test
 {
@@ -111,21 +112,21 @@ namespace jCAD.Test
       //var fileName1 = @"E:\Jszomor\source\repos\jszomorCAD\jCAD.PID_Builder\JsonPIDBuild.json";
       var fileName1 = @"C:\Users\JANO\source\repos\jszomorCAD\jCAD.PID_Builder\JsonPIDBuild.json"; //DELL
       //var fileName2 = @"E:\Jszomor\source\repos\jszomorCAD\jCAD.PID_Builder\JsonPIDBuild.json";
-      var fileName2 = @"C:\Users\JANO\source\repos\jszomorCAD\jCAD.PID_Builder\JsonPIDBuild.json";
+      var fileName2 = @"C:\Users\JANO\source\repos\jszomorCAD\jCAD.PID_Builder\JsonPIDBuildCopy.json";
       var blockDeserialize = new BlockDeserializer();
       var jsonPID1 = blockDeserialize.ReadJsonData(fileName1);
       var jsonPID2 = blockDeserialize.ReadJsonData(fileName2);
-      var dict1 = new Dictionary<int, JsonBlockProperty>();
-      var dict2 = new Dictionary<int, JsonBlockProperty>();
+      var dictBlock1 = new Dictionary<int, JsonBlockProperty>();
+      var dictBlock2 = new Dictionary<int, JsonBlockProperty>();
 
-      DeepEx.CompareEx(jsonPID1, jsonPID2);
+      //DeepEx.CompareEx(jsonPID1, jsonPID2);
 
       if (jsonPID1.Blocks.Count == jsonPID2.Blocks.Count)
       {
         for (int i = 0; i < jsonPID1.Blocks.Count; i++)
         {
-          dict1.Add(jsonPID1.Blocks[i].Attributes.Internal_Id, jsonPID1.Blocks[i]);
-          dict2.Add(jsonPID2.Blocks[i].Attributes.Internal_Id, jsonPID2.Blocks[i]);
+          dictBlock1.Add(jsonPID1.Blocks[i].Attributes.Internal_Id, jsonPID1.Blocks[i]);
+          dictBlock2.Add(jsonPID2.Blocks[i].Attributes.Internal_Id, jsonPID2.Blocks[i]);
           //Assert.AreEqual(jsonPID1.Blocks[i], jsonPID2.Blocks[i]);       
           //if (!jsonPID1.Blocks[i].IsIdentical(jsonPID2.Blocks[i]))
           //{
@@ -134,19 +135,27 @@ namespace jCAD.Test
           //return false;
         }
       }
-
-      foreach (var i in dict1)
+      foreach (var block in jsonPID1.Blocks)
       {
-        if(dict2.ContainsKey(i.Key))
+        if (dictBlock1.ContainsKey(block.Attributes.Internal_Id))
         {
-          
+
+        }
+      }
+      int x = 0;
+      foreach (var i in dictBlock1)
+      {
+        if(dictBlock2.ContainsKey(i.Key))
+        {
+
+          //DeepEx.GetRefTextString(dictBlock1, dictBlock2);
 
 
           //if(dict2.ContainsValue(i.Value))
           //{
           //  Console.WriteLine("win");
           //}
-          
+          x++;
         }
       }
 
@@ -162,14 +171,22 @@ namespace jCAD.Test
         }
         //return false;
       }
-
-      for (int i = 0; i < jsonPID1.Lines.Count; i++)
+      if(jsonPID1.Blocks.Count == jsonPID2.Blocks.Count)
       {
-        if (!jsonPID1.Lines[i].IsIdentical(jsonPID2.Lines[i]))
+        for (int i = 0; i < jsonPID1.Blocks.Count; i++)
         {
+          for (int j = 0; j < jsonPID2.Blocks.Count; j++)
+          {
+            var intId1 = jsonPID1.Blocks[i].Attributes.Internal_Id;
+            var intId2 = jsonPID2.Blocks[j].Attributes.Internal_Id;
 
+            if (intId1 == intId2)
+            {
+              DeepEx.GetAttributeTextString(jsonPID1.Blocks[i], jsonPID2.Blocks[j]);
+            }
+
+          }
         }
-        //return false;
       }
     }
   }

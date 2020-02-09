@@ -12,7 +12,7 @@
       },
       "Custom": {},
       "Attributes": {
-        "Internal_Id": 1,
+        "Internal_Id": 2,
         "NAME1": "i18N-PID-0120",
         "NAME2": "i18N-PID-0089",
         "NAME3": "i18N-PID-0337",
@@ -52,7 +52,7 @@
         "Distance": 11.000000000000002
       },
       "Attributes": {
-        "Internal_Id": 2,
+        "Internal_Id": 1,
         "NOTE": "Indicator+Transmitter",
         "EQUIP_TYPE": "Pressure",
         "MODEL": "Cerabar M PMC51 PMC51-AA21JA1HDBRKJS+AAF1MCP2Z1 or equivalent",

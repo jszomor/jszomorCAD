@@ -110,6 +110,7 @@
   <ItemGroup>
     <Compile Include="DeepCompare.cs" />
     <Compile Include="JsonCompare.cs" />
+    <Compile Include="TestProperty.cs" />
     <Compile Include="TruthTableTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="EquipmentSelectorTest.cs" />
