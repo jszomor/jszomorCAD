@@ -33,14 +33,6 @@ namespace jCAD.PID_Builder
         {
           using (var item = objectId.GetObject(OpenMode.ForWrite))
           {
-            if (item == null) continue;
-
-            if (item is Line || item is Polyline || item is Polyline2d || item is Polyline3d)
-            {
-              //jsonLineToSerialize.Add(jsonLineSetup.SetupLineProperty(item));
-              jsonPID.Lines.Add(jsonLineSetup.SetupLineProperty(item));
-            }
-
             if (item is BlockReference)
             {
               BlockReference blockReference = item as BlockReference;
@@ -49,11 +41,25 @@ namespace jCAD.PID_Builder
               var blockDefinition = btrObjectId.GetObject(OpenMode.ForRead) as BlockTableRecord;
               if (blockDefinition.Name != "PID-PS-FRAME")
               {
-                jsonPID.Blocks.Add(jsonBlockSetup.SetupBlockProperty(blockDefinition, tr, blockReference));                
+                jsonPID.Blocks.Add(jsonBlockSetup.SetupBlockProperty(blockDefinition, tr, blockReference));
+                InternalCounter++;
               }
             }
           }
-          InternalCounter++;
+        }
+        foreach (ObjectId objectId in btrModelSpace)
+        {
+          using (var item = objectId.GetObject(OpenMode.ForWrite))
+          {
+            if (item == null) continue;
+
+            if (item is Line || item is Polyline || item is Polyline2d || item is Polyline3d)
+            {
+              //jsonLineToSerialize.Add(jsonLineSetup.SetupLineProperty(item));
+              jsonPID.Lines.Add(jsonLineSetup.SetupLineProperty(item));
+              InternalCounter++;
+            }
+          }
         }
 
         jsonPID.Blocks.Sort();

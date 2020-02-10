@@ -7,7 +7,8 @@ using System.Text;
 namespace JsonFindKey
 {
   public class JsonLineProperty
-  {  
+  {
+    [JsonProperty("Type")]
     public string Type { get; set; }
 
     [JsonProperty("Internal_Id")]
@@ -21,13 +22,6 @@ namespace JsonFindKey
       return true;
     }
   }
-
-  public class Coordinate
-  {
-    public double X {get;set;}
-    public double Y { get; set; }
-  }
-
   public class Point2D
   {
 
@@ -35,33 +29,15 @@ namespace JsonFindKey
     public const double distanceError = 0.0001d;//double.Epsilon;
     public const double angleError = 0.00001d;//double.Epsilon;
 
+    [JsonProperty("X")]
     public double X { get; set; }
 
+    [JsonProperty("Y")]
     public double Y { get; set; }
 
-    public string Name;
-
+    [JsonProperty("Point")]
     public int Point;
 
-    //public decimal RoundedX
-    //{
-    //  get
-    //  {
-    //    return Convert.ToDecimal(Math.Round(X, _digits));
-    //  }
-    //}
-    //public decimal RoundedY
-    //{
-    //  get
-    //  {
-    //    return Convert.ToDecimal(Math.Round(Y, _digits));
-    //  }
-    //}
-
-    public Point2D()
-    {
-
-    }
     public Point2D(double x, double y, int point)
     {
       X = x;

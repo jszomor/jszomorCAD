@@ -40,8 +40,6 @@ namespace JsonParse
   }
   public class JsonBlockProperty : IComparable<JsonBlockProperty>
   {
-    public IEnumerable<Geometry> Geometries { get; }
-
     public bool IsIdentical(JsonBlockProperty jsonBlockProperty)
     {
       //foreach (var i in Geometries)
