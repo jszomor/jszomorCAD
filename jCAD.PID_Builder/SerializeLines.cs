@@ -15,17 +15,17 @@ namespace jCAD.PID_Builder
   {
     public Point2D ConvertAcadVertex2DToPoint2D(Vertex2d Acadvertex, int number)
     {
-      return new Point2D(Acadvertex.Position.X, Acadvertex.Position.Y, number);
+      return new Point2D(Math.Round(Acadvertex.Position.X,2), Math.Round(Acadvertex.Position.Y,2), number);
     }
 
     public Point2D ConvertAcadPoint2dToPoint2D(Autodesk.AutoCAD.Geometry.Point2d Acadpoint, int number)
     {
-      return new Point2D(Acadpoint.X, Acadpoint.Y, number);
+      return new Point2D(Math.Round(Acadpoint.X,2), Math.Round(Acadpoint.Y,2), number);
     }
 
     public Point2D ConvertAcadPoint3dToPoint2D(Autodesk.AutoCAD.Geometry.Point3d Acadpoint, int number)
     {
-      return new Point2D(Acadpoint.X, Acadpoint.Y, number);
+      return new Point2D(Math.Round(Acadpoint.X,2), Math.Round(Acadpoint.Y,2), number);
     }
 
     public JsonLineProperty SetupLineProperty(DBObject item)

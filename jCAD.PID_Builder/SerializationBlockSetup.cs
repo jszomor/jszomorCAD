@@ -23,8 +23,8 @@ namespace jCAD.PID_Builder
       if (!btr.IsAnonymous && !btr.IsLayout)
       jsonBlockProperty.Misc.BlockName = validBlockName;
 
-      jsonBlockProperty.Geometry.X = blockReference.Position.X;
-      jsonBlockProperty.Geometry.Y = blockReference.Position.Y;
+      jsonBlockProperty.Geometry.X = Math.Round(blockReference.Position.X,2);
+      jsonBlockProperty.Geometry.Y = Math.Round(blockReference.Position.Y,2);
 
       jsonBlockProperty.Misc.Rotation = blockReference.Rotation;
       jsonBlockProperty.General.Layer = validLayerName;
@@ -111,11 +111,11 @@ namespace jCAD.PID_Builder
 
     public double? DoubleConverter(object value)
     {
-      if (value.GetType() != typeof(string))
+      if (value.GetType() == typeof(double))
       {
         double doubleValue = Convert.ToDouble(value);
 
-        return doubleValue;
+        return Math.Round(doubleValue,2);
       }
       return null;
     }
@@ -142,7 +142,7 @@ namespace jCAD.PID_Builder
             //break;
 
 
-            prop.SetValue(block.Custom, dbrProp.Value); //serialization
+            prop.SetValue(block.Custom, DoubleConverter(dbrProp.Value)); //serialization
             break;
           }
         }

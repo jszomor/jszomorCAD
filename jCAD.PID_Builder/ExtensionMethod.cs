@@ -6,6 +6,7 @@ using System.Linq.Expressions;
 using Autodesk.AutoCAD.ApplicationServices;
 using Autodesk.AutoCAD.DatabaseServices;
 using Autodesk.AutoCAD.Geometry;
+using JsonParse;
 //using Organica.Core.Logging;
 //using OrganiCAD.Mechanical.Models;
 
@@ -13,6 +14,29 @@ namespace jCAD.PID_Builder
 {
 	public static class ExtensionMethod
 	{
+		//public static void CommentCollector(List<object> comments, string path)
+		//{
+		//	foreach(var comment in comments)
+		//	{
+		//		WriteToFile(Convert.ToString(comment), path);
+		//	}
+		//}
+		//public static StreamWriter WriteToFile(string comment, string path)
+		//{
+		//	//string dirPath = @"E:\Jszomor\source\repos\jszomorCAD\jCAD.PID_Builder\Difference.txt"; //work
+		//	//string dirPath = @"C:\Users\JANO\Google Drive\Programozas\Practice"; //home
+		//	//string filePath = dirPath + file;
+		//	// ha nem létezik a könyvtár
+		//	//if (Directory.Exists(path) == false)
+		//	//{
+		//	//	// akkor elkészítjük
+		//	//	Directory.CreateDirectory(path);
+		//	//}
+
+		//	FileInfo fi = new FileInfo(path);
+		//	StreamWriter streamWriteOutput = fi.CreateText();
+		//	return streamWriteOutput;
+		//}
 
 		public static void ExecuteActionOnModelSpace(Database database, Action<Transaction, BlockTableRecord> action)
 		{
@@ -1628,7 +1652,6 @@ namespace jCAD.PID_Builder
 			}
 			return null; // should we return something else here?
 		}
-
 	}
 	[Serializable]
 	internal class NoAttriburefound : System.Exception

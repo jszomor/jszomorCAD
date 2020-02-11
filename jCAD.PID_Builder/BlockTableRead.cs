@@ -47,6 +47,7 @@ namespace jCAD.PID_Builder
             }
           }
         }
+        //separate loop for lines because of InternalCounter
         foreach (ObjectId objectId in btrModelSpace)
         {
           using (var item = objectId.GetObject(OpenMode.ForWrite))
