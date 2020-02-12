@@ -57,7 +57,7 @@ namespace jCAD.PID_Builder
             if (item is Line || item is Polyline || item is Polyline2d || item is Polyline3d)
             {
               //jsonLineToSerialize.Add(jsonLineSetup.SetupLineProperty(item));
-              jsonPID.Lines.Add(jsonLineSetup.SetupLineProperty(item));
+              jsonPID.Lines.Add(jsonLineSetup.SetupLineProperty(item, jsonBlockSetup));
               InternalCounter++;
             }
           }

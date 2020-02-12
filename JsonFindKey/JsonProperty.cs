@@ -11,45 +11,12 @@ namespace JsonParse
   {
     public List<JsonBlockProperty> Blocks { get; } = new List<JsonBlockProperty>();
     public List<JsonLineProperty> Lines { get; } = new List<JsonLineProperty>();
-
-    //[Obsolete("Use BlocksSearch method instead, as it returns multiple lements with the same name")]
-    //public JsonBlockProperty BlockSearch(string equipmentName) => 
-    //  Blocks.SingleOrDefault(b => b.Misc.BlockName == equipmentName);
-
-    public bool IsEqual(JsonPID other)
-    {
-
-      for(int i = 0; i < Blocks.Count; i++)
-      {
-        if(!Blocks[i].IsIdentical(other.Blocks[i]))
-          return false;
-      }
-
-      for (int i = 0; i < Lines.Count; i++)
-      {
-        if (!Lines[i].IsIdentical(other.Lines[i]))
-          return false;
-      }
-
-      return true;
-    }
-
     public IEnumerable<JsonBlockProperty> BlocksSearch(string equipmentName) =>
       Blocks.Where(b => b.Misc.BlockName.EndsWith(equipmentName));
 
   }
   public class JsonBlockProperty : IComparable<JsonBlockProperty>
   {
-    public bool IsIdentical(JsonBlockProperty jsonBlockProperty)
-    {
-      //foreach (var i in Geometries)
-      //{
-
-      //}
-      //throw new NotImplementedException();
-      return true;
-    }
-
     public Geometry Geometry { get; } = new Geometry();
 
     public Misc Misc { get; } = new Misc();

@@ -28,7 +28,7 @@ namespace jCAD.PID_Builder
       return new Point2D(Math.Round(Acadpoint.X,2), Math.Round(Acadpoint.Y,2), number);
     }
 
-    public JsonLineProperty SetupLineProperty(DBObject item)
+    public JsonLineProperty SetupLineProperty(DBObject item, JsonBlockSetup jsonBlockSetup)
     {
       var jsonLineProperty = new JsonLineProperty();
 
@@ -40,6 +40,7 @@ namespace jCAD.PID_Builder
 
         jsonLineProperty.LinePoints.Add(ConvertAcadPoint3dToPoint2D(line.StartPoint, 1));
         jsonLineProperty.LinePoints.Add(ConvertAcadPoint3dToPoint2D(line.EndPoint, 2));
+        jsonLineProperty.Layer = jsonBlockSetup.RealNameFinder(line.Layer);
         jsonLineProperty.Internal_Id = BlockTableRead.InternalCounter;
       }
       else if (item is Polyline)
@@ -49,6 +50,7 @@ namespace jCAD.PID_Builder
         {
           var point = p.GetPoint2dAt(i);
           jsonLineProperty.LinePoints.Add(ConvertAcadPoint2dToPoint2D(point, i + 1));
+          jsonLineProperty.Layer = jsonBlockSetup.RealNameFinder(p.Layer);
           //System.Diagnostics.Debug.WriteLine($"\t\tPOLYLINE POINTS: {point}");
         }
         p.Closed = false;
@@ -61,6 +63,7 @@ namespace jCAD.PID_Builder
         foreach (Vertex2d polyline in p2d)
         {
           jsonLineProperty.LinePoints.Add(ConvertAcadVertex2DToPoint2D(polyline, i));
+          jsonLineProperty.Layer = jsonBlockSetup.RealNameFinder(p2d.Layer);
           i++;
         }
         p2d.Closed = false;
@@ -73,6 +76,7 @@ namespace jCAD.PID_Builder
         foreach (Vertex2d polyline in p3d)
         {
           jsonLineProperty.LinePoints.Add(ConvertAcadVertex2DToPoint2D(polyline, i));
+          jsonLineProperty.Layer = jsonBlockSetup.RealNameFinder(p3d.Layer);
           i++;
         }
         p3d.Closed = false;

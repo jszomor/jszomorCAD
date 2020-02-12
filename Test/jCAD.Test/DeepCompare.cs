@@ -1,13 +1,6 @@
-﻿using jCAD.PID_Builder;
-using JsonFindKey;
+﻿using JsonFindKey;
 using JsonParse;
-using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
 
 namespace jCAD.Test
 {
@@ -26,19 +19,26 @@ namespace jCAD.Test
 				Comments.Add(($"Type: {properties1}"));
 				return false;
 			}
-
 			return true;
 		}
 
 		public bool LinePointsComparer(JsonLineProperty line1, JsonLineProperty line2)
 		{
+			if (line1.LinePoints.Count != line2.LinePoints.Count)
+			{
+				Comments.Add($"LinePoint number is not equal at Id: {line1.Internal_Id}");
+				return false;
+			}
+
 			for (int j = 0; j < line1.LinePoints.Count; j++)
 			{
 				var properties1 = line1.LinePoints[j].GetType().GetProperties();
 				var properties2 = line2.LinePoints[j].GetType().GetProperties();
 				if (properties1.Length != properties2.Length) return false;
+
 				for (int i = 0; i < properties1.Length; i++)
 				{
+
 					var customAttributes = properties1[i]
 						 .GetCustomAttributes(typeof(Newtonsoft.Json.JsonPropertyAttribute), false);
 					if (customAttributes.Length == 1)
@@ -65,8 +65,6 @@ namespace jCAD.Test
 					}
 				}
 			}
-			//System.Diagnostics.Debug.WriteLine($"AutoCAD TAG: {attRef.Tag}");
-
 			return true;
 		}
 		public bool BlockGeometryCompare(JsonBlockProperty block1, JsonBlockProperty block2)
@@ -75,7 +73,6 @@ namespace jCAD.Test
 			var properties1 = block1.Geometry.GetType().GetProperties();
 			var properties2 = block2.Geometry.GetType().GetProperties();
 			if (properties1.Length != properties2.Length) return false;
-			var list = new List<object>();
 			for (int i = 0; i < properties1.Length; i++)
 			{
 				var customAttributes = properties1[i]

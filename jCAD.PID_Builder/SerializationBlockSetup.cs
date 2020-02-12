@@ -1,12 +1,6 @@
 ﻿using Autodesk.AutoCAD.DatabaseServices;
-using Autodesk.AutoCAD.Geometry;
-using JsonFindKey;
 using JsonParse;
 using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
 
 namespace jCAD.PID_Builder
 {
@@ -47,14 +41,8 @@ namespace jCAD.PID_Builder
         }
         else if (dbrProp.PropertyName == "Block Table1")
         {
-          //if (jsonBlockProperty.Misc.BlockName == "filter")
-          //{
-          //  jsonBlockProperty.Custom.BlockTableValue = DoubleConverter(dbrProp.Value) + 1; // for some reason this equipment get one less value
-          //}
-          //else
-          //{
-            jsonBlockProperty.Custom.BlockTableValue = DoubleConverter(dbrProp.Value);
-          //}
+          jsonBlockProperty.Custom.BlockTableValue = DoubleConverter(dbrProp.Value);
+         
         }
         else
         {
@@ -86,7 +74,7 @@ namespace jCAD.PID_Builder
       return jsonBlockProperty;
     }
 
-    public String RealNameFinder(string originalName)
+    public string RealNameFinder(string originalName)
     {
       if (originalName == null) return null;
       var result = originalName;
@@ -135,13 +123,6 @@ namespace jCAD.PID_Builder
           //System.Diagnostics.Debug.WriteLine($"\tJSONProperty Name: {jsonTagName}");
           if (dbrProp.PropertyName == jsonTagName)
           {
-            //var propValue = prop.GetValue(block.Custom);
-            //if (propValue == null) continue;
-
-            //dbrProp.Value = Convert.ToInt16(propValue);
-            //break;
-
-
             prop.SetValue(block.Custom, DoubleConverter(dbrProp.Value)); //serialization
             break;
           }

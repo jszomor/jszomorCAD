@@ -1,16 +1,11 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using jCAD.PID_Builder;
 using JsonParse;
-using static jCAD.Test.TestProperty;
 using JsonFindKey;
 
 namespace jCAD.Test
@@ -121,13 +116,8 @@ namespace jCAD.Test
 		}
 		public static StreamWriter WriteToFile(string path)
 		{
-			//string dirPath = @"E:\Jszomor\source\repos\jszomorCAD\jCAD.PID_Builder\Difference.txt"; //work
-			//string dirPath = @"C:\Users\JANO\Google Drive\Programozas\Practice"; //home
-			//string filePath = dirPath + file;
-			// ha nem létezik a könyvtár
 			//if (Directory.Exists(path) == false)
 			//{
-			//	// akkor elkészítjük
 			//	Directory.CreateDirectory(path);
 			//}
 			FileInfo fi = new FileInfo(path);
@@ -136,8 +126,15 @@ namespace jCAD.Test
 		}
 
 		[TestMethod]
-		public void DeepComparer()
+		public void JsonCompareResult()
 		{
+			//Assert.IsTrue(DeepComparer());
+			DeepComparer();
+		}
+
+		public bool DeepComparer()
+		{
+			bool isIdentical = false;
 			var deepex = new DeepEx();
 			string FilePath = @"E:\Jszomor\source\repos\jszomorCAD\jCAD.PID_Builder\JsonCompareResult.txt";
 			var fileName1 = @"E:\Jszomor\source\repos\jszomorCAD\jCAD.PID_Builder\JsonPIDBuild.json";
@@ -148,29 +145,32 @@ namespace jCAD.Test
 			var jsonPID1 = blockDeserialize.ReadJsonData(fileName1);
 			var jsonPID2 = blockDeserialize.ReadJsonData(fileName2);		
 			
-			BlocksComparer(jsonPID1, jsonPID2, deepex);
-			LinesComparer(jsonPID1, jsonPID2, deepex);
+			BlockComparer(jsonPID1, jsonPID2, deepex);
+			LineComparer(jsonPID1, jsonPID2, deepex);
 			
 			if (jsonPID1.Blocks.Count != jsonPID2.Blocks.Count || jsonPID1.Lines.Count != jsonPID2.Lines.Count)
 			{
+				deepex.Comments.Insert(0, "Differences:");
 				deepex.Comments.Add("Length is not equal!");
 			}
 
 			if (deepex.Comments.Count == 0)
 			{
 				deepex.Comments.Add("Files are eqvivalent!");
+				isIdentical = true;
 			}
 			else 
 			{
+				if (deepex.Comments.Contains("Differences:") == false)
+					deepex.Comments.Insert(0, "Differences:");
+
 				deepex.Comments.Add("Files are not eqvivalent!");
 			}
 			CommentCollector(deepex.Comments, FilePath);
-			//MessageBox.Show(isIdentical.ToString());
+			return isIdentical;
 		}
-		public bool BlocksComparer(JsonPID jsonPID1, JsonPID jsonPID2, DeepEx deepEx)
+		public void BlockComparer(JsonPID jsonPID1, JsonPID jsonPID2, DeepEx deepEx)
 		{
-			var isIdentical = false;
-
 			var dictBlock1 = new Dictionary<int, JsonBlockProperty>();
 			var dictBlock2 = new Dictionary<int, JsonBlockProperty>();
 
@@ -183,42 +183,16 @@ namespace jCAD.Test
 			{
 				if (dictBlock2.TryGetValue(i.Key, out JsonBlockProperty compareValue))
 				{
-					if (deepEx.BlockGeometryCompare(i.Value, compareValue) == false)
-					{
-						isIdentical = false;
-						//break;
-					}
-					if (deepEx.BlockMiscCompare(i.Value, compareValue) == false)
-					{
-						isIdentical = false;
-						//break;
-					}
-					if (deepEx.BlockGeneralCompare(i.Value, compareValue) == false)
-					{
-						isIdentical = false;
-						//break;
-					}
-					if (deepEx.BlockCustomCompare(i.Value, compareValue) == false)
-					{
-						isIdentical = false;
-						//break;
-					}
-					if (deepEx.BlockAttributesCompare(i.Value, compareValue) == false)
-					{
-						isIdentical = false;
-						//break;
-					}
-
-					isIdentical = true;
+					deepEx.BlockGeometryCompare(i.Value, compareValue);
+					deepEx.BlockMiscCompare(i.Value, compareValue);
+					deepEx.BlockGeneralCompare(i.Value, compareValue);
+					deepEx.BlockCustomCompare(i.Value, compareValue);
+					deepEx.BlockAttributesCompare(i.Value, compareValue);
 				}
 			}
-			//return false;
-			return isIdentical;
 		}
-		public bool LinesComparer(JsonPID jsonPID1, JsonPID jsonPID2, DeepEx deepEx)
+		public void LineComparer(JsonPID jsonPID1, JsonPID jsonPID2, DeepEx deepEx)
 		{
-			var isIdentical = false;
-
 			var dictLines1 = new Dictionary<int, JsonLineProperty>();
 			var dictLines2 = new Dictionary<int, JsonLineProperty>();
 
@@ -231,21 +205,10 @@ namespace jCAD.Test
 			{
 				if (dictLines2.TryGetValue(i.Key, out JsonLineProperty compareValue))
 				{
-					if (deepEx.LineTypeComparer(i.Value, compareValue) == false)
-					{
-						isIdentical = false;
-						//break;
-					}
-					if (deepEx.LinePointsComparer(i.Value, compareValue) == false)
-					{
-						isIdentical = false;
-						//break;
-					}
-
-					isIdentical = true;
+					deepEx.LineTypeComparer(i.Value, compareValue);
+					deepEx.LinePointsComparer(i.Value, compareValue);
 				}
 			}
-			return isIdentical;
 		}
 	}
 }
