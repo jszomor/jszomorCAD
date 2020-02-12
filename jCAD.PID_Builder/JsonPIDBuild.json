@@ -2,15 +2,22 @@
   "Blocks": [
     {
       "Geometry": {
-        "Position X": 78.0
+        "Position X": 78.0,
+        "Position Y": 0.0
       },
       "Misc": {
-        "Name": "RefPIDInfluent"
+        "Name": "RefPIDInfluent",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "0"
       },
-      "Custom": {},
+      "Custom": {
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Distance": 0.0,
+        "Distance1": 0.0
+      },
       "Attributes": {
         "Internal_Id": 1,
         "NAME1": "i18N-PID-0120",
@@ -40,7 +47,8 @@
         "Position Y": 22.12
       },
       "Misc": {
-        "Name": "chamber"
+        "Name": "chamber",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "unit"
@@ -49,6 +57,8 @@
         "Position X": 47.0,
         "Position Y": -6.0,
         "Angle": 0.0,
+        "Flip state": 0,
+        "Flip state1": 0,
         "Visibility": "no channels",
         "Distance": 94.0,
         "Distance1": 21.0,
@@ -74,15 +84,19 @@
         "Position Y": 36.62
       },
       "Misc": {
-        "Name": "instrumentation tag"
+        "Name": "instrumentation tag",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "instrumentation"
       },
       "Custom": {
         "Angle": 3.14,
+        "Flip state": 0,
+        "Flip state1": 0,
         "Visibility": "Level Transmitter",
-        "Distance": 13.0
+        "Distance": 13.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 3,
@@ -109,15 +123,19 @@
         "Position Y": 89.62
       },
       "Misc": {
-        "Name": "instrumentation tag"
+        "Name": "instrumentation tag",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "instrumentation"
       },
       "Custom": {
         "Angle": 3.14,
+        "Flip state": 0,
+        "Flip state1": 0,
         "Visibility": "Flow Indicator/Transmitter",
-        "Distance": 8.0
+        "Distance": 8.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 4,
@@ -154,7 +172,11 @@
         "Position X": 0.45,
         "Position Y": -3.9,
         "Angle": 0.0,
-        "Visibility": "Gate Valve"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Gate Valve",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 5,
@@ -192,7 +214,11 @@
         "Position X": 0.45,
         "Position Y": -3.9,
         "Angle": 0.0,
-        "Visibility": "Gate Valve"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Gate Valve",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 6,
@@ -230,7 +256,11 @@
         "Position X": 0.45,
         "Position Y": -3.9,
         "Angle": 0.0,
-        "Visibility": "Check Valve"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Check Valve",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 7,
@@ -268,7 +298,11 @@
         "Position X": 0.45,
         "Position Y": -3.9,
         "Angle": 0.0,
-        "Visibility": "Check Valve"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Check Valve",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 8,
@@ -296,15 +330,19 @@
         "Position Y": 71.0
       },
       "Misc": {
-        "Name": "instrumentation tag"
+        "Name": "instrumentation tag",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "instrumentation"
       },
       "Custom": {
         "Angle": 1.57,
+        "Flip state": 0,
+        "Flip state1": 0,
         "Visibility": "Pressure Indicator/Transmitter",
-        "Distance": 6.5
+        "Distance": 6.5,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 9,
@@ -341,7 +379,11 @@
         "Position X": 0.45,
         "Position Y": -3.9,
         "Angle": 0.0,
-        "Visibility": "Butterfly valve"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Butterfly valve",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 10,
@@ -379,7 +421,11 @@
         "Position X": 0.45,
         "Position Y": -3.9,
         "Angle": 0.0,
-        "Visibility": "Butterfly valve"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Butterfly valve",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 11,
@@ -407,7 +453,8 @@
         "Position Y": 88.0
       },
       "Misc": {
-        "Name": "valve"
+        "Name": "valve",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "valve"
@@ -416,7 +463,11 @@
         "Position X": 0.45,
         "Position Y": -3.9,
         "Angle": 0.0,
-        "Visibility": "Ball Valve"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Ball Valve",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 12,
@@ -444,15 +495,19 @@
         "Position Y": 4.34
       },
       "Misc": {
-        "Name": "instrumentation tag"
+        "Name": "instrumentation tag",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "instrumentation"
       },
       "Custom": {
         "Angle": 3.14,
+        "Flip state": 0,
+        "Flip state1": 0,
         "Visibility": "Level Switch - HH",
-        "Distance": 13.0
+        "Distance": 13.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 13,
@@ -479,15 +534,19 @@
         "Position Y": 2.0
       },
       "Misc": {
-        "Name": "instrumentation tag"
+        "Name": "instrumentation tag",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "instrumentation"
       },
       "Custom": {
         "Angle": 3.14,
+        "Flip state": 0,
+        "Flip state1": 0,
         "Visibility": "Flow Indicator/Transmitter",
-        "Distance": 13.0
+        "Distance": 13.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 14,
@@ -514,7 +573,8 @@
         "Position Y": -10.5
       },
       "Misc": {
-        "Name": "TWT"
+        "Name": "TWT",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "unit"
@@ -523,6 +583,8 @@
         "Position X": 25.5,
         "Position Y": -7.0,
         "Angle": 0.0,
+        "Flip state": 0,
+        "Flip state1": 0,
         "Visibility": "no channels",
         "Distance": 123.0,
         "Distance1": 21.0,
@@ -547,15 +609,19 @@
         "Position Y": 4.34
       },
       "Misc": {
-        "Name": "instrumentation tag"
+        "Name": "instrumentation tag",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "instrumentation"
       },
       "Custom": {
         "Angle": 3.14,
+        "Flip state": 0,
+        "Flip state1": 0,
         "Visibility": "Level Switch - H",
-        "Distance": 13.0
+        "Distance": 13.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 16,
@@ -582,15 +648,19 @@
         "Position Y": 4.34
       },
       "Misc": {
-        "Name": "instrumentation tag"
+        "Name": "instrumentation tag",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "instrumentation"
       },
       "Custom": {
         "Angle": 3.14,
+        "Flip state": 0,
+        "Flip state1": 0,
         "Visibility": "Level Switch - L",
-        "Distance": 13.0
+        "Distance": 13.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 17,
@@ -613,15 +683,22 @@
     },
     {
       "Geometry": {
-        "Position X": 3396.0
+        "Position X": 3396.0,
+        "Position Y": 0.0
       },
       "Misc": {
-        "Name": "RefPIDEfluent"
+        "Name": "RefPIDEfluent",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "0"
       },
-      "Custom": {},
+      "Custom": {
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Distance": 0.0,
+        "Distance1": 0.0
+      },
       "Attributes": {
         "Internal_Id": 18,
         "NAME1": "i18N-PID-0060",
@@ -646,15 +723,19 @@
         "Position Y": -92.36
       },
       "Misc": {
-        "Name": "instrumentation tag"
+        "Name": "instrumentation tag",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "instrumentation"
       },
       "Custom": {
         "Angle": 3.14,
+        "Flip state": 0,
+        "Flip state1": 0,
         "Visibility": "Level Switch - HH",
-        "Distance": 13.0
+        "Distance": 13.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 19,
@@ -681,15 +762,19 @@
         "Position Y": 77.07
       },
       "Misc": {
-        "Name": "instrumentation tag"
+        "Name": "instrumentation tag",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "instrumentation"
       },
       "Custom": {
         "Angle": 3.14,
+        "Flip state": 0,
+        "Flip state1": 0,
         "Visibility": "Level Transmitter",
-        "Distance": 13.0
+        "Distance": 13.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 20,
@@ -716,7 +801,8 @@
         "Position Y": -108.0
       },
       "Misc": {
-        "Name": "leachet_coll_chmbr"
+        "Name": "leachet_coll_chmbr",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "unit"
@@ -725,6 +811,8 @@
         "Position X": 50.0,
         "Position Y": -5.0,
         "Angle": 0.0,
+        "Flip state": 0,
+        "Flip state1": 0,
         "Visibility": "no channels",
         "Distance": 100.0,
         "Distance1": 17.0,
@@ -749,15 +837,19 @@
         "Position Y": -92.36
       },
       "Misc": {
-        "Name": "instrumentation tag"
+        "Name": "instrumentation tag",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "instrumentation"
       },
       "Custom": {
         "Angle": 3.14,
+        "Flip state": 0,
+        "Flip state1": 0,
         "Visibility": "Level Switch - H",
-        "Distance": 13.0
+        "Distance": 13.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 22,
@@ -784,15 +876,19 @@
         "Position Y": -92.36
       },
       "Misc": {
-        "Name": "instrumentation tag"
+        "Name": "instrumentation tag",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "instrumentation"
       },
       "Custom": {
         "Angle": 3.14,
+        "Flip state": 0,
+        "Flip state1": 0,
         "Visibility": "Level Switch - L",
-        "Distance": 13.0
+        "Distance": 13.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 23,
@@ -819,15 +915,19 @@
         "Position Y": 77.07
       },
       "Misc": {
-        "Name": "instrumentation tag"
+        "Name": "instrumentation tag",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "instrumentation"
       },
       "Custom": {
         "Angle": 3.14,
+        "Flip state": 0,
+        "Flip state1": 0,
         "Visibility": "Level Switch - LL",
-        "Distance": 13.0
+        "Distance": 13.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 24,
@@ -854,15 +954,19 @@
         "Position Y": 77.07
       },
       "Misc": {
-        "Name": "instrumentation tag"
+        "Name": "instrumentation tag",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "instrumentation"
       },
       "Custom": {
         "Angle": 3.14,
+        "Flip state": 0,
+        "Flip state1": 0,
         "Visibility": "Level Switch - HH",
-        "Distance": 13.0
+        "Distance": 13.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 25,
@@ -899,7 +1003,11 @@
         "Position X": 0.45,
         "Position Y": -3.9,
         "Angle": 0.0,
-        "Visibility": "Check Valve"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Check Valve",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 26,
@@ -937,7 +1045,11 @@
         "Position X": 0.45,
         "Position Y": -3.9,
         "Angle": 0.0,
-        "Visibility": "Check Valve"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Check Valve",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 27,
@@ -975,7 +1087,11 @@
         "Position X": 0.45,
         "Position Y": -3.9,
         "Angle": 0.0,
-        "Visibility": "Gate Valve"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Gate Valve",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 28,
@@ -1013,7 +1129,11 @@
         "Position X": 0.45,
         "Position Y": -3.9,
         "Angle": 0.0,
-        "Visibility": "Gate Valve"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Gate Valve",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 29,
@@ -1041,7 +1161,8 @@
         "Position Y": -141.24
       },
       "Misc": {
-        "Name": "valve"
+        "Name": "valve",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "valve"
@@ -1050,7 +1171,11 @@
         "Position X": 0.45,
         "Position Y": -3.9,
         "Angle": 0.0,
-        "Visibility": "Ball Valve"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Ball Valve",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 30,
@@ -1078,7 +1203,8 @@
         "Position Y": -141.24
       },
       "Misc": {
-        "Name": "valve"
+        "Name": "valve",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "valve"
@@ -1087,7 +1213,11 @@
         "Position X": 0.45,
         "Position Y": -3.9,
         "Angle": 0.0,
-        "Visibility": "Ball Valve"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Ball Valve",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 31,
@@ -1115,7 +1245,8 @@
         "Position Y": 57.36
       },
       "Misc": {
-        "Name": "chamber"
+        "Name": "chamber",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "unit"
@@ -1124,6 +1255,8 @@
         "Position X": 36.52,
         "Position Y": -6.0,
         "Angle": 0.0,
+        "Flip state": 0,
+        "Flip state1": 0,
         "Visibility": "no channels",
         "Distance": 71.0,
         "Distance1": 32.0,
@@ -1158,7 +1291,11 @@
         "Position X": 0.45,
         "Position Y": -3.9,
         "Angle": 0.0,
-        "Visibility": "Butterfly valve"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Butterfly valve",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 33,
@@ -1183,15 +1320,22 @@
     },
     {
       "Geometry": {
-        "Position X": 9030.0
+        "Position X": 9030.0,
+        "Position Y": 0.0
       },
       "Misc": {
-        "Name": "RefOPEXTable"
+        "Name": "RefOPEXTable",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "DEFPOINTS"
       },
-      "Custom": {},
+      "Custom": {
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Distance": 0.0,
+        "Distance1": 0.0
+      },
       "Attributes": {
         "Internal_Id": 34
       }
@@ -1202,7 +1346,8 @@
         "Position Y": 36.05
       },
       "Misc": {
-        "Name": "valve"
+        "Name": "valve",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "valve"
@@ -1211,7 +1356,11 @@
         "Position X": 0.45,
         "Position Y": -3.9,
         "Angle": 0.0,
-        "Visibility": "Knife Valve"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Knife Valve",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 35,
@@ -1239,7 +1388,8 @@
         "Position Y": 33.12
       },
       "Misc": {
-        "Name": "valve"
+        "Name": "valve",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "valve"
@@ -1248,7 +1398,11 @@
         "Position X": 0.45,
         "Position Y": -3.9,
         "Angle": 0.0,
-        "Visibility": "Knife Valve"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Knife Valve",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 36,
@@ -1272,10 +1426,12 @@
     },
     {
       "Geometry": {
-        "Position X": 180.08
+        "Position X": 180.08,
+        "Position Y": 0.0
       },
       "Misc": {
-        "Name": "valve"
+        "Name": "valve",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "valve"
@@ -1284,7 +1440,11 @@
         "Position X": 0.45,
         "Position Y": -3.9,
         "Angle": 0.0,
-        "Visibility": "Knife Valve"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Knife Valve",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 37,
@@ -1308,10 +1468,12 @@
     },
     {
       "Geometry": {
-        "Position X": 106.23
+        "Position X": 106.23,
+        "Position Y": 0.0
       },
       "Misc": {
-        "Name": "valve"
+        "Name": "valve",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "valve"
@@ -1320,7 +1482,11 @@
         "Position X": 0.45,
         "Position Y": -3.9,
         "Angle": 0.0,
-        "Visibility": "Knife Valve"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Knife Valve",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 38,
@@ -1358,7 +1524,11 @@
         "Position X": 0.45,
         "Position Y": -3.9,
         "Angle": 0.0,
-        "Visibility": "Butterfly valve"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Butterfly valve",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 39,
@@ -1386,12 +1556,18 @@
         "Position Y": 150.99
       },
       "Misc": {
-        "Name": "RefAL2UtilityWater"
+        "Name": "RefAL2UtilityWater",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "0"
       },
-      "Custom": {},
+      "Custom": {
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Distance": 0.0,
+        "Distance1": 0.0
+      },
       "Attributes": {
         "Internal_Id": 40,
         "Name": "i18N-PID-0246",
@@ -1404,7 +1580,8 @@
         "Position Y": -10.0
       },
       "Misc": {
-        "Name": "chamber"
+        "Name": "chamber",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "unit"
@@ -1413,6 +1590,8 @@
         "Position X": 16.0,
         "Position Y": -5.0,
         "Angle": 0.0,
+        "Flip state": 0,
+        "Flip state1": 0,
         "Visibility": "no channels",
         "Distance": 32.0,
         "Distance1": 20.0,
@@ -1437,7 +1616,8 @@
         "Position Y": -4.0
       },
       "Misc": {
-        "Name": "channel gate"
+        "Name": "channel gate",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "equipment"
@@ -1446,7 +1626,11 @@
         "Position X": 0.5,
         "Position Y": -2.07,
         "Angle": 0.0,
-        "Visibility": "Motor"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Motor",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 42,
@@ -1485,7 +1669,8 @@
         "Position Y": 34.98
       },
       "Misc": {
-        "Name": "channel gate"
+        "Name": "channel gate",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "equipment"
@@ -1494,7 +1679,11 @@
         "Position X": 0.5,
         "Position Y": -2.07,
         "Angle": 0.0,
-        "Visibility": "Motor"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Motor",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 43,
@@ -1533,7 +1722,8 @@
         "Position Y": 33.62
       },
       "Misc": {
-        "Name": "pump"
+        "Name": "pump",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "equipment"
@@ -1542,11 +1732,15 @@
         "Position X": 0.03,
         "Position Y": -6.01,
         "Angle": 0.0,
+        "Flip state": 0,
+        "Flip state1": 0,
         "Angle1": 1.57,
         "Angle2": 4.71,
         "Visibility": "Centrifugal pump+tag+freq",
         "Centrifugal Pump": 20,
-        "Try1": 10.0
+        "Try1": 10.0,
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 44,
@@ -1593,11 +1787,15 @@
         "Position X": 6.0,
         "Position Y": 0.0,
         "Angle": 1.57,
+        "Flip state": 0,
+        "Flip state1": 0,
         "Angle1": 0.0,
         "Angle2": 0.0,
         "Visibility": "Centrifugal pump+tag",
         "Centrifugal Pump": 0,
-        "Try1": 10.0
+        "Try1": 10.0,
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 45,
@@ -1634,7 +1832,8 @@
         "Position Y": 33.62
       },
       "Misc": {
-        "Name": "pump"
+        "Name": "pump",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "equipment"
@@ -1643,11 +1842,15 @@
         "Position X": 0.03,
         "Position Y": -6.01,
         "Angle": 0.0,
+        "Flip state": 0,
+        "Flip state1": 0,
         "Angle1": 1.57,
         "Angle2": 4.71,
         "Visibility": "Centrifugal pump+tag+freq",
         "Centrifugal Pump": 20,
-        "Try1": 10.0
+        "Try1": 10.0,
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 46,
@@ -1684,7 +1887,8 @@
         "Position Y": -10.0
       },
       "Misc": {
-        "Name": "chamber"
+        "Name": "chamber",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "unit"
@@ -1693,6 +1897,8 @@
         "Position X": 16.0,
         "Position Y": -5.0,
         "Angle": 0.0,
+        "Flip state": 0,
+        "Flip state1": 0,
         "Visibility": "no channels",
         "Distance": 32.0,
         "Distance1": 20.0,
@@ -1717,12 +1923,18 @@
         "Position Y": 40.0
       },
       "Misc": {
-        "Name": "RefAL5Leachate"
+        "Name": "RefAL5Leachate",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "0"
       },
-      "Custom": {},
+      "Custom": {
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Distance": 0.0,
+        "Distance1": 0.0
+      },
       "Attributes": {
         "Internal_Id": 48,
         "Name": "i18N-PID-0263",
@@ -1735,12 +1947,18 @@
         "Position Y": 60.0
       },
       "Misc": {
-        "Name": "RefAL22WasteSludge"
+        "Name": "RefAL22WasteSludge",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "0"
       },
-      "Custom": {},
+      "Custom": {
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Distance": 0.0,
+        "Distance1": 0.0
+      },
       "Attributes": {
         "Internal_Id": 49,
         "Name": "i18N-PID-0255",
@@ -1753,15 +1971,19 @@
         "Position Y": 230.99
       },
       "Misc": {
-        "Name": "instrumentation tag"
+        "Name": "instrumentation tag",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "instrumentation"
       },
       "Custom": {
         "Angle": 3.14,
+        "Flip state": 0,
+        "Flip state1": 0,
         "Visibility": "Pressure Indicator",
-        "Distance": 6.5
+        "Distance": 6.5,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 50,
@@ -1788,15 +2010,19 @@
         "Position Y": 177.56
       },
       "Misc": {
-        "Name": "instrumentation tag"
+        "Name": "instrumentation tag",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "instrumentation"
       },
       "Custom": {
         "Angle": 3.14,
+        "Flip state": 0,
+        "Flip state1": 0,
         "Visibility": "Pressure Indicator",
-        "Distance": 6.5
+        "Distance": 6.5,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 51,
@@ -1823,7 +2049,8 @@
         "Position Y": 225.49
       },
       "Misc": {
-        "Name": "valve"
+        "Name": "valve",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "valve"
@@ -1832,7 +2059,11 @@
         "Position X": 0.45,
         "Position Y": -3.9,
         "Angle": 0.0,
-        "Visibility": "Ball Valve"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Ball Valve",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 52,
@@ -1860,7 +2091,8 @@
         "Position Y": 172.06
       },
       "Misc": {
-        "Name": "valve"
+        "Name": "valve",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "valve"
@@ -1869,7 +2101,11 @@
         "Position X": 0.45,
         "Position Y": -3.9,
         "Angle": 0.0,
-        "Visibility": "Ball Valve"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Ball Valve",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 53,
@@ -1907,7 +2143,11 @@
         "Position X": 0.45,
         "Position Y": -3.9,
         "Angle": 0.0,
-        "Visibility": "Ball Valve"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Ball Valve",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 54,
@@ -1945,7 +2185,11 @@
         "Position X": 0.45,
         "Position Y": -3.9,
         "Angle": 0.0,
-        "Visibility": "Ball Valve"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Ball Valve",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 55,
@@ -1973,12 +2217,18 @@
         "Position Y": 198.78
       },
       "Misc": {
-        "Name": "instrumentairheaderarrow"
+        "Name": "instrumentairheaderarrow",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "0"
       },
-      "Custom": {},
+      "Custom": {
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Distance": 0.0,
+        "Distance1": 0.0
+      },
       "Attributes": {
         "Internal_Id": 56,
         "NAME1": "i18N-PID-0446"
@@ -1990,7 +2240,8 @@
         "Position Y": 130.0
       },
       "Misc": {
-        "Name": "blower"
+        "Name": "blower",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "equipment"
@@ -1999,9 +2250,13 @@
         "Position X": -7.0,
         "Position Y": 8.0,
         "Angle": 1.57,
+        "Flip state": 0,
+        "Flip state1": 0,
         "Angle1": 0.0,
         "Angle2": 0.0,
-        "Visibility": "Roots blower+tag+freq"
+        "Visibility": "Roots blower+tag+freq",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 57,
@@ -2039,7 +2294,8 @@
         "Position Y": 130.0
       },
       "Misc": {
-        "Name": "blower"
+        "Name": "blower",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "equipment"
@@ -2048,9 +2304,13 @@
         "Position X": -7.0,
         "Position Y": 8.0,
         "Angle": 1.57,
+        "Flip state": 0,
+        "Flip state1": 0,
         "Angle1": 0.0,
         "Angle2": 0.0,
-        "Visibility": "Roots blower+tag+freq"
+        "Visibility": "Roots blower+tag+freq",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 58,
@@ -2088,7 +2348,8 @@
         "Position Y": -19.4
       },
       "Misc": {
-        "Name": "chamber circular"
+        "Name": "chamber circular",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "unit"
@@ -2096,7 +2357,11 @@
       "Custom": {
         "Position X": -31.06,
         "Position Y": -28.0,
-        "Angle": 0.0
+        "Angle": 0.0,
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 59,
@@ -2114,7 +2379,8 @@
         "Position Y": -48.59
       },
       "Misc": {
-        "Name": "chamber"
+        "Name": "chamber",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "unit"
@@ -2123,6 +2389,8 @@
         "Position X": 35.0,
         "Position Y": -3.14,
         "Angle": 0.0,
+        "Flip state": 0,
+        "Flip state1": 0,
         "Visibility": "no channels",
         "Distance": 101.0,
         "Distance1": 15.0
@@ -2143,15 +2411,19 @@
         "Position Y": -39.99
       },
       "Misc": {
-        "Name": "instrumentation tag"
+        "Name": "instrumentation tag",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "instrumentation"
       },
       "Custom": {
         "Angle": 3.14,
+        "Flip state": 0,
+        "Flip state1": 0,
         "Visibility": "Level Transmitter",
-        "Distance": 15.27
+        "Distance": 15.27,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 61,
@@ -2178,15 +2450,19 @@
         "Position Y": -35.12
       },
       "Misc": {
-        "Name": "instrumentation tag"
+        "Name": "instrumentation tag",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "instrumentation"
       },
       "Custom": {
         "Angle": 0.0,
+        "Flip state": 0,
+        "Flip state1": 0,
         "Visibility": "Flow Indicator/Transmitter",
-        "Distance": 8.0
+        "Distance": 8.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 62,
@@ -2213,15 +2489,19 @@
         "Position Y": -39.38
       },
       "Misc": {
-        "Name": "instrumentation tag"
+        "Name": "instrumentation tag",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "instrumentation"
       },
       "Custom": {
         "Angle": 0.0,
+        "Flip state": 0,
+        "Flip state1": 0,
         "Visibility": "Flow Indicator/Transmitter",
-        "Distance": 8.0
+        "Distance": 8.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 63,
@@ -2258,7 +2538,11 @@
         "Position X": 0.45,
         "Position Y": -3.9,
         "Angle": 0.0,
-        "Visibility": "Check Valve"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Check Valve",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 64,
@@ -2296,7 +2580,11 @@
         "Position X": 0.45,
         "Position Y": -3.9,
         "Angle": 0.0,
-        "Visibility": "Check Valve"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Check Valve",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 65,
@@ -2334,7 +2622,11 @@
         "Position X": 0.45,
         "Position Y": -3.9,
         "Angle": 0.0,
-        "Visibility": "Knife Valve"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Knife Valve",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 66,
@@ -2372,7 +2664,11 @@
         "Position X": 0.45,
         "Position Y": -3.9,
         "Angle": 0.0,
-        "Visibility": "Knife Valve"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Knife Valve",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 67,
@@ -2410,7 +2706,11 @@
         "Position X": 0.45,
         "Position Y": -3.9,
         "Angle": 0.0,
-        "Visibility": "Check Valve"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Check Valve",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 68,
@@ -2448,7 +2748,11 @@
         "Position X": 0.45,
         "Position Y": -3.9,
         "Angle": 0.0,
-        "Visibility": "Check Valve"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Check Valve",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 69,
@@ -2486,7 +2790,11 @@
         "Position X": 0.45,
         "Position Y": -3.9,
         "Angle": 0.0,
-        "Visibility": "Knife Valve"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Knife Valve",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 70,
@@ -2524,7 +2832,11 @@
         "Position X": 0.45,
         "Position Y": -3.9,
         "Angle": 0.0,
-        "Visibility": "Knife Valve"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Knife Valve",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 71,
@@ -2552,7 +2864,8 @@
         "Position Y": -39.77
       },
       "Misc": {
-        "Name": "valve"
+        "Name": "valve",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "valve"
@@ -2561,7 +2874,11 @@
         "Position X": 0.45,
         "Position Y": -3.9,
         "Angle": 0.0,
-        "Visibility": "Knife Valve - Motor"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Knife Valve - Motor",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 72,
@@ -2589,7 +2906,8 @@
         "Position Y": -10.0
       },
       "Misc": {
-        "Name": "chamber"
+        "Name": "chamber",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "unit"
@@ -2598,6 +2916,8 @@
         "Position X": 16.0,
         "Position Y": -5.0,
         "Angle": 0.0,
+        "Flip state": 0,
+        "Flip state1": 0,
         "Visibility": "no channels",
         "Distance": 32.0,
         "Distance1": 20.0,
@@ -2622,15 +2942,19 @@
         "Position Y": -110.78
       },
       "Misc": {
-        "Name": "instrumentation tag"
+        "Name": "instrumentation tag",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "instrumentation"
       },
       "Custom": {
         "Angle": 3.14,
+        "Flip state": 0,
+        "Flip state1": 0,
         "Visibility": "Level Switch - HH",
-        "Distance": 13.0
+        "Distance": 13.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 74,
@@ -2657,7 +2981,8 @@
         "Position Y": -130.0
       },
       "Misc": {
-        "Name": "waste_sl_chmbr"
+        "Name": "waste_sl_chmbr",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "unit"
@@ -2666,6 +2991,8 @@
         "Position X": 40.0,
         "Position Y": -7.0,
         "Angle": 0.0,
+        "Flip state": 0,
+        "Flip state1": 0,
         "Visibility": "no channels",
         "Distance": 100.0,
         "Distance1": 21.0,
@@ -2690,15 +3017,19 @@
         "Position Y": -110.78
       },
       "Misc": {
-        "Name": "instrumentation tag"
+        "Name": "instrumentation tag",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "instrumentation"
       },
       "Custom": {
         "Angle": 3.14,
+        "Flip state": 0,
+        "Flip state1": 0,
         "Visibility": "Level Switch - H",
-        "Distance": 13.0
+        "Distance": 13.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 76,
@@ -2725,15 +3056,19 @@
         "Position Y": -110.78
       },
       "Misc": {
-        "Name": "instrumentation tag"
+        "Name": "instrumentation tag",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "instrumentation"
       },
       "Custom": {
         "Angle": 3.14,
+        "Flip state": 0,
+        "Flip state1": 0,
         "Visibility": "Level Switch - L",
-        "Distance": 13.0
+        "Distance": 13.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 77,
@@ -2770,7 +3105,11 @@
         "Position X": 0.45,
         "Position Y": -3.9,
         "Angle": 0.0,
-        "Visibility": "Check Valve"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Check Valve",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 78,
@@ -2808,7 +3147,11 @@
         "Position X": 0.45,
         "Position Y": -3.9,
         "Angle": 0.0,
-        "Visibility": "Check Valve"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Check Valve",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 79,
@@ -2846,7 +3189,11 @@
         "Position X": 0.45,
         "Position Y": -3.9,
         "Angle": 0.0,
-        "Visibility": "Knife Valve"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Knife Valve",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 80,
@@ -2884,7 +3231,11 @@
         "Position X": 0.45,
         "Position Y": -3.9,
         "Angle": 0.0,
-        "Visibility": "Knife Valve"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Knife Valve",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 81,
@@ -2912,7 +3263,8 @@
         "Position Y": -6.0
       },
       "Misc": {
-        "Name": "chamber"
+        "Name": "chamber",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "unit"
@@ -2921,6 +3273,8 @@
         "Position X": 15.0,
         "Position Y": -6.0,
         "Angle": 0.0,
+        "Flip state": 0,
+        "Flip state1": 0,
         "Visibility": "no channels",
         "Distance": 30.0,
         "Distance1": 11.0,
@@ -2942,10 +3296,12 @@
     },
     {
       "Geometry": {
-        "Position X": 3172.0
+        "Position X": 3172.0,
+        "Position Y": 0.0
       },
       "Misc": {
-        "Name": "filter 2"
+        "Name": "filter 2",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "equipment"
@@ -2954,7 +3310,11 @@
         "Position X": -0.02,
         "Position Y": -2.4,
         "Angle": 3.14,
-        "Visibility": "UV disinfection"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "UV disinfection",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 83,
@@ -2986,7 +3346,8 @@
         "Position Y": 24.0
       },
       "Misc": {
-        "Name": "chamber"
+        "Name": "chamber",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "unit"
@@ -2995,6 +3356,8 @@
         "Position X": 15.0,
         "Position Y": -6.0,
         "Angle": 0.0,
+        "Flip state": 0,
+        "Flip state1": 0,
         "Visibility": "no channels",
         "Distance": 30.0,
         "Distance1": 11.0,
@@ -3020,7 +3383,8 @@
         "Position Y": 30.0
       },
       "Misc": {
-        "Name": "filter 2"
+        "Name": "filter 2",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "equipment"
@@ -3029,7 +3393,11 @@
         "Position X": -0.02,
         "Position Y": -2.4,
         "Angle": 3.14,
-        "Visibility": "UV disinfection"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "UV disinfection",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 85,
@@ -3061,7 +3429,8 @@
         "Position Y": 25.5
       },
       "Misc": {
-        "Name": "channel gate"
+        "Name": "channel gate",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "equipment"
@@ -3070,7 +3439,11 @@
         "Position X": 0.5,
         "Position Y": -2.07,
         "Angle": 0.0,
-        "Visibility": "Manual"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Manual",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 86,
@@ -3109,7 +3482,8 @@
         "Position Y": 25.5
       },
       "Misc": {
-        "Name": "channel gate"
+        "Name": "channel gate",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "equipment"
@@ -3118,7 +3492,11 @@
         "Position X": 0.5,
         "Position Y": -2.07,
         "Angle": 0.0,
-        "Visibility": "Manual"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Manual",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 87,
@@ -3157,7 +3535,8 @@
         "Position Y": -4.0
       },
       "Misc": {
-        "Name": "channel gate"
+        "Name": "channel gate",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "equipment"
@@ -3166,7 +3545,11 @@
         "Position X": 0.5,
         "Position Y": -2.07,
         "Angle": 0.0,
-        "Visibility": "Manual"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Manual",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 88,
@@ -3205,7 +3588,8 @@
         "Position Y": -4.0
       },
       "Misc": {
-        "Name": "channel gate"
+        "Name": "channel gate",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "equipment"
@@ -3214,7 +3598,11 @@
         "Position X": 0.5,
         "Position Y": -2.07,
         "Angle": 0.0,
-        "Visibility": "Manual"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Manual",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 89,
@@ -3253,15 +3641,19 @@
         "Position Y": 134.33
       },
       "Misc": {
-        "Name": "instrumentation tag"
+        "Name": "instrumentation tag",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "instrumentation"
       },
       "Custom": {
         "Angle": 4.71,
+        "Flip state": 0,
+        "Flip state1": 0,
         "Visibility": "Pressure Switch",
-        "Distance": 11.0
+        "Distance": 11.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 90,
@@ -3288,15 +3680,19 @@
         "Position Y": 184.55
       },
       "Misc": {
-        "Name": "instrumentation tag"
+        "Name": "instrumentation tag",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "instrumentation"
       },
       "Custom": {
         "Angle": 3.14,
+        "Flip state": 0,
+        "Flip state1": 0,
         "Visibility": "Level Switch LH",
-        "Distance": 5.5
+        "Distance": 5.5,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 91,
@@ -3323,7 +3719,8 @@
         "Position Y": 226.62
       },
       "Misc": {
-        "Name": "valve"
+        "Name": "valve",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "valve"
@@ -3332,7 +3729,11 @@
         "Position X": 0.45,
         "Position Y": -3.9,
         "Angle": 0.0,
-        "Visibility": "Butterfly valve - Penumatic"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Butterfly valve - Penumatic",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 92,
@@ -3360,7 +3761,8 @@
         "Position Y": 197.0
       },
       "Misc": {
-        "Name": "valve"
+        "Name": "valve",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "valve"
@@ -3369,7 +3771,11 @@
         "Position X": 0.45,
         "Position Y": -3.9,
         "Angle": 0.0,
-        "Visibility": "Butterfly valve"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Butterfly valve",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 93,
@@ -3397,7 +3803,8 @@
         "Position Y": 167.0
       },
       "Misc": {
-        "Name": "valve"
+        "Name": "valve",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "valve"
@@ -3406,7 +3813,11 @@
         "Position X": 0.45,
         "Position Y": -3.9,
         "Angle": 0.0,
-        "Visibility": "Butterfly valve"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Butterfly valve",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 94,
@@ -3434,7 +3845,8 @@
         "Position Y": 167.0
       },
       "Misc": {
-        "Name": "valve"
+        "Name": "valve",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "valve"
@@ -3443,7 +3855,11 @@
         "Position X": 0.45,
         "Position Y": -3.9,
         "Angle": 0.0,
-        "Visibility": "Butterfly valve"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Butterfly valve",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 95,
@@ -3471,7 +3887,8 @@
         "Position Y": 197.0
       },
       "Misc": {
-        "Name": "valve"
+        "Name": "valve",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "valve"
@@ -3480,7 +3897,11 @@
         "Position X": 0.45,
         "Position Y": -3.9,
         "Angle": 0.0,
-        "Visibility": "Butterfly valve"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Butterfly valve",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 96,
@@ -3508,7 +3929,8 @@
         "Position Y": 167.0
       },
       "Misc": {
-        "Name": "valve"
+        "Name": "valve",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "valve"
@@ -3517,7 +3939,11 @@
         "Position X": 0.45,
         "Position Y": -3.9,
         "Angle": 0.0,
-        "Visibility": "Butterfly valve"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Butterfly valve",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 97,
@@ -3545,7 +3971,8 @@
         "Position Y": 167.0
       },
       "Misc": {
-        "Name": "valve"
+        "Name": "valve",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "valve"
@@ -3554,7 +3981,11 @@
         "Position X": 0.45,
         "Position Y": -3.9,
         "Angle": 0.0,
-        "Visibility": "Check Valve"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Check Valve",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 98,
@@ -3582,7 +4013,8 @@
         "Position Y": 197.0
       },
       "Misc": {
-        "Name": "valve"
+        "Name": "valve",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "valve"
@@ -3591,7 +4023,11 @@
         "Position X": 0.45,
         "Position Y": -3.9,
         "Angle": 0.0,
-        "Visibility": "Check Valve"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Check Valve",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 99,
@@ -3629,7 +4065,11 @@
         "Position X": 0.45,
         "Position Y": -3.9,
         "Angle": 0.0,
-        "Visibility": "Check Valve"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Check Valve",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 100,
@@ -3667,7 +4107,11 @@
         "Position X": 0.45,
         "Position Y": -3.9,
         "Angle": 0.0,
-        "Visibility": "Check Valve"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Check Valve",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 101,
@@ -3705,7 +4149,11 @@
         "Position X": 0.45,
         "Position Y": -3.9,
         "Angle": 0.0,
-        "Visibility": "Ball Valve"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Ball Valve",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 102,
@@ -3743,7 +4191,11 @@
         "Position X": 0.45,
         "Position Y": -3.9,
         "Angle": 0.0,
-        "Visibility": "Ball Valve"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Ball Valve",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 103,
@@ -3771,15 +4223,19 @@
         "Position Y": 197.0
       },
       "Misc": {
-        "Name": "instrumentation tag"
+        "Name": "instrumentation tag",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "instrumentation"
       },
       "Custom": {
         "Angle": 3.14,
+        "Flip state": 0,
+        "Flip state1": 0,
         "Visibility": "Pressure Indicator",
-        "Distance": 11.0
+        "Distance": 11.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 104,
@@ -3806,15 +4262,19 @@
         "Position Y": 167.0
       },
       "Misc": {
-        "Name": "instrumentation tag"
+        "Name": "instrumentation tag",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "instrumentation"
       },
       "Custom": {
         "Angle": 3.14,
+        "Flip state": 0,
+        "Flip state1": 0,
         "Visibility": "Pressure Indicator",
-        "Distance": 11.0
+        "Distance": 11.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 105,
@@ -3841,7 +4301,8 @@
         "Position Y": 226.62
       },
       "Misc": {
-        "Name": "valve"
+        "Name": "valve",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "valve"
@@ -3850,7 +4311,11 @@
         "Position X": 0.45,
         "Position Y": -3.9,
         "Angle": 0.0,
-        "Visibility": "Ball Valve"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Ball Valve",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 106,
@@ -3878,15 +4343,19 @@
         "Position Y": 117.33
       },
       "Misc": {
-        "Name": "instrumentation tag"
+        "Name": "instrumentation tag",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "instrumentation"
       },
       "Custom": {
         "Angle": 4.71,
+        "Flip state": 0,
+        "Flip state1": 0,
         "Visibility": "Flow Indicator/Transmitter",
-        "Distance": 11.0
+        "Distance": 11.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 107,
@@ -3913,15 +4382,19 @@
         "Position Y": 193.62
       },
       "Misc": {
-        "Name": "instrumentation tag"
+        "Name": "instrumentation tag",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "instrumentation"
       },
       "Custom": {
         "Angle": 0.0,
+        "Flip state": 0,
+        "Flip state1": 0,
         "Visibility": "Flow Indicator/Transmitter",
-        "Distance": 10.0
+        "Distance": 10.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 108,
@@ -3948,15 +4421,19 @@
         "Position Y": 68.76
       },
       "Misc": {
-        "Name": "instrumentation tag"
+        "Name": "instrumentation tag",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "instrumentation"
       },
       "Custom": {
         "Angle": 3.14,
+        "Flip state": 0,
+        "Flip state1": 0,
         "Visibility": "Flow Indicator/Transmitter",
-        "Distance": 11.0
+        "Distance": 11.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 109,
@@ -3983,15 +4460,19 @@
         "Position Y": -145.64
       },
       "Misc": {
-        "Name": "instrumentation tag"
+        "Name": "instrumentation tag",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "instrumentation"
       },
       "Custom": {
         "Angle": 3.14,
+        "Flip state": 0,
+        "Flip state1": 0,
         "Visibility": "Flow Indicator/Transmitter",
-        "Distance": 6.6
+        "Distance": 6.6,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 110,
@@ -4018,7 +4499,8 @@
         "Position Y": 68.78
       },
       "Misc": {
-        "Name": "valve"
+        "Name": "valve",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "valve"
@@ -4027,7 +4509,11 @@
         "Position X": 0.45,
         "Position Y": -3.9,
         "Angle": 0.0,
-        "Visibility": "Knife Valve"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Knife Valve",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 111,
@@ -4055,7 +4541,8 @@
         "Position Y": 68.78
       },
       "Misc": {
-        "Name": "valve"
+        "Name": "valve",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "valve"
@@ -4064,7 +4551,11 @@
         "Position X": 0.45,
         "Position Y": -3.9,
         "Angle": 0.0,
-        "Visibility": "Check Valve"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Check Valve",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 112,
@@ -4092,7 +4583,8 @@
         "Position Y": 68.78
       },
       "Misc": {
-        "Name": "valve"
+        "Name": "valve",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "valve"
@@ -4101,7 +4593,11 @@
         "Position X": 0.45,
         "Position Y": -3.9,
         "Angle": 0.0,
-        "Visibility": "Knife Valve"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Knife Valve",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 113,
@@ -4129,7 +4625,8 @@
         "Position Y": 68.78
       },
       "Misc": {
-        "Name": "valve"
+        "Name": "valve",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "valve"
@@ -4138,7 +4635,11 @@
         "Position X": 0.45,
         "Position Y": -3.9,
         "Angle": 0.0,
-        "Visibility": "Knife Valve"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Knife Valve",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 114,
@@ -4166,7 +4667,8 @@
         "Position Y": 59.76
       },
       "Misc": {
-        "Name": "valve"
+        "Name": "valve",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "valve"
@@ -4175,7 +4677,11 @@
         "Position X": 0.45,
         "Position Y": -3.9,
         "Angle": 0.0,
-        "Visibility": "Butterfly valve - Penumatic"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Butterfly valve - Penumatic",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 115,
@@ -4203,7 +4709,8 @@
         "Position Y": -141.24
       },
       "Misc": {
-        "Name": "valve"
+        "Name": "valve",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "valve"
@@ -4212,7 +4719,11 @@
         "Position X": 0.45,
         "Position Y": -3.9,
         "Angle": 0.0,
-        "Visibility": "Ball Valve"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Ball Valve",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 116,
@@ -4240,7 +4751,8 @@
         "Position Y": -141.24
       },
       "Misc": {
-        "Name": "valve"
+        "Name": "valve",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "valve"
@@ -4249,7 +4761,11 @@
         "Position X": 0.45,
         "Position Y": -3.9,
         "Angle": 0.0,
-        "Visibility": "Check Valve"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Check Valve",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 117,
@@ -4277,7 +4793,8 @@
         "Position Y": -141.24
       },
       "Misc": {
-        "Name": "valve"
+        "Name": "valve",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "valve"
@@ -4286,7 +4803,11 @@
         "Position X": 0.45,
         "Position Y": -3.9,
         "Angle": 0.0,
-        "Visibility": "Ball Valve"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Ball Valve",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 118,
@@ -4324,7 +4845,11 @@
         "Position X": 0.45,
         "Position Y": -3.9,
         "Angle": 0.0,
-        "Visibility": "Ball Valve"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Ball Valve",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 119,
@@ -4352,15 +4877,19 @@
         "Position Y": 113.76
       },
       "Misc": {
-        "Name": "instrumentation tag"
+        "Name": "instrumentation tag",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "instrumentation"
       },
       "Custom": {
         "Angle": 3.14,
+        "Flip state": 0,
+        "Flip state1": 0,
         "Visibility": "Flow Indicator/Transmitter",
-        "Distance": 11.0
+        "Distance": 11.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 120,
@@ -4387,15 +4916,19 @@
         "Position Y": -169.15
       },
       "Misc": {
-        "Name": "instrumentation tag"
+        "Name": "instrumentation tag",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "instrumentation"
       },
       "Custom": {
         "Angle": 3.14,
+        "Flip state": 0,
+        "Flip state1": 0,
         "Visibility": "Flow Indicator/Transmitter",
-        "Distance": 6.6
+        "Distance": 6.6,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 121,
@@ -4422,7 +4955,8 @@
         "Position Y": 113.76
       },
       "Misc": {
-        "Name": "valve"
+        "Name": "valve",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "valve"
@@ -4431,7 +4965,11 @@
         "Position X": 0.45,
         "Position Y": -3.9,
         "Angle": 0.0,
-        "Visibility": "Knife Valve"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Knife Valve",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 122,
@@ -4459,7 +4997,8 @@
         "Position Y": 113.76
       },
       "Misc": {
-        "Name": "valve"
+        "Name": "valve",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "valve"
@@ -4468,7 +5007,11 @@
         "Position X": 0.45,
         "Position Y": -3.9,
         "Angle": 0.0,
-        "Visibility": "Check Valve"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Check Valve",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 123,
@@ -4496,7 +5039,8 @@
         "Position Y": 113.76
       },
       "Misc": {
-        "Name": "valve"
+        "Name": "valve",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "valve"
@@ -4505,7 +5049,11 @@
         "Position X": 0.45,
         "Position Y": -3.9,
         "Angle": 0.0,
-        "Visibility": "Knife Valve"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Knife Valve",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 124,
@@ -4533,7 +5081,8 @@
         "Position Y": 113.76
       },
       "Misc": {
-        "Name": "valve"
+        "Name": "valve",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "valve"
@@ -4542,7 +5091,11 @@
         "Position X": 0.45,
         "Position Y": -3.9,
         "Angle": 0.0,
-        "Visibility": "Knife Valve"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Knife Valve",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 125,
@@ -4570,7 +5123,8 @@
         "Position Y": 103.76
       },
       "Misc": {
-        "Name": "valve"
+        "Name": "valve",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "valve"
@@ -4579,7 +5133,11 @@
         "Position X": 0.45,
         "Position Y": -3.9,
         "Angle": 0.0,
-        "Visibility": "Butterfly valve - Penumatic"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Butterfly valve - Penumatic",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 126,
@@ -4607,7 +5165,8 @@
         "Position Y": -164.96
       },
       "Misc": {
-        "Name": "valve"
+        "Name": "valve",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "valve"
@@ -4616,7 +5175,11 @@
         "Position X": 0.45,
         "Position Y": -3.9,
         "Angle": 0.0,
-        "Visibility": "Ball Valve"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Ball Valve",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 127,
@@ -4644,7 +5207,8 @@
         "Position Y": -164.96
       },
       "Misc": {
-        "Name": "valve"
+        "Name": "valve",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "valve"
@@ -4653,7 +5217,11 @@
         "Position X": 0.45,
         "Position Y": -3.9,
         "Angle": 0.0,
-        "Visibility": "Check Valve"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Check Valve",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 128,
@@ -4681,7 +5249,8 @@
         "Position Y": -164.96
       },
       "Misc": {
-        "Name": "valve"
+        "Name": "valve",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "valve"
@@ -4690,7 +5259,11 @@
         "Position X": 0.45,
         "Position Y": -3.9,
         "Angle": 0.0,
-        "Visibility": "Ball Valve"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Ball Valve",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 129,
@@ -4728,7 +5301,11 @@
         "Position X": 0.45,
         "Position Y": -3.9,
         "Angle": 0.0,
-        "Visibility": "Ball Valve"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Ball Valve",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 130,
@@ -4756,7 +5333,8 @@
         "Position Y": -96.63
       },
       "Misc": {
-        "Name": "pump"
+        "Name": "pump",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "equipment"
@@ -4765,11 +5343,15 @@
         "Position X": 0.03,
         "Position Y": -6.01,
         "Angle": 0.0,
+        "Flip state": 0,
+        "Flip state1": 0,
         "Angle1": 0.0,
         "Angle2": 0.0,
         "Visibility": "Centrifugal pump+tag",
         "Centrifugal Pump": 0,
-        "Try1": 10.0
+        "Try1": 10.0,
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 131,
@@ -4806,7 +5388,8 @@
         "Position Y": -142.43
       },
       "Misc": {
-        "Name": "poli dosing"
+        "Name": "poli dosing",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "equipment"
@@ -4815,7 +5398,11 @@
         "Position X": 15.67,
         "Position Y": -3.53,
         "Angle": 0.0,
-        "Visibility": "poli dosing 3"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "poli dosing 3",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 132,
@@ -4847,12 +5434,18 @@
         "Position Y": 180.6
       },
       "Misc": {
-        "Name": "RefAL1AirToBiofilter"
+        "Name": "RefAL1AirToBiofilter",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "0"
       },
-      "Custom": {},
+      "Custom": {
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Distance": 0.0,
+        "Distance1": 0.0
+      },
       "Attributes": {
         "Internal_Id": 133,
         "Name": "i18N-PID-0013",
@@ -4865,12 +5458,18 @@
         "Position Y": -15.73
       },
       "Misc": {
-        "Name": "RefAL5Leachate"
+        "Name": "RefAL5Leachate",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "0"
       },
-      "Custom": {},
+      "Custom": {
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Distance": 0.0,
+        "Distance1": 0.0
+      },
       "Attributes": {
         "Internal_Id": 134,
         "Name": "i18N-PID-0263",
@@ -4883,12 +5482,18 @@
         "Position Y": -124.04
       },
       "Misc": {
-        "Name": "RefARPoly"
+        "Name": "RefARPoly",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "0"
       },
-      "Custom": {},
+      "Custom": {
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Distance": 0.0,
+        "Distance1": 0.0
+      },
       "Attributes": {
         "Internal_Id": 135,
         "NAME1": "i18N-PID-0168",
@@ -4901,12 +5506,18 @@
         "Position Y": -183.24
       },
       "Misc": {
-        "Name": "RefAR3UtilityWater"
+        "Name": "RefAR3UtilityWater",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "0"
       },
-      "Custom": {},
+      "Custom": {
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Distance": 0.0,
+        "Distance1": 0.0
+      },
       "Attributes": {
         "Internal_Id": 136,
         "Name": "i18N-PID-0246",
@@ -4919,7 +5530,8 @@
         "Position Y": -96.63
       },
       "Misc": {
-        "Name": "pump"
+        "Name": "pump",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "equipment"
@@ -4928,11 +5540,15 @@
         "Position X": 0.03,
         "Position Y": -6.01,
         "Angle": 0.0,
+        "Flip state": 0,
+        "Flip state1": 0,
         "Angle1": 0.0,
         "Angle2": 0.0,
         "Visibility": "Centrifugal pump+tag",
         "Centrifugal Pump": 0,
-        "Try1": 10.0
+        "Try1": 10.0,
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 137,
@@ -4969,12 +5585,18 @@
         "Position Y": -141.24
       },
       "Misc": {
-        "Name": "RefAR27PotableWater"
+        "Name": "RefAR27PotableWater",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "0"
       },
-      "Custom": {},
+      "Custom": {
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Distance": 0.0,
+        "Distance1": 0.0
+      },
       "Attributes": {
         "Internal_Id": 138,
         "NAME1": "i18N-PID-0171",
@@ -4988,7 +5610,8 @@
         "Position Y": -87.2
       },
       "Misc": {
-        "Name": "screening press"
+        "Name": "screening press",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "equipment"
@@ -4996,7 +5619,11 @@
       "Custom": {
         "Position X": 7.5,
         "Position Y": -2.64,
-        "Angle": 0.0
+        "Angle": 0.0,
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 139,
@@ -5028,12 +5655,18 @@
         "Position Y": 152.17
       },
       "Misc": {
-        "Name": "AirInTake"
+        "Name": "AirInTake",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "biofilter"
       },
-      "Custom": {},
+      "Custom": {
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Distance": 0.0,
+        "Distance1": 0.0
+      },
       "Attributes": {
         "Internal_Id": 140
       }
@@ -5044,12 +5677,18 @@
         "Position Y": 148.96
       },
       "Misc": {
-        "Name": "AirInTake"
+        "Name": "AirInTake",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "biofilter"
       },
-      "Custom": {},
+      "Custom": {
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Distance": 0.0,
+        "Distance1": 0.0
+      },
       "Attributes": {
         "Internal_Id": 141
       }
@@ -5060,7 +5699,8 @@
         "Position Y": 63.05
       },
       "Misc": {
-        "Name": "aeration diffuzer"
+        "Name": "aeration diffuzer",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "equipment"
@@ -5069,9 +5709,12 @@
         "Position X": 7.67,
         "Position Y": 4.72,
         "Angle": 0.0,
+        "Flip state": 0,
+        "Flip state1": 0,
         "Angle1": 0.0,
         "Visibility": "Coarse diffuser",
-        "Distance": 0.89
+        "Distance": 0.89,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 142,
@@ -5108,7 +5751,11 @@
         "Position X": 0.45,
         "Position Y": -3.9,
         "Angle": 0.0,
-        "Visibility": "Butterfly valve"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Butterfly valve",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 143,
@@ -5147,7 +5794,11 @@
         "Position X": 0.45,
         "Position Y": -3.9,
         "Angle": 0.0,
-        "Visibility": "Butterfly valve"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Butterfly valve",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 144,
@@ -5176,12 +5827,18 @@
         "Position Y": 115.35
       },
       "Misc": {
-        "Name": "RefAR6WasteSludge"
+        "Name": "RefAR6WasteSludge",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "0"
       },
-      "Custom": {},
+      "Custom": {
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Distance": 0.0,
+        "Distance1": 0.0
+      },
       "Attributes": {
         "Internal_Id": 145,
         "Name": "i18N-PID-0255",
@@ -5194,7 +5851,8 @@
         "Position Y": -2.36
       },
       "Misc": {
-        "Name": "screen"
+        "Name": "screen",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "equipment"
@@ -5203,7 +5861,11 @@
         "Position X": -0.29,
         "Position Y": -3.24,
         "Angle": 0.0,
-        "Visibility": "Combined Screen"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Combined Screen",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 146,
@@ -5242,7 +5904,8 @@
         "Position Y": -44.0
       },
       "Misc": {
-        "Name": "tank - vessel"
+        "Name": "tank - vessel",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "equipment"
@@ -5251,8 +5914,11 @@
         "Position X": 4.8,
         "Position Y": -3.09,
         "Angle": 0.0,
+        "Flip state": 0,
+        "Flip state1": 0,
         "Visibility": "Waste Container",
-        "Distance": 45.25
+        "Distance": 45.25,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 147,
@@ -5276,7 +5942,8 @@
         "Position Y": -44.05
       },
       "Misc": {
-        "Name": "tank - vessel"
+        "Name": "tank - vessel",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "equipment"
@@ -5285,8 +5952,11 @@
         "Position X": 4.8,
         "Position Y": -3.09,
         "Angle": 0.0,
+        "Flip state": 0,
+        "Flip state1": 0,
         "Visibility": "Waste Container",
-        "Distance": 45.25
+        "Distance": 45.25,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 148,
@@ -5310,7 +5980,8 @@
         "Position Y": 33.12
       },
       "Misc": {
-        "Name": "screen"
+        "Name": "screen",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "equipment"
@@ -5319,7 +5990,11 @@
         "Position X": -0.29,
         "Position Y": -3.24,
         "Angle": 0.0,
-        "Visibility": "Manual Fine Screen"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Manual Fine Screen",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 149,
@@ -5358,12 +6033,18 @@
         "Position Y": 110.35
       },
       "Misc": {
-        "Name": "RefAL1AirfromSludge"
+        "Name": "RefAL1AirfromSludge",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "0"
       },
-      "Custom": {},
+      "Custom": {
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Distance": 0.0,
+        "Distance1": 0.0
+      },
       "Attributes": {
         "Internal_Id": 150,
         "Name": "i18N-PID-0010",
@@ -5376,7 +6057,8 @@
         "Position Y": 105.74
       },
       "Misc": {
-        "Name": "filter"
+        "Name": "filter",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "equipment"
@@ -5385,7 +6067,11 @@
         "Position X": 0.06,
         "Position Y": -2.57,
         "Angle": 3.14,
-        "Visibility": "Biofilter"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Biofilter",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 151,
@@ -5414,7 +6100,8 @@
         "Position Y": 99.69
       },
       "Misc": {
-        "Name": "blower"
+        "Name": "blower",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "equipment"
@@ -5423,9 +6110,13 @@
         "Position X": 2.0,
         "Position Y": 3.0,
         "Angle": 0.0,
+        "Flip state": 0,
+        "Flip state1": 0,
         "Angle1": 0.0,
         "Angle2": 0.0,
-        "Visibility": "Fan"
+        "Visibility": "Fan",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 152,
@@ -5463,12 +6154,18 @@
         "Position Y": 65.28
       },
       "Misc": {
-        "Name": "AirInTake"
+        "Name": "AirInTake",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "biofilter"
       },
-      "Custom": {},
+      "Custom": {
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Distance": 0.0,
+        "Distance1": 0.0
+      },
       "Attributes": {
         "Internal_Id": 153
       }
@@ -5479,7 +6176,8 @@
         "Position Y": -5.0
       },
       "Misc": {
-        "Name": "reactor"
+        "Name": "reactor",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "unit"
@@ -5488,6 +6186,8 @@
         "Position X": 128.0,
         "Position Y": -5.0,
         "Angle": 0.0,
+        "Flip state": 0,
+        "Flip state1": 0,
         "Visibility": "single",
         "Distance": 246.0,
         "Distance1": 21.0
@@ -5509,15 +6209,19 @@
         "Position Y": 8.12
       },
       "Misc": {
-        "Name": "instrumentation tag"
+        "Name": "instrumentation tag",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "instrumentation"
       },
       "Custom": {
         "Angle": 3.14,
+        "Flip state": 0,
+        "Flip state1": 0,
         "Visibility": "Oxygen Indicator",
-        "Distance": 13.0
+        "Distance": 13.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 155,
@@ -5544,15 +6248,19 @@
         "Position Y": 30.0
       },
       "Misc": {
-        "Name": "instrumentation tag"
+        "Name": "instrumentation tag",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "instrumentation"
       },
       "Custom": {
         "Angle": 1.57,
+        "Flip state": 0,
+        "Flip state1": 0,
         "Visibility": "Flow Indicator/Transmitter",
-        "Distance": 6.5
+        "Distance": 6.5,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 156,
@@ -5579,15 +6287,19 @@
         "Position Y": 30.0
       },
       "Misc": {
-        "Name": "instrumentation tag"
+        "Name": "instrumentation tag",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "instrumentation"
       },
       "Custom": {
         "Angle": 1.57,
+        "Flip state": 0,
+        "Flip state1": 0,
         "Visibility": "Flow Indicator/Transmitter",
-        "Distance": 6.5
+        "Distance": 6.5,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 157,
@@ -5614,15 +6326,19 @@
         "Position Y": 8.12
       },
       "Misc": {
-        "Name": "instrumentation tag"
+        "Name": "instrumentation tag",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "instrumentation"
       },
       "Custom": {
         "Angle": 3.14,
+        "Flip state": 0,
+        "Flip state1": 0,
         "Visibility": "Oxygen Indicator",
-        "Distance": 13.0
+        "Distance": 13.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 158,
@@ -5659,7 +6375,11 @@
         "Position X": 0.45,
         "Position Y": -3.9,
         "Angle": 0.0,
-        "Visibility": "Knife Valve - Motor"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Knife Valve - Motor",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 159,
@@ -5697,7 +6417,11 @@
         "Position X": 0.45,
         "Position Y": -3.9,
         "Angle": 0.0,
-        "Visibility": "Knife Valve - Motor"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Knife Valve - Motor",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 160,
@@ -5735,7 +6459,11 @@
         "Position X": 0.45,
         "Position Y": -3.9,
         "Angle": 0.0,
-        "Visibility": "Butterfly valve"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Butterfly valve",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 161,
@@ -5773,7 +6501,11 @@
         "Position X": 0.45,
         "Position Y": -3.9,
         "Angle": 0.0,
-        "Visibility": "Butterfly valve"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Butterfly valve",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 162,
@@ -5801,7 +6533,8 @@
         "Position Y": 215.0
       },
       "Misc": {
-        "Name": "blower"
+        "Name": "blower",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "equipment"
@@ -5810,9 +6543,13 @@
         "Position X": 0.0,
         "Position Y": -2.94,
         "Angle": 0.0,
+        "Flip state": 0,
+        "Flip state1": 0,
         "Angle1": 0.0,
         "Angle2": 0.0,
-        "Visibility": "Compressor"
+        "Visibility": "Compressor",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 163,
@@ -5850,7 +6587,8 @@
         "Position Y": 161.57
       },
       "Misc": {
-        "Name": "blower"
+        "Name": "blower",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "equipment"
@@ -5859,9 +6597,13 @@
         "Position X": 0.0,
         "Position Y": -2.94,
         "Angle": 0.0,
+        "Flip state": 0,
+        "Flip state1": 0,
         "Angle1": 0.0,
         "Angle2": 0.0,
-        "Visibility": "Compressor"
+        "Visibility": "Compressor",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 164,
@@ -5899,7 +6641,8 @@
         "Position Y": 193.78
       },
       "Misc": {
-        "Name": "blower"
+        "Name": "blower",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "equipment"
@@ -5908,9 +6651,13 @@
         "Position X": 0.0,
         "Position Y": -2.94,
         "Angle": 0.0,
+        "Flip state": 0,
+        "Flip state1": 0,
         "Angle1": 0.0,
         "Angle2": 0.0,
-        "Visibility": "Air Dryer"
+        "Visibility": "Air Dryer",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 165,
@@ -5948,7 +6695,8 @@
         "Position Y": -19.4
       },
       "Misc": {
-        "Name": "clarifier circular"
+        "Name": "clarifier circular",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "equipment"
@@ -5957,7 +6705,11 @@
         "Position X": -11.0,
         "Position Y": 12.0,
         "Angle": 0.0,
-        "Visibility": "Scraper Circular"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Scraper Circular",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 166,
@@ -5994,7 +6746,8 @@
         "Position Y": -39.01
       },
       "Misc": {
-        "Name": "pump"
+        "Name": "pump",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "equipment"
@@ -6003,11 +6756,15 @@
         "Position X": 0.03,
         "Position Y": -6.01,
         "Angle": 0.0,
+        "Flip state": 0,
+        "Flip state1": 0,
         "Angle1": 0.0,
         "Angle2": 0.0,
         "Visibility": "Centrifugal pump+tag",
         "Centrifugal Pump": 0,
-        "Try1": 10.0
+        "Try1": 10.0,
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 167,
@@ -6044,7 +6801,8 @@
         "Position Y": -39.01
       },
       "Misc": {
-        "Name": "pump"
+        "Name": "pump",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "equipment"
@@ -6053,11 +6811,15 @@
         "Position X": 0.03,
         "Position Y": -6.01,
         "Angle": 0.0,
+        "Flip state": 0,
+        "Flip state1": 0,
         "Angle1": 0.0,
         "Angle2": 0.0,
         "Visibility": "Centrifugal pump+tag",
         "Centrifugal Pump": 0,
-        "Try1": 10.0
+        "Try1": 10.0,
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 168,
@@ -6094,7 +6856,8 @@
         "Position Y": -38.89
       },
       "Misc": {
-        "Name": "pump"
+        "Name": "pump",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "equipment"
@@ -6103,11 +6866,15 @@
         "Position X": 0.03,
         "Position Y": -6.01,
         "Angle": 0.0,
+        "Flip state": 0,
+        "Flip state1": 0,
         "Angle1": 1.57,
         "Angle2": 4.71,
         "Visibility": "Centrifugal pump+tag+freq",
         "Centrifugal Pump": 20,
-        "Try1": 10.0
+        "Try1": 10.0,
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 169,
@@ -6144,7 +6911,8 @@
         "Position Y": -38.89
       },
       "Misc": {
-        "Name": "pump"
+        "Name": "pump",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "equipment"
@@ -6153,11 +6921,15 @@
         "Position X": 0.03,
         "Position Y": -6.01,
         "Angle": 0.0,
+        "Flip state": 0,
+        "Flip state1": 0,
         "Angle1": 1.57,
         "Angle2": 4.71,
         "Visibility": "Centrifugal pump+tag+freq",
         "Centrifugal Pump": 20,
-        "Try1": 10.0
+        "Try1": 10.0,
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 170,
@@ -6190,15 +6962,22 @@
     },
     {
       "Geometry": {
-        "Position X": 1190.0
+        "Position X": 1190.0,
+        "Position Y": 0.0
       },
       "Misc": {
-        "Name": "RefARSewage"
+        "Name": "RefARSewage",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "0"
       },
-      "Custom": {},
+      "Custom": {
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Distance": 0.0,
+        "Distance1": 0.0
+      },
       "Attributes": {
         "Internal_Id": 171,
         "Name": "i18N-PID-0194"
@@ -6210,12 +6989,18 @@
         "Position Y": -27.0
       },
       "Misc": {
-        "Name": "RefAR6WasteSludge"
+        "Name": "RefAR6WasteSludge",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "0"
       },
-      "Custom": {},
+      "Custom": {
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Distance": 0.0,
+        "Distance1": 0.0
+      },
       "Attributes": {
         "Internal_Id": 172,
         "Name": "i18N-PID-0255",
@@ -6228,7 +7013,8 @@
         "Position Y": 35.36
       },
       "Misc": {
-        "Name": "channel gate"
+        "Name": "channel gate",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "equipment"
@@ -6237,7 +7023,11 @@
         "Position X": 0.5,
         "Position Y": -2.07,
         "Angle": 0.0,
-        "Visibility": "Manual"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Manual",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 173,
@@ -6276,7 +7066,8 @@
         "Position Y": -4.73
       },
       "Misc": {
-        "Name": "drum filter"
+        "Name": "drum filter",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "equipment"
@@ -6285,7 +7076,11 @@
         "Position X": 0.0,
         "Position Y": 20.08,
         "Angle": 0.01,
-        "Visibility": "Disk Filter"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Disk Filter",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 174,
@@ -6322,7 +7117,8 @@
         "Position Y": -4.0
       },
       "Misc": {
-        "Name": "channel gate"
+        "Name": "channel gate",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "equipment"
@@ -6331,7 +7127,11 @@
         "Position X": 0.5,
         "Position Y": -2.07,
         "Angle": 0.0,
-        "Visibility": "Manual"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Manual",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 175,
@@ -6370,7 +7170,8 @@
         "Position Y": -4.73
       },
       "Misc": {
-        "Name": "drum filter"
+        "Name": "drum filter",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "equipment"
@@ -6379,7 +7180,11 @@
         "Position X": 0.0,
         "Position Y": 20.08,
         "Angle": 0.01,
-        "Visibility": "Disk Filter"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Disk Filter",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 176,
@@ -6416,7 +7221,8 @@
         "Position Y": -4.0
       },
       "Misc": {
-        "Name": "channel gate"
+        "Name": "channel gate",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "equipment"
@@ -6425,7 +7231,11 @@
         "Position X": 0.5,
         "Position Y": -2.07,
         "Angle": 0.0,
-        "Visibility": "Manual"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Manual",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 177,
@@ -6464,7 +7274,8 @@
         "Position Y": -116.62
       },
       "Misc": {
-        "Name": "pump"
+        "Name": "pump",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "equipment"
@@ -6473,11 +7284,15 @@
         "Position X": 0.03,
         "Position Y": -6.01,
         "Angle": 0.0,
+        "Flip state": 0,
+        "Flip state1": 0,
         "Angle1": 0.0,
         "Angle2": 0.0,
         "Visibility": "Centrifugal pump+tag",
         "Centrifugal Pump": 0,
-        "Try1": 10.0
+        "Try1": 10.0,
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 178,
@@ -6514,7 +7329,8 @@
         "Position Y": -116.62
       },
       "Misc": {
-        "Name": "pump"
+        "Name": "pump",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "equipment"
@@ -6523,11 +7339,15 @@
         "Position X": 0.03,
         "Position Y": -6.01,
         "Angle": 0.0,
+        "Flip state": 0,
+        "Flip state1": 0,
         "Angle1": 0.0,
         "Angle2": 0.0,
         "Visibility": "Centrifugal pump+tag",
         "Centrifugal Pump": 0,
-        "Try1": 10.0
+        "Try1": 10.0,
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 179,
@@ -6564,12 +7384,18 @@
         "Position Y": -68.0
       },
       "Misc": {
-        "Name": "RefAR22WasteSludge"
+        "Name": "RefAR22WasteSludge",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "0"
       },
-      "Custom": {},
+      "Custom": {
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Distance": 0.0,
+        "Distance1": 0.0
+      },
       "Attributes": {
         "Internal_Id": 180,
         "Name": "i18N-PID-0255",
@@ -6578,15 +7404,22 @@
     },
     {
       "Geometry": {
-        "Position X": 2637.0
+        "Position X": 2637.0,
+        "Position Y": 0.0
       },
       "Misc": {
-        "Name": "RefARSewage"
+        "Name": "RefARSewage",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "0"
       },
-      "Custom": {},
+      "Custom": {
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Distance": 0.0,
+        "Distance1": 0.0
+      },
       "Attributes": {
         "Internal_Id": 181,
         "Name": "i18N-PID-0194"
@@ -6598,12 +7431,18 @@
         "Position Y": 126.33
       },
       "Misc": {
-        "Name": "RefAR2UtilityWater"
+        "Name": "RefAR2UtilityWater",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "0"
       },
-      "Custom": {},
+      "Custom": {
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Distance": 0.0,
+        "Distance1": 0.0
+      },
       "Attributes": {
         "Internal_Id": 182,
         "Name": "i18N-PID-0246",
@@ -6616,12 +7455,18 @@
         "Position Y": 89.97
       },
       "Misc": {
-        "Name": "RefAR3UtilityWater"
+        "Name": "RefAR3UtilityWater",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "0"
       },
-      "Custom": {},
+      "Custom": {
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Distance": 0.0,
+        "Distance1": 0.0
+      },
       "Attributes": {
         "Internal_Id": 183,
         "Name": "i18N-PID-0246",
@@ -6634,7 +7479,8 @@
         "Position Y": 3.0
       },
       "Misc": {
-        "Name": "pump"
+        "Name": "pump",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "equipment"
@@ -6643,11 +7489,15 @@
         "Position X": 0.03,
         "Position Y": -6.01,
         "Angle": 0.0,
+        "Flip state": 0,
+        "Flip state1": 0,
         "Angle1": 0.0,
         "Angle2": 0.0,
         "Visibility": "Centrifugal pump+tag",
         "Centrifugal Pump": 0,
-        "Try1": 10.0
+        "Try1": 10.0,
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 184,
@@ -6684,7 +7534,8 @@
         "Position Y": 162.91
       },
       "Misc": {
-        "Name": "tank - vessel"
+        "Name": "tank - vessel",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "equipment"
@@ -6693,8 +7544,11 @@
         "Position X": 4.8,
         "Position Y": -3.09,
         "Angle": 0.0,
+        "Flip state": 0,
+        "Flip state1": 0,
         "Visibility": "Hydrofor",
-        "Distance": 45.25
+        "Distance": 45.25,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 185,
@@ -6718,7 +7572,8 @@
         "Position Y": 162.91
       },
       "Misc": {
-        "Name": "tank - vessel"
+        "Name": "tank - vessel",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "equipment"
@@ -6727,8 +7582,11 @@
         "Position X": 4.8,
         "Position Y": -3.09,
         "Angle": 0.0,
+        "Flip state": 0,
+        "Flip state1": 0,
         "Visibility": "Open/Atmospheric Tank - Standing",
-        "Distance": 45.25
+        "Distance": 45.25,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 186,
@@ -6752,7 +7610,8 @@
         "Position Y": 3.0
       },
       "Misc": {
-        "Name": "pump"
+        "Name": "pump",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "equipment"
@@ -6761,11 +7620,15 @@
         "Position X": 0.03,
         "Position Y": -6.01,
         "Angle": 0.0,
+        "Flip state": 0,
+        "Flip state1": 0,
         "Angle1": 0.0,
         "Angle2": 0.0,
         "Visibility": "Centrifugal pump+tag",
         "Centrifugal Pump": 0,
-        "Try1": 10.0
+        "Try1": 10.0,
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 187,
@@ -6802,12 +7665,18 @@
         "Position Y": 226.62
       },
       "Misc": {
-        "Name": "RefALPotable"
+        "Name": "RefALPotable",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "0"
       },
-      "Custom": {},
+      "Custom": {
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Distance": 0.0,
+        "Distance1": 0.0
+      },
       "Attributes": {
         "Internal_Id": 188,
         "NAME1": "i18N-PID-0171",
@@ -6830,11 +7699,15 @@
         "Position X": 7.0,
         "Position Y": 0.0,
         "Angle": 1.57,
+        "Flip state": 0,
+        "Flip state1": 0,
         "Angle1": 0.0,
         "Angle2": 0.0,
         "Visibility": "Centrifugal pump+tag",
         "Centrifugal Pump": 0,
-        "Try1": 10.0
+        "Try1": 10.0,
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 189,
@@ -6881,11 +7754,15 @@
         "Position X": 7.0,
         "Position Y": 0.0,
         "Angle": 1.57,
+        "Flip state": 0,
+        "Flip state1": 0,
         "Angle1": 0.0,
         "Angle2": 0.0,
         "Visibility": "Centrifugal pump+tag",
         "Centrifugal Pump": 0,
-        "Try1": 10.0
+        "Try1": 10.0,
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 190,
@@ -6922,7 +7799,8 @@
         "Position Y": 246.62
       },
       "Misc": {
-        "Name": "valve"
+        "Name": "valve",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "valve"
@@ -6931,7 +7809,11 @@
         "Position X": 0.45,
         "Position Y": -3.9,
         "Angle": 0.0,
-        "Visibility": "Ball Valve"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Ball Valve",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 191,
@@ -6969,11 +7851,15 @@
         "Position X": 6.0,
         "Position Y": 0.0,
         "Angle": 1.57,
+        "Flip state": 0,
+        "Flip state1": 0,
         "Angle1": 1.57,
         "Angle2": 0.0,
         "Visibility": "Screw pump+tag+freq",
         "Centrifugal Pump": 59,
-        "Try1": 10.0
+        "Try1": 10.0,
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 192,
@@ -7010,7 +7896,8 @@
         "Position Y": 69.5
       },
       "Misc": {
-        "Name": "mixer"
+        "Name": "mixer",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "equipment"
@@ -7019,9 +7906,12 @@
         "Position X": 2.5,
         "Position Y": 4.35,
         "Angle": 0.0,
+        "Flip state": 0,
+        "Flip state1": 0,
         "Angle1": 0.0,
         "Visibility": "Mixer Static",
-        "Distance": 1.6
+        "Distance": 1.6,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 193,
@@ -7063,7 +7953,8 @@
         "Position Y": 65.76
       },
       "Misc": {
-        "Name": "sludge dewatering"
+        "Name": "sludge dewatering",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "equipment"
@@ -7072,7 +7963,11 @@
         "Position X": 7.56,
         "Position Y": 8.49,
         "Angle": 0.0,
-        "Visibility": "Monobelt"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Monobelt",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 194,
@@ -7110,7 +8005,8 @@
         "Position Y": -103.24
       },
       "Misc": {
-        "Name": "tank - vessel"
+        "Name": "tank - vessel",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "equipment"
@@ -7119,8 +8015,11 @@
         "Position X": 4.8,
         "Position Y": -3.09,
         "Angle": 0.0,
+        "Flip state": 0,
+        "Flip state1": 0,
         "Visibility": "Waste Container",
-        "Distance": 45.25
+        "Distance": 45.25,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 195,
@@ -7154,11 +8053,15 @@
         "Position X": 6.0,
         "Position Y": 2.0,
         "Angle": 1.57,
+        "Flip state": 0,
+        "Flip state1": 0,
         "Angle1": 1.57,
         "Angle2": 0.0,
         "Visibility": "Screw pump+tag+freq",
         "Centrifugal Pump": 59,
-        "Try1": 10.0
+        "Try1": 10.0,
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 196,
@@ -7195,7 +8098,8 @@
         "Position Y": 114.5
       },
       "Misc": {
-        "Name": "mixer"
+        "Name": "mixer",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "equipment"
@@ -7204,9 +8108,12 @@
         "Position X": 2.5,
         "Position Y": 4.35,
         "Angle": 0.0,
+        "Flip state": 0,
+        "Flip state1": 0,
         "Angle1": 0.0,
         "Visibility": "Mixer Static",
-        "Distance": 1.6
+        "Distance": 1.6,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 197,
@@ -7248,7 +8155,8 @@
         "Position Y": 110.76
       },
       "Misc": {
-        "Name": "sludge dewatering"
+        "Name": "sludge dewatering",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "equipment"
@@ -7257,7 +8165,11 @@
         "Position X": 7.56,
         "Position Y": 8.49,
         "Angle": 0.0,
-        "Visibility": "Monobelt"
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Monobelt",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 198,
@@ -7305,11 +8217,15 @@
         "Position X": 7.0,
         "Position Y": 0.0,
         "Angle": 1.57,
+        "Flip state": 0,
+        "Flip state1": 0,
         "Angle1": 1.57,
         "Angle2": 0.0,
         "Visibility": "Screw pump+tag+freq",
         "Centrifugal Pump": 59,
-        "Try1": 10.0
+        "Try1": 10.0,
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 199,
@@ -7346,7 +8262,8 @@
         "Position Y": -116.24
       },
       "Misc": {
-        "Name": "tank - vessel"
+        "Name": "tank - vessel",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "equipment"
@@ -7355,8 +8272,11 @@
         "Position X": 4.8,
         "Position Y": -3.09,
         "Angle": 0.0,
+        "Flip state": 0,
+        "Flip state1": 0,
         "Visibility": "Waste Container",
-        "Distance": 45.25
+        "Distance": 45.25,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 200,
@@ -7390,11 +8310,15 @@
         "Position X": 6.0,
         "Position Y": 2.0,
         "Angle": 1.57,
+        "Flip state": 0,
+        "Flip state1": 0,
         "Angle1": 1.57,
         "Angle2": 0.0,
         "Visibility": "Screw pump+tag+freq",
         "Centrifugal Pump": 59,
-        "Try1": 10.0
+        "Try1": 10.0,
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 201,
@@ -7431,7 +8355,8 @@
         "Position Y": 155.82
       },
       "Misc": {
-        "Name": "blower"
+        "Name": "blower",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "equipment"
@@ -7440,9 +8365,13 @@
         "Position X": -6.0,
         "Position Y": 9.0,
         "Angle": 1.57,
+        "Flip state": 0,
+        "Flip state1": 0,
         "Angle1": 0.0,
         "Angle2": 0.0,
-        "Visibility": "Roots blower+tag"
+        "Visibility": "Roots blower+tag",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 202,
@@ -7480,7 +8409,8 @@
         "Position Y": 155.82
       },
       "Misc": {
-        "Name": "blower"
+        "Name": "blower",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "equipment"
@@ -7489,9 +8419,13 @@
         "Position X": -6.0,
         "Position Y": 9.0,
         "Angle": 1.57,
+        "Flip state": 0,
+        "Flip state1": 0,
         "Angle1": 0.0,
         "Angle2": 0.0,
-        "Visibility": "Roots blower+tag"
+        "Visibility": "Roots blower+tag",
+        "Distance": 0.0,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 203,
@@ -7529,7 +8463,8 @@
         "Position Y": -3.0
       },
       "Misc": {
-        "Name": "aeration diffuzer"
+        "Name": "aeration diffuzer",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "equipment"
@@ -7538,9 +8473,12 @@
         "Position X": 7.67,
         "Position Y": 4.72,
         "Angle": 0.0,
+        "Flip state": 0,
+        "Flip state1": 0,
         "Angle1": 0.0,
         "Visibility": "Coarse diffuser",
-        "Distance": 0.89
+        "Distance": 0.89,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 204,
@@ -7567,7 +8505,8 @@
         "Position Y": -3.0
       },
       "Misc": {
-        "Name": "aeration diffuzer"
+        "Name": "aeration diffuzer",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "equipment"
@@ -7576,9 +8515,12 @@
         "Position X": 7.67,
         "Position Y": 4.72,
         "Angle": 0.0,
+        "Flip state": 0,
+        "Flip state1": 0,
         "Angle1": 0.0,
         "Visibility": "Coarse diffuser",
-        "Distance": 0.89
+        "Distance": 0.89,
+        "Distance1": 0.0
       },
       "Attributes": {
         "Internal_Id": 205,
@@ -7605,12 +8547,18 @@
         "Position Y": 246.62
       },
       "Misc": {
-        "Name": "RefAR27PotableWater"
+        "Name": "RefAR27PotableWater",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "0"
       },
-      "Custom": {},
+      "Custom": {
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Distance": 0.0,
+        "Distance1": 0.0
+      },
       "Attributes": {
         "Internal_Id": 206,
         "NAME1": "i18N-PID-0171",
@@ -7620,15 +8568,22 @@
     },
     {
       "Geometry": {
-        "Position X": 535.0
+        "Position X": 535.0,
+        "Position Y": 0.0
       },
       "Misc": {
-        "Name": "break"
+        "Name": "break",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "sludge"
       },
-      "Custom": {},
+      "Custom": {
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Distance": 0.0,
+        "Distance1": 0.0
+      },
       "Attributes": {
         "Internal_Id": 207
       }
@@ -7639,12 +8594,18 @@
         "Position Y": -67.59
       },
       "Misc": {
-        "Name": "break"
+        "Name": "break",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "chemical"
       },
-      "Custom": {},
+      "Custom": {
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Distance": 0.0,
+        "Distance1": 0.0
+      },
       "Attributes": {
         "Internal_Id": 208
       }
@@ -7655,12 +8616,18 @@
         "Position Y": -67.59
       },
       "Misc": {
-        "Name": "break"
+        "Name": "break",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "chemical"
       },
-      "Custom": {},
+      "Custom": {
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Distance": 0.0,
+        "Distance1": 0.0
+      },
       "Attributes": {
         "Internal_Id": 209
       }
@@ -7671,12 +8638,18 @@
         "Position Y": 67.54
       },
       "Misc": {
-        "Name": "break"
+        "Name": "break",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "water"
       },
-      "Custom": {},
+      "Custom": {
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Distance": 0.0,
+        "Distance1": 0.0
+      },
       "Attributes": {
         "Internal_Id": 210
       }
@@ -7687,27 +8660,40 @@
         "Position Y": -11.74
       },
       "Misc": {
-        "Name": "break"
+        "Name": "break",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "sewer"
       },
-      "Custom": {},
+      "Custom": {
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Distance": 0.0,
+        "Distance1": 0.0
+      },
       "Attributes": {
         "Internal_Id": 211
       }
     },
     {
       "Geometry": {
-        "Position X": 168.72
+        "Position X": 168.72,
+        "Position Y": 0.0
       },
       "Misc": {
-        "Name": "break"
+        "Name": "break",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "sewer"
       },
-      "Custom": {},
+      "Custom": {
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Distance": 0.0,
+        "Distance1": 0.0
+      },
       "Attributes": {
         "Internal_Id": 212
       }
@@ -7718,12 +8704,18 @@
         "Position Y": -11.74
       },
       "Misc": {
-        "Name": "break"
+        "Name": "break",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "sewer"
       },
-      "Custom": {},
+      "Custom": {
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Distance": 0.0,
+        "Distance1": 0.0
+      },
       "Attributes": {
         "Internal_Id": 213
       }
@@ -7734,12 +8726,18 @@
         "Position Y": 33.12
       },
       "Misc": {
-        "Name": "break"
+        "Name": "break",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "sewer"
       },
-      "Custom": {},
+      "Custom": {
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Distance": 0.0,
+        "Distance1": 0.0
+      },
       "Attributes": {
         "Internal_Id": 214
       }
@@ -7750,12 +8748,18 @@
         "Position Y": -22.69
       },
       "Misc": {
-        "Name": "break"
+        "Name": "break",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "sewer"
       },
-      "Custom": {},
+      "Custom": {
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Distance": 0.0,
+        "Distance1": 0.0
+      },
       "Attributes": {
         "Internal_Id": 215
       }
@@ -7766,12 +8770,18 @@
         "Position Y": 68.76
       },
       "Misc": {
-        "Name": "break"
+        "Name": "break",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "chemical"
       },
-      "Custom": {},
+      "Custom": {
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Distance": 0.0,
+        "Distance1": 0.0
+      },
       "Attributes": {
         "Internal_Id": 216
       }
@@ -7782,12 +8792,18 @@
         "Position Y": 68.76
       },
       "Misc": {
-        "Name": "break"
+        "Name": "break",
+        "Rotation": 0.0
       },
       "General": {
         "Layer": "leachate"
       },
-      "Custom": {},
+      "Custom": {
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Distance": 0.0,
+        "Distance1": 0.0
+      },
       "Attributes": {
         "Internal_Id": 217
       }
@@ -30251,11 +31267,13 @@
       "LinePoints": [
         {
           "Point": 1,
-          "X": 382.0
+          "X": 382.0,
+          "Y": 0.0
         },
         {
           "Point": 2,
-          "X": 242.0
+          "X": 242.0,
+          "Y": 0.0
         }
       ]
     },
@@ -30308,7 +31326,8 @@
         },
         {
           "Point": 4,
-          "X": 359.53
+          "X": 359.53,
+          "Y": 0.0
         }
       ]
     },
@@ -30392,11 +31411,13 @@
       "LinePoints": [
         {
           "Point": 1,
-          "X": 414.0
+          "X": 414.0,
+          "Y": 0.0
         },
         {
           "Point": 2,
-          "X": 545.0
+          "X": 545.0,
+          "Y": 0.0
         }
       ]
     },
@@ -30417,7 +31438,8 @@
         },
         {
           "Point": 3,
-          "X": 404.0
+          "X": 404.0,
+          "Y": 0.0
         }
       ]
     },
@@ -30428,7 +31450,8 @@
       "LinePoints": [
         {
           "Point": 1,
-          "X": 404.0
+          "X": 404.0,
+          "Y": 0.0
         },
         {
           "Point": 2,
@@ -30459,7 +31482,8 @@
         },
         {
           "Point": 3,
-          "X": 394.0
+          "X": 394.0,
+          "Y": 0.0
         }
       ]
     },
@@ -30470,7 +31494,8 @@
       "LinePoints": [
         {
           "Point": 1,
-          "X": 394.0
+          "X": 394.0,
+          "Y": 0.0
         },
         {
           "Point": 2,
@@ -30604,11 +31629,13 @@
         },
         {
           "Point": 3,
-          "X": 1039.27
+          "X": 1039.27,
+          "Y": 0.0
         },
         {
           "Point": 4,
-          "X": 1190.0
+          "X": 1190.0,
+          "Y": 0.0
         }
       ]
     },
@@ -30619,11 +31646,13 @@
       "LinePoints": [
         {
           "Point": 1,
-          "X": 3076.23
+          "X": 3076.23,
+          "Y": 0.0
         },
         {
           "Point": 2,
-          "X": 3156.5
+          "X": 3156.5,
+          "Y": 0.0
         }
       ]
     },
@@ -30634,7 +31663,8 @@
       "LinePoints": [
         {
           "Point": 1,
-          "X": 3086.23
+          "X": 3086.23,
+          "Y": 0.0
         },
         {
           "Point": 2,
@@ -30660,7 +31690,8 @@
         },
         {
           "Point": 2,
-          "X": 2746.1
+          "X": 2746.1,
+          "Y": 0.0
         },
         {
           "Point": 3,
@@ -30676,11 +31707,13 @@
       "LinePoints": [
         {
           "Point": 1,
-          "X": 2690.0
+          "X": 2690.0,
+          "Y": 0.0
         },
         {
           "Point": 2,
-          "X": 2759.7
+          "X": 2759.7,
+          "Y": 0.0
         },
         {
           "Point": 3,
@@ -30755,11 +31788,13 @@
       "LinePoints": [
         {
           "Point": 1,
-          "X": 3186.5
+          "X": 3186.5,
+          "Y": 0.0
         },
         {
           "Point": 2,
-          "X": 3206.0
+          "X": 3206.0,
+          "Y": 0.0
         }
       ]
     },
@@ -30780,7 +31815,8 @@
         },
         {
           "Point": 3,
-          "X": 3138.5
+          "X": 3138.5,
+          "Y": 0.0
         }
       ]
     },
@@ -30801,7 +31837,8 @@
         },
         {
           "Point": 3,
-          "X": 3203.5
+          "X": 3203.5,
+          "Y": 0.0
         }
       ]
     },
@@ -30812,11 +31849,13 @@
       "LinePoints": [
         {
           "Point": 1,
-          "X": 3396.0
+          "X": 3396.0,
+          "Y": 0.0
         },
         {
           "Point": 2,
-          "X": 3329.0
+          "X": 3329.0,
+          "Y": 0.0
         }
       ]
     },
@@ -31413,11 +32452,13 @@
       "LinePoints": [
         {
           "Point": 1,
-          "X": 117.1
+          "X": 117.1,
+          "Y": 0.0
         },
         {
           "Point": 2,
-          "X": 78.0
+          "X": 78.0,
+          "Y": 0.0
         }
       ]
     },
@@ -31428,11 +32469,13 @@
       "LinePoints": [
         {
           "Point": 1,
-          "X": 163.48
+          "X": 163.48,
+          "Y": 0.0
         },
         {
           "Point": 2,
-          "X": 210.0
+          "X": 210.0,
+          "Y": 0.0
         }
       ]
     },
@@ -31475,7 +32518,8 @@
       "LinePoints": [
         {
           "Point": 1,
-          "X": 94.18
+          "X": 94.18,
+          "Y": 0.0
         },
         {
           "Point": 2,
@@ -31518,7 +32562,8 @@
       "LinePoints": [
         {
           "Point": 1,
-          "X": 203.63
+          "X": 203.63,
+          "Y": 0.0
         },
         {
           "Point": 2,
@@ -31571,7 +32616,8 @@
         },
         {
           "Point": 3,
-          "X": 190.95
+          "X": 190.95,
+          "Y": 0.0
         }
       ]
     },
@@ -31717,7 +32763,8 @@
         },
         {
           "Point": 2,
-          "X": 276.0
+          "X": 276.0,
+          "Y": 0.0
         },
         {
           "Point": 3,
@@ -31755,7 +32802,8 @@
         },
         {
           "Point": 2,
-          "X": 376.0
+          "X": 376.0,
+          "Y": 0.0
         },
         {
           "Point": 3,
@@ -31871,7 +32919,8 @@
         },
         {
           "Point": 2,
-          "X": 438.48
+          "X": 438.48,
+          "Y": 0.0
         },
         {
           "Point": 3,
@@ -31904,11 +32953,13 @@
       "LinePoints": [
         {
           "Point": 1,
-          "X": 791.0
+          "X": 791.0,
+          "Y": 0.0
         },
         {
           "Point": 2,
-          "X": 956.8
+          "X": 956.8,
+          "Y": 0.0
         },
         {
           "Point": 3,
@@ -32318,7 +33369,8 @@
       "LinePoints": [
         {
           "Point": 1,
-          "X": 2765.1
+          "X": 2765.1,
+          "Y": 0.0
         },
         {
           "Point": 2,
@@ -32332,11 +33384,13 @@
         },
         {
           "Point": 4,
-          "X": 2915.1
+          "X": 2915.1,
+          "Y": 0.0
         },
         {
           "Point": 5,
-          "X": 2923.43
+          "X": 2923.43,
+          "Y": 0.0
         }
       ]
     },
@@ -32347,11 +33401,13 @@
       "LinePoints": [
         {
           "Point": 1,
-          "X": 2873.43
+          "X": 2873.43,
+          "Y": 0.0
         },
         {
           "Point": 2,
-          "X": 2759.7
+          "X": 2759.7,
+          "Y": 0.0
         }
       ]
     },
@@ -32680,7 +33736,8 @@
         },
         {
           "Point": 2,
-          "X": 3356.6
+          "X": 3356.6,
+          "Y": 0.0
         },
         {
           "Point": 3,
@@ -33446,7 +34503,8 @@
         },
         {
           "Point": 2,
-          "X": 811.5
+          "X": 811.5,
+          "Y": 0.0
         },
         {
           "Point": 3,
@@ -33584,7 +34642,8 @@
         },
         {
           "Point": 2,
-          "X": 1161.46
+          "X": 1161.46,
+          "Y": 0.0
         },
         {
           "Point": 3,
@@ -33739,7 +34798,8 @@
         },
         {
           "Point": 2,
-          "X": 933.97
+          "X": 933.97,
+          "Y": 0.0
         },
         {
           "Point": 3,

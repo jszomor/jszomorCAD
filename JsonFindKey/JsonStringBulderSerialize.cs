@@ -19,7 +19,7 @@ namespace JsonFindKey
       var serializer = new JsonSerializer
       {
         NullValueHandling = NullValueHandling.Ignore,
-        DefaultValueHandling = DefaultValueHandling.Ignore,
+        //DefaultValueHandling = DefaultValueHandling.Ignore,
         Formatting = Formatting.Indented
       };
       using (StreamWriter sw = new StreamWriter(path))
