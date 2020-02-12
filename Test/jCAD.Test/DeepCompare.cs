@@ -15,7 +15,10 @@ namespace jCAD.Test
 			if (properties1.Length != properties2.Length ||
 					properties1.ToString() != properties2.ToString())
 			{
-				Comments.Add($"InternalId: {line1.Internal_Id}");
+				if (!Comments.Contains($"InternalId: {line1.Internal_Id}"))
+				{
+					Comments.Add($"InternalId: {line1.Internal_Id}");
+				}
 				Comments.Add(($"Type: {properties1}"));
 				return false;
 			}
@@ -56,9 +59,13 @@ namespace jCAD.Test
 							{
 								if (propValue1.ToString() != propValue2.ToString())
 								{
-									Comments.Add($"InternalId: {line1.Internal_Id}");
+									if(!Comments.Contains($"InternalId: {line1.Internal_Id}"))
+									{
+										Comments.Add($"InternalId: {line1.Internal_Id}");
+									}
+									Comments.Add($"Point: {line1.LinePoints[j].Point}");
 									Comments.Add($"{jsonTagName}: {propValue1}");
-									return false;
+									//return false;
 								}
 							}
 						}
@@ -91,8 +98,11 @@ namespace jCAD.Test
 						{
 							if (propValue1.ToString() != propValue2.ToString())
 							{
-								Comments.Add($"InternalId: {block1.Attributes.Internal_Id}");
-								Comments.Add($"{jsonTagName}: {propValue1}");
+								if (!Comments.Contains($"InternalId: {block1.Attributes.Internal_Id}"))
+								{
+									Comments.Add($"InternalId: {block1.Attributes.Internal_Id}");
+								}
+								Comments.Add($"Geometry Category-{jsonTagName}: {propValue1}");
 								return false;
 							}
 						}
@@ -125,7 +135,10 @@ namespace jCAD.Test
 						{
 							if (propValue1.ToString() != propValue2.ToString())
 							{
-								Comments.Add($"InternalId: {block1.Attributes.Internal_Id}");
+								if (!Comments.Contains($"InternalId: {block1.Attributes.Internal_Id}"))
+								{
+									Comments.Add($"InternalId: {block1.Attributes.Internal_Id}");
+								}
 								Comments.Add($"{jsonTagName}: {propValue1}");
 								return false;
 							}
@@ -159,7 +172,10 @@ namespace jCAD.Test
 						{
 							if (propValue1.ToString() != propValue2.ToString())
 							{
-								Comments.Add($"InternalId: {block1.Attributes.Internal_Id}");
+								if (!Comments.Contains($"InternalId: {block1.Attributes.Internal_Id}"))
+								{
+									Comments.Add($"InternalId: {block1.Attributes.Internal_Id}");
+								}
 								Comments.Add($"{jsonTagName}: {propValue1}");
 								return false;
 							}
@@ -193,8 +209,11 @@ namespace jCAD.Test
 						{
 							if (propValue1.ToString() != propValue2.ToString())
 							{
-								Comments.Add($"InternalId: {block1.Attributes.Internal_Id}");
-								Comments.Add($"{jsonTagName}: {propValue1}");
+								if (!Comments.Contains($"InternalId: {block1.Attributes.Internal_Id}"))
+								{
+									Comments.Add($"InternalId: {block1.Attributes.Internal_Id}");
+								}
+								Comments.Add($"Custom Category-{jsonTagName}: {propValue1}");
 								return false;
 							}
 						}
@@ -227,7 +246,10 @@ namespace jCAD.Test
 						{
 							if (propValue1.ToString() != propValue2.ToString())
 							{
-								Comments.Add($"InternalId: {block1.Attributes.Internal_Id}");
+								if (!Comments.Contains($"InternalId: {block1.Attributes.Internal_Id}"))
+								{
+									Comments.Add($"InternalId: {block1.Attributes.Internal_Id}");
+								}
 								Comments.Add($"{jsonTagName}: {propValue1}");
 								return false;
 							}

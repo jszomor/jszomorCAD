@@ -1,1 +1,33 @@
-Files are eqvivalent!
+Differences:
+InternalId: 198
+Layer: equipment20
+InternalId: 199
+CustomCategory-Position X: 70
+NOTE: Polyelectrolyte dosing pump (Dewatering)40
+InternalId: 201
+Geometry Category-Position X: 53510
+Name: pump2
+CustomCategory-Position X: 60
+MATERIAL_HOUSING: GCIA
+InternalId: 888
+Point: 1
+X: 500,23
+InternalId: 889
+Type: Autodesk.AutoCAD.DatabaseServices.Line400
+Point: 1
+X: 8000,23
+Point: 1
+Y: 20
+Point: 2
+X: 500
+Point: 2
+Y: 20
+InternalId: 890
+Type: Autodesk.AutoCAD.DatabaseServices.Line1000
+Point: 1
+X: 300,23
+Point: 1
+Y: 200
+Point: 2
+X: 400,01
+Files are not eqvivalent!

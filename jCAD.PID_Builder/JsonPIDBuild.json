@@ -8159,7 +8159,7 @@
         "Rotation": 0.0
       },
       "General": {
-        "Layer": "equipment"
+        "Layer": "equipment20"
       },
       "Custom": {
         "Position X": 7.56,
@@ -8214,7 +8214,7 @@
         "Layer": "equipment"
       },
       "Custom": {
-        "Position X": 7.0,
+        "Position X": 70.0,
         "Position Y": 0.0,
         "Angle": 1.57,
         "Flip state": 0,
@@ -8229,13 +8229,13 @@
       },
       "Attributes": {
         "Internal_Id": 199,
-        "NOTE": "Polyelectrolyte dosing pump (Dewatering)",
+        "NOTE": "Polyelectrolyte dosing pump (Dewatering)40",
         "MODEL": "-",
         "CONSUMED_POWER": "0.27",
         "INSTALLED_POWER": "0.37",
         "INSTALLATION": "-",
         "MATERIAL_HOUSING": "GCI",
-        "MATERIAL_IMPELLER": "NBR",
+        "MATERIAL_IMPELLER": "NBR20",
         "SP_HEAD": "20",
         "SP_CAPACITY": "0.46",
         "UNIT_HEAD": "m",
@@ -8296,18 +8296,18 @@
     },
     {
       "Geometry": {
-        "Position X": 5351.0,
+        "Position X": 53510.0,
         "Position Y": 113.76
       },
       "Misc": {
-        "Name": "pump",
+        "Name": "pump2",
         "Rotation": 4.71238898038469
       },
       "General": {
         "Layer": "equipment"
       },
       "Custom": {
-        "Position X": 6.0,
+        "Position X": 60.0,
         "Position Y": 2.0,
         "Angle": 1.57,
         "Flip state": 0,
@@ -8327,7 +8327,7 @@
         "CONSUMED_POWER": "0.79",
         "INSTALLED_POWER": "1.10",
         "INSTALLATION": "-",
-        "MATERIAL_HOUSING": "GCI",
+        "MATERIAL_HOUSING": "GCIA",
         "MATERIAL_IMPELLER": "NBR",
         "SP_HEAD": "20",
         "SP_CAPACITY": "3.05",
@@ -20433,11 +20433,11 @@
     {
       "Type": "Autodesk.AutoCAD.DatabaseServices.Line",
       "Internal_Id": 888,
-      "Layer": "LEGEND",
+      "Layer": "LEGEND10",
       "LinePoints": [
         {
           "Point": 1,
-          "X": 7070.23,
+          "X": 500.23,
           "Y": 6.11
         },
         {
@@ -20448,35 +20448,35 @@
       ]
     },
     {
-      "Type": "Autodesk.AutoCAD.DatabaseServices.Line",
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Line400",
       "Internal_Id": 889,
-      "Layer": "LEGEND",
+      "Layer": "LEGEND2",
       "LinePoints": [
         {
           "Point": 1,
-          "X": 7070.23,
-          "Y": 5.95
+          "X": 8000.23,
+          "Y": 20
         },
         {
           "Point": 2,
-          "X": 7049.01,
-          "Y": 5.95
+          "X": 500,
+          "Y": 20
         }
       ]
     },
     {
-      "Type": "Autodesk.AutoCAD.DatabaseServices.Line",
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Line1000",
       "Internal_Id": 890,
       "Layer": "LEGEND",
       "LinePoints": [
         {
           "Point": 1,
-          "X": 7070.23,
-          "Y": 3.77
+          "X": 300.23,
+          "Y": 200
         },
         {
           "Point": 2,
-          "X": 7049.01,
+          "X": 400.01,
           "Y": 3.77
         }
       ]
