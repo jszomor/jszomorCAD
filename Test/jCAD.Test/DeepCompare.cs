@@ -27,50 +27,73 @@ namespace jCAD.Test
 
 		public bool LinePointsComparer(JsonLineProperty line1, JsonLineProperty line2)
 		{
-			if (line1.LinePoints.Count != line2.LinePoints.Count)
+			if (!line1.Type.Equals(line2.Type))
 			{
-				Comments.Add($"LinePoint number is not equal at Id: {line1.Internal_Id}");
+				AddInternalIdToComments(line1.Internal_Id);
+				Comments.Add($"\tType does not match: {line1.Type}");
 				return false;
 			}
 
+			if (line1.LinePoints.Count != line2.LinePoints.Count)
+			{
+				AddInternalIdToComments(line1.Internal_Id);
+				Comments.Add($"\tLinePoint number is not equal at Id: {line1.Internal_Id}");
+				return false;
+			}
+
+			var localErrors = new List<string>();
 			for (int j = 0; j < line1.LinePoints.Count; j++)
 			{
-				var properties1 = line1.LinePoints[j].GetType().GetProperties();
-				var properties2 = line2.LinePoints[j].GetType().GetProperties();
-				if (properties1.Length != properties2.Length) return false;
+				var p1 = line1.LinePoints[j];
+				var p2 = line2.LinePoints[j];
 
-				for (int i = 0; i < properties1.Length; i++)
+				if (p1.X != p2.X || p1.Y != p2.Y)
 				{
-
-					var customAttributes = properties1[i]
-						 .GetCustomAttributes(typeof(Newtonsoft.Json.JsonPropertyAttribute), false);
-					if (customAttributes.Length == 1)
-					{
-						var jsonProp = customAttributes[0];
-						var jsonTagName = (jsonProp as Newtonsoft.Json.JsonPropertyAttribute).PropertyName;
-						//System.Diagnostics.Debug.WriteLine($"\tJSONProperty Name: {jsonTagName}");
-						if (jsonTagName != null)
-						{
-							var propValue1 = properties1[i].GetValue(line1.LinePoints[j]);
-							var propValue2 = properties2[i].GetValue(line2.LinePoints[j]);
-							if (propValue1 == null || propValue2 == null) continue;
-							if (!string.IsNullOrWhiteSpace(propValue1.ToString()) ||
-									!string.IsNullOrWhiteSpace(propValue2.ToString()))
-							{
-								if (propValue1.ToString() != propValue2.ToString())
-								{
-									if(!Comments.Contains($"InternalId: {line1.Internal_Id}"))
-									{
-										Comments.Add($"InternalId: {line1.Internal_Id}");
-									}
-									Comments.Add($"Point: {line1.LinePoints[j].Point}");
-									Comments.Add($"{jsonTagName}: {propValue1}");
-									//return false;
-								}
-							}
-						}
-					}
+					localErrors.Add($"\tPoint[{p1.Point}] (X:{p1.X};Y:{p1.Y}) != (X:{p2.X};Y{p2.Y})"); // id
 				}
+
+				//var properties1 = line1.LinePoints[j].GetType().GetProperties();
+				//var properties2 = line2.LinePoints[j].GetType().GetProperties();
+				//if (properties1.Length != properties2.Length) return false;
+
+				//for (int i = 0; i < properties1.Length; i++)
+				//{
+				//	var customAttributes = properties1[i]
+				//		 .GetCustomAttributes(typeof(Newtonsoft.Json.JsonPropertyAttribute), false);
+				//	if (customAttributes.Length == 1)
+				//	{
+				//		var jsonProp = customAttributes[0];
+				//		var jsonTagName = (jsonProp as Newtonsoft.Json.JsonPropertyAttribute).PropertyName;
+				//		//System.Diagnostics.Debug.WriteLine($"\tJSONProperty Name: {jsonTagName}");
+				//		if (jsonTagName != null)
+				//		{
+				//			var propValue1 = properties1[i].GetValue(line1.LinePoints[j]);
+				//			var propValue2 = properties2[i].GetValue(line2.LinePoints[j]);
+				//			if (propValue1 == null || propValue2 == null) continue;
+				//			if (!string.IsNullOrWhiteSpace(propValue1.ToString()) ||
+				//					!string.IsNullOrWhiteSpace(propValue2.ToString()))
+				//			{
+				//				if (propValue1.ToString() != propValue2.ToString())
+				//				{
+				//					if(!Comments.Contains($"InternalId: {line1.Internal_Id}"))
+				//					{
+				//						Comments.Add($"InternalId: {line1.Internal_Id}");
+				//					}
+				//					Comments.Add($"Point: {line1.LinePoints[j].Point}");
+				//					Comments.Add($"{jsonTagName}: {propValue1}");
+				//					//return false;
+				//				}
+				//			}
+				//		}
+				//	}
+				//}
+			}
+
+			if (localErrors.Count > 0)
+			{
+				AddInternalIdToComments(line1.Internal_Id);
+				Comments.AddRange(localErrors);
+				return false;
 			}
 			return true;
 		}
@@ -103,7 +126,7 @@ namespace jCAD.Test
 									Comments.Add($"InternalId: {block1.Attributes.Internal_Id}");
 								}
 								Comments.Add($"Geometry Category-{jsonTagName}: {propValue1}");
-								return false;
+								//return false;
 							}
 						}
 					}
@@ -140,7 +163,7 @@ namespace jCAD.Test
 									Comments.Add($"InternalId: {block1.Attributes.Internal_Id}");
 								}
 								Comments.Add($"{jsonTagName}: {propValue1}");
-								return false;
+								//return false;
 							}
 						}
 					}
@@ -258,6 +281,11 @@ namespace jCAD.Test
 				}
 			}
 			return true;
+		}
+
+		private void AddInternalIdToComments(int internalId)
+		{
+			Comments.Add($"InternalId: {internalId}");
 		}
 	}
 }

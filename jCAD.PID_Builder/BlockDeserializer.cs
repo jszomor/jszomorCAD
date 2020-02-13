@@ -17,8 +17,10 @@ namespace jCAD.PID_Builder
     public JsonPID ReadJsonData(string fileName)
     {
       string jsonStringText = System.IO.File.ReadAllText(fileName);
+      var result = JsonConvert.DeserializeObject<JsonPID>(jsonStringText);
+      result.Lines.Sort();
 
-      return JsonConvert.DeserializeObject<JsonPID>(jsonStringText);
+      return result;
     }
   }
 }

@@ -6,7 +6,7 @@ using System.Text;
 
 namespace JsonFindKey
 {
-  public class JsonLineProperty
+  public class JsonLineProperty : IComparable<JsonLineProperty>
   {
     [JsonProperty("Type")]
     public string Type { get; set; }
@@ -18,6 +18,8 @@ namespace JsonFindKey
     public string Layer { get; set; }
 
     public List<Point2D> LinePoints { get; set; } = new List<Point2D>();
+
+    public int CompareTo(JsonLineProperty comparePart) => Internal_Id.CompareTo(comparePart.Internal_Id);
   }
   public class Point2D
   {

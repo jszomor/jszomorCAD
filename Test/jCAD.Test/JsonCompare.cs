@@ -205,7 +205,7 @@ namespace jCAD.Test
 			{
 				if (dictLines2.TryGetValue(i.Key, out JsonLineProperty compareValue))
 				{
-					deepEx.LineTypeComparer(i.Value, compareValue);
+					//deepEx.LineTypeComparer(i.Value, compareValue);
 					deepEx.LinePointsComparer(i.Value, compareValue);
 				}
 			}

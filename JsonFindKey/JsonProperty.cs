@@ -27,15 +27,7 @@ namespace JsonParse
 
     public Attributes Attributes { get; } = new Attributes();
 
-    public int CompareTo(JsonBlockProperty comparePart)
-    {
-      // A null value means that this object is greater.
-      if (comparePart == null)
-        return 1;
-
-      else
-        return Attributes.Internal_Id.CompareTo(comparePart.Attributes.Internal_Id);
-    }
+    public int CompareTo(JsonBlockProperty comparePart) => Attributes.Internal_Id.CompareTo(comparePart.Attributes.Internal_Id);
   }
 
   public class Geometry

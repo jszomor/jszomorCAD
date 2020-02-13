@@ -2,8 +2,8 @@
   "Blocks": [
     {
       "Geometry": {
-        "Position X": 78.0,
-        "Position Y": 0.0
+        "Position X": 100.0,
+        "Position Y": 40.0
       },
       "Misc": {
         "Name": "RefPIDInfluent",
@@ -32,7 +32,7 @@
         "NH4N": "45",
         "PO4_3_P": "-",
         "TMIN": "16",
-        "QAVG": "4,000",
+        "QAVG": "40,000",
         "QPEAK": "-",
         "QPEAKD": "-",
         "TMAX": "23",
@@ -35270,6 +35270,23 @@
     },
     {
       "Type": "Autodesk.AutoCAD.DatabaseServices.Polyline",
+      "Internal_Id": 1708,
+      "Layer": "0",
+      "LinePoints": [
+        {
+          "Point": 1,
+          "X": 1000.0,
+          "Y": 200.0
+        },
+        {
+          "Point": 2,
+          "X": 60.0,
+          "Y": 19.0
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Polyline200",
       "Internal_Id": 1707,
       "Layer": "0",
       "LinePoints": [
@@ -35286,23 +35303,6 @@
         {
           "Point": 3,
           "X": 562.0,
-          "Y": 19.0
-        }
-      ]
-    },
-    {
-      "Type": "Autodesk.AutoCAD.DatabaseServices.Polyline",
-      "Internal_Id": 1708,
-      "Layer": "0",
-      "LinePoints": [
-        {
-          "Point": 1,
-          "X": 562.0,
-          "Y": 19.0
-        },
-        {
-          "Point": 2,
-          "X": 560.0,
           "Y": 19.0
         }
       ]
