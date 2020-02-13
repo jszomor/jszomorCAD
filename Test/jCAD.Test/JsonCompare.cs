@@ -129,10 +129,10 @@ namespace jCAD.Test
 		public void JsonCompareResult()
 		{
 			//Assert.IsTrue(DeepComparer());
-			DeepComparer();
+			DeepCompare();
 		}
 
-		public bool DeepComparer()
+		public bool DeepCompare()
 		{
 			bool isIdentical = false;
 			var deepex = new DeepEx();
@@ -145,8 +145,8 @@ namespace jCAD.Test
 			var jsonPID1 = blockDeserialize.ReadJsonData(fileName1);
 			var jsonPID2 = blockDeserialize.ReadJsonData(fileName2);		
 			
-			BlockComparer(jsonPID1, jsonPID2, deepex);
-			LineComparer(jsonPID1, jsonPID2, deepex);
+			BlockCompare(jsonPID1, jsonPID2, deepex);
+			LineCompare(jsonPID1, jsonPID2, deepex);
 			
 			if (jsonPID1.Blocks.Count != jsonPID2.Blocks.Count || jsonPID1.Lines.Count != jsonPID2.Lines.Count)
 			{
@@ -169,7 +169,7 @@ namespace jCAD.Test
 			CommentCollector(deepex.Comments, FilePath);
 			return isIdentical;
 		}
-		public void BlockComparer(JsonPID jsonPID1, JsonPID jsonPID2, DeepEx deepEx)
+		public void BlockCompare(JsonPID jsonPID1, JsonPID jsonPID2, DeepEx deepEx)
 		{
 			var dictBlock1 = new Dictionary<int, JsonBlockProperty>();
 			var dictBlock2 = new Dictionary<int, JsonBlockProperty>();
@@ -191,7 +191,7 @@ namespace jCAD.Test
 				}
 			}
 		}
-		public void LineComparer(JsonPID jsonPID1, JsonPID jsonPID2, DeepEx deepEx)
+		public void LineCompare(JsonPID jsonPID1, JsonPID jsonPID2, DeepEx deepEx)
 		{
 			var dictLines1 = new Dictionary<int, JsonLineProperty>();
 			var dictLines2 = new Dictionary<int, JsonLineProperty>();
