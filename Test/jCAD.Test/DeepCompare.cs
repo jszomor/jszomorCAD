@@ -24,8 +24,7 @@ namespace jCAD.Test
 			}
 			return true;
 		}
-
-		public bool LinePointsComparer(JsonLineProperty line1, JsonLineProperty line2)
+		public bool LineCompare(JsonLineProperty line1, JsonLineProperty line2)
 		{
 			if (!line1.Type.Equals(line2.Type))
 			{
@@ -37,7 +36,7 @@ namespace jCAD.Test
 			if (line1.LinePoints.Count != line2.LinePoints.Count)
 			{
 				AddInternalIdToComments(line1.Internal_Id);
-				Comments.Add($"\tLinePoint number is not equal at Id: {line1.Internal_Id}");
+				Comments.Add($"\tLinePoint number is not equal.");
 				return false;
 			}
 
@@ -49,44 +48,8 @@ namespace jCAD.Test
 
 				if (p1.X != p2.X || p1.Y != p2.Y)
 				{
-					localErrors.Add($"\tPoint[{p1.Point}] (X:{p1.X};Y:{p1.Y}) != (X:{p2.X};Y{p2.Y})"); // id
+					localErrors.Add($"\tPoint[{p1.Point}] (X1:{p1.X}|Y1:{p1.Y}) != (X2:{p2.X}|Y2:{p2.Y})"); // id
 				}
-
-				//var properties1 = line1.LinePoints[j].GetType().GetProperties();
-				//var properties2 = line2.LinePoints[j].GetType().GetProperties();
-				//if (properties1.Length != properties2.Length) return false;
-
-				//for (int i = 0; i < properties1.Length; i++)
-				//{
-				//	var customAttributes = properties1[i]
-				//		 .GetCustomAttributes(typeof(Newtonsoft.Json.JsonPropertyAttribute), false);
-				//	if (customAttributes.Length == 1)
-				//	{
-				//		var jsonProp = customAttributes[0];
-				//		var jsonTagName = (jsonProp as Newtonsoft.Json.JsonPropertyAttribute).PropertyName;
-				//		//System.Diagnostics.Debug.WriteLine($"\tJSONProperty Name: {jsonTagName}");
-				//		if (jsonTagName != null)
-				//		{
-				//			var propValue1 = properties1[i].GetValue(line1.LinePoints[j]);
-				//			var propValue2 = properties2[i].GetValue(line2.LinePoints[j]);
-				//			if (propValue1 == null || propValue2 == null) continue;
-				//			if (!string.IsNullOrWhiteSpace(propValue1.ToString()) ||
-				//					!string.IsNullOrWhiteSpace(propValue2.ToString()))
-				//			{
-				//				if (propValue1.ToString() != propValue2.ToString())
-				//				{
-				//					if(!Comments.Contains($"InternalId: {line1.Internal_Id}"))
-				//					{
-				//						Comments.Add($"InternalId: {line1.Internal_Id}");
-				//					}
-				//					Comments.Add($"Point: {line1.LinePoints[j].Point}");
-				//					Comments.Add($"{jsonTagName}: {propValue1}");
-				//					//return false;
-				//				}
-				//			}
-				//		}
-				//	}
-				//}
 			}
 
 			if (localErrors.Count > 0)
@@ -97,123 +60,51 @@ namespace jCAD.Test
 			}
 			return true;
 		}
-		public bool BlockGeometryCompare(JsonBlockProperty block1, JsonBlockProperty block2)
+		public bool BlockCompare(JsonBlockProperty block1, JsonBlockProperty block2)
 		{
-			//System.Diagnostics.Debug.WriteLine($"AutoCAD TAG: {attRef.Tag}");
-			var properties1 = block1.Geometry.GetType().GetProperties();
-			var properties2 = block2.Geometry.GetType().GetProperties();
-			if (properties1.Length != properties2.Length) return false;
-			for (int i = 0; i < properties1.Length; i++)
+			var blockName1 = block1.Misc.BlockName;
+			var blockName2 = block2.Misc.BlockName;
+			var X1 = block1.Geometry.X;
+			var Y1 = block1.Geometry.Y;
+			var X2 = block2.Geometry.X;
+			var Y2 = block2.Geometry.Y;
+			var rotation1 = block1.Misc.Rotation;
+			var rotation2 = block2.Misc.Rotation;
+			var layer1 = block1.General.Layer;
+			var layer2 = block2.General.Layer;
+
+			var localErrors = new List<string>();
+			if (blockName1 != blockName2)
 			{
-				var customAttributes = properties1[i]
-					 .GetCustomAttributes(typeof(Newtonsoft.Json.JsonPropertyAttribute), false);
-				if (customAttributes.Length == 1)
-				{
-					var jsonProp = customAttributes[0];
-					var jsonTagName = (jsonProp as Newtonsoft.Json.JsonPropertyAttribute).PropertyName;
-					//System.Diagnostics.Debug.WriteLine($"\tJSONProperty Name: {jsonTagName}");
-					if (jsonTagName != null)
-					{
-						var propValue1 = properties1[i].GetValue(block1.Geometry);
-						var propValue2 = properties2[i].GetValue(block2.Geometry);
-						if (propValue1 == null || propValue2 == null) continue;
-						if (!string.IsNullOrWhiteSpace(propValue1.ToString()) || !string.IsNullOrWhiteSpace(propValue2.ToString()))
-						{
-							if (propValue1.ToString() != propValue2.ToString())
-							{
-								if (!Comments.Contains($"InternalId: {block1.Attributes.Internal_Id}"))
-								{
-									Comments.Add($"InternalId: {block1.Attributes.Internal_Id}");
-								}
-								Comments.Add($"Geometry Category-{jsonTagName}: {propValue1}");
-								//return false;
-							}
-						}
-					}
-				}
+				localErrors.Add($"\tblockName:{blockName1}!={blockName2}");
+			}
+			if (X1 != X2 || Y1 != Y2)
+			{
+				localErrors.Add($"\tItem Postion:(X1:{X1}|Y1:{Y1}) != (X2:{X2}|Y2:{Y2})"); // id
+			}
+			if (rotation1 != rotation2)
+			{
+				localErrors.Add($"\trotation:{rotation1}!={rotation2}");
+			}
+			if (layer1 != layer2)
+			{
+				localErrors.Add($"\tlayer:{layer1}!={layer2}");
+			}
+			if (localErrors.Count > 0)
+			{
+				AddInternalIdToComments(block1.Attributes.Internal_Id);
+				Comments.AddRange(localErrors);
+				return false;
 			}
 			return true;
-		}
-		public bool BlockMiscCompare(JsonBlockProperty block1, JsonBlockProperty block2)
-		{
-			//System.Diagnostics.Debug.WriteLine($"AutoCAD TAG: {attRef.Tag}");
-			var properties1 = block1.Misc.GetType().GetProperties();
-			var properties2 = block2.Misc.GetType().GetProperties();
-			if (properties1.Length != properties2.Length) return false;
-			for (int i = 0; i < properties1.Length; i++)
-			{
-				var customAttributes = properties1[i]
-					 .GetCustomAttributes(typeof(Newtonsoft.Json.JsonPropertyAttribute), false);
-				if (customAttributes.Length == 1)
-				{
-					var jsonProp = customAttributes[0];
-					var jsonTagName = (jsonProp as Newtonsoft.Json.JsonPropertyAttribute).PropertyName;
-					//System.Diagnostics.Debug.WriteLine($"\tJSONProperty Name: {jsonTagName}");
-					if (jsonTagName != null)
-					{
-						var propValue1 = properties1[i].GetValue(block1.Misc);
-						var propValue2 = properties2[i].GetValue(block2.Misc);
-						if (propValue1 == null || propValue2 == null) continue;
-						if (!string.IsNullOrWhiteSpace(propValue1.ToString()) || !string.IsNullOrWhiteSpace(propValue2.ToString()))
-						{
-							if (propValue1.ToString() != propValue2.ToString())
-							{
-								if (!Comments.Contains($"InternalId: {block1.Attributes.Internal_Id}"))
-								{
-									Comments.Add($"InternalId: {block1.Attributes.Internal_Id}");
-								}
-								Comments.Add($"{jsonTagName}: {propValue1}");
-								//return false;
-							}
-						}
-					}
-				}
-			}
-			return true;
-		}
-		public bool BlockGeneralCompare(JsonBlockProperty block1, JsonBlockProperty block2)
-		{
-			//System.Diagnostics.Debug.WriteLine($"AutoCAD TAG: {attRef.Tag}");
-			var properties1 = block1.General.GetType().GetProperties();
-			var properties2 = block2.General.GetType().GetProperties();
-			if (properties1.Length != properties2.Length) return false;
-			for (int i = 0; i < properties1.Length; i++)
-			{
-				var customAttributes = properties1[i]
-					 .GetCustomAttributes(typeof(Newtonsoft.Json.JsonPropertyAttribute), false);
-				if (customAttributes.Length == 1)
-				{
-					var jsonProp = customAttributes[0];
-					var jsonTagName = (jsonProp as Newtonsoft.Json.JsonPropertyAttribute).PropertyName;
-					//System.Diagnostics.Debug.WriteLine($"\tJSONProperty Name: {jsonTagName}");
-					if (jsonTagName != null)
-					{
-						var propValue1 = properties1[i].GetValue(block1.General);
-						var propValue2 = properties2[i].GetValue(block2.General);
-						if (propValue1 == null || propValue2 == null) continue;
-						if (!string.IsNullOrWhiteSpace(propValue1.ToString()) || !string.IsNullOrWhiteSpace(propValue2.ToString()))
-						{
-							if (propValue1.ToString() != propValue2.ToString())
-							{
-								if (!Comments.Contains($"InternalId: {block1.Attributes.Internal_Id}"))
-								{
-									Comments.Add($"InternalId: {block1.Attributes.Internal_Id}");
-								}
-								Comments.Add($"{jsonTagName}: {propValue1}");
-								return false;
-							}
-						}
-					}
-				}
-			}
-			return true;
-		}
+		}		
 		public bool BlockCustomCompare(JsonBlockProperty block1, JsonBlockProperty block2)
 		{
 			//System.Diagnostics.Debug.WriteLine($"AutoCAD TAG: {attRef.Tag}");
 			var properties1 = block1.Custom.GetType().GetProperties();
 			var properties2 = block2.Custom.GetType().GetProperties();
 			if (properties1.Length != properties2.Length) return false;
+			var localErrors = new List<string>();
 			for (int i = 0; i < properties1.Length; i++)
 			{
 				var customAttributes = properties1[i]
@@ -232,16 +123,17 @@ namespace jCAD.Test
 						{
 							if (propValue1.ToString() != propValue2.ToString())
 							{
-								if (!Comments.Contains($"InternalId: {block1.Attributes.Internal_Id}"))
-								{
-									Comments.Add($"InternalId: {block1.Attributes.Internal_Id}");
-								}
-								Comments.Add($"Custom Category-{jsonTagName}: {propValue1}");
-								return false;
+								localErrors.Add($"\tCustom Category:{jsonTagName}:{propValue1}!={jsonTagName}:{propValue2}");								
 							}
 						}
 					}
 				}
+			}
+			if (localErrors.Count > 0)
+			{
+				AddInternalIdToComments(block1.Attributes.Internal_Id);
+				Comments.AddRange(localErrors);
+				return false;
 			}
 			return true;
 		}
@@ -251,6 +143,7 @@ namespace jCAD.Test
 			var properties1 = block1.Attributes.GetType().GetProperties();
 			var properties2 = block2.Attributes.GetType().GetProperties();
 			if (properties1.Length != properties2.Length) return false;
+			var localErrors = new List<string>();
 			for (int i = 0; i < properties1.Length; i++)
 			{
 				var customAttributes = properties1[i]
@@ -269,23 +162,27 @@ namespace jCAD.Test
 						{
 							if (propValue1.ToString() != propValue2.ToString())
 							{
-								if (!Comments.Contains($"InternalId: {block1.Attributes.Internal_Id}"))
-								{
-									Comments.Add($"InternalId: {block1.Attributes.Internal_Id}");
-								}
-								Comments.Add($"{jsonTagName}: {propValue1}");
-								return false;
+								localErrors.Add($"\tAttributes Category:{jsonTagName}:{propValue1}!={jsonTagName}:{propValue2}");								
 							}
 						}
 					}
 				}
+			}
+			if (localErrors.Count > 0)
+			{
+				AddInternalIdToComments(block1.Attributes.Internal_Id);
+				Comments.AddRange(localErrors);
+				return false;
 			}
 			return true;
 		}
 
 		private void AddInternalIdToComments(int internalId)
 		{
-			Comments.Add($"InternalId: {internalId}");
+			if(!Comments.Contains($"InternalId: {internalId}"))
+			{
+				Comments.Add($"InternalId: {internalId}");
+			}
 		}
 	}
 }

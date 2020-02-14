@@ -143,11 +143,11 @@ namespace jCAD.Test
 			//var fileName2 = @"C:\Users\JANO\source\repos\jszomorCAD\jCAD.PID_Builder\JsonPIDBuildCopy.json"; //DELL
 			var blockDeserialize = new BlockDeserializer();
 			var jsonPID1 = blockDeserialize.ReadJsonData(fileName1);
-			var jsonPID2 = blockDeserialize.ReadJsonData(fileName2);		
-			
-			BlockCompare(jsonPID1, jsonPID2, deepex);
-			LineCompare(jsonPID1, jsonPID2, deepex);
-			
+			var jsonPID2 = blockDeserialize.ReadJsonData(fileName2);
+
+			BlockCollector(jsonPID1, jsonPID2, deepex);
+			LineCollector(jsonPID1, jsonPID2, deepex);
+
 			if (jsonPID1.Blocks.Count != jsonPID2.Blocks.Count || jsonPID1.Lines.Count != jsonPID2.Lines.Count)
 			{
 				deepex.Comments.Insert(0, "Differences:");
@@ -169,7 +169,7 @@ namespace jCAD.Test
 			CommentCollector(deepex.Comments, FilePath);
 			return isIdentical;
 		}
-		public void BlockCompare(JsonPID jsonPID1, JsonPID jsonPID2, DeepEx deepEx)
+		public void BlockCollector(JsonPID jsonPID1, JsonPID jsonPID2, DeepEx deepEx)
 		{
 			var dictBlock1 = new Dictionary<int, JsonBlockProperty>();
 			var dictBlock2 = new Dictionary<int, JsonBlockProperty>();
@@ -177,21 +177,22 @@ namespace jCAD.Test
 			for (int i = 0; i < jsonPID1.Blocks.Count; i++)
 			{
 				dictBlock1.Add(jsonPID1.Blocks[i].Attributes.Internal_Id, jsonPID1.Blocks[i]);
+			}
+			for (int i = 0; i < jsonPID2.Blocks.Count; i++)
+			{
 				dictBlock2.Add(jsonPID2.Blocks[i].Attributes.Internal_Id, jsonPID2.Blocks[i]);
 			}
 			foreach (var i in dictBlock1)
 			{
 				if (dictBlock2.TryGetValue(i.Key, out JsonBlockProperty compareValue))
 				{
-					deepEx.BlockGeometryCompare(i.Value, compareValue);
-					deepEx.BlockMiscCompare(i.Value, compareValue);
-					deepEx.BlockGeneralCompare(i.Value, compareValue);
+					deepEx.BlockCompare(i.Value, compareValue);
 					deepEx.BlockCustomCompare(i.Value, compareValue);
 					deepEx.BlockAttributesCompare(i.Value, compareValue);
 				}
 			}
 		}
-		public void LineCompare(JsonPID jsonPID1, JsonPID jsonPID2, DeepEx deepEx)
+		public void LineCollector(JsonPID jsonPID1, JsonPID jsonPID2, DeepEx deepEx)
 		{
 			var dictLines1 = new Dictionary<int, JsonLineProperty>();
 			var dictLines2 = new Dictionary<int, JsonLineProperty>();
@@ -206,7 +207,7 @@ namespace jCAD.Test
 				if (dictLines2.TryGetValue(i.Key, out JsonLineProperty compareValue))
 				{
 					//deepEx.LineTypeComparer(i.Value, compareValue);
-					deepEx.LinePointsComparer(i.Value, compareValue);
+					deepEx.LineCompare(i.Value, compareValue);
 				}
 			}
 		}

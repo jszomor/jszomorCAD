@@ -1,1 +1,182 @@
-Files are eqvivalent!
+{
+  "Blocks": [
+    {
+      "Geometry": {
+        "Position X": 1287.16,
+        "Position Y": 1344.92
+      },
+      "Misc": {
+        "Name": "TWT",
+        "Rotation": 0.0
+      },
+      "General": {
+        "Layer": "unit"
+      },
+      "Custom": {
+        "Position X": 60.56,
+        "Position Y": -5.82,
+        "Angle": 0.0,
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "no channels",
+        "Distance": 123.0,
+        "Distance1": 21.0,
+        "Distance2": 33.0,
+        "Distance3": 21.0,
+        "Distance4": 11.8,
+        "Distance5": 43.0
+      },
+      "Attributes": {
+        "Internal_Id": 1,
+        "NAME1": "TREATED WATER TANK",
+        "VOLUME": "-",
+        "WIDTH": "-",
+        "LIQUIDLEVEL": "-",
+        "LENGTH": "-",
+        "HEIGHT": "-"
+      }
+    },
+    {
+      "Geometry": {
+        "Position X": 1305.38,
+        "Position Y": 1223.29
+      },
+      "Misc": {
+        "Name": "sst2_chmbr",
+        "Rotation": 0.0
+      },
+      "General": {
+        "Layer": "unit"
+      },
+      "Custom": {
+        "Position X": 36.04,
+        "Position Y": -5.19,
+        "Angle": 0.0,
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": 0.0,
+        "Distance": 74.0,
+        "Distance1": 32.0,
+        "Distance2": 33.0,
+        "Distance3": 21.0,
+        "Distance4": 11.8,
+        "Distance5": 43.0
+      },
+      "Attributes": {
+        "Internal_Id": 2,
+        "VOLUME": "-",
+        "WIDTH": "-",
+        "LIQUIDLEVEL": "-",
+        "LENGTH": "-",
+        "HEIGHT": "-",
+        "i18N-PID-0352": "BLENDING TANK",
+        "i18N-PID-0203": "THICKENED SLUDGE STORAGE TANK"
+      }
+    },
+    {
+      "Geometry": {
+        "Position X": 1290.41,
+        "Position Y": 1160.76
+      },
+      "Misc": {
+        "Name": "sst2Dig",
+        "Rotation": 0.0
+      },
+      "General": {
+        "Layer": "unit"
+      },
+      "Custom": {
+        "Position1 X": 49.14,
+        "Position1 Y": -4.12,
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Angle1": 0.0,
+        "Distance": 0.0,
+        "Distance1": 100.0,
+        "Distance2": 48.0
+      },
+      "Attributes": {
+        "Internal_Id": 3,
+        "NAME1": "DEGASIFICATION TANK",
+        "VOLUME": "-",
+        "WIDTH": "-",
+        "LIQUIDLEVEL": "-",
+        "LENGTH": "-",
+        "HEIGHT": "-"
+      }
+    },
+    {
+      "Geometry": {
+        "Position X": 1291.69,
+        "Position Y": 1290.34
+      },
+      "Misc": {
+        "Name": "leachet_coll_chmbr",
+        "Rotation": 0.0
+      },
+      "General": {
+        "Layer": "unit"
+      },
+      "Custom": {
+        "Position X": 48.36,
+        "Position Y": -7.01,
+        "Angle": 0.0,
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "no channels",
+        "Distance": 106.0,
+        "Distance1": 26.0,
+        "Distance2": 33.0,
+        "Distance3": 21.0,
+        "Distance4": 11.8,
+        "Distance5": 43.0
+      },
+      "Attributes": {
+        "Internal_Id": 4,
+        "NAME1": "SLUDGE STORAGE TANK",
+        "VOLUME": "-",
+        "WIDTH": "-",
+        "LIQUIDLEVEL": "-",
+        "LENGTH": "-",
+        "HEIGHT": "-"
+      }
+    },
+    {
+      "Geometry": {
+        "Position X": 1291.58,
+        "Position Y": 1114.92
+      },
+      "Misc": {
+        "Name": "pr_cl_chmbr",
+        "Rotation": 0.0
+      },
+      "General": {
+        "Layer": "unit"
+      },
+      "Custom": {
+        "Position X": 47.0,
+        "Position Y": -6.0,
+        "Angle": 0.0,
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "no channels",
+        "Distance": 94.0,
+        "Distance1": 29.0,
+        "Distance2": 33.0,
+        "Distance3": 21.0,
+        "Distance4": 11.8,
+        "Distance5": 43.0
+      },
+      "Attributes": {
+        "Internal_Id": 5,
+        "NAME1": "PRIMARY CLARIFIER SLUDGE CHAMBER",
+        "VOLUME": "-",
+        "WIDTH": "-",
+        "LIQUIDLEVEL": "-",
+        "LENGTH": "-",
+        "HEIGHT": "-"
+      }
+    }
+  ],
+  "Lines": []
+}

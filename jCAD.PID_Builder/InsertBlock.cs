@@ -169,16 +169,9 @@ namespace jCAD.PID_Builder
             break;
           }
 
-          else if (dbrProp.PropertyName == "Visibility" && acBlkRef.Name != "blower" && acBlkRef.Name != "filter")
+          else if (dbrProp.PropertyName == "Visibility")
           {
-            if(acBlkRef.Name == "sst2_chmbr")
-            {
-              string dbValue = Convert.ToString(dbrProp.Value);
-              dbValue = Convert.ToString(jsonBlockProperty.Custom.VisibilityValue);
-            }
-            else
-            dbrProp.Value = jsonBlockProperty.Custom.VisibilityValue;
-
+            dbrProp.Value = Convert.ToString(jsonBlockProperty.Custom.VisibilityValue);
             break;
           }
 
