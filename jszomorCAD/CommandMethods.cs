@@ -337,6 +337,7 @@ namespace jszomorCAD
         "poli dosing",
         "pump",
         "mixer",
+        "pr_cl_chmbr",
         "reactor",
         "RefALSewage",
         "RefALPoly",

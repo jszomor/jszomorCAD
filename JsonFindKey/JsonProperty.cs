@@ -542,7 +542,10 @@ namespace JsonParse
     public string I18N_PID_0352 { get; set; }
 
     [JsonProperty("i18N-PID-0445")]
-    public string I18N_PID_0445 { get; set; }
+    public string I18N_PID_0445 { get; set; }    
+
+    [JsonProperty("i18N-PID-0203")]
+    public string I18N_PID_0203 { get; set; }
 
     [JsonProperty("VALUE")]
     public string VALUE { get; set; }

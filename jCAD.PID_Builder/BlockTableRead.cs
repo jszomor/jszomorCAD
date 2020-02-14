@@ -45,13 +45,7 @@ namespace jCAD.PID_Builder
                 InternalCounter++;
               }
             }
-          }
-        }
-        //separate loop for lines because of InternalCounter
-        foreach (ObjectId objectId in btrModelSpace)
-        {
-          using (var item = objectId.GetObject(OpenMode.ForWrite))
-          {
+       
             if (item == null) continue;
 
             if (item is Line || item is Polyline || item is Polyline2d || item is Polyline3d)
@@ -64,6 +58,7 @@ namespace jCAD.PID_Builder
         }
 
         jsonPID.Blocks.Sort();
+        jsonPID.Lines.Sort();
 
         var seralizer = new JsonStringBuilderSerialize();
         seralizer.StringBuilderSerialize(jsonPID, fileName);
