@@ -11,9 +11,11 @@ namespace jCAD.Test
     [TestMethod]
     public void EqPumpSelectTest()
     {
+      SelectorProperty selectorProperty = new SelectorProperty();
+
       var pumpIndex = JsonClass.JsonEquipmentValue("Equalization Tank Pump");
       var q_inf_aa = JsonProcessClass.JsonProcessValue("Q_inf_AA");
-      var numberOfPump = EquipmentSelector.EqPumpSelect();
+      var numberOfPump = EquipmentSelector.EqPumpNumberSelect(selectorProperty);
 
       Assert.AreEqual(22L, pumpIndex);
       //Assert.AreEqual(200000, q_inf_aa);

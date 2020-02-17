@@ -56,7 +56,7 @@ namespace jszomorCAD
       long indexOfEqPump = JsonClass.JsonEquipmentValue("Equalization Tank Pump");
       var promptEqIndex = Convert.ToInt16(indexOfEqPump);
 
-      var eqt = new EqualizationTank(numberOfPumps: EquipmentSelector.EqPumpSelect(), distanceOfPump: 20, eqIndex: promptEqIndex);
+      var eqt = new EqualizationTank(numberOfPumps: Convert.ToInt32(EquipmentSelector.EqPumpNumberSelect(selectorProperty)), distanceOfPump: 20, eqIndex: promptEqIndex);
 
       //var InsBlock = new BlockMapping();
       #region old code
