@@ -136,14 +136,17 @@ namespace jCAD.Test
 		{
 			bool isIdentical = false;
 			var deepex = new DeepEx();
-			string FilePath = @"C:\Users\Jszomor\source\repos\jszomorCAD\jCAD.PID_Builder\JsonCompareResult.txt";
-			var fileName1 = @"C:\Users\Jszomor\source\repos\jszomorCAD\jCAD.PID_Builder\JsonPIDBuild.json";
-			//var fileName1 = @"C:\Users\JANO\source\repos\jszomorCAD\jCAD.PID_Builder\JsonPIDBuild.json"; //DELL
-			var fileName2 = @"C:\Users\Jszomor\source\repos\jszomorCAD\jCAD.PID_Builder\JsonPIDBuildCopy.json";
-			//var fileName2 = @"C:\Users\JANO\source\repos\jszomorCAD\jCAD.PID_Builder\JsonPIDBuildCopy.json"; //DELL
+			string workingDir = @"E:\Jszomor\source\repos\jszomorCAD\jCAD.PID_Builder"; // company desktop
+			//string workingDir = @"C:\Users\JANO\source\repos\jszomorCAD\jCAD.PID_Builder"; // home laptop
+			//string workingDir = @"C:\Users\Jszomor\source\repos\jszomorCAD\jCAD.PID_Builder"; // company laptop
+
+			var JsonCompareFile = Path.Combine(workingDir, "JsonCompareResult.txt");
+			var JsonPIDBuild = Path.Combine(workingDir, "JsonPIDBuild.json");
+			var JsonPIDBuildCopy = Path.Combine(workingDir, "JsonPIDBuildCopy.json");
+
 			var blockDeserialize = new BlockDeserializer();
-			var jsonPID1 = blockDeserialize.ReadJsonData(fileName1);
-			var jsonPID2 = blockDeserialize.ReadJsonData(fileName2);
+			var jsonPID1 = blockDeserialize.ReadJsonData(JsonPIDBuild);
+			var jsonPID2 = blockDeserialize.ReadJsonData(JsonPIDBuildCopy);
 
 			BlockCollector(jsonPID1, jsonPID2, deepex);
 			LineCollector(jsonPID1, jsonPID2, deepex);
@@ -166,7 +169,7 @@ namespace jCAD.Test
 
 				deepex.Comments.Add("Files are not eqvivalent!");
 			}
-			CommentCollector(deepex.Comments, FilePath);
+			CommentCollector(deepex.Comments, JsonCompareFile);
 			return isIdentical;
 		}
 		public void BlockCollector(JsonPID jsonPID1, JsonPID jsonPID2, DeepEx deepEx)
