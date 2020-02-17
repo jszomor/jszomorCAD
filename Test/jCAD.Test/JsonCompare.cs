@@ -136,10 +136,10 @@ namespace jCAD.Test
 		{
 			bool isIdentical = false;
 			var deepex = new DeepEx();
-			string FilePath = @"E:\Jszomor\source\repos\jszomorCAD\jCAD.PID_Builder\JsonCompareResult.txt";
-			var fileName1 = @"E:\Jszomor\source\repos\jszomorCAD\jCAD.PID_Builder\JsonPIDBuild.json";
+			string FilePath = @"C:\Users\Jszomor\source\repos\jszomorCAD\jCAD.PID_Builder\JsonCompareResult.txt";
+			var fileName1 = @"C:\Users\Jszomor\source\repos\jszomorCAD\jCAD.PID_Builder\JsonPIDBuild.json";
 			//var fileName1 = @"C:\Users\JANO\source\repos\jszomorCAD\jCAD.PID_Builder\JsonPIDBuild.json"; //DELL
-			var fileName2 = @"E:\Jszomor\source\repos\jszomorCAD\jCAD.PID_Builder\JsonPIDBuildCopy.json";
+			var fileName2 = @"C:\Users\Jszomor\source\repos\jszomorCAD\jCAD.PID_Builder\JsonPIDBuildCopy.json";
 			//var fileName2 = @"C:\Users\JANO\source\repos\jszomorCAD\jCAD.PID_Builder\JsonPIDBuildCopy.json"; //DELL
 			var blockDeserialize = new BlockDeserializer();
 			var jsonPID1 = blockDeserialize.ReadJsonData(fileName1);
