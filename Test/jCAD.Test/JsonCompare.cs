@@ -176,14 +176,29 @@ namespace jCAD.Test
 		{
 			var dictBlock1 = new Dictionary<int, JsonBlockProperty>();
 			var dictBlock2 = new Dictionary<int, JsonBlockProperty>();
-
+			
 			for (int i = 0; i < jsonPID1.Blocks.Count; i++)
 			{
-				dictBlock1.Add(jsonPID1.Blocks[i].Attributes.Internal_Id, jsonPID1.Blocks[i]);
+				try
+				{
+					dictBlock1.Add(jsonPID1.Blocks[i].Attributes.Internal_Id, jsonPID1.Blocks[i]);
+				}
+				catch (ArgumentException ex)
+				{
+					Console.Write($"InternalId already exist: {jsonPID1.Blocks[i].Attributes.Internal_Id},{ex}");
+				}
 			}
+			
 			for (int i = 0; i < jsonPID2.Blocks.Count; i++)
 			{
-				dictBlock2.Add(jsonPID2.Blocks[i].Attributes.Internal_Id, jsonPID2.Blocks[i]);
+				try
+				{
+					dictBlock2.Add(jsonPID2.Blocks[i].Attributes.Internal_Id, jsonPID2.Blocks[i]);
+				}
+				catch (ArgumentException ex)
+				{
+					Console.Write($"InternalId already exist: {jsonPID2.Blocks[i].Attributes.Internal_Id},{ex}");
+				}
 			}
 			foreach (var i in dictBlock1)
 			{
@@ -202,9 +217,27 @@ namespace jCAD.Test
 
 			for (int i = 0; i < jsonPID1.Lines.Count; i++)
 			{
-				dictLines1.Add(jsonPID1.Lines[i].Internal_Id, jsonPID1.Lines[i]);
-				dictLines2.Add(jsonPID2.Lines[i].Internal_Id, jsonPID2.Lines[i]);
+				try
+				{
+					dictLines1.Add(jsonPID1.Lines[i].Internal_Id, jsonPID1.Lines[i]);
+				}
+				catch (ArgumentException ex)
+				{
+					Console.Write($"InternalId already exist: {jsonPID1.Lines[i].Internal_Id},{ex}");
+				}
 			}
+			for (int i = 0; i < jsonPID2.Lines.Count; i++)
+			{
+				try
+				{
+					dictLines1.Add(jsonPID2.Lines[i].Internal_Id, jsonPID1.Lines[i]);
+				}
+				catch (ArgumentException ex)
+				{
+					Console.Write($"InternalId already exist: {jsonPID2.Lines[i].Internal_Id},{ex}");
+				}
+			}
+
 			foreach (var i in dictLines1)
 			{
 				if (dictLines2.TryGetValue(i.Key, out JsonLineProperty compareValue))
