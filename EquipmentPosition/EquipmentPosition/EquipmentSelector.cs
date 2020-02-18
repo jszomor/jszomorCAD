@@ -101,7 +101,7 @@ namespace EquipmentPosition
 
         //double devided = (WaterLevelCalc(selectorProperty) / (selectorProperty.ChannelHeight) + selectorProperty.FreeBoard);
         double devided = (WaterLevelCalc(selectorProperty) / ChannelGateWidthSelect(selectorProperty)) + selectorProperty.FreeBoard;
-        double result = Convert.ToInt32(devided / 100) * 100;
+        double result = Convert.ToInt32(devided / 100) * 100; //have rounded number
         return result;
       }
       catch (ArgumentOutOfRangeException ex)
