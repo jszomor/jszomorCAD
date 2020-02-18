@@ -25,7 +25,7 @@ namespace EquipmentPosition
       double avgH = AvgFlowCalc();
       try
       {
-        if (AvgFlowCalc() <= 800)
+        if (avgH <= 800)
         {
           selectorProperty.NumberOfEqipment = 1;
         }
