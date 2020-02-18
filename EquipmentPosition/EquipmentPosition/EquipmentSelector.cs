@@ -22,6 +22,7 @@ namespace EquipmentPosition
 
     public static double EqPumpNumberSelect(this SelectorProperty selectorProperty)
     {
+      double avgH = AvgFlowCalc();
       try
       {
         if (AvgFlowCalc() <= 800)
@@ -30,15 +31,15 @@ namespace EquipmentPosition
         }
         else
         {
-            if (AvgFlowCalc() >= 801 && AvgFlowCalc() <= 1200)
+            if      (avgH <= 1200)
               selectorProperty.Capacity = 800;
-            else if (AvgFlowCalc() >= 1201 && AvgFlowCalc() <= 2000)
+            else if (avgH <= 2000)
               selectorProperty.Capacity = 1000;
-            else if (AvgFlowCalc() >= 2001 && AvgFlowCalc() <= 4000)
+            else if (avgH <= 4000)
               selectorProperty.Capacity = 1200;
-            else if (AvgFlowCalc() >= 4001 && AvgFlowCalc() <= 6000)
+            else if (avgH <= 6000)
               selectorProperty.Capacity = 1500;
-            else if (AvgFlowCalc() >= 6001 && AvgFlowCalc() <= 8500)
+            else if (avgH <= 8500)
               selectorProperty.Capacity = 2000;
           
           selectorProperty.NumberOfEqipment = Convert.ToInt32(AvgFlowCalc() / selectorProperty.Capacity);          
