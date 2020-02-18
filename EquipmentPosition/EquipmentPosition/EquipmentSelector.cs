@@ -7,20 +7,20 @@ using System.Threading.Tasks;
 
 namespace EquipmentPosition
 {
-  public class EquipmentSelector
+  public static class EquipmentSelector
   {
     public static double AvgFlowCalc()
     {
       SelectorProperty selectorProperty = new SelectorProperty();
 
-      selectorProperty.AvgDailyFlow = JsonProcessClass.JsonProcessValue("Q_inf_AA");
+      selectorProperty.AvgDailyFlow = Convert.ToInt32(JsonProcessClass.JsonProcessValue("Q_inf_AA"));
 
       selectorProperty.AvgHourlyFlow = selectorProperty.AvgDailyFlow / 24;
 
       return selectorProperty.AvgHourlyFlow;
     }
 
-    public static double EqPumpNumberSelect(SelectorProperty selectorProperty)
+    public static double EqPumpNumberSelect(this SelectorProperty selectorProperty)
     {
       try
       {
@@ -30,28 +30,17 @@ namespace EquipmentPosition
         }
         else
         {
-          switch (AvgFlowCalc())
-          {
-            case 1 when (AvgFlowCalc() >= 801 && AvgFlowCalc() <= 1200):    
+            if (AvgFlowCalc() >= 801 && AvgFlowCalc() <= 1200)
               selectorProperty.Capacity = 800;
-              break;
-
-            case 2 when (AvgFlowCalc() >= 1201 && AvgFlowCalc() <= 2000):
+            else if (AvgFlowCalc() >= 1201 && AvgFlowCalc() <= 2000)
               selectorProperty.Capacity = 1000;
-              break;
-
-            case 3 when (AvgFlowCalc() >= 2001 && AvgFlowCalc() <= 4000):
+            else if (AvgFlowCalc() >= 2001 && AvgFlowCalc() <= 4000)
               selectorProperty.Capacity = 1200;
-              break;
-
-            case 4 when (AvgFlowCalc() >= 4001 && AvgFlowCalc() <= 6000):
+            else if (AvgFlowCalc() >= 4001 && AvgFlowCalc() <= 6000)
               selectorProperty.Capacity = 1500;
-              break;
-
-            case 5 when (AvgFlowCalc() >= 6001 && AvgFlowCalc() <= 8500):
+            else if (AvgFlowCalc() >= 6001 && AvgFlowCalc() <= 8500)
               selectorProperty.Capacity = 2000;
-              break;
-          }
+          
           selectorProperty.NumberOfEqipment = Convert.ToInt32(AvgFlowCalc() / selectorProperty.Capacity);          
         }        
       }
@@ -62,81 +51,58 @@ namespace EquipmentPosition
       return selectorProperty.NumberOfEqipment;      
     }
 
-    public static double EqPumpFlowCalc(SelectorProperty selectorProperty) => AvgFlowCalc() / EqPumpNumberSelect(selectorProperty);
+    public static double EqPumpFlowCalc(this SelectorProperty selectorProperty) => AvgFlowCalc() / EqPumpNumberSelect(selectorProperty);
 
-    public static int ChannelGateWidthSelect(SelectorProperty selectorProperty)
+    public static double WaterLevelCalc(SelectorProperty selectorProperty) => AvgFlowCalc() / 3600 / selectorProperty.FlowSpeed * 1000000 / selectorProperty.NumberOfTrain;
+    
+    public static int ChannelGateWidthSelect(this SelectorProperty selectorProperty)
     {
       try
       {
-        switch (AvgFlowCalc())
-        {
-          case 1 when (AvgFlowCalc() <= 900):
+          if (AvgFlowCalc() <= 900)
             selectorProperty.ChannelWidth = 600;
-            break;
-
-          case 2 when (AvgFlowCalc() >= 901 && AvgFlowCalc() <= 1900):
+          else if (AvgFlowCalc() >= 901 && AvgFlowCalc() <= 1900)
             selectorProperty.ChannelWidth = 1000;
-            break;
-
-          case 3 when (AvgFlowCalc() >= 1901 && AvgFlowCalc() <= 3900):
+          else if (AvgFlowCalc() >= 1901 && AvgFlowCalc() <= 3900)
             selectorProperty.ChannelWidth = 1200;
-            break;
-
-          case 4 when (AvgFlowCalc() >= 3901 && AvgFlowCalc() <= 5900):
+          else if (AvgFlowCalc() >= 3901 && AvgFlowCalc() <= 5900)
             selectorProperty.ChannelWidth = 1500;
-            break;
-
-          case 5 when (AvgFlowCalc() >= 5901 && AvgFlowCalc() <= 7900):
+          else if (AvgFlowCalc() >= 5901 && AvgFlowCalc() <= 7900)
             selectorProperty.ChannelWidth = 1600;
-            break;
-
-          case 6 when (AvgFlowCalc() >= 7901 && AvgFlowCalc() <= 9900):
+          else if (AvgFlowCalc() >= 7901 && AvgFlowCalc() <= 9900)
             selectorProperty.ChannelWidth = 1800;
-            break;
-
-          case 7 when (AvgFlowCalc() >= 9901 && AvgFlowCalc() <= 13900):
+          else if (AvgFlowCalc() >= 9901 && AvgFlowCalc() <= 13900)
             selectorProperty.ChannelWidth = 2000;
-            break;
-        }
+        
         return selectorProperty.ChannelWidth;
       }
       catch (ArgumentOutOfRangeException ex)
       {
         throw new ArgumentOutOfRangeException($"Avg flow is out of range,{ex}");
       }
-    }
+    }    
 
-    public static int ChannelGateHeightSelect(SelectorProperty selectorProperty)
+    public static double ChannelGateHeightSelect(SelectorProperty selectorProperty)
     {
       try
       {
-        switch (AvgFlowCalc())
-        {
-          case 1 when (AvgFlowCalc() <= 1900):
+          if (AvgFlowCalc() <= 1900)
             selectorProperty.ChannelHeight = 800;
-            break;
-
-          case 3 when (AvgFlowCalc() >= 1901 && AvgFlowCalc() <= 3900):
+          else if (AvgFlowCalc() >= 1901 && AvgFlowCalc() <= 3900)
             selectorProperty.ChannelHeight = 1200;
-            break;
-
-          case 4 when (AvgFlowCalc() >= 3901 && AvgFlowCalc() <= 5900):
+          else if (AvgFlowCalc() >= 3901 && AvgFlowCalc() <= 5900)
             selectorProperty.ChannelHeight = 1500;
-            break;
-
-          case 5 when (AvgFlowCalc() >= 5901 && AvgFlowCalc() <= 7900):
+          else if (AvgFlowCalc() >= 5901 && AvgFlowCalc() <= 7900)
             selectorProperty.ChannelHeight = 1600;
-            break;
-
-          case 6 when (AvgFlowCalc() >= 7901 && AvgFlowCalc() <= 9900):
+          else if (AvgFlowCalc() >= 7901 && AvgFlowCalc() <= 9900)
             selectorProperty.ChannelHeight = 1800;
-            break;
-
-          case 7 when (AvgFlowCalc() >= 9901 && AvgFlowCalc() <= 13900):
+          else if (AvgFlowCalc() >= 9901 && AvgFlowCalc() <= 13900)
             selectorProperty.ChannelHeight = 2000;
-            break;
-        }
-        return Convert.ToInt32((AvgFlowCalc()/selectorProperty.NumberOfTrain/3600/0.3/1000000)/(selectorProperty.ChannelHeight + 500));
+
+        //double devided = (WaterLevelCalc(selectorProperty) / (selectorProperty.ChannelHeight) + selectorProperty.FreeBoard);
+        double devided = (WaterLevelCalc(selectorProperty) / ChannelGateWidthSelect(selectorProperty)) + selectorProperty.FreeBoard;
+        double result = Convert.ToInt32(devided / 100) * 100;
+        return result;
       }
       catch (ArgumentOutOfRangeException ex)
       {

@@ -8,11 +8,11 @@ namespace EquipmentPosition
 {
   public class SelectorProperty
   {
-    public double NumberOfTrain { get; set; }
+    public int NumberOfTrain { get; set; }
     public double AvgDailyFlow { get; set; }
     public double AvgHourlyFlow { get; set; }
-    public double Capacity { get; set; }
-    public double Head { get; set; }
+    public int Capacity { get; set; }
+    public int Head { get; set; }
     public int NumberOfEqipment { get; set; }
     public bool EqPump { get; set; }
     public bool EqLIT { get; set; }
@@ -21,6 +21,9 @@ namespace EquipmentPosition
     public bool EqMixer { get; set; }
     public int ChannelWidth { get; set; }
     public int ChannelHeight { get; set; }
+    public int FreeBoard { get; set; } = 500;
+    public int WaterLevel { get; set; }
+    public double FlowSpeed { get; set; } = 0.3;
 
 
     //public SelectorProperty(long numberOfEqipment, long avgDailyFlow, long avgHourlyFlow, long capacity)
@@ -31,6 +34,6 @@ namespace EquipmentPosition
     //  Capacity = capacity;
     //}
 
-    
+
   }
 }

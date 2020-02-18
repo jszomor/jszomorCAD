@@ -23,5 +23,18 @@ namespace jCAD.Test
       Console.WriteLine(q_inf_aa);
       Console.WriteLine(numberOfPump);
     }
+
+    [TestMethod]
+    public void ChannelTest()
+    {
+      var selectorProperty = new SelectorProperty();
+
+      //EquipmentSelector.AvgFlowCalc(selectorProperty);
+      selectorProperty.AvgDailyFlow = Convert.ToInt32(JsonProcessClass.JsonProcessValue("Q_inf_AA"));
+      selectorProperty.NumberOfTrain = Convert.ToInt32(JsonProcessClass.JsonProcessValue("NTS_FCR"));
+      //var q_inf_aa = JsonProcessClass.JsonProcessValue("Q_inf_AA");
+      Console.WriteLine($"ChannelHeight:{EquipmentSelector.ChannelGateHeightSelect(selectorProperty)}");
+      Console.WriteLine($"ChannelWidth:{EquipmentSelector.ChannelGateWidthSelect(selectorProperty)}");
+    }
   }
 }
