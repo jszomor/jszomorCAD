@@ -530,6 +530,189 @@ namespace jszomorCAD
       var select = new Select();
       select.SelectBlockReference(db);
     }
+
+    [CommandMethod("AttachRasterImage")]
+
+    public void AttachRasterImage()
+
+    {
+
+      // Get the current database and start a transaction 
+
+      Database db = Application.DocumentManager.MdiActiveDocument.Database;
+
+      using (Transaction tr = db.TransactionManager.StartTransaction())
+
+      {
+
+        // Define the name and image to use 
+
+        string strImgName = "Organica_Logo";
+
+        string strFileName = @"E:\Munka\OrganiCad\DrawingTemplates\Images\Organica_Logo.png";
+
+        RasterImageDef acRasterDef;
+
+        bool bRasterDefCreated = false;
+
+        ObjectId acImgDefId;
+
+        // Get the image dictionary 
+
+        ObjectId acImgDctID = RasterImageDef.GetImageDictionary(db);
+
+        // Check to see if the dictionary does not exist, it not then create it 
+
+        if (acImgDctID.IsNull)
+
+        {
+
+          acImgDctID = RasterImageDef.CreateImageDictionary(db);
+
+        }
+
+        // Open the image dictionary 
+
+        DBDictionary acImgDict = tr.GetObject(acImgDctID, OpenMode.ForRead) as DBDictionary;
+
+        // Check to see if the image definition already exists 
+
+        if (acImgDict.Contains(strImgName))
+
+        {
+
+          acImgDefId = acImgDict.GetAt(strImgName);
+
+          acRasterDef = tr.GetObject(acImgDefId,
+
+          OpenMode.ForWrite) as RasterImageDef;
+
+        }
+
+        else
+
+        {
+
+          // Create a raster image definition 
+
+          RasterImageDef acRasterDefNew = new RasterImageDef();
+
+          // Set the source for the image file
+
+          acRasterDefNew.SourceFileName = strFileName;
+
+          // Load the image into memory
+
+          acRasterDefNew.Load();
+
+          // Add the image definition to the dictionary
+
+          acImgDict.UpgradeOpen();
+
+          acImgDefId = acImgDict.SetAt(strImgName, acRasterDefNew);
+
+          tr.AddNewlyCreatedDBObject(acRasterDefNew, true);
+
+          acRasterDef = acRasterDefNew;
+
+          bRasterDefCreated = true;
+
+        }
+
+        // Open the Block table for read 
+
+        BlockTable bt = tr.GetObject(db.BlockTableId, OpenMode.ForRead) as BlockTable;
+
+        // Open the Block table record Model space for write 
+
+        BlockTableRecord btr = tr.GetObject(bt[BlockTableRecord.PaperSpace], OpenMode.ForWrite) as BlockTableRecord;
+
+        // Create the new image and assign it the image definition 
+
+        using (RasterImage acRaster = new RasterImage())
+
+        {
+
+          acRaster.ImageDefId = acImgDefId;
+
+          // Use ImageWidth and ImageHeight to get the size of the image in pixels (1024 x 768). 
+
+          // Use ResolutionMMPerPixel to determine the number of millimeters in a pixel so you  
+
+          // can convert the size of the drawing into other units or millimeters based on the  
+
+          // drawing units used in the current drawing. 
+
+          // Define the width and height of the image 
+
+          Vector3d width;
+
+          Vector3d height;
+
+          // Check to see if the measurement is set to English (Imperial) or Metric units 
+
+          if (db.Measurement == MeasurementValue.English)
+
+          {
+
+            width = new Vector3d((acRasterDef.ResolutionMMPerPixel.X * acRaster.ImageWidth) / 25.4, 0, 0);
+
+            height = new Vector3d(0, (acRasterDef.ResolutionMMPerPixel.Y * acRaster.ImageHeight) / 25.4, 0);
+
+          }
+
+          else
+
+          {
+
+            width = new Vector3d(acRasterDef.ResolutionMMPerPixel.X * acRaster.ImageWidth, 0, 0);
+
+            height = new Vector3d(0, acRasterDef.ResolutionMMPerPixel.Y * acRaster.ImageHeight, 0);
+          }
+
+          // Define the position for the image  
+
+          Point3d insPt = new Point3d(12.0, 12.0, 0.0);
+
+          // Define and assign a coordinate system for the image's orientation 
+
+          CoordinateSystem3d coordinateSystem = new CoordinateSystem3d(insPt, width * 2, height * 2);
+
+          acRaster.Orientation = coordinateSystem;
+
+          // Set the rotation angle for the image
+
+          acRaster.Rotation = 0;
+
+          // Add the new object to the block table record and the transaction
+
+          btr.AppendEntity(acRaster);
+
+          tr.AddNewlyCreatedDBObject(acRaster, true);
+
+          // Connect the raster definition and image together so the definition 
+
+          // does not appear as "unreferenced" in the External References palette. 
+
+          RasterImage.EnableReactors(true);
+
+          acRaster.AssociateRasterDef(acRasterDef);
+
+          if (bRasterDefCreated)
+
+            acRasterDef.Dispose();
+
+        }
+
+        // Save the new object to the database
+
+        tr.Commit();
+
+        // Dispose of the transaction
+
+      }
+
+    }
   }
 }
 
