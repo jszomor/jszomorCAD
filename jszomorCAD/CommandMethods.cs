@@ -713,6 +713,44 @@ namespace jszomorCAD
       }
 
     }
+
+    [CommandMethod("SetVisiblityState", CommandFlags.Modal)]
+    public void SetVisiblityState()
+    {
+      //	var pio = new PromptStringOptions("\nEnter blockname:");
+      //	var inputString = Application.DocumentManager.MdiActiveDocument.Editor.GetString(pio);
+      //	string blockName = Convert.ToString(inputString);
+      string blockName = "pump";
+
+      //var index = new PromptIntegerOptions("\nEnter index of equipment:");
+      //var eqIndex = Application.DocumentManager.MdiActiveDocument.Editor.GetInteger(index);
+      //var promptEqIndex = Convert.ToInt16(eqIndex.Value);
+      short promptEqIndex = 53;
+
+      var doc = Application.DocumentManager.MdiActiveDocument;
+      string Note = "Anoxic recycle pump";
+      using (doc.LockDocument())
+      {
+        using (var db = doc.Database)
+        {
+          var insertBlockTable = new InsertBlockTable(db);
+          insertBlockTable.IterateBTRForSetupBlockVisibility(blockName, promptEqIndex, Note, db);
+        }
+      }
+    }
+    [CommandMethod("TagNumbering", CommandFlags.Modal)]
+    public void TagNumbering()
+    {
+      var doc = Application.DocumentManager.MdiActiveDocument;
+      using (doc.LockDocument())
+      {
+        using (var db = doc.Database)
+        {
+          var insertBlockTable = new InsertBlockTable(db);
+          insertBlockTable.Numbering(db);
+        }
+      }
+    }
   }
 }
 

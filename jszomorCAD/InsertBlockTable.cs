@@ -307,5 +307,111 @@ namespace jszomorCAD
         }
       });
     }
+    public void IterateBTRForSetupBlockVisibility(string blockName, short visiblityIndex, string Note, Database db)
+    {
+      using (Transaction tr = db.TransactionManager.StartTransaction())
+      {
+        BlockTable bt = tr.GetObject(db.BlockTableId, OpenMode.ForRead) as BlockTable;
+        BlockTableRecord btr = tr.GetObject(bt[BlockTableRecord.ModelSpace], OpenMode.ForRead, false) as BlockTableRecord;
+        foreach (ObjectId objectId in btr)
+        {
+          BlockReference blockReference;
+          //ObjectId blockId = insertBlockTable.GetBlockTable(blockName, db, tr);
+          using (blockReference = tr.GetObject(objectId, OpenMode.ForRead) as BlockReference)
+          {
+            if (blockReference == null) continue;
+
+            var btrObjectId = blockReference.DynamicBlockTableRecord;
+            var blockDefinition = tr.GetObject(btrObjectId, OpenMode.ForWrite, false) as BlockTableRecord;
+            if (blockDefinition.Name.EndsWith(blockName))
+            {
+              //string validBlockName = //RealNameFinder(btr.Name);
+              AttributeCollection attributeCollection = blockReference.AttributeCollection;
+              foreach (ObjectId objIdAtt in attributeCollection)
+              {
+                using (AttributeReference attRef = tr.GetObject(objIdAtt, OpenMode.ForWrite) as AttributeReference)
+                {
+                  if (attRef.Tag == "NOTE" && attRef.TextString == Note)
+                  {
+                    if (blockReference.IsDynamicBlock)
+                    {
+                      foreach (DynamicBlockReferenceProperty dbProp in blockReference.DynamicBlockReferencePropertyCollection)
+                      {
+                        if (dbProp.PropertyName == "Centrifugal Pump")
+                        {
+                          dbProp.Value = visiblityIndex;
+                        }
+                        else if (dbProp.PropertyName == "Block Table1")
+                        {
+                          dbProp.Value = visiblityIndex;
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+        tr.Commit();
+      }
+    }
+    public void Numbering(Database db)
+    {
+      using (Transaction tr = db.TransactionManager.StartTransaction())
+      {
+        BlockTable bt = tr.GetObject(db.BlockTableId, OpenMode.ForRead) as BlockTable;
+        BlockTableRecord btr = tr.GetObject(bt[BlockTableRecord.ModelSpace], OpenMode.ForRead, false) as BlockTableRecord;
+        int nextNumber = 1;
+        foreach (ObjectId objectId in btr)
+        {
+          BlockReference blockReference;
+          //ObjectId blockId = insertBlockTable.GetBlockTable(blockName, db, tr);
+          using (blockReference = tr.GetObject(objectId, OpenMode.ForRead) as BlockReference)
+          {
+            if (blockReference == null) continue;
+
+            var btrObjectId = blockReference.DynamicBlockTableRecord;
+            var blockDefinition = tr.GetObject(btrObjectId, OpenMode.ForWrite, false) as BlockTableRecord;
+            //if (blockDefinition.Name.EndsWith(blockName))
+            {
+              //string validBlockName = //RealNameFinder(btr.Name);
+              AttributeCollection attributeCollection = blockReference.AttributeCollection;
+              foreach (ObjectId objIdAtt in attributeCollection)
+              {
+                using (AttributeReference attRef = tr.GetObject(objIdAtt, OpenMode.ForWrite) as AttributeReference)
+                {
+                  if (attRef.Tag == "TAG")
+                  {
+                    attRef.TextString = nextNumber.ToString("D3");
+
+                    #region IsDynamicBlock
+                    //if (blockReference.IsDynamicBlock)
+                    //{
+                    //  foreach (DynamicBlockReferenceProperty dbProp in blockReference.DynamicBlockReferencePropertyCollection)
+                    //  {
+                    //    if (dbProp.PropertyName == "Centrifugal Pump")
+                    //    {
+                    //      dbProp.Value = visiblityIndex;
+                    //    }
+                    //    else if (dbProp.PropertyName == "Block Table1")
+                    //    {
+                    //      dbProp.Value = visiblityIndex;
+                    //    }
+                    //  }
+                    //}
+                    #endregion
+
+
+                  }
+                }
+              }
+            }
+          }
+          ++nextNumber;
+        }
+        tr.Commit();
+      }
+    }
   }
 }
