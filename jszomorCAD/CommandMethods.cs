@@ -747,7 +747,7 @@ namespace jszomorCAD
         using (var db = doc.Database)
         {
           var insertBlockTable = new InsertBlockTable(db);
-          insertBlockTable.Numbering(db);
+          insertBlockTable.Numbering(db, true);
         }
       }
     }

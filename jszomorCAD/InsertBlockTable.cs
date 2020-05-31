@@ -356,55 +356,28 @@ namespace jszomorCAD
         tr.Commit();
       }
     }
-    public void Numbering(Database db)
+    public void Numbering(Database db, bool isLeftToDownSelection)
     {
       using (Transaction tr = db.TransactionManager.StartTransaction())
       {
         BlockTable bt = tr.GetObject(db.BlockTableId, OpenMode.ForRead) as BlockTable;
         BlockTableRecord btr = tr.GetObject(bt[BlockTableRecord.ModelSpace], OpenMode.ForRead, false) as BlockTableRecord;
         int nextNumber = 1;
-        foreach (ObjectId objectId in btr)
+
+        IEnumerable<BlockReference> blkRefList = GetBlockRef(btr, tr, isLeftToDownSelection);
+        
+        foreach (var blockReference in blkRefList)
         {
-          BlockReference blockReference;
-          //ObjectId blockId = insertBlockTable.GetBlockTable(blockName, db, tr);
-          using (blockReference = tr.GetObject(objectId, OpenMode.ForRead) as BlockReference)
+          if (blockReference == null) continue;
+
+          AttributeCollection attributeCollection = blockReference.AttributeCollection;
+          foreach (ObjectId objIdAtt in attributeCollection)
           {
-            if (blockReference == null) continue;
-
-            var btrObjectId = blockReference.DynamicBlockTableRecord;
-            var blockDefinition = tr.GetObject(btrObjectId, OpenMode.ForWrite, false) as BlockTableRecord;
-            //if (blockDefinition.Name.EndsWith(blockName))
+            using (AttributeReference attRef = tr.GetObject(objIdAtt, OpenMode.ForWrite) as AttributeReference)
             {
-              //string validBlockName = //RealNameFinder(btr.Name);
-              AttributeCollection attributeCollection = blockReference.AttributeCollection;
-              foreach (ObjectId objIdAtt in attributeCollection)
+              if (attRef.Tag == "TAG")
               {
-                using (AttributeReference attRef = tr.GetObject(objIdAtt, OpenMode.ForWrite) as AttributeReference)
-                {
-                  if (attRef.Tag == "TAG")
-                  {
-                    attRef.TextString = nextNumber.ToString("D3");
-
-                    #region IsDynamicBlock
-                    //if (blockReference.IsDynamicBlock)
-                    //{
-                    //  foreach (DynamicBlockReferenceProperty dbProp in blockReference.DynamicBlockReferencePropertyCollection)
-                    //  {
-                    //    if (dbProp.PropertyName == "Centrifugal Pump")
-                    //    {
-                    //      dbProp.Value = visiblityIndex;
-                    //    }
-                    //    else if (dbProp.PropertyName == "Block Table1")
-                    //    {
-                    //      dbProp.Value = visiblityIndex;
-                    //    }
-                    //  }
-                    //}
-                    #endregion
-
-
-                  }
-                }
+                attRef.TextString = nextNumber.ToString("D3");
               }
             }
           }
@@ -412,6 +385,22 @@ namespace jszomorCAD
         }
         tr.Commit();
       }
+    }
+    public IEnumerable<BlockReference> GetBlockRef(BlockTableRecord btr, Transaction tr, bool isLeftToDownSelection)
+    {
+      List<BlockReference> blkRefList = new List<BlockReference>();
+      blkRefList
+            .OrderBy(x => isLeftToDownSelection ? x.Position.Y : -(x.Position.X))
+            .ThenBy(x => isLeftToDownSelection ? -(x.Position.X) : x.Position.Y)
+            .ToList();
+
+      foreach (ObjectId objectId in btr)
+      {
+        var br = tr.GetObject(objectId, OpenMode.ForRead) as BlockReference;
+        blkRefList.Add(br);
+      }
+
+      return blkRefList;
     }
   }
 }
