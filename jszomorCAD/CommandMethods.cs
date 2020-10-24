@@ -293,9 +293,9 @@ namespace jszomorCAD
     {
       var db = Application.DocumentManager.MdiActiveDocument.Database;
       var blockDeserialize = new BlockDeserializer();
-      string path = @"E:\Jszomor\source\repos\jszomorCAD\jCAD.PID_Builder\Autocad PID blocks work in progress.dwg";
-      // Copy blocks from sourcefile into opened file
-      var copyBlock = new CopyBlock();
+      string path = @"E:\Users\jszom\source\repos\jszomorCAD\jCAD.PID_Builder\Autocad PID blocks work in progress.dwg";
+   // Copy blocks from sourcefile into opened file
+   var copyBlock = new CopyBlock();
 
       #region btrNamesToCopy
       var eqType = new[] {

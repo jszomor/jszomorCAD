@@ -34,6 +34,7 @@ namespace JsonFindKey
 
           try
           {
+            if (currentObject == null) continue;
             var currentDict = currentObject.ToObject<Dictionary<string, object>>();
             if (currentDict != null)
             {
