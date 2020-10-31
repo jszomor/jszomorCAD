@@ -1,0 +1,71 @@
+{
+  "Blocks": [],
+  "Lines": [
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Polyline",
+      "Internal_Id": 1,
+      "Layer": "0",
+      "LinePoints": [
+        {
+          "Point": 1,
+          "X": 1944.45,
+          "Y": 1980.97
+        },
+        {
+          "Point": 2,
+          "X": 1978.14,
+          "Y": 1283.04
+        },
+        {
+          "Point": 3,
+          "X": 2737.7,
+          "Y": 1341.2
+        },
+        {
+          "Point": 4,
+          "X": 2714.56,
+          "Y": 1643.4
+        },
+        {
+          "Point": 5,
+          "X": 3047.04,
+          "Y": 1643.4
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Line",
+      "Internal_Id": 2,
+      "Layer": "0",
+      "LinePoints": [
+        {
+          "Point": 1,
+          "X": 1166.51,
+          "Y": 1690.16
+        },
+        {
+          "Point": 2,
+          "X": 1227.76,
+          "Y": 1071.82
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Line",
+      "Internal_Id": 3,
+      "Layer": "0",
+      "LinePoints": [
+        {
+          "Point": 1,
+          "X": 1549.35,
+          "Y": 1102.43
+        },
+        {
+          "Point": 2,
+          "X": 2419.17,
+          "Y": 777.96
+        }
+      ]
+    }
+  ]
+}

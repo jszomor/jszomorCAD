@@ -2,39 +2,19 @@
   "Blocks": [],
   "Lines": [
     {
-      "Type": "Autodesk.AutoCAD.DatabaseServices.Polyline",
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Line",
       "Internal_Id": 1,
       "Layer": "0",
       "LinePoints": [
         {
           "Point": 1,
-          "X": 1751.49,
-          "Y": 2173.82
+          "X": 1733.12,
+          "Y": 1999.34
         },
         {
           "Point": 2,
-          "X": 1564.66,
-          "Y": 1616.7
-        },
-        {
-          "Point": 3,
-          "X": 2079.21,
-          "Y": 1341.2
-        },
-        {
-          "Point": 4,
-          "X": 2569.25,
-          "Y": 1800.36
-        },
-        {
-          "Point": 5,
-          "X": 2076.14,
-          "Y": 1873.83
-        },
-        {
-          "Point": 6,
-          "X": 2348.73,
-          "Y": 2274.83
+          "X": 1996.51,
+          "Y": 1515.68
         }
       ]
     },
@@ -45,64 +25,13 @@
       "LinePoints": [
         {
           "Point": 1,
-          "X": 2091.46,
-          "Y": 2501.36
+          "X": 2192.53,
+          "Y": 1356.5
         },
         {
           "Point": 2,
-          "X": 2780.58,
-          "Y": 2427.89
-        }
-      ]
-    },
-    {
-      "Type": "Autodesk.AutoCAD.DatabaseServices.Line",
-      "Internal_Id": 3,
-      "Layer": "0",
-      "LinePoints": [
-        {
-          "Point": 1,
-          "X": 2780.58,
-          "Y": 2427.89
-        },
-        {
-          "Point": 2,
-          "X": 2615.19,
-          "Y": 2097.29
-        }
-      ]
-    },
-    {
-      "Type": "Autodesk.AutoCAD.DatabaseServices.Line",
-      "Internal_Id": 4,
-      "Layer": "0",
-      "LinePoints": [
-        {
-          "Point": 1,
-          "X": 2615.19,
-          "Y": 2097.29
-        },
-        {
-          "Point": 2,
-          "X": 3151.17,
-          "Y": 1984.03
-        }
-      ]
-    },
-    {
-      "Type": "Autodesk.AutoCAD.DatabaseServices.Line",
-      "Internal_Id": 5,
-      "Layer": "0",
-      "LinePoints": [
-        {
-          "Point": 1,
-          "X": 3151.17,
-          "Y": 1984.03
-        },
-        {
-          "Point": 2,
-          "X": 3071.54,
-          "Y": 1426.91
+          "X": 2471.24,
+          "Y": 1913.62
         }
       ]
     }

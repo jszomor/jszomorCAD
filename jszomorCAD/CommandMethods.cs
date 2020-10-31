@@ -429,8 +429,12 @@ namespace jszomorCAD
         }
       }
 
+      var insertLine = new LineBuilder();
+
       foreach(var line in jsonPID.Lines)
       {
+        insertLine.LineCreator(line, db);
+        
         if(line.Type.EndsWith("Line"))
         {
 
