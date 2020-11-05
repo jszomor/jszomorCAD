@@ -13,12 +13,19 @@ using OrganiCAD.AutoCAD;
 using JsonFindKey;
 using jCAD.PID_Builder;
 using JsonParse;
+using System.IO;
 
 namespace jszomorCAD
 {
   public class CommandMethods
   {
-    public string path = @"C:\Users\jszom\source\repos\jszomorCAD\jCAD.PID_Builder\Autocad PID blocks work in progress.dwg";
+
+    //public static string DirPath = @"C:\Users\jszom\";
+    public static string FilePathPIDBlocks = @"source\repos\jszomorCAD\jCAD.PID_Builder\Autocad PID blocks work in progress.dwg";
+    public static string FilePathPIDBuilder = @"source\repos\jszomorCAD\jCAD.PID_Builder\JsonPIDBuild.json";
+    public string PIDBlocksPath = Path.Combine(JsonStringBuilderSerialize.DirPath, FilePathPIDBlocks);
+      
+      //DirPath + @" source\repos\jszomorCAD\jCAD.PID_Builder\Autocad PID blocks work in progress.dwg";
 
     [CommandMethod("jcad_EqTankBuilder")]
     public void ListBlocks()
@@ -28,7 +35,7 @@ namespace jszomorCAD
       // Copy blocks from sourcefile into opened file
       var copyBlockTable = new CopyBlock();
       var btrNamesToCopy = new[] { "pump", "valve", "chamber", "instrumentation tag", "channel gate", "pipe", "pipe2", "channel", "channel2" };
-      copyBlockTable.CopyBlockTable(db, path, btr =>
+      copyBlockTable.CopyBlockTable(db, PIDBlocksPath, btr =>
       {
         System.Diagnostics.Debug.Print(btr.Name);
         return btrNamesToCopy.Contains(btr.Name);
@@ -293,7 +300,8 @@ namespace jszomorCAD
     {
       var db = Application.DocumentManager.MdiActiveDocument.Database;
       var blockDeserialize = new BlockDeserializer();
-      string path = @"C:\Users\jszom\source\repos\jszomorCAD\jCAD.PID_Builder\Autocad PID blocks work in progress.dwg";
+      //string path = Path.Combine(DirPath, @"C:\Users\jszom\source\repos\jszomorCAD\jCAD.PID_Builder\Autocad PID blocks work in progress.dwg");
+       
    // Copy blocks from sourcefile into opened file
    var copyBlock = new CopyBlock();
 
@@ -397,7 +405,7 @@ namespace jszomorCAD
       
       string[] btrNamesToCopy = eqType.Distinct().ToArray();
 
-      copyBlock.CopyBlockTable(db, path, btr =>
+      copyBlock.CopyBlockTable(db, PIDBlocksPath, btr =>
       {
         System.Diagnostics.Debug.Print(btr.Name);
         return btrNamesToCopy.Contains(btr.Name);
@@ -407,7 +415,7 @@ namespace jszomorCAD
       defultLayers.Layers();
 
       var insertBlock = new InsertBlock(db);
-      var filePath = @"C:\Users\jszom\source\repos\jszomorCAD\jCAD.PID_Builder\JsonPIDBuild.json";
+      var filePath = Path.Combine(JsonStringBuilderSerialize.DirPath, FilePathPIDBuilder);
     
       var jsonPID = blockDeserialize.ReadJsonData(filePath);
 

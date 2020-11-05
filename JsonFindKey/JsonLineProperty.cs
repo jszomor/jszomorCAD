@@ -31,12 +31,22 @@ namespace JsonFindKey
 
     [JsonProperty("Y")]
     public double Y { get; set; }
+    
+    [JsonProperty("Radius")]
+    public double Radius { get; set; }
 
     public Point2D(double x, double y, int point)
     {
       Point = point;
       X = x;
       Y = y;
+    }
+
+    public Point2D(double x, double y, double radius)
+    {
+      X = x;
+      Y = y;
+      Radius = radius;
     }
   }
 }

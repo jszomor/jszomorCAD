@@ -15,17 +15,26 @@ namespace jCAD.PID_Builder
   {
     public Point2D ConvertAcadVertex2DToPoint2D(Vertex2d Acadvertex, int number)
     {
-      return new Point2D(Math.Round(Acadvertex.Position.X,2), Math.Round(Acadvertex.Position.Y,2), number);
+      //return new Point2D(Math.Round(Acadvertex.Position.X,2), Math.Round(Acadvertex.Position.Y,2), number);
+      return new Point2D(Acadvertex.Position.X, Acadvertex.Position.Y, number);
     }
 
     public Point2D ConvertAcadPoint2dToPoint2D(Autodesk.AutoCAD.Geometry.Point2d Acadpoint, int number)
     {
-      return new Point2D(Math.Round(Acadpoint.X,2), Math.Round(Acadpoint.Y,2), number);
+      //return new Point2D(Math.Round(Acadpoint.X,2), Math.Round(Acadpoint.Y,2), number);
+      return new Point2D(Acadpoint.X, Acadpoint.Y, number);
     }
 
     public Point2D ConvertAcadPoint3dToPoint2D(Autodesk.AutoCAD.Geometry.Point3d Acadpoint, int number)
     {
-      return new Point2D(Math.Round(Acadpoint.X,2), Math.Round(Acadpoint.Y,2), number);
+      //return new Point2D(Math.Round(Acadpoint.X,2), Math.Round(Acadpoint.Y,2), number);
+      return new Point2D(Acadpoint.X, Acadpoint.Y, number);
+    }
+
+    public Point2D ConvertAcadCircleToPoint2D(Autodesk.AutoCAD.Geometry.Point3d Acadpoint, double radius)
+    {
+      //return new Point2D(Math.Round(Acadpoint.X, 2), Math.Round(Acadpoint.Y, 2), radius);
+      return new Point2D(Acadpoint.X, Acadpoint.Y, radius);
     }
 
     public JsonLineProperty SetupLineProperty(DBObject item, JsonBlockSetup jsonBlockSetup)
@@ -80,6 +89,13 @@ namespace jCAD.PID_Builder
           i++;
         }
         p3d.Closed = false;
+        jsonLineProperty.Internal_Id = BlockTableRead.InternalCounter;
+      }
+      else if (item is Circle)
+      {
+        var circle = item as Circle;
+        jsonLineProperty.LinePoints.Add(ConvertAcadCircleToPoint2D(circle.StartPoint, circle.Radius));
+        jsonLineProperty.Layer = jsonBlockSetup.RealNameFinder(circle.Layer);
         jsonLineProperty.Internal_Id = BlockTableRead.InternalCounter;
       }
       return jsonLineProperty;

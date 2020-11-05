@@ -9,12 +9,15 @@ namespace JsonFindKey
 {
   public class JsonStringBuilderSerialize
   {
+    public static string DirPath = @"C:\Users\jszom\"; 
+    //public static string DirPath = @"C:\Users\János\"; //work
+
     public void StringBuilderSerialize(JsonPID jsonPID, string fileName)
     {
       //string fileJson = "JsonStringBuilder.json";
-      string dirPath = @"C:\Users\jszom\source\repos\jszomorCAD\jCAD.PID_Builder\"; //work
-    
-     var path = System.IO.Path.Combine(dirPath, fileName);
+      string fullPath = Path.Combine(DirPath, @"source\repos\jszomorCAD\jCAD.PID_Builder\");
+
+      var path = Path.Combine(fullPath, fileName);
 
       var serializer = new JsonSerializer
       {

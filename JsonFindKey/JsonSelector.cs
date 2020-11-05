@@ -10,7 +10,7 @@ namespace JsonFindKey
   {    
     public static long JsonEquipmentValue(string equipmentName)
     {    
-      var jsonString = System.IO.File.ReadAllText(@"C:\Users\jszom\source\repos\jszomorCAD\FindJsonKey\Equipments.json");
+      var jsonString = System.IO.File.ReadAllText(JsonStringBuilderSerialize.DirPath + @"source\repos\jszomorCAD\FindJsonKey\Equipments.json");
       
       var jsonDeser = new JsonDeserializer();
       jsonDeser.JsonDeser(jsonString, equipmentName);
