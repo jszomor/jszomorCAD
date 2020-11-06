@@ -101,7 +101,7 @@ namespace jCAD.PID_Builder
     {
       if (value.GetType() == typeof(double))
       {
-        double doubleValue = Convert.ToDouble(value);
+        double doubleValue =  Convert.ToDouble(value);
 
         return Math.Round(doubleValue,2);
       }
@@ -121,9 +121,14 @@ namespace jCAD.PID_Builder
           var jsonProp = customAttributes[0];
           var jsonTagName = (jsonProp as Newtonsoft.Json.JsonPropertyAttribute).PropertyName;
           //System.Diagnostics.Debug.WriteLine($"\tJSONProperty Name: {jsonTagName}");
-          if (dbrProp.PropertyName == jsonTagName)
+          if (dbrProp.PropertyName == jsonTagName & !dbrProp.PropertyName.StartsWith("Flip state"))
           {
             prop.SetValue(block.Custom, DoubleConverter(dbrProp.Value)); //serialization
+            break;
+          }
+          else if (dbrProp.PropertyName == jsonTagName & dbrProp.PropertyName.StartsWith("Flip state"))
+          {
+            prop.SetValue(block.Custom, dbrProp.Value); //serialization
             break;
           }
         }

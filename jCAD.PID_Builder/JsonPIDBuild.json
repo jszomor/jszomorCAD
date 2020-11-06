@@ -1,112 +1,46 @@
 {
-  "Blocks": [],
-  "Lines": [
+  "Blocks": [
     {
-      "Type": "Autodesk.AutoCAD.DatabaseServices.Circle",
-      "Internal_Id": 1,
-      "Layer": "1",
-      "LinePoints": [
-        {
-          "Point": 0,
-          "X": 2188.0967464696232,
-          "Y": 2057.4963645725875,
-          "Radius": 234.46315903367471
-        }
-      ]
-    },
-    {
-      "Type": "Autodesk.AutoCAD.DatabaseServices.Line",
-      "Internal_Id": 2,
-      "Layer": "2",
-      "LinePoints": [
-        {
-          "Point": 1,
-          "X": 1362.5226910403417,
-          "Y": 1604.4530918685259,
-          "Radius": 0.0
-        },
-        {
-          "Point": 2,
-          "X": 1328.8324384032858,
-          "Y": 1212.6318809411096,
-          "Radius": 0.0
-        }
-      ]
-    },
-    {
-      "Type": "Autodesk.AutoCAD.DatabaseServices.Line",
-      "Internal_Id": 3,
-      "Layer": "0",
-      "LinePoints": [
-        {
-          "Point": 1,
-          "X": 1491.1582297168916,
-          "Y": 1160.5931294032671,
-          "Radius": 0.0
-        },
-        {
-          "Point": 2,
-          "X": 2048.5788591715464,
-          "Y": 1096.3099577316507,
-          "Radius": 0.0
-        }
-      ]
-    },
-    {
-      "Type": "Autodesk.AutoCAD.DatabaseServices.Line",
-      "Internal_Id": 4,
-      "Layer": "0",
-      "LinePoints": [
-        {
-          "Point": 1,
-          "X": 2048.5788591715464,
-          "Y": 1096.3099577316507,
-          "Radius": 0.0
-        },
-        {
-          "Point": 2,
-          "X": 2256.8459040811358,
-          "Y": 1463.642341355594,
-          "Radius": 0.0
-        }
-      ]
-    },
-    {
-      "Type": "Autodesk.AutoCAD.DatabaseServices.Polyline",
-      "Internal_Id": 5,
-      "Layer": "3",
-      "LinePoints": [
-        {
-          "Point": 1,
-          "X": 2884.7098176574273,
-          "Y": 1515.6810993754743,
-          "Radius": 0.0
-        },
-        {
-          "Point": 2,
-          "X": 2884.7098176574273,
-          "Y": 973.86583417836118,
-          "Radius": 0.0
-        },
-        {
-          "Point": 3,
-          "X": 3475.820714053034,
-          "Y": 973.86583417836118,
-          "Radius": 0.0
-        },
-        {
-          "Point": 4,
-          "X": 3604.4562384256878,
-          "Y": 1469.7645481814625,
-          "Radius": 0.0
-        },
-        {
-          "Point": 5,
-          "X": 4143.500366441951,
-          "Y": 1469.7645481814625,
-          "Radius": 0.0
-        }
-      ]
+      "Geometry": {
+        "Position X": 1840.8,
+        "Position Y": 1423.25
+      },
+      "Misc": {
+        "Name": "valve",
+        "Rotation": 0.0
+      },
+      "General": {
+        "Layer": "valve"
+      },
+      "Custom": {
+        "Position X": 0.45,
+        "Position Y": -3.9,
+        "Angle": 0.0,
+        "Flip state": 1,
+        "Flip state1": 1,
+        "Visibility": "Check Valve"
+      },
+      "Attributes": {
+        "Internal_Id": 1,
+        "NOTE": "Check Valve",
+        "EQUIP_TYPE": "Hand Actuated",
+        "MATERIAL": "-",
+        "SIZE": "-",
+        "SP_ACTUATED": "Hand",
+        "TAG": "000",
+        "NOTE_CHINESE": "",
+        "AREA_CODE": "-",
+        "DI": "0",
+        "DO": "0",
+        "AI": "0",
+        "AO": "0",
+        "PB": "0",
+        "PO": "0",
+        "TAG_ID": "VC",
+        "PROCESSUNITAREA": "",
+        "PRESSURE": "-"
+      }
     }
-  ]
+  ],
+  "Lines": []
 }

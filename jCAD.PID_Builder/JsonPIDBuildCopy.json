@@ -1,39 +1,46 @@
 {
-  "Blocks": [],
-  "Lines": [
+  "Blocks": [
     {
-      "Type": "Autodesk.AutoCAD.DatabaseServices.Line",
-      "Internal_Id": 1,
-      "Layer": "0",
-      "LinePoints": [
-        {
-          "Point": 1,
-          "X": 1837.25,
-          "Y": 1879.95
-        },
-        {
-          "Point": 2,
-          "X": 2021.01,
-          "Y": 1684.04
-        }
-      ]
-    },
-    {
-      "Type": "Autodesk.AutoCAD.DatabaseServices.Line",
-      "Internal_Id": 2,
-      "Layer": "0",
-      "LinePoints": [
-        {
-          "Point": 1,
-          "X": 2070.02,
-          "Y": 1772.81
-        },
-        {
-          "Point": 2,
-          "X": 2281.35,
-          "Y": 1907.5
-        }
-      ]
+      "Geometry": {
+        "Position X": 1840.8,
+        "Position Y": 1423.25
+      },
+      "Misc": {
+        "Name": "valve",
+        "Rotation": 0.0
+      },
+      "General": {
+        "Layer": "valve"
+      },
+      "Custom": {
+        "Position X": 0.45,
+        "Position Y": -3.9,
+        "Angle": 0.0,
+        "Flip state": 1,
+        "Flip state1": 1,
+        "Visibility": "Check Valve"
+      },
+      "Attributes": {
+        "Internal_Id": 1,
+        "NOTE": "Check Valve",
+        "EQUIP_TYPE": "Hand Actuated",
+        "MATERIAL": "-",
+        "SIZE": "-",
+        "SP_ACTUATED": "Hand",
+        "TAG": "000",
+        "NOTE_CHINESE": "",
+        "AREA_CODE": "-",
+        "DI": "0",
+        "DO": "0",
+        "AI": "0",
+        "AO": "0",
+        "PB": "0",
+        "PO": "0",
+        "TAG_ID": "VC",
+        "PROCESSUNITAREA": "",
+        "PRESSURE": "-"
+      }
     }
-  ]
+  ],
+  "Lines": []
 }

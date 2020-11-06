@@ -48,7 +48,7 @@ namespace jCAD.PID_Builder
        
             if (item == null) continue;
 
-            if (item is Line || item is Polyline || item is Polyline2d || item is Polyline3d || item is Circle)
+            if (item is Line || item is Polyline || item is Polyline2d || item is Polyline3d || item is Circle || item is Arc)
             {
               //jsonLineToSerialize.Add(jsonLineSetup.SetupLineProperty(item));
               jsonPID.Lines.Add(jsonLineSetup.SetupLineProperty(item, jsonBlockSetup));

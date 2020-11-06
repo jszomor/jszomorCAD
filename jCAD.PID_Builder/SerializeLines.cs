@@ -31,11 +31,21 @@ namespace jCAD.PID_Builder
       return new Point2D(Acadpoint.X, Acadpoint.Y, number);
     }
 
-    public Point2D ConvertAcadCircleToPoint2D(Autodesk.AutoCAD.Geometry.Point3d Acadpoint, double radius)
-    {
-      //return new Point2D(Math.Round(Acadpoint.X, 2), Math.Round(Acadpoint.Y, 2), radius);
-      return new Point2D(Acadpoint.X, Acadpoint.Y, radius);
-    }
+    //public Point2D ConvertAcadCircleToPoint2D(Autodesk.AutoCAD.Geometry.Point3d Acadpoint, double radius, int i)
+    //{
+    //  //return new Point2D(Math.Round(Acadpoint.X, 2), Math.Round(Acadpoint.Y, 2), radius);
+    //  return new Point2D(Acadpoint.X, Acadpoint.Y, radius, i);
+    //}
+    //public Point2D ConvertAcadArcToPoint2D(Autodesk.AutoCAD.Geometry.Point3d Centerpoint, double radius, double startAngle, double endAngle, int i)
+    //{
+    //  //return new Point2D(Math.Round(Acadpoint.X, 2), Math.Round(Acadpoint.Y, 2), radius);
+    //  return new Point2D(Centerpoint.X, Centerpoint.Y, radius, startAngle, endAngle, i);
+    //}
+    //public Point2D ConvertRadiusToPoint2D(double radius)
+    //{
+    //  //return new Point2D(Math.Round(Acadpoint.X, 2), Math.Round(Acadpoint.Y, 2), radius);
+    //  return new Point2D(radius);
+    //}
 
     public JsonLineProperty SetupLineProperty(DBObject item, JsonBlockSetup jsonBlockSetup)
     {
@@ -46,9 +56,15 @@ namespace jCAD.PID_Builder
       if (item is Line)
       {
         var line = item as Line;
-
         jsonLineProperty.LinePoints.Add(ConvertAcadPoint3dToPoint2D(line.StartPoint, 1));
         jsonLineProperty.LinePoints.Add(ConvertAcadPoint3dToPoint2D(line.EndPoint, 2));
+        //jsonLineProperty.LinePoints.Remove(point2d.Radius);
+
+        //foreach (var i in jsonLineProperty.LinePoints)
+        //{
+        //  jsonLineProperty.LinePoints.Remove(ConvertRadiusToPoint2D(i.Radius));
+        //}
+
         jsonLineProperty.Layer = jsonBlockSetup.RealNameFinder(line.Layer);
         jsonLineProperty.Internal_Id = BlockTableRead.InternalCounter;
       }
@@ -93,9 +109,22 @@ namespace jCAD.PID_Builder
       }
       else if (item is Circle)
       {
+        int i = 1;
         var circle = item as Circle;
-        jsonLineProperty.LinePoints.Add(ConvertAcadCircleToPoint2D(circle.StartPoint, circle.Radius));
+        jsonLineProperty.LinePoints.Add(ConvertAcadPoint3dToPoint2D(circle.Center, i));
+        jsonLineProperty.Radius = circle.Radius;
         jsonLineProperty.Layer = jsonBlockSetup.RealNameFinder(circle.Layer);
+        jsonLineProperty.Internal_Id = BlockTableRead.InternalCounter;
+      }
+      else if (item is Arc)
+      {
+        int i = 1;
+        var arc2d = item as Arc;        
+        jsonLineProperty.LinePoints.Add(ConvertAcadPoint3dToPoint2D(arc2d.Center, i));
+        jsonLineProperty.Radius = arc2d.Radius;
+        jsonLineProperty.StartAngle = arc2d.StartAngle;
+        jsonLineProperty.EndAngle = arc2d.EndAngle;
+        jsonLineProperty.Layer = jsonBlockSetup.RealNameFinder(arc2d.Layer);
         jsonLineProperty.Internal_Id = BlockTableRead.InternalCounter;
       }
       return jsonLineProperty;

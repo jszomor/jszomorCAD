@@ -19,6 +19,15 @@ namespace JsonFindKey
 
     public List<Point2D> LinePoints { get; set; } = new List<Point2D>();
 
+    [JsonProperty("Radius")]
+    public double? Radius { get; set; }
+
+    [JsonProperty("StartAngle")]
+    public double? StartAngle { get; set; }
+
+    [JsonProperty("EndAngle")]
+    public double? EndAngle { get; set; }
+
     public int CompareTo(JsonLineProperty comparePart) => Internal_Id.CompareTo(comparePart.Internal_Id);
   }
   public class Point2D
@@ -32,21 +41,34 @@ namespace JsonFindKey
     [JsonProperty("Y")]
     public double Y { get; set; }
     
-    [JsonProperty("Radius")]
-    public double Radius { get; set; }
+  
 
-    public Point2D(double x, double y, int point)
+    //public Point2D(double radius)
+    //{
+    //  Radius = radius;
+    //}
+
+    public Point2D(double x, double y, int point) // line, polyline
     {
       Point = point;
       X = x;
       Y = y;
     }
 
-    public Point2D(double x, double y, double radius)
-    {
-      X = x;
-      Y = y;
-      Radius = radius;
-    }
+    //public Point2D(double x, double y, double radius, int point) // circle
+    //{
+    //  X = x;
+    //  Y = y;
+    //  Radius = radius;
+    //}
+
+    //public Point2D(double x, double y, double radius, double startAngle, double endAngle, int point) // arc
+    //{
+    //  X = x;
+    //  Y = y;
+    //  Radius = radius;
+    //  StartAngle = startAngle;
+    //  EndAngle = endAngle;
+    //}
   }
 }
