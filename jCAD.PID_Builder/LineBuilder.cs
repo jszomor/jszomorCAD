@@ -50,7 +50,7 @@ namespace jCAD.PID_Builder
         else if (line.Type == "Autodesk.AutoCAD.DatabaseServices.Polyline")
         {
           Polyline acPoly = new Polyline();
-
+          acPoly.SetDatabaseDefaults();
           foreach (var point in line.LineOrCenterPoints)
           {
             acPoly.AddVertexAt(point.Point-1, new Point2d(point.X, point.Y), 0, 0, 0);
@@ -59,7 +59,24 @@ namespace jCAD.PID_Builder
           acBlkTblRec.AppendEntity(acPoly);
           acTrans.AddNewlyCreatedDBObject(acPoly, true);
         }
-        acTrans.Commit();
+        else if (line.Type == "Autodesk.AutoCAD.DatabaseServices.Circle")
+        {
+          double centerX = 0;
+          double centerY = 0;
+          foreach (var point in line.LineOrCenterPoints)
+          {
+            centerX = point.X;
+            centerY = point.Y;
+          }
+          var circle = new Circle();
+          circle.SetDatabaseDefaults();
+          circle.Center = new Point3d(centerX, centerY, 0);
+          circle.Radius = Convert.ToDouble(line.Radius);
+
+          acBlkTblRec.AppendEntity(circle);
+          acTrans.AddNewlyCreatedDBObject(circle, true);
+        }
+          acTrans.Commit();
       }
     }
   }
