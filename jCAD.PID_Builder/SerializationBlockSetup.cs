@@ -121,14 +121,9 @@ namespace jCAD.PID_Builder
           var jsonProp = customAttributes[0];
           var jsonTagName = (jsonProp as Newtonsoft.Json.JsonPropertyAttribute).PropertyName;
           //System.Diagnostics.Debug.WriteLine($"\tJSONProperty Name: {jsonTagName}");
-          if (dbrProp.PropertyName == jsonTagName & !dbrProp.PropertyName.StartsWith("Flip state"))
+          if (dbrProp.PropertyName == jsonTagName)
           {
             prop.SetValue(block.Custom, DoubleConverter(dbrProp.Value)); //serialization
-            break;
-          }
-          else if (dbrProp.PropertyName == jsonTagName & dbrProp.PropertyName.StartsWith("Flip state"))
-          {
-            prop.SetValue(block.Custom, dbrProp.Value); //serialization
             break;
           }
         }

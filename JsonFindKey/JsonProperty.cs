@@ -12,7 +12,7 @@ namespace JsonParse
     public List<JsonBlockProperty> Blocks { get; } = new List<JsonBlockProperty>();
     public List<JsonLineProperty> Lines { get; } = new List<JsonLineProperty>();
     public IEnumerable<JsonBlockProperty> BlocksSearch(string equipmentName) =>
-      Blocks.Where(b => b.Misc.BlockName.EndsWith(equipmentName));
+      Blocks.Where(b => b.Misc.BlockName.Equals(equipmentName));
 
   }
   public class JsonBlockProperty : IComparable<JsonBlockProperty>

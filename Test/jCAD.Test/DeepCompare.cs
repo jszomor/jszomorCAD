@@ -33,7 +33,7 @@ namespace jCAD.Test
 				return false;
 			}
 
-			if (line1.LinePoints.Count != line2.LinePoints.Count)
+			if (line1.LineOrCenterPoints.Count != line2.LineOrCenterPoints.Count)
 			{
 				AddInternalIdToComments(line1.Internal_Id);
 				Comments.Add($"\tLinePoint number is not equal.");
@@ -41,10 +41,10 @@ namespace jCAD.Test
 			}
 
 			var localErrors = new List<string>();
-			for (int j = 0; j < line1.LinePoints.Count; j++)
+			for (int j = 0; j < line1.LineOrCenterPoints.Count; j++)
 			{
-				var p1 = line1.LinePoints[j];
-				var p2 = line2.LinePoints[j];
+				var p1 = line1.LineOrCenterPoints[j];
+				var p2 = line2.LineOrCenterPoints[j];
 
 				if (p1.X != p2.X || p1.Y != p2.Y)
 				{

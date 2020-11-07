@@ -17,10 +17,13 @@ namespace JsonFindKey
     [JsonProperty("Layer")]
     public string Layer { get; set; }
 
-    public List<Point2D> LinePoints { get; set; } = new List<Point2D>();
+    public List<Point2D> LineOrCenterPoints { get; set; } = new List<Point2D>();
 
     [JsonProperty("Radius")]
     public double? Radius { get; set; }
+
+    [JsonProperty("Minor Radius")]
+    public double? MinorRadius { get; set; }
 
     [JsonProperty("StartAngle")]
     public double? StartAngle { get; set; }
@@ -40,35 +43,12 @@ namespace JsonFindKey
 
     [JsonProperty("Y")]
     public double Y { get; set; }
-    
-  
-
-    //public Point2D(double radius)
-    //{
-    //  Radius = radius;
-    //}
-
-    public Point2D(double x, double y, int point) // line, polyline
+     
+    public Point2D(double x, double y, int point)
     {
       Point = point;
       X = x;
       Y = y;
     }
-
-    //public Point2D(double x, double y, double radius, int point) // circle
-    //{
-    //  X = x;
-    //  Y = y;
-    //  Radius = radius;
-    //}
-
-    //public Point2D(double x, double y, double radius, double startAngle, double endAngle, int point) // arc
-    //{
-    //  X = x;
-    //  Y = y;
-    //  Radius = radius;
-    //  StartAngle = startAngle;
-    //  EndAngle = endAngle;
-    //}
   }
 }

@@ -21,17 +21,15 @@ namespace jCAD.PID_Builder
       {
         BlockTable acBlkTbl;
         BlockTableRecord acBlkTblRec;
-        // Open Model space for write
         acBlkTbl = acTrans.GetObject(acCurDb.BlockTableId, OpenMode.ForRead) as BlockTable;
         acBlkTblRec = acTrans.GetObject(acBlkTbl[BlockTableRecord.ModelSpace], OpenMode.ForWrite) as BlockTableRecord;
-        // Define the new line
         if (line.Type == "Autodesk.AutoCAD.DatabaseServices.Line")
         {
           double StartX = 0;
           double StartY = 0;
           double EndX = 0;
           double EndY = 0;
-          foreach (var point in line.LinePoints)
+          foreach (var point in line.LineOrCenterPoints)
           {
             if(point.Point == 1)
             {
@@ -44,16 +42,14 @@ namespace jCAD.PID_Builder
               EndY = point.Y;
             }
           }
-
           Line acLine = new Line(new Point3d(StartX, StartY, 0), new Point3d(EndX, EndY, 0));
-
           acLine.SetDatabaseDefaults();
-          // Add the line to the drawing
           acBlkTblRec.AppendEntity(acLine);
           acTrans.AddNewlyCreatedDBObject(acLine, true);
-          //// Zoom to the extents or limits of the drawing
-          //acDoc.SendStringToExecute("._zoom _all ", true, false, false);
-          // Commit the changes and dispose of the transaction
+        }
+        else if (line.Type == "Autodesk.AutoCAD.DatabaseServices.PolyLine")
+        {
+
         }
         acTrans.Commit();
       }
