@@ -47,9 +47,17 @@ namespace jCAD.PID_Builder
           acBlkTblRec.AppendEntity(acLine);
           acTrans.AddNewlyCreatedDBObject(acLine, true);
         }
-        else if (line.Type == "Autodesk.AutoCAD.DatabaseServices.PolyLine")
+        else if (line.Type == "Autodesk.AutoCAD.DatabaseServices.Polyline")
         {
+          Polyline acPoly = new Polyline();
 
+          foreach (var point in line.LineOrCenterPoints)
+          {
+            acPoly.AddVertexAt(point.Point-1, new Point2d(point.X, point.Y), 0, 0, 0);
+          }            
+
+          acBlkTblRec.AppendEntity(acPoly);
+          acTrans.AddNewlyCreatedDBObject(acPoly, true);
         }
         acTrans.Commit();
       }

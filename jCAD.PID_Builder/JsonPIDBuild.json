@@ -2,36 +2,36 @@
   "Blocks": [],
   "Lines": [
     {
-      "Type": "Autodesk.AutoCAD.DatabaseServices.Ellipse",
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Polyline",
       "Internal_Id": 1,
       "Layer": "0",
       "LineOrCenterPoints": [
         {
           "Point": 1,
-          "X": 1497.2837301963555,
-          "Y": 1644.2474297546323
-        }
-      ],
-      "Radius": 466.67996270645483,
-      "Minor Radius": 253.39278996965788,
-      "StartAngle": 0.0,
-      "EndAngle": 6.2831853071795862
-    },
-    {
-      "Type": "Autodesk.AutoCAD.DatabaseServices.Ellipse",
-      "Internal_Id": 2,
-      "Layer": "0",
-      "LineOrCenterPoints": [
+          "X": 2140.4613806674115,
+          "Y": 1567.7198509133168
+        },
         {
-          "Point": 1,
-          "X": 2466.6443312625388,
-          "Y": 1523.3338546667906
+          "Point": 2,
+          "X": 2140.4613806674115,
+          "Y": 1001.4157584127306
+        },
+        {
+          "Point": 3,
+          "X": 2688.6937594028714,
+          "Y": 1001.4157584127306
+        },
+        {
+          "Point": 4,
+          "X": 2688.6937594028714,
+          "Y": 1576.9031611521186
+        },
+        {
+          "Point": 5,
+          "X": 2140.4613806674115,
+          "Y": 1567.7198509133168
         }
-      ],
-      "Radius": 336.88524305454757,
-      "Minor Radius": 143.0137798100213,
-      "StartAngle": 1.5707963267948966,
-      "EndAngle": 6.5818806595054067
+      ]
     }
   ]
 }
