@@ -441,11 +441,13 @@ namespace jszomorCAD
 
       foreach(var line in jsonPID.Lines)
       {
-        insertLine.LineCreator(line, db);
-        
-        if(line.Type.EndsWith("Line"))
+        try
         {
-
+          insertLine.LineCreator(line, db);
+        }
+        catch (ArgumentNullException)
+        {
+          // ignore
         }
       }
 
@@ -467,6 +469,12 @@ namespace jszomorCAD
       var insertBlockTable = new BlockTableRead(db);
       string fileName = "JsonPIDBuild.json";
       insertBlockTable.ReadBtrForSeri(db, fileName);
+    }
+
+    [CommandMethod("Longtudinal SBR builder", CommandFlags.Modal)]
+    public void LongitudinalSBRBuilder()
+    {
+      
     }
 
     [CommandMethod("JCAD_Fillet", CommandFlags.Modal)]
