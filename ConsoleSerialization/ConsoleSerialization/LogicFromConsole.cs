@@ -12,23 +12,51 @@ namespace ConsoleSerialization
   {
     static void Main(string[] args)
     {
-      //Console.WriteLine("Enter length:");
-      //double length = Convert.ToDouble(Console.ReadLine());
+      Console.WriteLine("Enter length:");
+      double length = Convert.ToDouble(Console.ReadLine());
 
-      //Console.WriteLine("Enter width:");
-      //double width = Convert.ToDouble(Console.ReadLine());
+      Console.WriteLine("Enter width:");
+      double width = Convert.ToDouble(Console.ReadLine());
 
       var jsonPID = new JsonPID();
       string fileName = "JsonPIDBuild.json";
       
       var coordiates = new Coordiates();
+      //for (int i = 0; i < 3; i++)
+      {
+        //line1
+        coordiates.StartX = 0;
+        coordiates.StartY = 0;
+        coordiates.EndX = 0;
+        coordiates.EndY = length;
 
-      coordiates.StartX = 100;
-      coordiates.StartY = 90;
-      coordiates.EndX = 80;
-      coordiates.EndY= 70;
+        //line2
+        coordiates.StartX = 0;
+        coordiates.StartY = 0;
+        coordiates.EndX = width;
+        coordiates.EndY = 0;
 
-      jsonPID.Lines.Add(SetLines(coordiates));
+        //line3
+        coordiates.StartX = 0;
+        coordiates.StartY = length;
+        coordiates.EndX = width;
+        coordiates.EndY = length;
+
+        //line4
+        coordiates.StartX = width;
+        coordiates.StartY = 0;
+        coordiates.EndX = width;
+        coordiates.EndY = length;
+
+        //line1wall
+        coordiates.StartX = -400;
+        coordiates.StartY = -400;
+        coordiates.EndX = -400;
+        coordiates.EndY = length + 400;
+
+        jsonPID.Lines.Add(SetLines(coordiates));
+      }
+      
 
       jsonPID.Blocks.Sort();
       jsonPID.Lines.Sort();
