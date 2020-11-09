@@ -4,17 +4,204 @@
     {
       "Type": "Autodesk.AutoCAD.DatabaseServices.Line",
       "Internal_Id": 0,
-      "Layer": "0",
+      "Layer": "equipment",
       "LineOrCenterPoints": [
         {
           "Point": 1,
-          "X": 100.0,
-          "Y": 90.0
+          "X": 0.0,
+          "Y": 0.0
         },
         {
           "Point": 2,
-          "X": 80.0,
-          "Y": 70.0
+          "X": 0.0,
+          "Y": 13000.0
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Line",
+      "Internal_Id": 0,
+      "Layer": "equipment",
+      "LineOrCenterPoints": [
+        {
+          "Point": 1,
+          "X": -500.0,
+          "Y": -500.0
+        },
+        {
+          "Point": 2,
+          "X": -500.0,
+          "Y": 13500.0
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Line",
+      "Internal_Id": 0,
+      "Layer": "equipment",
+      "LineOrCenterPoints": [
+        {
+          "Point": 1,
+          "X": 0.0,
+          "Y": 0.0
+        },
+        {
+          "Point": 2,
+          "X": 4000.0,
+          "Y": 0.0
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Line",
+      "Internal_Id": 0,
+      "Layer": "equipment",
+      "LineOrCenterPoints": [
+        {
+          "Point": 1,
+          "X": 4500.0,
+          "Y": 0.0
+        },
+        {
+          "Point": 2,
+          "X": 8500.0,
+          "Y": 0.0
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Line",
+      "Internal_Id": 0,
+      "Layer": "equipment",
+      "LineOrCenterPoints": [
+        {
+          "Point": 1,
+          "X": -500.0,
+          "Y": -500.0
+        },
+        {
+          "Point": 2,
+          "X": 9000.0,
+          "Y": -500.0
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Line",
+      "Internal_Id": 0,
+      "Layer": "equipment",
+      "LineOrCenterPoints": [
+        {
+          "Point": 1,
+          "X": 0.0,
+          "Y": 13000.0
+        },
+        {
+          "Point": 2,
+          "X": 4000.0,
+          "Y": 13000.0
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Line",
+      "Internal_Id": 0,
+      "Layer": "equipment",
+      "LineOrCenterPoints": [
+        {
+          "Point": 1,
+          "X": 4500.0,
+          "Y": 13000.0
+        },
+        {
+          "Point": 2,
+          "X": 8500.0,
+          "Y": 13000.0
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Line",
+      "Internal_Id": 0,
+      "Layer": "equipment",
+      "LineOrCenterPoints": [
+        {
+          "Point": 1,
+          "X": -500.0,
+          "Y": 13500.0
+        },
+        {
+          "Point": 2,
+          "X": 9000.0,
+          "Y": 13500.0
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Line",
+      "Internal_Id": 0,
+      "Layer": "equipment",
+      "LineOrCenterPoints": [
+        {
+          "Point": 1,
+          "X": 4000.0,
+          "Y": 0.0
+        },
+        {
+          "Point": 2,
+          "X": 4000.0,
+          "Y": 13000.0
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Line",
+      "Internal_Id": 0,
+      "Layer": "equipment",
+      "LineOrCenterPoints": [
+        {
+          "Point": 1,
+          "X": 4500.0,
+          "Y": 0.0
+        },
+        {
+          "Point": 2,
+          "X": 4500.0,
+          "Y": 13000.0
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Line",
+      "Internal_Id": 0,
+      "Layer": "equipment",
+      "LineOrCenterPoints": [
+        {
+          "Point": 1,
+          "X": 8500.0,
+          "Y": 0.0
+        },
+        {
+          "Point": 2,
+          "X": 8500.0,
+          "Y": 13000.0
+        }
+      ]
+    },
+    {
+      "Type": "Autodesk.AutoCAD.DatabaseServices.Line",
+      "Internal_Id": 0,
+      "Layer": "equipment",
+      "LineOrCenterPoints": [
+        {
+          "Point": 1,
+          "X": 9000.0,
+          "Y": -500.0
+        },
+        {
+          "Point": 2,
+          "X": 9000.0,
+          "Y": 13500.0
         }
       ]
     }

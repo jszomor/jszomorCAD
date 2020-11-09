@@ -44,6 +44,7 @@ namespace jCAD.PID_Builder
           }
           Line acLine = new Line(new Point3d(StartX, StartY, 0), new Point3d(EndX, EndY, 0));
           acLine.SetDatabaseDefaults();
+          acLine.Layer = line.Layer;
           acBlkTblRec.AppendEntity(acLine);
           acTrans.AddNewlyCreatedDBObject(acLine, true);
         }
@@ -54,8 +55,8 @@ namespace jCAD.PID_Builder
           foreach (var point in line.LineOrCenterPoints)
           {
             acPoly.AddVertexAt(point.Point-1, new Point2d(point.X, point.Y), 0, 0, 0);
-          }            
-
+          }
+          acPoly.Layer = line.Layer;
           acBlkTblRec.AppendEntity(acPoly);
           acTrans.AddNewlyCreatedDBObject(acPoly, true);
         }
@@ -70,6 +71,7 @@ namespace jCAD.PID_Builder
           }
           var circle = new Circle();
           circle.SetDatabaseDefaults();
+          circle.Layer = line.Layer;
           circle.Center = new Point3d(centerX, centerY, 0);
           circle.Radius = Convert.ToDouble(line.Radius);
 

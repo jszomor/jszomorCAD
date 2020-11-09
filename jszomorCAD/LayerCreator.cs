@@ -31,7 +31,6 @@ namespace jszomorCAD
 
   public class LayerCreator
   {
-
     public void LayerCreatorMethod(IEnumerable<LayerData> layers)
     {
       foreach (var layer in layers)
