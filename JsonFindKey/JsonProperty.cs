@@ -10,7 +10,11 @@ namespace JsonParse
   public class JsonPID 
   {
     public List<JsonBlockProperty> Blocks { get; } = new List<JsonBlockProperty>();
+
     public List<JsonLineProperty> Lines { get; } = new List<JsonLineProperty>();
+
+    public List<JsonDimensionProperty> Dimensions { get; } = new List<JsonDimensionProperty>();
+
     public IEnumerable<JsonBlockProperty> BlocksSearch(string equipmentName) =>
       Blocks.Where(b => b.Misc.BlockName.Equals(equipmentName));
 

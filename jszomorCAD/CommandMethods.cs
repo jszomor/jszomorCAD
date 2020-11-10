@@ -24,8 +24,8 @@ namespace jszomorCAD
     public static string FilePathPIDBlocks = @"source\repos\jszomorCAD\jCAD.PID_Builder\Autocad PID blocks work in progress.dwg";
     public static string FilePathPIDBuilder = @"source\repos\jszomorCAD\jCAD.PID_Builder\JsonPIDBuild.json";
     public string PIDBlocksPath = Path.Combine(JsonStringBuilderSerialize.DirPath, FilePathPIDBlocks);
-      
-      //DirPath + @" source\repos\jszomorCAD\jCAD.PID_Builder\Autocad PID blocks work in progress.dwg";
+
+    //DirPath + @" source\repos\jszomorCAD\jCAD.PID_Builder\Autocad PID blocks work in progress.dwg";
 
     [CommandMethod("jcad_EqTankBuilder")]
     public void ListBlocks()
@@ -301,9 +301,9 @@ namespace jszomorCAD
       var db = Application.DocumentManager.MdiActiveDocument.Database;
       var blockDeserialize = new BlockDeserializer();
       //string path = Path.Combine(DirPath, @"C:\Users\jszom\source\repos\jszomorCAD\jCAD.PID_Builder\Autocad PID blocks work in progress.dwg");
-       
-   // Copy blocks from sourcefile into opened file
-   var copyBlock = new CopyBlock();
+
+      // Copy blocks from sourcefile into opened file
+      var copyBlock = new CopyBlock();
 
       #region btrNamesToCopy
       var eqType = new[] {
@@ -402,7 +402,7 @@ namespace jszomorCAD
         "Vortex_sand_chamber",
         "vortexEQ"};
       #endregion
-      
+
       string[] btrNamesToCopy = eqType.Distinct().ToArray();
 
       copyBlock.CopyBlockTable(db, PIDBlocksPath, btr =>
@@ -416,7 +416,7 @@ namespace jszomorCAD
 
       var insertBlock = new InsertBlock(db);
       var filePath = Path.Combine(JsonStringBuilderSerialize.DirPath, FilePathPIDBuilder);
-    
+
       var jsonPID = blockDeserialize.ReadJsonData(filePath);
 
       //var sBlockName = jsonPID.Blocks.Select(b => b.Misc.BlockName);
@@ -439,11 +439,25 @@ namespace jszomorCAD
 
       var insertLine = new LineBuilder();
 
-      foreach(var line in jsonPID.Lines)
+      foreach (var line in jsonPID.Lines)
       {
         try
         {
           insertLine.LineCreator(line, db);
+        }
+        catch (ArgumentNullException)
+        {
+          // ignore
+        }
+      }
+
+      var insertDimension = new DimensionBuilder();
+
+      foreach(var dimension in jsonPID.Dimensions)
+      {
+        try
+        {
+          insertDimension.DimensionCreator(dimension, db);
         }
         catch (ArgumentNullException)
         {
@@ -474,7 +488,7 @@ namespace jszomorCAD
     [CommandMethod("Longtudinal SBR builder", CommandFlags.Modal)]
     public void LongitudinalSBRBuilder()
     {
-      
+
     }
 
     [CommandMethod("JCAD_Fillet", CommandFlags.Modal)]
@@ -778,6 +792,39 @@ namespace jszomorCAD
           var insertBlockTable = new InsertBlockTable(db);
           insertBlockTable.Numbering(db, true);
         }
+      }
+    }
+
+    [CommandMethod("CreateRotatedDimension")]
+    public static void CreateRotatedDimension()
+    {
+      // Get the current database
+      Document acDoc = Application.DocumentManager.MdiActiveDocument;
+      Database acCurDb = acDoc.Database;
+      // Start a transaction
+      using (Transaction acTrans = acCurDb.TransactionManager.StartTransaction())
+      {
+        // Open the Block table for read
+        BlockTable acBlkTbl;
+        acBlkTbl = acTrans.GetObject(acCurDb.BlockTableId,
+                                           OpenMode.ForRead) as BlockTable;
+        // Open the Block table record Model space for write
+        BlockTableRecord acBlkTblRec;
+        acBlkTblRec = acTrans.GetObject(acBlkTbl[BlockTableRecord.ModelSpace],
+                                              OpenMode.ForWrite) as BlockTableRecord;
+        // Create the rotated dimension
+        RotatedDimension acRotDim = new RotatedDimension();
+        acRotDim.SetDatabaseDefaults();
+        acRotDim.XLine1Point = new Point3d(0, 0, 0);
+        acRotDim.XLine2Point = new Point3d(6, 3, 0);
+        acRotDim.Rotation = 0.707;
+        acRotDim.DimLinePoint = new Point3d(0, 5, 0);
+        acRotDim.DimensionStyle = acCurDb.Dimstyle;
+        // Add the new object to Model space and the transaction
+        acBlkTblRec.AppendEntity(acRotDim);
+        acTrans.AddNewlyCreatedDBObject(acRotDim, true);
+        // Commit the changes and dispose of the transaction
+        acTrans.Commit();
       }
     }
   }

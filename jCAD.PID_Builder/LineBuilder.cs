@@ -36,13 +36,15 @@ namespace jCAD.PID_Builder
               StartX = point.X;
               StartY = point.Y;
             }
-            if (point.Point == 2)
+            else if (point.Point == 2)
             {
               EndX = point.X;
               EndY = point.Y;
             }
           }
           Line acLine = new Line(new Point3d(StartX, StartY, 0), new Point3d(EndX, EndY, 0));
+
+
           acLine.SetDatabaseDefaults();
           acLine.Layer = line.Layer;
           acBlkTblRec.AppendEntity(acLine);

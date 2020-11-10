@@ -26,6 +26,7 @@ namespace jCAD.PID_Builder
       {
         var jsonLineSetup = new JsonLineSetup();
         var jsonBlockSetup = new JsonBlockSetup();
+        var serializeDimension = new SerializeDimension();
 
         var jsonPID = new JsonPID();
         //InternalCounter = 1;
@@ -52,6 +53,13 @@ namespace jCAD.PID_Builder
             {
               //jsonLineToSerialize.Add(jsonLineSetup.SetupLineProperty(item));
               jsonPID.Lines.Add(jsonLineSetup.SetupLineProperty(item, jsonBlockSetup));
+              InternalCounter++;
+            }
+            if (item == null) continue;
+
+            if(item is Dimension)
+            {
+              jsonPID.Dimensions.Add(serializeDimension.SetupDimensionProperty(item, jsonBlockSetup));
               InternalCounter++;
             }
           }
