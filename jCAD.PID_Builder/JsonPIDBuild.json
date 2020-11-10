@@ -3,7 +3,7 @@
   "Lines": [
     {
       "Type": "Autodesk.AutoCAD.DatabaseServices.Line",
-      "Internal_Id": 0,
+      "Internal_Id": 1,
       "Layer": "equipment",
       "LineOrCenterPoints": [
         {
@@ -14,30 +14,30 @@
         {
           "Point": 2,
           "X": 0.0,
-          "Y": 13000.0
+          "Y": 12000.0
         }
       ]
     },
     {
       "Type": "Autodesk.AutoCAD.DatabaseServices.Line",
-      "Internal_Id": 0,
+      "Internal_Id": 2,
       "Layer": "equipment",
       "LineOrCenterPoints": [
         {
           "Point": 1,
-          "X": -500.0,
-          "Y": -500.0
+          "X": -300.0,
+          "Y": -300.0
         },
         {
           "Point": 2,
-          "X": -500.0,
-          "Y": 13500.0
+          "X": -300.0,
+          "Y": 12300.0
         }
       ]
     },
     {
       "Type": "Autodesk.AutoCAD.DatabaseServices.Line",
-      "Internal_Id": 0,
+      "Internal_Id": 3,
       "Layer": "equipment",
       "LineOrCenterPoints": [
         {
@@ -54,92 +54,92 @@
     },
     {
       "Type": "Autodesk.AutoCAD.DatabaseServices.Line",
-      "Internal_Id": 0,
+      "Internal_Id": 4,
       "Layer": "equipment",
       "LineOrCenterPoints": [
         {
           "Point": 1,
-          "X": 4500.0,
+          "X": 4300.0,
           "Y": 0.0
         },
         {
           "Point": 2,
-          "X": 8500.0,
+          "X": 8300.0,
           "Y": 0.0
         }
       ]
     },
     {
       "Type": "Autodesk.AutoCAD.DatabaseServices.Line",
-      "Internal_Id": 0,
+      "Internal_Id": 5,
       "Layer": "equipment",
       "LineOrCenterPoints": [
         {
           "Point": 1,
-          "X": -500.0,
-          "Y": -500.0
+          "X": -300.0,
+          "Y": -300.0
         },
         {
           "Point": 2,
-          "X": 9000.0,
-          "Y": -500.0
+          "X": 8600.0,
+          "Y": -300.0
         }
       ]
     },
     {
       "Type": "Autodesk.AutoCAD.DatabaseServices.Line",
-      "Internal_Id": 0,
+      "Internal_Id": 6,
       "Layer": "equipment",
       "LineOrCenterPoints": [
         {
           "Point": 1,
           "X": 0.0,
-          "Y": 13000.0
+          "Y": 12000.0
         },
         {
           "Point": 2,
           "X": 4000.0,
-          "Y": 13000.0
+          "Y": 12000.0
         }
       ]
     },
     {
       "Type": "Autodesk.AutoCAD.DatabaseServices.Line",
-      "Internal_Id": 0,
+      "Internal_Id": 7,
       "Layer": "equipment",
       "LineOrCenterPoints": [
         {
           "Point": 1,
-          "X": 4500.0,
-          "Y": 13000.0
+          "X": 4300.0,
+          "Y": 12000.0
         },
         {
           "Point": 2,
-          "X": 8500.0,
-          "Y": 13000.0
+          "X": 8300.0,
+          "Y": 12000.0
         }
       ]
     },
     {
       "Type": "Autodesk.AutoCAD.DatabaseServices.Line",
-      "Internal_Id": 0,
+      "Internal_Id": 8,
       "Layer": "equipment",
       "LineOrCenterPoints": [
         {
           "Point": 1,
-          "X": -500.0,
-          "Y": 13500.0
+          "X": -300.0,
+          "Y": 12300.0
         },
         {
           "Point": 2,
-          "X": 9000.0,
-          "Y": 13500.0
+          "X": 8600.0,
+          "Y": 12300.0
         }
       ]
     },
     {
       "Type": "Autodesk.AutoCAD.DatabaseServices.Line",
-      "Internal_Id": 0,
+      "Internal_Id": 9,
       "Layer": "equipment",
       "LineOrCenterPoints": [
         {
@@ -150,58 +150,58 @@
         {
           "Point": 2,
           "X": 4000.0,
-          "Y": 13000.0
+          "Y": 12000.0
         }
       ]
     },
     {
       "Type": "Autodesk.AutoCAD.DatabaseServices.Line",
-      "Internal_Id": 0,
+      "Internal_Id": 10,
       "Layer": "equipment",
       "LineOrCenterPoints": [
         {
           "Point": 1,
-          "X": 4500.0,
+          "X": 4300.0,
           "Y": 0.0
         },
         {
           "Point": 2,
-          "X": 4500.0,
-          "Y": 13000.0
+          "X": 4300.0,
+          "Y": 12000.0
         }
       ]
     },
     {
       "Type": "Autodesk.AutoCAD.DatabaseServices.Line",
-      "Internal_Id": 0,
+      "Internal_Id": 11,
       "Layer": "equipment",
       "LineOrCenterPoints": [
         {
           "Point": 1,
-          "X": 8500.0,
+          "X": 8300.0,
           "Y": 0.0
         },
         {
           "Point": 2,
-          "X": 8500.0,
-          "Y": 13000.0
+          "X": 8300.0,
+          "Y": 12000.0
         }
       ]
     },
     {
       "Type": "Autodesk.AutoCAD.DatabaseServices.Line",
-      "Internal_Id": 0,
+      "Internal_Id": 12,
       "Layer": "equipment",
       "LineOrCenterPoints": [
         {
           "Point": 1,
-          "X": 9000.0,
-          "Y": -500.0
+          "X": 8600.0,
+          "Y": -300.0
         },
         {
           "Point": 2,
-          "X": 9000.0,
-          "Y": 13500.0
+          "X": 8600.0,
+          "Y": 12300.0
         }
       ]
     }

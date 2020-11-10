@@ -19,7 +19,7 @@ namespace jCAD.PID_Builder
       _db = db;
     }
 
-    public static int InternalCounter { get; set; }
+    public static int InternalCounter { get; set; } = 1;
     public void ReadBtrForSeri(Database db, string fileName)
     {
       ExtensionMethod.ExecuteActionOnModelSpace(db, (tr, btrModelSpace) =>
@@ -28,7 +28,7 @@ namespace jCAD.PID_Builder
         var jsonBlockSetup = new JsonBlockSetup();
 
         var jsonPID = new JsonPID();
-        InternalCounter = 1;
+        //InternalCounter = 1;
         foreach (ObjectId objectId in btrModelSpace)
         {
           using (var item = objectId.GetObject(OpenMode.ForWrite))

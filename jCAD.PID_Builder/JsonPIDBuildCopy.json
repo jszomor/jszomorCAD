@@ -8,13 +8,13 @@
       "LineOrCenterPoints": [
         {
           "Point": 1,
-          "X": 4000.0,
-          "Y": 0.0
+          "X": -560.0,
+          "Y": 12560.0
         },
         {
           "Point": 2,
-          "X": 4000.0,
-          "Y": 13000.0
+          "X": 5560.0,
+          "Y": 12560.0
         }
       ]
     },
@@ -25,13 +25,13 @@
       "LineOrCenterPoints": [
         {
           "Point": 1,
-          "X": -500.0,
-          "Y": 13500.0
+          "X": 0.0,
+          "Y": 12000.0
         },
         {
           "Point": 2,
-          "X": 9000.0,
-          "Y": 13500.0
+          "X": 5000.0,
+          "Y": 12000.0
         }
       ]
     },
@@ -42,13 +42,13 @@
       "LineOrCenterPoints": [
         {
           "Point": 1,
-          "X": 4500.0,
-          "Y": 13000.0
+          "X": 5560.0,
+          "Y": -560.0
         },
         {
           "Point": 2,
-          "X": 8500.0,
-          "Y": 13000.0
+          "X": 5560.0,
+          "Y": 12560.0
         }
       ]
     },
@@ -59,13 +59,13 @@
       "LineOrCenterPoints": [
         {
           "Point": 1,
-          "X": 9000.0,
-          "Y": -500.0
+          "X": 5000.0,
+          "Y": 0.0
         },
         {
           "Point": 2,
-          "X": 9000.0,
-          "Y": 13500.0
+          "X": 5000.0,
+          "Y": 12000.0
         }
       ]
     },
@@ -76,13 +76,13 @@
       "LineOrCenterPoints": [
         {
           "Point": 1,
-          "X": 8500.0,
-          "Y": 0.0
+          "X": -560.0,
+          "Y": -560.0
         },
         {
           "Point": 2,
-          "X": 8500.0,
-          "Y": 13000.0
+          "X": -560.0,
+          "Y": 12560.0
         }
       ]
     },
@@ -93,13 +93,13 @@
       "LineOrCenterPoints": [
         {
           "Point": 1,
-          "X": 4500.0,
+          "X": 0.0,
           "Y": 0.0
         },
         {
           "Point": 2,
-          "X": 4500.0,
-          "Y": 13000.0
+          "X": 0.0,
+          "Y": 12000.0
         }
       ]
     },
@@ -110,13 +110,13 @@
       "LineOrCenterPoints": [
         {
           "Point": 1,
-          "X": 0.0,
-          "Y": 0.0
+          "X": -560.0,
+          "Y": -560.0
         },
         {
           "Point": 2,
-          "X": 4000.0,
-          "Y": 0.0
+          "X": 5560.0,
+          "Y": -560.0
         }
       ]
     },
@@ -127,80 +127,12 @@
       "LineOrCenterPoints": [
         {
           "Point": 1,
-          "X": -500.0,
-          "Y": -500.0
-        },
-        {
-          "Point": 2,
-          "X": -500.0,
-          "Y": 13500.0
-        }
-      ]
-    },
-    {
-      "Type": "Autodesk.AutoCAD.DatabaseServices.Line",
-      "Internal_Id": 9,
-      "Layer": "equipment",
-      "LineOrCenterPoints": [
-        {
-          "Point": 1,
           "X": 0.0,
           "Y": 0.0
         },
         {
           "Point": 2,
-          "X": 0.0,
-          "Y": 13000.0
-        }
-      ]
-    },
-    {
-      "Type": "Autodesk.AutoCAD.DatabaseServices.Line",
-      "Internal_Id": 10,
-      "Layer": "equipment",
-      "LineOrCenterPoints": [
-        {
-          "Point": 1,
-          "X": 0.0,
-          "Y": 13000.0
-        },
-        {
-          "Point": 2,
-          "X": 4000.0,
-          "Y": 13000.0
-        }
-      ]
-    },
-    {
-      "Type": "Autodesk.AutoCAD.DatabaseServices.Line",
-      "Internal_Id": 11,
-      "Layer": "equipment",
-      "LineOrCenterPoints": [
-        {
-          "Point": 1,
-          "X": -500.0,
-          "Y": -500.0
-        },
-        {
-          "Point": 2,
-          "X": 9000.0,
-          "Y": -500.0
-        }
-      ]
-    },
-    {
-      "Type": "Autodesk.AutoCAD.DatabaseServices.Line",
-      "Internal_Id": 12,
-      "Layer": "equipment",
-      "LineOrCenterPoints": [
-        {
-          "Point": 1,
-          "X": 4500.0,
-          "Y": 0.0
-        },
-        {
-          "Point": 2,
-          "X": 8500.0,
+          "X": 5000.0,
           "Y": 0.0
         }
       ]

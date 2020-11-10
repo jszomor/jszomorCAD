@@ -55,6 +55,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\jCAD.PID_Builder\jCAD.PID_Builder.csproj">
+      <Project>{bea8bdac-c575-4cdf-b08c-2d4455d3eaef}</Project>
+      <Name>jCAD.PID_Builder</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\JsonFindKey\JsonFindKey.csproj">
       <Project>{6af4b808-9848-4afa-bc0b-7dc1f7674cc8}</Project>
       <Name>JsonFindKey</Name>
