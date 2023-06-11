@@ -1,26 +1,574 @@
 {
-  "Blocks": [],
+  "Blocks": [
+    {
+      "Geometry": {
+        "Position X": -60.0,
+        "Position Y": -30.0
+      },
+      "Misc": {
+        "Name": "chamber",
+        "Rotation": 0.0
+      },
+      "General": {
+        "Layer": "unit"
+      },
+      "Custom": {
+        "Position X": 15.0,
+        "Position Y": -6.29,
+        "Angle": 0.0,
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "no channels",
+        "Distance": 30.0,
+        "Distance1": 21.0,
+        "Distance2": 33.0,
+        "Distance3": 21.0,
+        "Distance4": 11.8,
+        "Distance5": 43.0
+      },
+      "Attributes": {
+        "Internal_Id": 35,
+        "NAME1": "DISTRIBUTION",
+        "VOLUME": "-",
+        "WIDTH": "-",
+        "LIQUIDLEVEL": "-",
+        "LENGTH": "-",
+        "HEIGHT": "-"
+      }
+    },
+    {
+      "Geometry": {
+        "Position X": 90.0,
+        "Position Y": -30.0
+      },
+      "Misc": {
+        "Name": "chamber",
+        "Rotation": 0.0
+      },
+      "General": {
+        "Layer": "unit"
+      },
+      "Custom": {
+        "Position X": 15.0,
+        "Position Y": -6.29,
+        "Angle": 0.0,
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "no channels",
+        "Distance": 30.0,
+        "Distance1": 21.0,
+        "Distance2": 33.0,
+        "Distance3": 21.0,
+        "Distance4": 11.8,
+        "Distance5": 43.0
+      },
+      "Attributes": {
+        "Internal_Id": 36,
+        "NAME1": "DISTRIBUTION",
+        "VOLUME": "-",
+        "WIDTH": "-",
+        "LIQUIDLEVEL": "-",
+        "LENGTH": "-",
+        "HEIGHT": "-"
+      }
+    },
+    {
+      "Geometry": {
+        "Position X": 0.0,
+        "Position Y": 0.0
+      },
+      "Misc": {
+        "Name": "chamber",
+        "Rotation": 0.0
+      },
+      "General": {
+        "Layer": "unit"
+      },
+      "Custom": {
+        "Position X": 40.0,
+        "Position Y": -6.29,
+        "Angle": 0.0,
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "no channels",
+        "Distance": 80.0,
+        "Distance1": 21.0,
+        "Distance2": 33.0,
+        "Distance3": 21.0,
+        "Distance4": 11.8,
+        "Distance5": 43.0
+      },
+      "Attributes": {
+        "Internal_Id": 37,
+        "NAME1": "EQUALIZATION",
+        "VOLUME": "-",
+        "WIDTH": "-",
+        "LIQUIDLEVEL": "-",
+        "LENGTH": "-",
+        "HEIGHT": "-"
+      }
+    },
+    {
+      "Geometry": {
+        "Position X": 50.0,
+        "Position Y": 10.0
+      },
+      "Misc": {
+        "Name": "pump",
+        "Rotation": 0.0
+      },
+      "General": {
+        "Layer": "equipment"
+      },
+      "Custom": {
+        "Position X": 0.03,
+        "Position Y": -6.01,
+        "Angle": 0.0,
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Angle1": 1.57,
+        "Angle2": 4.71,
+        "Visibility": "Centrifugal pump+tag+freq",
+        "Centrifugal Pump": 20,
+        "Try1": 10.0
+      },
+      "Attributes": {
+        "Internal_Id": 38,
+        "NOTE": "Anoxic mixing pump",
+        "MODEL": "-",
+        "CONSUMED_POWER": "-",
+        "INSTALLED_POWER": "-",
+        "INSTALLATION": "-",
+        "MATERIAL_HOUSING": "GCI",
+        "MATERIAL_IMPELLER": "GCI",
+        "SP_HEAD": "-",
+        "SP_CAPACITY": "-",
+        "UNIT_HEAD": "m",
+        "UNIT_CAPACITY": "m3/h",
+        "TAG": "000",
+        "RUNNINGHOURS": "-",
+        "PUMP_TYPE": "Centrifugal - VFD drive",
+        "NOTE_CHINESE": "缺氧搅拌泵",
+        "STB_DTY": "1",
+        "AREA_CODE": "00",
+        "DI": "3",
+        "DO": "1",
+        "AI": "3",
+        "AO": "1",
+        "PB": "1",
+        "PO": "2",
+        "TAG_ID": "PC",
+        "PROCESSUNITAREA": ""
+      }
+    },
+    {
+      "Geometry": {
+        "Position X": 20.0,
+        "Position Y": 10.0
+      },
+      "Misc": {
+        "Name": "pump",
+        "Rotation": 4.71238898038469
+      },
+      "General": {
+        "Layer": "equipment"
+      },
+      "Custom": {
+        "Position X": 6.0,
+        "Position Y": 0.0,
+        "Angle": 1.57,
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Angle1": 0.0,
+        "Angle2": 0.0,
+        "Visibility": "Centrifugal pump+tag",
+        "Centrifugal Pump": 0,
+        "Try1": 10.0
+      },
+      "Attributes": {
+        "Internal_Id": 39,
+        "NOTE": "Anoxic mixing pump",
+        "MODEL": "-",
+        "CONSUMED_POWER": "-",
+        "INSTALLED_POWER": "-",
+        "INSTALLATION": "-",
+        "MATERIAL_HOUSING": "GCI",
+        "MATERIAL_IMPELLER": "GCI",
+        "SP_HEAD": "-",
+        "SP_CAPACITY": "-",
+        "UNIT_HEAD": "m",
+        "UNIT_CAPACITY": "m3/h",
+        "TAG": "000",
+        "RUNNINGHOURS": "-",
+        "PUMP_TYPE": "Centrifugal",
+        "NOTE_CHINESE": "缺氧搅拌泵",
+        "STB_DTY": "1",
+        "AREA_CODE": "00",
+        "DI": "3",
+        "DO": "1",
+        "AI": "0",
+        "AO": "0",
+        "PB": "0",
+        "PO": "2",
+        "TAG_ID": "PC",
+        "PROCESSUNITAREA": ""
+      }
+    },
+    {
+      "Geometry": {
+        "Position X": 50.0,
+        "Position Y": 25.0
+      },
+      "Misc": {
+        "Name": "valve",
+        "Rotation": 1.5707963267948966
+      },
+      "General": {
+        "Layer": "valve"
+      },
+      "Custom": {
+        "Position X": 0.45,
+        "Position Y": -3.9,
+        "Angle": 0.0,
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Check Valve"
+      },
+      "Attributes": {
+        "Internal_Id": 40,
+        "NOTE": "Check Valve",
+        "EQUIP_TYPE": "Hand Actuated",
+        "MATERIAL": "-",
+        "SIZE": "-",
+        "SP_ACTUATED": "Hand",
+        "TAG": "000",
+        "NOTE_CHINESE": "",
+        "AREA_CODE": "-",
+        "DI": "0",
+        "DO": "0",
+        "AI": "0",
+        "AO": "0",
+        "PB": "0",
+        "PO": "0",
+        "TAG_ID": "VC",
+        "PROCESSUNITAREA": "",
+        "PRESSURE": "-"
+      }
+    },
+    {
+      "Geometry": {
+        "Position X": 50.0,
+        "Position Y": 40.0
+      },
+      "Misc": {
+        "Name": "valve",
+        "Rotation": 1.5707963267948966
+      },
+      "General": {
+        "Layer": "valve"
+      },
+      "Custom": {
+        "Position X": 0.45,
+        "Position Y": -3.9,
+        "Angle": 0.0,
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Gate Valve"
+      },
+      "Attributes": {
+        "Internal_Id": 41,
+        "NOTE": "Gate Valve",
+        "EQUIP_TYPE": "Hand Actuated",
+        "MATERIAL": "-",
+        "SIZE": "-",
+        "SP_ACTUATED": "Hand",
+        "TAG": "000",
+        "NOTE_CHINESE": "",
+        "AREA_CODE": "-",
+        "DI": "0",
+        "DO": "0",
+        "AI": "0",
+        "AO": "0",
+        "PB": "0",
+        "PO": "0",
+        "TAG_ID": "VG",
+        "PROCESSUNITAREA": "",
+        "PRESSURE": "-"
+      }
+    },
+    {
+      "Geometry": {
+        "Position X": 70.0,
+        "Position Y": 10.0
+      },
+      "Misc": {
+        "Name": "instrumentation tag",
+        "Rotation": 0.0
+      },
+      "General": {
+        "Layer": "instrumentation"
+      },
+      "Custom": {
+        "Angle": 3.14,
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Level Indicator/Transmitter",
+        "Distance": 11.0
+      },
+      "Attributes": {
+        "Internal_Id": 42,
+        "NOTE": "Indicator+Transmitter",
+        "EQUIP_TYPE": "Level",
+        "MODEL": "Prosonic S FMU90 FMU90-R11CA111AA2A1 (+52024477+ 52024478) & Prosonic S FDU91 FDU91-RG2AA1 (+71093130)",
+        "SP_FLOW": "",
+        "SP_FLUID": "",
+        "TAG": "000",
+        "NOTE_CHINESE": "",
+        "AREA_CODE": "",
+        "DI": "1",
+        "DO": "0",
+        "AI": "1",
+        "AO": "0",
+        "PB": "0",
+        "PO": "2",
+        "TAG_ID": "LIT",
+        "PROCESSUNITAREA": ""
+      }
+    },
+    {
+      "Geometry": {
+        "Position X": 70.0,
+        "Position Y": 50.0
+      },
+      "Misc": {
+        "Name": "instrumentation tag",
+        "Rotation": 0.0
+      },
+      "General": {
+        "Layer": "instrumentation"
+      },
+      "Custom": {
+        "Angle": 3.14,
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Flow Indicator/Transmitter",
+        "Distance": 11.0
+      },
+      "Attributes": {
+        "Internal_Id": 43,
+        "NOTE": "Indicator+Transmitter",
+        "EQUIP_TYPE": "Flow",
+        "MODEL": "",
+        "SP_FLOW": "",
+        "SP_FLUID": "Wastewater",
+        "TAG": "000",
+        "NOTE_CHINESE": "",
+        "AREA_CODE": "",
+        "DI": "1",
+        "DO": "0",
+        "AI": "1",
+        "AO": "0",
+        "PB": "0",
+        "PO": "2",
+        "TAG_ID": "FIT",
+        "PROCESSUNITAREA": ""
+      }
+    },
+    {
+      "Geometry": {
+        "Position X": -10.5,
+        "Position Y": -24.0
+      },
+      "Misc": {
+        "Name": "channel gate",
+        "Rotation": 0.0
+      },
+      "General": {
+        "Layer": "equipment"
+      },
+      "Custom": {
+        "Position X": 0.5,
+        "Position Y": -2.07,
+        "Angle": 0.0,
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Motor"
+      },
+      "Attributes": {
+        "Internal_Id": 44,
+        "NOTE": "Channel Gate",
+        "EQUIP_TYPE": "Channel Gate (motor actuated)",
+        "MODEL": "-",
+        "CONSUMED_POWER": "-",
+        "INSTALLED_POWER": "-",
+        "MATERIAL_FRAME": "ASTM 304",
+        "MATERIAL_BODY": "ASTM 304",
+        "MATERIAL_SEALING": "EPDM/Rubber",
+        "MATERIAL_STEM": "ASTM 306",
+        "SP_CHANNELH": "-",
+        "SP_CHANNELW": "-",
+        "SP_WATER_LEVEL": "-",
+        "UNIT_CHANNELW": "mm",
+        "UNIT_CHANNELH": "mm",
+        "UNIT_WATER_LEVEL": "mm",
+        "TAG": "000",
+        "NOTE_CHINESE": "渠道闸阀",
+        "STB_DTY": "1",
+        "AREA_CODE": "00",
+        "DI": "5",
+        "DO": "2",
+        "AI": "0",
+        "AO": "0",
+        "PB": "0",
+        "PO": "2",
+        "TAG_ID": "VT",
+        "PROCESSUNITAREA": ""
+      }
+    },
+    {
+      "Geometry": {
+        "Position X": -10.5,
+        "Position Y": 6.0
+      },
+      "Misc": {
+        "Name": "channel gate",
+        "Rotation": 0.0
+      },
+      "General": {
+        "Layer": "equipment"
+      },
+      "Custom": {
+        "Position X": 0.5,
+        "Position Y": -2.07,
+        "Angle": 0.0,
+        "Flip state": 0,
+        "Flip state1": 0,
+        "Visibility": "Motor"
+      },
+      "Attributes": {
+        "Internal_Id": 45,
+        "NOTE": "Channel Gate",
+        "EQUIP_TYPE": "Channel Gate (motor actuated)",
+        "MODEL": "-",
+        "CONSUMED_POWER": "-",
+        "INSTALLED_POWER": "-",
+        "MATERIAL_FRAME": "ASTM 304",
+        "MATERIAL_BODY": "ASTM 304",
+        "MATERIAL_SEALING": "EPDM/Rubber",
+        "MATERIAL_STEM": "ASTM 306",
+        "SP_CHANNELH": "-",
+        "SP_CHANNELW": "-",
+        "SP_WATER_LEVEL": "-",
+        "UNIT_CHANNELW": "mm",
+        "UNIT_CHANNELH": "mm",
+        "UNIT_WATER_LEVEL": "mm",
+        "TAG": "000",
+        "NOTE_CHINESE": "渠道闸阀",
+        "STB_DTY": "1",
+        "AREA_CODE": "00",
+        "DI": "5",
+        "DO": "2",
+        "AI": "0",
+        "AO": "0",
+        "PB": "0",
+        "PO": "2",
+        "TAG_ID": "VT",
+        "PROCESSUNITAREA": ""
+      }
+    },
+    {
+      "Geometry": {
+        "Position X": 50.0,
+        "Position Y": 14.0
+      },
+      "Misc": {
+        "Name": "pipe",
+        "Rotation": 0.0
+      },
+      "General": {
+        "Layer": "sewer"
+      },
+      "Custom": {
+        "Flip state": 0,
+        "Flip state1": 0
+      },
+      "Attributes": {
+        "Internal_Id": 46,
+        "MATERIAL": "1.4301",
+        "TAG": "000",
+        "PRESSURE": "PN00",
+        "DIAMETER": "000"
+      }
+    },
+    {
+      "Geometry": {
+        "Position X": 100.0,
+        "Position Y": 50.0
+      },
+      "Misc": {
+        "Name": "pipe2",
+        "Rotation": 3.1415926535897931
+      },
+      "General": {
+        "Layer": "sewer"
+      },
+      "Custom": {
+        "Flip state": 0,
+        "Flip state1": 0
+      },
+      "Attributes": {
+        "Internal_Id": 47,
+        "MATERIAL": "1.4301",
+        "TAG": "000",
+        "PRESSURE": "PN00",
+        "DIAMETER": "000"
+      }
+    },
+    {
+      "Geometry": {
+        "Position X": -30.0,
+        "Position Y": -20.0
+      },
+      "Misc": {
+        "Name": "channel",
+        "Rotation": 4.71238898038469
+      },
+      "General": {
+        "Layer": "sewer"
+      },
+      "Custom": {
+        "Flip state": 0,
+        "Flip state1": 0
+      },
+      "Attributes": {
+        "Internal_Id": 48
+      }
+    },
+    {
+      "Geometry": {
+        "Position X": -20.0,
+        "Position Y": 10.0
+      },
+      "Misc": {
+        "Name": "channel2",
+        "Rotation": 4.71238898038469
+      },
+      "General": {
+        "Layer": "sewer"
+      },
+      "Custom": {
+        "Flip state": 0,
+        "Flip state1": 0
+      },
+      "Attributes": {
+        "Internal_Id": 49
+      }
+    }
+  ],
   "Lines": [
     {
       "Type": "Autodesk.AutoCAD.DatabaseServices.Line",
-      "Internal_Id": 3,
-      "Layer": "0",
-      "LineOrCenterPoints": [
-        {
-          "Point": 1,
-          "X": 1736.178277503268,
-          "Y": 1436.0924171212246
-        },
-        {
-          "Point": 2,
-          "X": 2236.178277503268,
-          "Y": 1436.0924171212246
-        }
-      ]
-    },
-    {
-      "Type": "Autodesk.AutoCAD.DatabaseServices.Line",
-      "Internal_Id": 5,
+      "Internal_Id": 16,
       "Layer": "0",
       "LineOrCenterPoints": [
         {
@@ -55,32 +603,9 @@
           "DimY": 1501.286917919595
         }
       ],
-      "Internal_Id": 4,
-      "Dimension Style": "(2336083573360)",
-      "Dimension Style Name": "ISO-25",
-      "Layer": "0",
-      "Dim rotation": 0.0
-    },
-    {
-      "XDimPoints": [
-        {
-          "Dim Point": 1,
-          "DimX": 1736.178277503268,
-          "DimY": 1436.0924171212246
-        },
-        {
-          "Dim Point": 2,
-          "DimX": 2236.178277503268,
-          "DimY": 1436.0924171212246
-        },
-        {
-          "Dim Point": 3,
-          "DimX": 2236.178277503268,
-          "DimY": 1501.286917919595
-        }
-      ],
-      "Internal_Id": 6,
-      "Dimension Style": "(2336083573360)",
+      "Internal_Id": 17,
+      "Dimension Type": "Rotated Dimension",
+      "Dimension Style": "(2400928162416)",
       "Dimension Style Name": "ISO-25",
       "Layer": "0",
       "Dim rotation": 0.0
